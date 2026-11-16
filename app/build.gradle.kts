@@ -33,8 +33,16 @@ val keystoreProperties = Properties().apply {
     if (file.exists()) file.inputStream().use(::load)
 }
 
+// Blank counts as missing: GitHub Actions passes an unset secret as an empty string.
 fun signingValue(env: String, key: String): String? =
-    providers.environmentVariable(env).orNull ?: keystoreProperties.getProperty(key)
+    providers.environmentVariable(env).orNull?.takeIf { it.isNotBlank() }
+        ?: keystoreProperties.getProperty(key)?.takeIf { it.isNotBlank() }
+
+// Only sign with a keystore that really exists and has content. Otherwise the release build
+// is left unsigned instead of failing (for example in CI before the signing secrets are set).
+val releaseKeystore: File? = signingValue("SIGNING_STORE_FILE", "storeFile")
+    ?.let { rootProject.file(it) }
+    ?.takeIf { it.isFile && it.length() > 0L }
 
 android {
     namespace = "com.ks.tvlauncher"
@@ -51,8 +59,8 @@ android {
 
     signingConfigs {
         create("release") {
-            signingValue("SIGNING_STORE_FILE", "storeFile")?.let { path ->
-                storeFile = file(path)
+            releaseKeystore?.let { keystore ->
+                storeFile = keystore
                 storePassword = signingValue("SIGNING_STORE_PASSWORD", "storePassword")
                 keyAlias = signingValue("SIGNING_KEY_ALIAS", "keyAlias")
                 keyPassword = signingValue("SIGNING_KEY_PASSWORD", "keyPassword")

@@ -34,12 +34,19 @@ jobs:
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
 
+      # Without the signing secrets no keystore is written, and Gradle then produces an
+      # unsigned release build instead of failing. Unsigned APKs cannot be installed.
       - name: Decode keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+          else
+            echo "::warning::Signing secrets are not set. The release build will be unsigned."
+          fi
 
-      - name: Build signed release
+      - name: Build release
         env:
           SIGNING_STORE_FILE: ${{ runner.temp }}/release.jks
           SIGNING_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
