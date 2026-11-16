@@ -29,6 +29,7 @@ Tests: `HomeIntentTest.kt`
 - [data.apps](data-apps.md) via `AppArtworkFetcher`, `AppArtworkKeyer`, `AppsRepository`, `PinnedAppsRepository`, `WallpaperSource`
 - [data.profile](data-profile.md) via `ProfileRepository`
 - [data.settings](data-settings.md) via `SettingsRepository`
+- [data.subscriptions](data-subscriptions.md) via `SubscriptionDataStore`, `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfoRepository`
 - [ui.apps](ui-apps.md) via `AppIntents`, `LocalAppImageLoader`
 - [ui.home](ui-home.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`
@@ -37,6 +38,7 @@ Tests: `HomeIntentTest.kt`
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `KsApplication`
 - [ui.home](ui-home.md) via `KsApplication`
+- [ui.subscriptions](ui-subscriptions.md) via `KsApplication`
 
 ## Spec
 - [app-config](../../spec/app-config.md), [architecture](../../spec/architecture.md), [focus-navigation](../../spec/focus-navigation.md), [app-mode](../../spec/app-mode.md)

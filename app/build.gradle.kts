@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 // ---- Versioning (never hardcoded) -------------------------------------------------------------
@@ -113,7 +114,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.androidx.palette)
 
-    // Used with built-in serializers only (no compiler plugin needed yet).
+    // With the serialization compiler plugin for @Serializable models (subscriptions).
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)

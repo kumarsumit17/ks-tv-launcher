@@ -14,7 +14,7 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 - Every focusable control uses `animateDpadFocus`.
 - `frost()` only on still surfaces, never inside scrolling rows or grids.
 - A long-press action always has a second path.
-- `GlassSearchField` opens the keyboard on OK only, never on focus.
+- `GlassSearchField` opens the keyboard on OK only, never on focus. With `icon = null` and `ImeAction.Done` it is the plain text field used in dialogs.
 - Overlays use `modalFocus()` and return focus to their opener.
 - In lazy rows and grids use `FocusMemory` (a requester per item), not `Modifier.focusRestorer()`: on a real TV the restorer returned focus to the wrong item.
 - `focusProperties` on a container does not affect moves that start from its children; set `up`/`down` on the focusable items themselves.
@@ -44,7 +44,8 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `AppTile`, `FocusMemory`, `GlassButton`, `GlassChip`, `GlassDialog`, `GlassSearchField` +2
-- [ui.home](ui-home.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +4
+- [ui.home](ui-home.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +5
+- [ui.subscriptions](ui-subscriptions.md) via `FocusMemory`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill` +6
 - [ui.widgets](ui-widgets.md) via `GlassCard`, `GlassPill`
 
 ## Spec

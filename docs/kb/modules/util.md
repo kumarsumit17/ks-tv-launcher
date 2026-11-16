@@ -24,6 +24,7 @@ Small helpers: `minuteTicker` (flow on `ACTION_TIME_TICK`) and `DateTimeFormats`
 
 ## Used by (generated)
 - [ui.home](ui-home.md) via `DateTimeFormats`, `minuteTicker`
+- [ui.subscriptions](ui-subscriptions.md) via `DateTimeFormats`, `minuteTicker`
 
 ## Spec
 - [home-screen](../../spec/home-screen.md), [performance](../../spec/performance.md)

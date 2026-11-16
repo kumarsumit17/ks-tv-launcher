@@ -1,8 +1,10 @@
 package com.ks.tvlauncher.ui.home
 
 import android.content.Intent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,6 +43,9 @@ import com.ks.tvlauncher.ui.components.FocusMemory
 import com.ks.tvlauncher.ui.components.FrostSource
 import com.ks.tvlauncher.ui.components.GlassSnackbar
 import com.ks.tvlauncher.ui.components.requestFocusSafely
+import com.ks.tvlauncher.ui.subscriptions.SubscriptionsScreen
+import com.ks.tvlauncher.ui.subscriptions.SubscriptionsUiState
+import com.ks.tvlauncher.ui.subscriptions.SubscriptionsViewModel
 import com.ks.tvlauncher.ui.theme.KsDimens
 import com.ks.tvlauncher.ui.widgets.GreetingWidget
 import kotlinx.coroutines.delay
@@ -73,6 +78,7 @@ class HomeActions(
 fun HomeScreen(
     state: HomeUiState,
     wallpaper: Wallpaper?,
+    subscriptions: SubscriptionsUiState,
     reopenEvents: Flow<Unit>,
     actions: HomeActions,
     modifier: Modifier = Modifier,
@@ -84,8 +90,10 @@ fun HomeScreen(
     val heroFocus = remember { FocusRequester() }
     val allAppsFocus = remember { FocusRequester() }
     val drawerFallbackFocus = remember { FocusRequester() }
+    val subscriptionsFocus = remember { FocusRequester() }
 
     var drawerOpen by rememberSaveable { mutableStateOf(false) }
+    var subscriptionsOpen by rememberSaveable { mutableStateOf(false) }
     // The app whose menu is open, from either the pinned row or the drawer.
     var menuApp by remember { mutableStateOf<AppInfo?>(null) }
     var initialFocusDone by remember { mutableStateOf(false) }
@@ -110,7 +118,7 @@ fun HomeScreen(
     }
     // The last pinned app was unpinned from the hero: its buttons are gone, so move focus on.
     LaunchedEffect(hasPinned) {
-        if (initialFocusDone && !hasPinned && !drawerOpen) {
+        if (initialFocusDone && !hasPinned && !drawerOpen && !subscriptionsOpen) {
             withFrameNanos { }
             allAppsFocus.requestFocusSafely()
         }
@@ -121,6 +129,7 @@ fun HomeScreen(
         reopenEvents.collect {
             menuApp = null
             drawerOpen = false
+            subscriptionsOpen = false
             withFrameNanos { }
             rowTarget().requestFocusSafely()
         }
@@ -229,15 +238,27 @@ fun HomeScreen(
                 )
                 Spacer(Modifier.height(6.dp))
             }
-            AllAppsCard(
-                installedCount = state.installedCount,
-                onClick = { drawerOpen = true },
-                modifier = Modifier
-                    .padding(horizontal = KsDimens.OverscanHorizontal)
-                    .focusRequester(allAppsFocus)
-                    // With pinned apps, Up returns to the tile that was focused last.
-                    .focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default },
-            )
+            Row(
+                modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                AllAppsCard(
+                    installedCount = state.installedCount,
+                    onClick = { drawerOpen = true },
+                    modifier = Modifier
+                        .focusRequester(allAppsFocus)
+                        // With pinned apps, Up returns to the tile that was focused last.
+                        .focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default },
+                )
+                SubscriptionsCard(
+                    state = subscriptions,
+                    onClick = { subscriptionsOpen = true },
+                    modifier = Modifier
+                        .width(460.dp)
+                        .focusRequester(subscriptionsFocus)
+                        .focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default },
+                )
+            }
         }
 
         if (drawerOpen) {
@@ -264,6 +285,30 @@ fun HomeScreen(
             )
         } else {
             menu()
+        }
+
+        if (subscriptionsOpen) {
+            val subsViewModel: SubscriptionsViewModel = viewModel(factory = SubscriptionsViewModel.Factory)
+            val subsState by subsViewModel.uiState.collectAsStateWithLifecycle()
+            SubscriptionsScreen(
+                state = subsState,
+                onClose = { subscriptionsOpen = false },
+                onSave = subsViewModel::save,
+                onDelete = subsViewModel::delete,
+                onToggleActive = subsViewModel::toggleActive,
+                exportCsv = subsViewModel::exportCsv,
+            )
+        }
+        // Back from Subscriptions: focus returns to the Home card that opened it.
+        var subscriptionsWasOpen by remember { mutableStateOf(false) }
+        LaunchedEffect(subscriptionsOpen) {
+            if (subscriptionsOpen) {
+                subscriptionsWasOpen = true
+            } else if (subscriptionsWasOpen) {
+                subscriptionsWasOpen = false
+                withFrameNanos { }
+                subscriptionsFocus.requestFocusSafely()
+            }
         }
 
         state.message?.let { message ->

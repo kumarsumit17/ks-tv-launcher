@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val state by viewModel.uiState.collectAsStateWithLifecycle()
             val wallpaper by viewModel.wallpaper.collectAsStateWithLifecycle()
+            val subscriptions by viewModel.subscriptions.collectAsStateWithLifecycle()
             val actions = remember {
                 HomeActions(
                     onSwitchProfile = viewModel::switchProfile,
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                     HomeScreen(
                         state = state,
                         wallpaper = wallpaper,
+                        subscriptions = subscriptions,
                         reopenEvents = viewModel.reopenEvents,
                         actions = actions,
                     )

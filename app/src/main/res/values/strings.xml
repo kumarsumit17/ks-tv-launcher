@@ -64,4 +64,55 @@
     <string name="toggle_off">Off</string>
     <string name="stepper_decrease">Decrease</string>
     <string name="stepper_increase">Increase</string>
+
+    <!-- Subscriptions -->
+    <string name="subs_title">Active Subscriptions</string>
+    <string name="subs_home">Home</string>
+    <string name="subs_add">Add subscription</string>
+    <string name="subs_export">Export CSV</string>
+    <string name="subs_export_chooser">Export subscriptions</string>
+    <string name="subs_export_subject">KS subscriptions</string>
+    <string name="subs_export_failed">No app on this TV can receive the CSV</string>
+    <string name="subs_stat_active">ACTIVE</string>
+    <string name="subs_stat_month">PER MONTH</string>
+    <string name="subs_stat_year">PER YEAR</string>
+    <string name="subs_stat_next">NEXT RENEWAL</string>
+    <string name="subs_of_total">of %1$d</string>
+    <string name="subs_none_active">None active</string>
+    <string name="subs_col_name">SUBSCRIPTION</string>
+    <string name="subs_col_cost">COST</string>
+    <string name="subs_col_billing">BILLING</string>
+    <string name="subs_col_renews">RENEWS</string>
+    <string name="subs_col_status">STATUS</string>
+    <string name="subs_per_year">%1$s / year</string>
+    <string name="subs_per_month_approx">≈ %1$s / month</string>
+    <string name="subs_monthly">Monthly</string>
+    <string name="subs_yearly">Yearly</string>
+    <string name="subs_active">Active</string>
+    <string name="subs_paused">Paused</string>
+    <string name="subs_empty">No subscriptions yet. Choose Add subscription to track one. Everything stays on this TV.</string>
+    <string name="subs_today">today</string>
+    <string name="subs_tomorrow">tomorrow</string>
+    <plurals name="subs_in_days">
+        <item quantity="one">in %1$d day</item>
+        <item quantity="other">in %1$d days</item>
+    </plurals>
+    <string name="subs_next_line">%1$s · %2$s</string>
+    <string name="subs_card_title">Active Subscriptions</string>
+    <string name="subs_card_totals">%1$s / month · %2$s / year</string>
+    <string name="subs_card_empty">Track what you pay for</string>
+    <string name="subs_dialog_add">Add subscription</string>
+    <string name="subs_dialog_edit">Edit subscription</string>
+    <string name="subs_field_name">Name (required)</string>
+    <string name="subs_field_provider">Plan or provider</string>
+    <string name="subs_field_note">Note</string>
+    <string name="subs_cost_label">Cost (OK ±10, hold OK ±100)</string>
+    <string name="subs_renewal_label">Renews on</string>
+    <string name="subs_prev_month">Previous month</string>
+    <string name="subs_next_month">Next month</string>
+    <string name="subs_prev_day">Previous day</string>
+    <string name="subs_next_day">Next day</string>
+    <string name="subs_delete">Delete</string>
+    <string name="subs_cancel">Cancel</string>
+    <string name="subs_save">Save</string>
 </resources>

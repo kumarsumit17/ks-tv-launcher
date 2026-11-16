@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +37,7 @@ import com.ks.tvlauncher.ui.theme.KsShapes
 import com.ks.tvlauncher.ui.theme.KsType
 
 /**
- * Search field for the remote. At rest it is an ordinary focus stop, so moving past it with
+ * Search (or plain text) field for the remote. At rest it is an ordinary focus stop, so moving past it with
  * the D-pad never pops the keyboard. OK starts editing and opens the keyboard (voice input
  * works through it); the keyboard's Search action, or Back, ends editing and returns focus
  * to the field.
@@ -47,6 +48,10 @@ fun GlassSearchField(
     onQueryChange: (String) -> Unit,
     placeholder: String,
     modifier: Modifier = Modifier,
+    /** Null for a plain text field without the magnifier. */
+    icon: ImageVector? = KsIcons.Search,
+    imeAction: ImeAction = ImeAction.Search,
+    maxLength: Int = Int.MAX_VALUE,
 ) {
     var editing by remember { mutableStateOf(false) }
     val restFocus = remember { FocusRequester() }
@@ -78,8 +83,10 @@ fun GlassSearchField(
                 .padding(horizontal = 14.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(KsIcons.Search, contentDescription = null, modifier = Modifier.size(13.dp), tint = KsColors.TextSecondary)
-            Spacer(Modifier.width(8.dp))
+            if (icon != null) {
+                Icon(icon, contentDescription = null, modifier = Modifier.size(13.dp), tint = KsColors.TextSecondary)
+                Spacer(Modifier.width(8.dp))
+            }
             Box(Modifier.weight(1f)) { text() }
         }
     }
@@ -89,12 +96,12 @@ fun GlassSearchField(
             content {
                 BasicTextField(
                     value = query,
-                    onValueChange = onQueryChange,
+                    onValueChange = { onQueryChange(it.take(maxLength)) },
                     singleLine = true,
                     textStyle = KsType.Label.copy(color = KsColors.TextPrimary),
                     cursorBrush = SolidColor(KsColors.TextPrimary),
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                    keyboardActions = KeyboardActions(onSearch = { editing = false }),
+                    keyboardOptions = KeyboardOptions(imeAction = imeAction),
+                    keyboardActions = KeyboardActions(onSearch = { editing = false }, onDone = { editing = false }),
                     modifier = Modifier.fillMaxWidth().focusRequester(editFocus),
                 )
             }

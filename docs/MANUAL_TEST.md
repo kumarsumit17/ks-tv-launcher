@@ -84,3 +84,28 @@ Checks that Stage 2 replaced (the six empty slots, Back doing nothing, the Home-
 - [ ] After a reboot the TV still starts on its own launcher, not KS.
 
 _Not yet testable: the profile switch chip (needs two saved names; the profile dialog arrives in Stage 4), turning the dynamic wallpaper off (its switch arrives with Settings in Stage 4), and `GlassToggle` and `GlassStepper` (first used on screen in later stages)._
+
+## Stage 3: Subscriptions
+
+### Open and close
+- [ ] The bottom strip shows the Subscriptions card next to All apps; Up from either goes to the last focused pinned tile.
+- [ ] OK on the card opens Active Subscriptions with focus on Add subscription. Back (or the Home button) returns to Home with focus on the card.
+- [ ] With the screen open, reopening KS from the TV's launcher closes it and focuses the last pinned tile.
+
+### Add, edit, delete
+- [ ] First run shows the empty message, zero stat cards and a disabled Export CSV.
+- [ ] Add subscription: every control is reachable with the D-pad; OK on Name opens the keyboard, Done/Back closes it.
+- [ ] Cost: OK on − / + steps ₹10; holding OK steps ₹100; it never goes below ₹0.
+- [ ] Monthly/Yearly chips, « ‹ date › » (month/day) and the Active switch all respond to OK. Save stays disabled until a name is entered.
+- [ ] After Save, focus lands on the new row; stat cards and the Home card update at once.
+- [ ] OK on a row opens it filled in; Save keeps focus on the row; Delete removes it and focus goes to Add subscription; Cancel and Back change nothing.
+
+### Toggle, totals, renewals
+- [ ] Right from a row reaches its Active/Paused pill; OK toggles it, and the totals and active count update.
+- [ ] A yearly ₹1,499 shows "≈ ₹125 / month"; a monthly ₹499 shows "₹5,988 / year"; large totals use Indian grouping (₹1,23,456).
+- [ ] A renewal date in the past shows the next date after rolling forward; Next renewal names the soonest active one ("in N days · date").
+
+### Export and persistence
+- [ ] Export CSV opens the share sheet (or shows a notice if no app can receive text/csv). The CSV has the header `name,amount_minor,currency,cycle,next_due`.
+- [ ] After force-stopping KS or rebooting, every subscription, its status and order are unchanged.
+

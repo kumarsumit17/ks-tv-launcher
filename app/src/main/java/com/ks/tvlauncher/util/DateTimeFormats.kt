@@ -2,9 +2,11 @@ package com.ks.tvlauncher.util
 
 import android.content.Context
 import android.text.format.DateFormat
+import java.time.LocalDate
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.time.temporal.TemporalAccessor
 import java.util.Locale
 
 /** Locale-aware clock and date text. Patterns come from the platform, so word order follows the TV's region. */
@@ -26,8 +28,12 @@ object DateTimeFormats {
     fun longDate(now: ZonedDateTime, locale: Locale = Locale.getDefault()): String =
         format(now, "EEEEdMMMM", locale) { DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale) }
 
+    /** "19 Nov 2026" */
+    fun mediumDate(date: LocalDate, locale: Locale = Locale.getDefault()): String =
+        format(date, "dMMMy", locale) { DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale) }
+
     private inline fun format(
-        now: ZonedDateTime,
+        now: TemporalAccessor,
         skeleton: String,
         locale: Locale,
         fallback: () -> DateTimeFormatter,

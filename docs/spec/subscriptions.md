@@ -17,7 +17,7 @@ mockups: [Subscriptions.png]
 Monthly equivalent = yearly ÷ 12, half-up to the paisa · monthly and yearly totals of active only · active count · next renewal (roll past dates forward by cycle until ≥ today) · days until it.
 
 ## Currency
-Default INR (`₹`, Indian grouping via `NumberFormat` for `Locale("en","IN")`); configurable in [settings](settings.md).
+Default INR (`₹`, Indian grouping ₹1,23,456, done in `domain/Money` because the JVM's `NumberFormat` cannot group in lakhs); configurable in [settings](settings.md).
 
 ## UI
 - Four stat cards + rows: name/provider, cost + equivalent, billing, renewal date, Active/Paused pill (OK toggles).

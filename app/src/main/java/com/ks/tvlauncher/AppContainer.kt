@@ -15,6 +15,8 @@ import com.ks.tvlauncher.data.apps.PinnedAppsRepository
 import com.ks.tvlauncher.data.apps.WallpaperSource
 import com.ks.tvlauncher.data.profile.ProfileRepository
 import com.ks.tvlauncher.data.settings.SettingsRepository
+import com.ks.tvlauncher.data.subscriptions.SubscriptionDataStore
+import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +44,9 @@ class AppContainer(context: Context) {
     val deviceInfoRepository: DeviceInfoRepository by lazy { DeviceInfoRepository(appContext) }
     val appsRepository: AppsRepository by lazy { AppsRepository(appContext, appScope) }
     val pinnedAppsRepository: PinnedAppsRepository by lazy { PinnedAppsRepository(preferences) }
+    val subscriptionRepository: SubscriptionRepository by lazy {
+        SubscriptionRepository(SubscriptionDataStore(preferences))
+    }
 
     /**
      * Loads app banners and icons. A small memory cache (15 % of the app's heap budget) and no

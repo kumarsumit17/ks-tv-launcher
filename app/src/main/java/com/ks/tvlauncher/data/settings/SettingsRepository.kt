@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.ks.tvlauncher.domain.Money
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -22,6 +23,8 @@ data class LauncherSettings(
     val dynamicWallpaper: Boolean = true,
     val reduceMotion: Boolean = false,
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
+    /** ISO 4217 code for subscription amounts and the CSV export. Default INR. */
+    val currency: String = Money.DEFAULT_CURRENCY,
 )
 
 /** Launcher preferences, stored on the device only. */
@@ -39,6 +42,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
                 glassIntensity = prefs[GLASS_INTENSITY]
                     ?.let { saved -> GlassIntensity.entries.firstOrNull { it.name == saved } }
                     ?: GlassIntensity.MEDIUM,
+                currency = prefs[CURRENCY] ?: Money.DEFAULT_CURRENCY,
             )
         }
         .distinctUntilChanged()
@@ -63,11 +67,16 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[GLASS_INTENSITY] = value.name }
     }
 
+    suspend fun setCurrency(code: String) {
+        store.edit { it[CURRENCY] = code.uppercase() }
+    }
+
     private companion object {
         val USE_24_HOUR = booleanPreferencesKey("clock_24_hour")
         val SHOW_DATE = booleanPreferencesKey("clock_show_date")
         val DYNAMIC_WALLPAPER = booleanPreferencesKey("dynamic_wallpaper")
         val REDUCE_MOTION = booleanPreferencesKey("reduce_motion")
         val GLASS_INTENSITY = stringPreferencesKey("glass_intensity")
+        val CURRENCY = stringPreferencesKey("currency")
     }
 }

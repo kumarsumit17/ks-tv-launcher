@@ -31,6 +31,7 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 - [ui.apps](ui-apps.md) via `KsColors`, `KsDimens`, `KsType`
 - [ui.components](ui-components.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion`
 - [ui.home](ui-home.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion` +1
+- [ui.subscriptions](ui-subscriptions.md) via `KsColors`, `KsDimens`, `KsType`
 - [ui.widgets](ui-widgets.md) via `KsColors`, `KsShapes`, `KsType`
 
 ## Spec

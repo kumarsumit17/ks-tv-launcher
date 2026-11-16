@@ -37,6 +37,7 @@ The All apps drawer (`AppsDrawer`, `AppsDrawerViewModel`), the per-app glass men
 ## Used by (generated)
 - [root](root.md) via `AppIntents`, `LocalAppImageLoader`
 - [ui.home](ui-home.md) via `AppArtworkImage`, `AppIntents`, `AppMenu`, `AppMenuState`, `AppsDrawer`, `AppsDrawerViewModel`
+- [ui.subscriptions](ui-subscriptions.md) via `AppIntents`
 
 ## Spec
 - [apps](../../spec/apps.md), [focus-navigation](../../spec/focus-navigation.md)

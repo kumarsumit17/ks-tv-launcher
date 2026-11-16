@@ -17,6 +17,7 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - The hero follows the last focused pinned tile; the wallpaper follows the hero after a 250 ms debounce.
 - Each new app list writes first-run pins once and prunes uninstalled ones (in `HomeViewModel`).
 - After the app menu closes, `HomeScreen` refocuses the tile it was opened from; do not move that into the dialog.
+- Bottom strip: All apps card and Subscriptions card side by side; both send Up to the last pinned tile. OK on the Subscriptions card opens `SubscriptionsScreen` over Home; Back or reopening closes it and focus returns to the card.
 - UI state is immutable and collected with lifecycle; upstream work stops 5 s after the screen is hidden.
 
 <!-- kb:generated:start -->
@@ -29,17 +30,20 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - `ui/home/HomeTopBar.kt` — `HomeTopBar`
 - `ui/home/HomeViewModel.kt` — `HomeMessage`, `HomeUiState`, `HomeViewModel`
 - `ui/home/PinnedRow.kt` — `PinnedRow`
+- `ui/home/SubscriptionsCard.kt` — `SubscriptionsCard`
 
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppsRepository`, `PinnedAppsRepository`, `Wallpaper`, `WallpaperSource`
 - [data.profile](data-profile.md) via `Profile`, `ProfileRepository`
 - [data.settings](data-settings.md) via `LauncherSettings`, `SettingsRepository`
+- [data.subscriptions](data-subscriptions.md) via `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfo`, `DeviceInfoRepository`
-- [domain](domain.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `PinnedApps`, `ProfileNames`
+- [domain](domain.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +1
 - [root](root.md) via `KsApplication`
 - [ui.apps](ui-apps.md) via `AppArtworkImage`, `AppIntents`, `AppMenu`, `AppMenuState`, `AppsDrawer`, `AppsDrawerViewModel`
-- [ui.components](ui-components.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +4
+- [ui.components](ui-components.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +5
 - [ui.icons](ui-icons.md) via `KsIcons`
+- [ui.subscriptions](ui-subscriptions.md) via `SubscriptionsScreen`, `SubscriptionsUiState`, `SubscriptionsViewModel`, `nextRenewalLine`, `subscriptionsState`
 - [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion` +1
 - [ui.widgets](ui-widgets.md) via `GreetingWidget`
 - [util](util.md) via `DateTimeFormats`, `minuteTicker`

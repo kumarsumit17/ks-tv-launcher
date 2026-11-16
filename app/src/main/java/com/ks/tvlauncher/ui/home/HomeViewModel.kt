@@ -17,6 +17,7 @@ import com.ks.tvlauncher.data.profile.Profile
 import com.ks.tvlauncher.data.profile.ProfileRepository
 import com.ks.tvlauncher.data.settings.LauncherSettings
 import com.ks.tvlauncher.data.settings.SettingsRepository
+import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
 import com.ks.tvlauncher.data.system.DeviceInfo
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import com.ks.tvlauncher.domain.AppInfo
@@ -25,6 +26,8 @@ import com.ks.tvlauncher.domain.Greeting
 import com.ks.tvlauncher.domain.GreetingPeriod
 import com.ks.tvlauncher.domain.PinnedApps
 import com.ks.tvlauncher.domain.ProfileNames
+import com.ks.tvlauncher.ui.subscriptions.SubscriptionsUiState
+import com.ks.tvlauncher.ui.subscriptions.subscriptionsState
 import com.ks.tvlauncher.ui.theme.VisualSettings
 import com.ks.tvlauncher.util.DateTimeFormats
 import com.ks.tvlauncher.util.minuteTicker
@@ -85,7 +88,13 @@ class HomeViewModel(
     private val appsRepository: AppsRepository,
     private val pinnedAppsRepository: PinnedAppsRepository,
     private val wallpaperSource: WallpaperSource,
+    subscriptionRepository: SubscriptionRepository,
 ) : ViewModel() {
+
+    /** The Home card's numbers: the same state the Subscriptions screen shows. */
+    val subscriptions: StateFlow<SubscriptionsUiState> =
+        subscriptionsState(appContext, subscriptionRepository, settingsRepository)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), SubscriptionsUiState())
 
     private data class AppsPart(
         val loaded: Boolean = false,
@@ -247,6 +256,7 @@ class HomeViewModel(
                     appsRepository = container.appsRepository,
                     pinnedAppsRepository = container.pinnedAppsRepository,
                     wallpaperSource = container.wallpaperSource,
+                    subscriptionRepository = container.subscriptionRepository,
                 )
             }
         }
