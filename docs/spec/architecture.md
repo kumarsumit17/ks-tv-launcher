@@ -17,4 +17,4 @@ com.ks.tvlauncher
 
 - One ViewModel per screen exposing `StateFlow<…UiState>`; immutable state.
 - Small composables, one concern per file, stateless where practical; `collectAsStateWithLifecycle`.
-- All I/O on IO dispatchers. Keep [code-map](code-map.md) in sync.
+- All I/O on IO dispatchers. Keep the [knowledge-graph](knowledge-graph.md) in sync.

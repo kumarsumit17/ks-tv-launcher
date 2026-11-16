@@ -8,7 +8,7 @@ An ad-free, Apple TV–style home screen for Google TV / Android TV, fully contr
 
 ## Read for each stage
 
-Always read [ground-rules](ground-rules.md), [performance](performance.md) and [definition-of-done](definition-of-done.md), and [code-map](code-map.md) from Stage 2 on. Then only:
+Always read [ground-rules](ground-rules.md), [performance](performance.md) and [definition-of-done](definition-of-done.md), and [knowledge-graph](knowledge-graph.md); look code up with `python3 scripts/kb.py query` before reading it. Then only:
 
 | Stage | Read these | Mockups |
 |---|---|---|
@@ -43,6 +43,6 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
 - [definition-of-done](definition-of-done.md): build, tests, commit, report
-- [code-map](code-map.md): where the code lives (Claude keeps it updated)
+- [knowledge-graph](knowledge-graph.md): `docs/kb/` code graph, `scripts/kb.py`, OKF writing rules
 
 Changes to this spec are recorded in [log](log.md).

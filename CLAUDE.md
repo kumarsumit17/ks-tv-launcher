@@ -5,7 +5,8 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher
 ## How to read the spec (saves tokens)
 - The spec is an OKF bundle in `docs/spec/`. Start at `docs/spec/index.md`; it lists the files each stage needs.
 - Read only those files. Don't open other spec files or the mockups unless a task needs them.
-- Before searching code, read `docs/spec/code-map.md`. Open a source file only when you will change it or the map doesn't answer the question.
+- Before Grep/Glob/Read on code, run `python3 scripts/kb.py query <symbol|file|module>`, then read `docs/kb/modules/<module>.md`. Open a source file only to change it, or when the query finds nothing.
+- Every Markdown file you add to `docs/spec/` or `docs/kb/` is an OKF concept: YAML frontmatter with a non-empty `type`, one concept per file, relative links. See `docs/spec/knowledge-graph.md`.
 - Don't re-read a file you already read in this session unless it changed.
 - The spec wins over older notes. There is no Hilt, Retrofit or OpenWeatherMap in this project.
 
@@ -23,10 +24,13 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher
 ./gradlew testDebugUnitTest        # unit tests
 ./gradlew installDebug             # install on TV / emulator
 ./gradlew lintDebug                # lint
+python3 scripts/kb.py query X      # find code via the knowledge graph (use before grep)
+python3 scripts/kb.py build        # refresh docs/kb after code changes
+python3 scripts/kb.py check        # must print OK before every commit
 adb shell am start -a android.intent.action.MAIN -c android.intent.category.HOME
 ```
 Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
 
 ## Always
-- One stage per request; finish with `docs/spec/definition-of-done.md`.
+- One stage per request; finish with `docs/spec/definition-of-done.md` (includes `kb.py build` + `kb.py check`).
 - Never claim a build or test passed unless the command succeeded.
