@@ -27,6 +27,7 @@ import com.ks.tvlauncher.ui.theme.LocalMotion
 
 private const val FOCUSED_SCALE = 1.06f
 private const val BORDER_ALPHA = 0.95f
+private const val GLOW_RINGS = 7
 
 /**
  * The launcher's single focus treatment. When the focus target that follows this modifier
@@ -73,12 +74,12 @@ fun Modifier.animateDpadFocus(
 
             // Raised shadow: a dark halo offset downwards.
             translate(top = 5.dp.toPx()) {
-                drawOutline(outline, Color.Black.copy(alpha = 0.28f * p), style = Stroke(12.dp.toPx()))
+                drawOutline(outline, Color.Black.copy(alpha = 0.22f * p), style = Stroke(10.dp.toPx()))
             }
-            // Soft glow: three widening, fading rings in the glow colour.
-            drawOutline(outline, glow.copy(alpha = 0.07f * p), style = Stroke(20.dp.toPx()))
-            drawOutline(outline, glow.copy(alpha = 0.11f * p), style = Stroke(12.dp.toPx()))
-            drawOutline(outline, glow.copy(alpha = 0.16f * p), style = Stroke(6.dp.toPx()))
+            // Soft glow: thin overlapping rings, so the falloff is smooth rather than banded.
+            for (ring in GLOW_RINGS downTo 1) {
+                drawOutline(outline, glow.copy(alpha = 0.035f * p), style = Stroke((ring * 3).dp.toPx()))
+            }
 
             drawContent()
 
@@ -118,6 +119,9 @@ fun DpadFocusable(
             .animateDpadFocus(glow = glow, shape = shape, focusedScale = focusedScale)
             .then(interaction),
         contentAlignment = contentAlignment,
+        // A caller-fixed width (for example a full-width menu button) reaches the content,
+        // so the visible surface and the focus border are always the same size.
+        propagateMinConstraints = true,
         content = content,
     )
 }

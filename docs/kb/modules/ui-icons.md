@@ -23,6 +23,7 @@ Hand-written stroke `ImageVector`s (`KsIcons`).
 - nothing inside the app
 
 ## Used by (generated)
+- [ui.apps](ui-apps.md) via `KsIcons`
 - [ui.components](ui-components.md) via `KsIcons`
 - [ui.home](ui-home.md) via `KsIcons`
 - [ui.widgets](ui-widgets.md) via `KsIcons`

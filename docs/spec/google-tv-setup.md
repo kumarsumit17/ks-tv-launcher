@@ -1,12 +1,12 @@
 ---
 type: Guide
-title: Google TV setup
+title: TV setup
 stage: 5
 ---
 
-# Google TV setup (write as repo-root `SETUP.md`)
+# TV setup (write as repo-root `SETUP.md`)
 
-- Install: `adb install -r app/build/outputs/apk/debug/app-debug.apk`.
-- Make KS the Home app. Many Google TV builds don't offer a Home-app choice, so document disabling the stock launcher: `adb shell pm disable-user --user 0 com.google.android.apps.tv.launcherx`, and undoing it with `adb shell pm enable com.google.android.apps.tv.launcherx`.
-- Alternative: remap the Home button with a key-mapper app.
-- Warn that this is at the user's own risk and may change after system updates. Android TV (non-Google TV) shows a normal Home chooser.
+- KS is a normal app, not the Home launcher ([app-mode](app-mode.md)). Keep the TV's current launcher as Home.
+- Install: `adb install -r <apk>` (debug: `app/build/outputs/apk/debug/app-debug.apk`; release: `app-release.apk` from GitHub Releases). Switching between debug and release needs `adb uninstall com.ks.tvlauncher` first.
+- Open KS from the TV's app list, or pin "KS TV" to your launcher's favourites row.
+- Do not document disabling the stock launcher or setting KS as Home.

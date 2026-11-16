@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KS - TV Launcher</string>
+    <!-- Activity label: short, so it fits a launcher tile. -->
+    <string name="app_name_short">KS TV</string>
 
     <!-- Top bar -->
     <string name="brand_badge" translatable="false">KS</string>
@@ -17,9 +19,45 @@
 
     <!-- Hero and pinned row -->
     <string name="hero_empty_title">No pinned apps yet</string>
-    <string name="hero_empty_body">Your favourite apps will sit in the row below, one press away.</string>
+    <string name="hero_empty_body">Open All apps and pin your favourites to keep them one press away.</string>
+    <string name="hero_pinned_body">Pinned favourite. Press OK on the tile to open it.</string>
+    <string name="hero_open">Open %1$s</string>
+    <string name="hero_unpin">Unpin</string>
     <string name="pinned_apps">Pinned apps</string>
-    <string name="pinned_slot">Empty slot %1$d</string>
+    <string name="all_apps">All apps</string>
+    <plurals name="installed_count">
+        <item quantity="one">%d installed</item>
+        <item quantity="other">%d installed</item>
+    </plurals>
+    <string name="app_missing">%1$s is no longer installed</string>
+
+    <!-- All apps drawer -->
+    <string name="drawer_back">Home</string>
+    <string name="drawer_counts">%1$d installed · %2$d pinned</string>
+    <string name="drawer_search_hint">Search apps (OK opens the keyboard)</string>
+    <string name="drawer_filter_all">All</string>
+    <string name="category_video">Video</string>
+    <string name="category_music">Music</string>
+    <string name="category_games">Games</string>
+    <string name="category_tools">Tools</string>
+    <string name="drawer_sort_az">A–Z</string>
+    <string name="drawer_sort_za">Z–A</string>
+    <string name="drawer_edit">Edit</string>
+    <string name="drawer_edit_done">Done</string>
+    <string name="drawer_pinned_badge">PINNED</string>
+    <string name="drawer_no_match">No apps match</string>
+    <string name="drawer_no_apps">No apps found on this TV</string>
+    <string name="drawer_hint">OK opens the app. Hold OK, or turn on Edit, for pin, move, app info and uninstall.</string>
+    <string name="drawer_hint_edit">Edit is on: OK opens the menu for pin, move, app info and uninstall.</string>
+
+    <!-- App menu -->
+    <string name="menu_open">Open</string>
+    <string name="menu_pin">Pin to Home</string>
+    <string name="menu_unpin">Unpin</string>
+    <string name="menu_move_left">Move left</string>
+    <string name="menu_move_right">Move right</string>
+    <string name="menu_app_info">App info</string>
+    <string name="menu_uninstall">Uninstall</string>
 
     <!-- Components -->
     <string name="toggle_on">On</string>

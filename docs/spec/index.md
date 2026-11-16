@@ -4,7 +4,7 @@ okf_version: "0.1"
 
 # KS - TV Launcher spec
 
-An ad-free, Apple TV–style home screen for Google TV / Android TV, fully controlled by the remote. Build it in stages; do only the stage you are asked for.
+An ad-free, Apple TV–style launcher app for Google TV / Android TV, fully controlled by the remote. It runs as an app opened from the TV's own launcher, never as the default Home ([app-mode](app-mode.md)). Build it in stages; do only the stage you are asked for.
 
 ## Read for each stage
 
@@ -13,7 +13,7 @@ Always read [ground-rules](ground-rules.md), [performance](performance.md) and [
 | Stage | Read these | Mockups |
 |---|---|---|
 | 1 Foundation | [tech-stack](tech-stack.md), [app-config](app-config.md), [design-system](design-system.md), [focus-navigation](focus-navigation.md), [home-screen](home-screen.md), [greeting-widget](greeting-widget.md), [architecture](architecture.md) | Home, Greeting |
-| 2 Apps | [apps](apps.md), [dynamic-wallpaper](dynamic-wallpaper.md), [focus-navigation](focus-navigation.md), [home-screen](home-screen.md) | Home, AllApps, Flow |
+| 2 Apps | [app-mode](app-mode.md), [apps](apps.md), [dynamic-wallpaper](dynamic-wallpaper.md), [focus-navigation](focus-navigation.md), [home-screen](home-screen.md) | Home, AllApps, Flow |
 | 3 Subscriptions | [subscriptions](subscriptions.md) | Subscriptions |
 | 4 Control & widgets | [control-center](control-center.md), [settings](settings.md), [weather](weather.md), [greeting-widget](greeting-widget.md), [memory-storage-widget](memory-storage-widget.md) | ControlCenter, Greeting, MemoryStorage |
 | 5 Polish | [reminders](reminders.md), [google-tv-setup](google-tv-setup.md) | none |
@@ -39,7 +39,8 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [settings](settings.md): every persisted setting
 - [weather](weather.md): Open-Meteo, city, states
 - [reminders](reminders.md): renewal notifications (Stage 5)
-- [google-tv-setup](google-tv-setup.md): making KS the Home app
+- [app-mode](app-mode.md): KS is an app, never the default Home
+- [google-tv-setup](google-tv-setup.md): installing KS and pinning it to favourites
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
 - [definition-of-done](definition-of-done.md): build, tests, commit, report

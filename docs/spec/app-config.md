@@ -17,8 +17,9 @@ App name `KS - TV Launcher`. `namespace` = `applicationId` = `com.ks.tvlauncher`
 
 ## Manifest
 - `MainActivity`: exported, `launchMode="singleTask"`, `stateNotNeeded="true"`, landscape, `resizeableActivity="false"`.
-- Intent filter: `MAIN` + categories `HOME`, `DEFAULT`, `LEANBACK_LAUNCHER`.
+- Intent filter: `MAIN` + `LEANBACK_LAUNCHER` only. No `HOME`/`DEFAULT`: KS runs as an app, never the default Home ([app-mode](app-mode.md)).
+- Labels: application `android:label` = "KS - TV Launcher"; `MainActivity` `android:label` = "KS TV" (short, for launcher tiles).
 - `android.software.leanback` required; `android.hardware.touchscreen` `required="false"`.
 - `android:banner`: 320×180 px xhdpi vector/layer-list, "KS" on a navy gradient. Adaptive app icon.
 - `<queries>`: one intent for `MAIN` + `LEANBACK_LAUNCHER`, one for `MAIN` + `LAUNCHER`. **No** `QUERY_ALL_PACKAGES`.
-- Permissions: `INTERNET`, `ACCESS_NETWORK_STATE`, `ACCESS_WIFI_STATE`. `POST_NOTIFICATIONS` only in Stage 5 ([reminders](reminders.md)).
+- Permissions: `INTERNET`, `ACCESS_NETWORK_STATE`, `ACCESS_WIFI_STATE`, and `REQUEST_DELETE_PACKAGES` (lets the app menu's Uninstall open the system uninstall dialog; required since API 28). `POST_NOTIFICATIONS` only in Stage 5 ([reminders](reminders.md)).

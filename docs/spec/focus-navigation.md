@@ -16,6 +16,6 @@ mockups: [Flow.png]
 - Initial focus: first pinned tile, via `FocusRequester` after the first frame.
 - `focusGroup()` per section, `focusRestorer()` on rows/grids, `focusProperties { up/down }` so Up/Down move predictably: top bar → greeting chip → hero buttons → pinned row → bottom strip.
 - Opening an overlay (drawer, dialog, Control Center, Settings) moves focus into it; closing returns focus to the control that opened it.
-- **Back**: closes the top overlay. On Home with nothing open: do nothing (a launcher never exits).
-- **Home key** on Home (`onNewIntent`): close overlays, scroll the row to the start, focus the first tile.
+- **Back**: closes the top overlay. On the main screen with nothing open: `moveTaskToBack(true)` to return to the owner's launcher ([app-mode](app-mode.md)).
+- **Home key**: left to the system. Reopening KS (`onNewIntent`): close overlays and restore focus to the last focused tile.
 - No focus traps; every control is reachable and can be left in every direction it visually allows.

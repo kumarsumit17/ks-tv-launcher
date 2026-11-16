@@ -50,7 +50,7 @@ fun GlassButton(
                 )
                 .defaultMinSize(minHeight = 34.dp)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (icon != null) {

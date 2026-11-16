@@ -2,7 +2,7 @@ package com.ks.tvlauncher.ui.theme
 
 import android.content.Context
 import android.provider.Settings
-import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.tween
@@ -22,11 +22,11 @@ object KsMotion {
  */
 @Immutable
 data class MotionPolicy(val enabled: Boolean = true) {
-    fun <T> focus(): AnimationSpec<T> = spec(KsMotion.FOCUS_MS)
-    fun <T> wallpaper(): AnimationSpec<T> = spec(KsMotion.WALLPAPER_MS)
-    fun <T> panel(): AnimationSpec<T> = spec(KsMotion.PANEL_MS)
+    fun <T> focus(): FiniteAnimationSpec<T> = spec(KsMotion.FOCUS_MS)
+    fun <T> wallpaper(): FiniteAnimationSpec<T> = spec(KsMotion.WALLPAPER_MS)
+    fun <T> panel(): FiniteAnimationSpec<T> = spec(KsMotion.PANEL_MS)
 
-    private fun <T> spec(durationMs: Int): AnimationSpec<T> =
+    private fun <T> spec(durationMs: Int): FiniteAnimationSpec<T> =
         if (enabled) tween(durationMs, easing = FastOutSlowInEasing) else snap()
 }
 

@@ -1,6 +1,6 @@
 # ks-tv-launcher
 
-Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher. Package `com.ks.tvlauncher`. Kotlin + Compose for TV.
+Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV launcher, run as an app (never the default Home). Package `com.ks.tvlauncher`. Kotlin + Compose for TV.
 
 ## How to read the spec (saves tokens)
 - The spec is an OKF bundle in `docs/spec/`. Start at `docs/spec/index.md`; it lists the files each stage needs.
@@ -12,7 +12,7 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher
 
 ## Hard rules
 - D-pad first: everything focusable and reachable with arrows; never long-press only (always a second path).
-- Keep `HOME`, `DEFAULT`, `LEANBACK_LAUNCHER` on the main activity.
+- KS is an app, not the Home launcher: `MAIN` + `LEANBACK_LAUNCHER` only, never `HOME`/`DEFAULT` (see `docs/spec/app-mode.md`).
 - Never blur behind a scrolling row.
 - Subscription data stays on the device (no backup, no sync). Never silently wipe corrupt data.
 - The subscription CSV export is a cross-app contract with `ks-expense-manager`: see `docs/spec/subscriptions.md` before touching it.
@@ -27,7 +27,7 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher
 python3 scripts/kb.py query X      # find code via the knowledge graph (use before grep)
 python3 scripts/kb.py build        # refresh docs/kb after code changes
 python3 scripts/kb.py check        # must print OK before every commit
-adb shell am start -a android.intent.action.MAIN -c android.intent.category.HOME
+adb shell am start -n com.ks.tvlauncher/.MainActivity   # open KS on the TV
 ```
 Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
 

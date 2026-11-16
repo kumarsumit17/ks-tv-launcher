@@ -12,7 +12,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 12,
+     "line": 16,
      "name": "HomeIntentTest",
      "private": false
     }
@@ -20,6 +20,19 @@
   },
   "app/src/main/java/com/ks/tvlauncher/AppContainer.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+     "AppArtworkFetcher",
+     "AppArtworkKeyer"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+     "AppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+     "WallpaperSource"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "ProfileRepository"
     ],
@@ -36,7 +49,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 18,
+     "line": 29,
      "name": "AppContainer",
      "private": false
     }
@@ -62,7 +75,17 @@
   },
   "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+     "LocalAppImageLoader"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+     "AppIntents"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": [
+     "HomeActions",
      "HomeScreen"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
@@ -78,8 +101,108 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 17,
+     "line": 25,
      "name": "MainActivity",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 20,
+     "name": "AppArtwork",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 27,
+     "name": "artwork",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 30,
+     "name": "AppArtworkKeyer",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 39,
+     "name": "AppArtworkFetcher",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 35,
+     "name": "AppsRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+     "PinnedApps"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 21,
+     "name": "PinnedAppsRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+     "artwork"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 15,
+     "name": "Wallpaper",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 26,
+     "name": "WallpaperSource",
      "private": false
     }
    ]
@@ -158,6 +281,45 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 4,
+     "name": "AppFilter",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 4,
+     "name": "AppCategory",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "AppInfo",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": {
    "deps": {},
    "module": "domain",
@@ -192,6 +354,20 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 4,
+     "name": "PinnedApps",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": {
    "deps": {},
    "module": "domain",
@@ -202,6 +378,189 @@
      "kind": "object",
      "line": 4,
      "name": "ProfileNames",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+     "artwork"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ]
+   },
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "val",
+     "line": 17,
+     "name": "LocalAppImageLoader",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 27,
+     "name": "AppArtworkImage",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": {
+   "deps": {},
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 10,
+     "name": "AppIntents",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+     "GlassDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ]
+   },
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 17,
+     "name": "AppMenuState",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 32,
+     "name": "AppMenu",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+     "AppArtworkImage"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
+     "AppsDrawerUiState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
+     "AppTile"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "FocusMemory",
+     "modalFocus",
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+     "GlassChip"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+     "GlassSearchField"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsDimens"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "val",
+     "line": 48,
+     "name": "COLUMNS",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 59,
+     "name": "AppsDrawer",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 209,
+     "name": "labelRes",
+     "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+     "AppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
+     "AppFilter"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 26,
+     "name": "DrawerApp",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 29,
+     "name": "AppsDrawerUiState",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 46,
+     "name": "AppsDrawerViewModel",
      "private": false
     }
    ]
@@ -231,14 +590,8 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 36,
+     "line": 46,
      "name": "AppTile",
-     "private": false
-    },
-    {
-     "kind": "fun",
-     "line": 80,
-     "name": "EmptyAppTile",
      "private": false
     }
    ]
@@ -269,15 +622,47 @@
      "private": true
     },
     {
+     "kind": "val",
+     "line": 30,
+     "name": "GLOW_RINGS",
+     "private": true
+    },
+    {
      "kind": "fun",
-     "line": 45,
+     "line": 46,
      "name": "animateDpadFocus",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 94,
+     "line": 95,
      "name": "DpadFocusable",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": {
+   "deps": {},
+   "module": "ui.components",
+   "package": "com.ks.tvlauncher.ui.components",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 13,
+     "name": "requestFocusSafely",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 22,
+     "name": "modalFocus",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 32,
+     "name": "FocusMemory",
      "private": false
     }
    ]
@@ -399,6 +784,36 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+     "DpadFocusable"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+     "glass"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsShapes"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.components",
+   "package": "com.ks.tvlauncher.ui.components",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 25,
+     "name": "GlassChip",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
@@ -465,6 +880,42 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+     "DpadFocusable"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+     "glass"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsShapes"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.components",
+   "package": "com.ks.tvlauncher.ui.components",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 45,
+     "name": "GlassSearchField",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
@@ -482,6 +933,33 @@
      "kind": "fun",
      "line": 21,
      "name": "GlassSection",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+     "glass"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsShapes"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.components",
+   "package": "com.ks.tvlauncher.ui.components",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 17,
+     "name": "GlassSnackbar",
      "private": false
     }
    ]
@@ -558,8 +1036,14 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": {
+  "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
@@ -573,7 +1057,64 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 17,
+     "line": 25,
+     "name": "AllAppsCard",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+     "Wallpaper"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+     "LocalMotion"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+     "LocalGlassStyle"
+    ]
+   },
+   "module": "ui.home",
+   "package": "com.ks.tvlauncher.ui.home",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 38,
+     "name": "HomeBackground",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.home",
+   "package": "com.ks.tvlauncher.ui.home",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 33,
      "name": "HomeHero",
      "private": false
     }
@@ -581,8 +1122,40 @@
   },
   "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+     "Wallpaper"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+     "AppIntents"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": [
+     "AppMenu",
+     "AppMenuState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": [
+     "AppsDrawer"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
+     "AppsDrawerViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "FocusMemory",
+     "requestFocusSafely"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": [
      "FrostSource"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
+     "GlassSnackbar"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": [
+     "AllAppsCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
+     "HomeBackground"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": [
      "HomeHero"
@@ -591,13 +1164,12 @@
      "HomeTopBar"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
-     "HomeUiState"
+     "HomeMessage",
+     "HomeUiState",
+     "HomeViewModel"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": [
      "PinnedRow"
-    ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
-     "KsColors"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
@@ -611,22 +1183,28 @@
    "source_set": "main",
    "symbols": [
     {
-     "kind": "fun",
-     "line": 37,
-     "name": "HomeScreen",
+     "kind": "val",
+     "line": 49,
+     "name": "SNACKBAR_MS",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 50,
+     "name": "MENU_SETTLE_MS",
+     "private": true
+    },
+    {
+     "kind": "class",
+     "line": 53,
+     "name": "HomeActions",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 102,
-     "name": "HomeBackground",
-     "private": true
-    },
-    {
-     "kind": "fun",
-     "line": 136,
-     "name": "requestFocusSafely",
-     "private": true
+     "line": 73,
+     "name": "HomeScreen",
+     "private": false
     }
    ]
   },
@@ -671,6 +1249,16 @@
     "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+     "AppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+     "Wallpaper",
+     "WallpaperSource"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "Profile",
      "ProfileRepository"
@@ -683,12 +1271,18 @@
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
      "DeviceNames"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
      "Greeting",
      "GreetingPeriod"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+     "PinnedApps"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
@@ -708,14 +1302,20 @@
    "source_set": "main",
    "symbols": [
     {
+     "kind": "interface",
+     "line": 52,
+     "name": "HomeMessage",
+     "private": false
+    },
+    {
      "kind": "class",
-     "line": 37,
+     "line": 57,
      "name": "HomeUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 52,
+     "line": 80,
      "name": "HomeViewModel",
      "private": false
     }
@@ -723,11 +1323,23 @@
   },
   "app/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+     "AppArtworkImage"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
-     "EmptyAppTile"
+     "AppTile"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "FocusMemory"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+     "LocalMotion"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
@@ -741,14 +1353,8 @@
    "source_set": "main",
    "symbols": [
     {
-     "kind": "val",
-     "line": 25,
-     "name": "EMPTY_SLOTS",
-     "private": true
-    },
-    {
      "kind": "fun",
-     "line": 34,
+     "line": 39,
      "name": "PinnedRow",
      "private": false
     }
@@ -1025,6 +1631,72 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/data/apps/AppArtworkKeyerTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+     "AppArtwork",
+     "artwork"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+     "AppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 11,
+     "name": "AppArtworkKeyerTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/apps/PinnedAppsRepositoryTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 22,
+     "name": "PinnedAppsRepositoryTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/domain/AppFilterTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
+     "AppFilter"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "AppFilterTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/DeviceNamesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
@@ -1062,6 +1734,24 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/PinnedAppsTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+     "PinnedApps"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 8,
+     "name": "PinnedAppsTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/ProfileNamesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
@@ -1082,6 +1772,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "ef4ea21ec23cb7b30297693d3e3b6546b7a15f7b",
+ "source_hash": "478c13e363ed370dbb68fc1014f4741f83b30f04",
  "version": 1
 }

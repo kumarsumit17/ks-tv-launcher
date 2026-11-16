@@ -28,8 +28,9 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 
 ## Used by (generated)
 - [root](root.md) via `KsTheme`
+- [ui.apps](ui-apps.md) via `KsColors`, `KsDimens`, `KsType`
 - [ui.components](ui-components.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion`
-- [ui.home](ui-home.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `VisualSettings`
+- [ui.home](ui-home.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion` +1
 - [ui.widgets](ui-widgets.md) via `KsColors`, `KsShapes`, `KsType`
 
 ## Spec

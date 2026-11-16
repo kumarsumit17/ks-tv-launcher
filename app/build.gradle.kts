@@ -110,11 +110,14 @@ dependencies {
     implementation(libs.tv.material)
     implementation(libs.haze)
     implementation(libs.haze.blur)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.palette)
 
     // Used with built-in serializers only (no compiler plugin needed yet).
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
 }
