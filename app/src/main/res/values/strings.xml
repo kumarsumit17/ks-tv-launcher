@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KS - TV Launcher</string>
+
+    <!-- Top bar -->
+    <string name="brand_badge" translatable="false">KS</string>
+    <string name="brand_title">TV Launcher</string>
+    <string name="weather_not_set">Weather not set up</string>
+    <string name="open_android_settings">Android settings</string>
+
+    <!-- Greeting widget -->
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="device_line">%1$s · Android %2$s</string>
+    <string name="switch_to">Switch to %1$s</string>
+
+    <!-- Hero and pinned row -->
+    <string name="hero_empty_title">No pinned apps yet</string>
+    <string name="hero_empty_body">Your favourite apps will sit in the row below, one press away.</string>
+    <string name="pinned_apps">Pinned apps</string>
+    <string name="pinned_slot">Empty slot %1$d</string>
+
+    <!-- Components -->
+    <string name="toggle_on">On</string>
+    <string name="toggle_off">Off</string>
+    <string name="stepper_decrease">Decrease</string>
+    <string name="stepper_increase">Increase</string>
+</resources>

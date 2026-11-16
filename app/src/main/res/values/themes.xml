@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window theme only; all visible UI is styled by the Compose for TV theme.
+         The solid window background is what shows during cold start, so there is no white flash. -->
+    <style name="Theme.KsLauncher" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@color/ks_background</item>
+        <item name="android:windowShowWallpaper">false</item>
+    </style>
+</resources>

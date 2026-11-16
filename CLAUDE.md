@@ -1,0 +1,32 @@
+# ks-tv-launcher
+
+Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV home launcher. Package `com.ks.tvlauncher`. Kotlin + Compose for TV.
+
+## How to read the spec (saves tokens)
+- The spec is an OKF bundle in `docs/spec/`. Start at `docs/spec/index.md`; it lists the files each stage needs.
+- Read only those files. Don't open other spec files or the mockups unless a task needs them.
+- Before searching code, read `docs/spec/code-map.md`. Open a source file only when you will change it or the map doesn't answer the question.
+- Don't re-read a file you already read in this session unless it changed.
+- The spec wins over older notes. There is no Hilt, Retrofit or OpenWeatherMap in this project.
+
+## Hard rules
+- D-pad first: everything focusable and reachable with arrows; never long-press only (always a second path).
+- Keep `HOME`, `DEFAULT`, `LEANBACK_LAUNCHER` on the main activity.
+- Never blur behind a scrolling row.
+- Subscription data stays on the device (no backup, no sync). Never silently wipe corrupt data.
+- The subscription CSV export is a cross-app contract with `ks-expense-manager`: see `docs/spec/subscriptions.md` before touching it.
+- AGP 9 has built-in Kotlin: don't apply `org.jetbrains.kotlin.android`.
+
+## Commands
+```bash
+./gradlew assembleDebug            # build
+./gradlew testDebugUnitTest        # unit tests
+./gradlew installDebug             # install on TV / emulator
+./gradlew lintDebug                # lint
+adb shell am start -a android.intent.action.MAIN -c android.intent.category.HOME
+```
+Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
+
+## Always
+- One stage per request; finish with `docs/spec/definition-of-done.md`.
+- Never claim a build or test passed unless the command succeeded.

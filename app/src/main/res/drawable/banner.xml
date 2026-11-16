@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TV banner: 320x180 px at xhdpi (160x90 dp). "KS" on a navy gradient. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="160dp"
+    android:height="90dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+    <path android:pathData="M0,0h320v180h-320z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="320"
+                android:endY="180"
+                android:startColor="@color/ks_navy_top"
+                android:endColor="@color/ks_navy_bottom" />
+        </aapt:attr>
+    </path>
+    <!-- K -->
+    <path
+        android:fillColor="#FFF4F6FB"
+        android:pathData="M96,50h18v32l30,-32h23l-33,35l35,45h-23l-25,-32l-7,7v25h-18z" />
+    <!-- S -->
+    <path
+        android:fillColor="#FFF4F6FB"
+        android:pathData="M184,50h44v16h-28v16h28v48h-46v-16h28v-16h-26z" />
+</vector>
