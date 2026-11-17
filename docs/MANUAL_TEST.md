@@ -517,3 +517,19 @@ Debug build for focus, `perf` build (0.7.2 / 702, release code, not debuggable) 
 - Pass [perf] · cold start 559, 567, 569 ms, then 575 ms with reminders on (was 611 ms on the 0.7.2 perf build before the fix).
 - Not testable until the next release · the update-check job after a force-stop (the perf build has no update checks).
 - KS TV Dev uninstalled after the test.
+
+#### 2026-11-17 · v0.7.3 (703), release, KTC Lumio Vision (Android 14, API 34): in-app update and data check [real]
+Release: v0.7.3 (the fixes from the final release check), tagged from `main` (`7ecda41`), published by the Release workflow (run 44059667236, success) with `app-release.apk` (1,954,407 bytes) and `app-release.aab`. Signer SHA-256 `2aa25f08e6b8addc54f9af9b8ccabcd9cf890902b1939b5ca2e6ac25a3776448`, checked on the downloaded APK with `apksigner` (`com.ks.tvlauncher`, 0.7.3 / 703, no "KS TV Dev" text). `releases/latest` returned `v0.7.3`. Before tagging: `lintDebug` gave the same 48 warnings as `12f7021` (none new), and `main` passed 166 unit tests and `kb.py check`.
+
+The owner updated 0.7.2 → 0.7.3 from inside KS. Read-only check by Claude Code at about 15:29–15:32: no force-stop, nothing saved or changed, dialogs closed with Back.
+- Pass · `versionName=0.7.3`, `versionCode=703`, `installerPackageName=com.ks.tvlauncher` (KS installed itself), first install still 08:06:08, last update 15:28:12: an update in place. Settings › About: "Version 0.7.3 (703)", "KS TV is up to date."
+- Pass · both daily jobs registered: `u0a152/3` (network-constrained: the update check) and `u0a152/4` (timing only: renewal reminders). They are new job instances after the update (`65f1019`, `9b7a8de`; before, `8a1a38c`, `12262ea`). No KS notifications.
+- Pass · names: Sumit (only, active); TV name Living Room (automatic), own TV name off; greeting "Good afternoon, Sumit", third line "Living Room · Android 14".
+- Pass · pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin; All apps 20 installed.
+- Pass · subscriptions: none (Home card "Active Subscriptions 0"); currency INR.
+- Pass · Memory card on; wallpaper Dynamic; glass Medium; clock Follow TV; show date on.
+- Pass · weather Bengaluru, Karnataka, India · automatic, °C.
+- Pass · renewal reminders on, 3 days before; automatic update checks on.
+- Changed by the owner · Reduce motion **on** and Transition speed **0.25×** (baseline: off, 0.5×; still off and 0.5× at 14:46). The owner confirmed changing them after the final check; not caused by the update. Settings now shows "Reduce motion is on, so nothing animates. Turn it off to use this." under Transition speed.
+- Not run · the update-check job returning after a force-stop on a release build: the real app is never force-stopped ([final-check](spec/final-check.md)). The re-registration path is covered by the perf test and `DailyWorkPlanTest`.
+- KS TV Dev is not installed (`pm list packages` shows only `com.ks.tvlauncher`).
