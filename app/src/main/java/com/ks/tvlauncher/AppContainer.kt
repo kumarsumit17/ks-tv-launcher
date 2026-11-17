@@ -22,6 +22,7 @@ import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import com.ks.tvlauncher.data.system.DeviceStatsRepository
 import com.ks.tvlauncher.data.system.SystemStatusRepository
+import com.ks.tvlauncher.data.system.TvInputRepository
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.IpWhoIsLocator
 import com.ks.tvlauncher.data.weather.OpenMeteoProvider
@@ -53,6 +54,7 @@ class AppContainer(context: Context) {
     val deviceInfoRepository: DeviceInfoRepository by lazy { DeviceInfoRepository(appContext) }
     val deviceStatsRepository: DeviceStatsRepository by lazy { DeviceStatsRepository(appContext) }
     val systemStatusRepository: SystemStatusRepository by lazy { SystemStatusRepository(appContext) }
+    val tvInputRepository: TvInputRepository by lazy { TvInputRepository(appContext) }
     val cityResolver: CityResolver by lazy {
         CityResolver(preferences, IpWhoIsLocator(), settingsRepository.settings)
     }

@@ -60,6 +60,9 @@
     "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
      "SystemStatusRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+     "TvInputRepository"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "IpWhoIsLocator"
     ],
@@ -79,7 +82,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 40,
+     "line": 41,
      "name": "AppContainer",
      "private": false
     }
@@ -507,6 +510,28 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+     "InputConnection",
+     "InputKind",
+     "TvInput",
+     "TvInputSource",
+     "TvInputs"
+    ]
+   },
+   "module": "data.system",
+   "package": "com.ks.tvlauncher.data.system",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 26,
+     "name": "TvInputRepository",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
@@ -873,6 +898,44 @@
      "kind": "object",
      "line": 9,
      "name": "SubscriptionCsv",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 4,
+     "name": "InputKind",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "InputConnection",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 10,
+     "name": "TvInputSource",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 22,
+     "name": "TvInput",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 30,
+     "name": "TvInputs",
      "private": false
     }
    ]
@@ -1603,6 +1666,15 @@
      "NetworkKind",
      "NetworkStatus"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+     "TvInputRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+     "TvInput"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+     "AppIntents"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "modalFocus",
      "requestFocusSafely"
@@ -1616,8 +1688,14 @@
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
+     "GlassSnackbar"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
      "ControlCenterViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": [
+     "InputsDialog"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
      "SystemIntents"
@@ -1645,55 +1723,67 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 60,
+     "line": 67,
      "name": "ControlCenterValues",
      "private": false
     },
     {
      "kind": "class",
-     "line": 71,
+     "line": 78,
      "name": "ControlCenterActions",
      "private": false
     },
     {
      "kind": "val",
-     "line": 80,
+     "line": 87,
      "name": "PanelWidth",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 90,
+     "line": 97,
      "name": "ControlCenterPanel",
      "private": false
     },
     {
+     "kind": "class",
+     "line": 291,
+     "name": "TileSpec",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 299,
+     "name": "SNACKBAR_MS",
+     "private": true
+    },
+    {
      "kind": "fun",
-     "line": 212,
+     "line": 302,
      "name": "networkText",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 221,
+     "line": 311,
      "name": "bluetoothText",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 230,
+     "line": 320,
      "name": "StatusTile",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 246,
+     "line": 336,
      "name": "ValueRow",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 267,
+     "line": 357,
      "name": "ControlCenter",
      "private": false
     }
@@ -1708,6 +1798,12 @@
      "BluetoothStatus",
      "NetworkStatus",
      "SystemStatusRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+     "TvInputRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+     "TvInput"
     ]
    },
    "module": "ui.controlcenter",
@@ -1716,9 +1812,52 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 17,
+     "line": 19,
      "name": "ControlCenterViewModel",
      "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+     "InputConnection",
+     "TvInput"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+     "GlassDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.controlcenter",
+   "package": "com.ks.tvlauncher.ui.controlcenter",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 38,
+     "name": "InputsDialog",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 87,
+     "name": "connectionText",
+     "private": true
     }
    ]
   },
@@ -1734,7 +1873,7 @@
    "symbols": [
     {
      "kind": "object",
-     "line": 11,
+     "line": 12,
      "name": "SystemIntents",
      "private": false
     }
@@ -2308,19 +2447,19 @@
     },
     {
      "kind": "fun",
-     "line": 236,
+     "line": 249,
      "name": "stroked",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 247,
+     "line": 260,
      "name": "circle",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 253,
+     "line": 266,
      "name": "roundRect",
      "private": true
     }
@@ -3713,6 +3852,27 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/TvInputsTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+     "InputConnection",
+     "InputKind",
+     "TvInputSource",
+     "TvInputs"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "TvInputsTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/WeatherCodesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
@@ -3736,6 +3896,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "f27d4ce5a1c4499658a1f31aa7cd417748aec09c",
+ "source_hash": "4f761eb7ce8912bed8579bdff457c4b67e460a97",
  "version": 1
 }

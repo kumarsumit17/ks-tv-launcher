@@ -142,7 +142,7 @@ Use sample data whose names start with `TEST ` and remove it afterwards ([verifi
 - [ ] Opens from the Control Center card, from MENU (if the remote has one), and by holding OK on the hero buttons, weather pill, gear, switch chip or a bottom card. Holding OK on a pinned tile still opens the app menu.
 - [ ] Panel slides in from the right (no slide with Reduce motion). Focus starts on Wi-Fi; Up/Down/Left/Right reach every tile and row; focus never leaves the panel.
 - [ ] Wi-Fi shows "Connected"/"Offline" (or the SSID if Android allows it), Ethernet shows "Ethernet"; Bluetooth shows On/Off/Not available; Display shows resolution and refresh rate.
-- [ ] Each tile opens its Android settings page; Screensaver starts the screensaver or opens its settings.
+- [ ] Each tile opens its Android settings page; Screensaver starts the screensaver or opens its settings. On a TV with neither (no Somnambulator, no dream settings page) the Screensaver tile is not shown.
 - [ ] Wallpaper toggles Dynamic/Plain; 12-hour/24-hour changes the top-bar clock at once.
 - [ ] Weather city opens Settings at Weather; Subscriptions opens the Subscriptions screen; Memory & storage opens the panel over Control Center and Back returns to that row.
 - [ ] Back (or MENU) closes Control Center and focus returns to the control that was focused before.
@@ -220,3 +220,22 @@ Run by Claude Code over adb. Every setting was noted first, changed alone and re
 - Pass · weather with Wi-Fi off (run by the owner): the pill kept the last reading, dimmed, and the rest of the app worked normally. With Wi-Fi back on, the weather refreshed within about 5 minutes.
 - Not run · every earlier stage's full checklist on the release build: only the items above were run.
 - Owner data unchanged: names, subscriptions (empty) and pins left as they were. The `TEST ` item is removed.
+
+## Stage 6a: Inputs (test in KS TV Dev)
+- [ ] Control Center shows an Inputs tile ("3 inputs" or similar) next to Display; tiles sit two per row with no gap where a tile is hidden.
+- [ ] OK on Inputs opens a glass list: HDMI inputs first in port order, then AV/component; each row shows Connected, Standby or Not connected. A name set in TV settings replaces "HDMI n" but keeps its place.
+- [ ] Up/Down move through the list; focus never leaves it. Back closes it and focus returns to the Inputs tile; Back again closes Control Center.
+- [ ] OK on an input switches the TV to it; Home/Back from the input player returns to the TV's launcher, and reopening KS TV Dev works normally.
+- [ ] Plugging or unplugging an HDMI device while the list is open updates its state without reopening.
+- [ ] If the switch cannot start, a glass snackbar says so and the list stays open.
+- [ ] A TV with no passthrough inputs shows no Inputs tile.
+- [ ] Screensaver tile: hidden on a TV with no Somnambulator and no dream settings page (Lumio Vision); where either exists it shows and starts the screensaver or opens its settings, never the main Android settings.
+
+#### 2026-11-17 · KS TV Dev (debug, uncommitted Stage 6a), KTC Lumio Vision (Android 14, API 34)
+Run by Claude Code over adb. The real KS TV (0.5.0) was not touched. Inputs has no data entry, so no `TEST ` items were needed.
+- Pass · Control Center shows Wi-Fi, Bluetooth / Display, Inputs ("4 inputs"); no Screensaver tile and no gap.
+- Pass · the list shows HDMI 1, HDMI 2, HDMI 3 (Standby) and Composite (Not connected), in that order. Down past the last row and Left/Right keep focus in the list; Back closes it and focus returns to the Inputs tile.
+- Pass · OK on HDMI 2 opened Google's input player, and the active TV input session was `HdmiInputService/HW3` (HDMI 2). Home, then reopening KS TV Dev, closed the overlays and focused the first pinned tile.
+- Pass · after Cowork review: the Inputs tile and each list row use a plug icon, clearly unlike Display's monitor.
+- Not run · switch-failure snackbar, a TV with no passthrough inputs, plugging or unplugging while the list is open, and a TV that does have a screensaver.
+

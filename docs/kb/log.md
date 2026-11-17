@@ -42,3 +42,8 @@ One entry per stage: what changed and why.
 ## Stage 6: release checklist
 - Debug builds are the separate app KS TV Dev: `applicationIdSuffix = ".dev"` in `app/build.gradle.kts`, label "KS TV Dev" and an amber banner and icon from `src/debug/res`. The namespace and code are unchanged; nothing in the code hardcodes the package (the app list hides `context.packageName`, WorkManager's startup provider uses `${applicationId}`).
 - Noted for 6c: `ReminderNotifier.cancelAll()` uses `NotificationManager.cancelAll()`, which would also clear an update notification; [app-updates](../spec/app-updates.md) now requires reminders off to cancel only reminder notifications.
+
+## Stage 6a: Inputs
+- `domain.TvInputs` (pure filter, label and order rules, `TvInputsTest`) and `data.system.TvInputRepository` (`TvInputManager` list + `TvInputCallback` while collected, passthrough switch intent). `ControlCenterViewModel` exposes `inputs`.
+- Control Center: Inputs tile and `InputsDialog` (glass list with Connected / Standby / Not connected; OK switches, failure shows a snackbar), with its own plug icon (`KsIcons.Plug`) so it is not confused with Display. Status tiles are now a list laid out two per row so hidden tiles leave no gap.
+- Fix from the release check: the Screensaver tile is hidden when neither SystemUI's Somnambulator nor the dream settings page resolves, and `startScreensaver` no longer falls back to the main settings page. Manifest `<queries>` gains `com.android.systemui` and the `DREAM_SETTINGS` action so the check can see them.

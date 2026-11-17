@@ -2,7 +2,7 @@
 type: Module
 title: domain
 package: com.ks.tvlauncher.domain
-spec: [../../spec/subscriptions.md, ../../spec/greeting-widget.md, ../../spec/apps.md, ../../spec/subscriptions.md]
+spec: [../../spec/subscriptions.md, ../../spec/greeting-widget.md, ../../spec/apps.md, ../../spec/inputs.md]
 ---
 
 # domain
@@ -18,6 +18,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `SubscriptionCsv` is a contract with ks-expense-manager; `SubscriptionCsvTest` locks it. Change only with agreement and update both repos' docs.
 - `Money` groups INR itself (lakh/crore): the JVM's `NumberFormat` cannot, so tests and devices would differ.
 - `RenewalReminders` (Stage 5): renewals 0..lead days ahead of active subscriptions; each `id@date` key is notified once; a key that no longer matches the current renewal is dropped and its notification cancelled.
+- `TvInputs` (Stage 6a): passthrough inputs only; label = custom ?: own ?: id (blank counts as unset); order by kind (HDMI first), then input id with numbers compared by value.
 - `PinnedApps.DEFAULT_CANDIDATES` holds real package names only; check a new one exists before adding it.
 
 <!-- kb:generated:start -->
@@ -35,9 +36,10 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/Subscription.kt` — `BillingCycle`, `Subscription`
 - `domain/SubscriptionCalculator.kt` — `NextRenewal`, `SubscriptionCalculator`, `SubscriptionSummary`
 - `domain/SubscriptionCsv.kt` — `SubscriptionCsv`
+- `domain/TvInputs.kt` — `InputConnection`, `InputKind`, `TvInput`, `TvInputSource`, `TvInputs`
 - `domain/Weather.kt` — `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`, `WeatherCodes`, `WeatherGroup`
 
-Tests: `domain/AppFilterTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/WeatherCodesTest.kt`
+Tests: `domain/AppFilterTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WeatherCodesTest.kt`
 
 ## Depends on (generated)
 - nothing inside the app
@@ -48,15 +50,16 @@ Tests: `domain/AppFilterTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceN
 - [data.reminders](data-reminders.md) via `BillingCycle`, `DueReminder`, `Money`, `RenewalReminders`
 - [data.settings](data-settings.md) via `Money`, `RenewalReminders`, `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`
 - [data.subscriptions](data-subscriptions.md) via `Subscription`
-- [data.system](data-system.md) via `DeviceNames`
+- [data.system](data-system.md) via `DeviceNames`, `InputConnection`, `InputKind`, `TvInput`, `TvInputSource`, `TvInputs`
 - [data.weather](data-weather.md) via `WeatherCity`, `WeatherCityMode`
 - [ui.apps](ui-apps.md) via `AppCategory`, `AppFilter`, `AppInfo`
+- [ui.controlcenter](ui-controlcenter.md) via `InputConnection`, `TvInput`
 - [ui.home](ui-home.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +4
 - [ui.settings](ui-settings.md) via `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`
 - [ui.subscriptions](ui-subscriptions.md) via `BillingCycle`, `Money`, `NextRenewal`, `Subscription`, `SubscriptionCalculator`, `SubscriptionCsv` +1
 - [ui.widgets](ui-widgets.md) via `ByteFormatter`, `GreetingPeriod`, `UsageLevel`
 
 ## Spec
-- [subscriptions](../../spec/subscriptions.md), [greeting-widget](../../spec/greeting-widget.md), [apps](../../spec/apps.md), [subscriptions](../../spec/subscriptions.md)
+- [subscriptions](../../spec/subscriptions.md), [greeting-widget](../../spec/greeting-widget.md), [apps](../../spec/apps.md), [inputs](../../spec/inputs.md)
 
 <!-- kb:generated:end -->

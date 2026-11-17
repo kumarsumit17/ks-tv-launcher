@@ -162,6 +162,19 @@ object KsIcons {
         }
     }
 
+    /** A mains-style plug: Control Center Inputs, so it never looks like Display's monitor. */
+    val Plug: ImageVector by lazy {
+        stroked("Plug") {
+            moveTo(9f, 3f); lineTo(9f, 7f)
+            moveTo(15f, 3f); lineTo(15f, 7f)
+            moveTo(6f, 7f); lineTo(18f, 7f); lineTo(18f, 11f)
+            curveTo(18f, 14f, 15.5f, 16f, 12f, 16f)
+            curveTo(8.5f, 16f, 6f, 14f, 6f, 11f)
+            close()
+            moveTo(12f, 16f); lineTo(12f, 21f)
+        }
+    }
+
     val Moon: ImageVector by lazy {
         stroked("Moon") {
             moveTo(19.5f, 14.5f)

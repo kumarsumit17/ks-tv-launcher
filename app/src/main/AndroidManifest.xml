@@ -51,6 +51,11 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
+        <!-- Control Center hides the Screensaver tile unless one of these exists. -->
+        <package android:name="com.android.systemui" />
+        <intent>
+            <action android:name="android.settings.DREAM_SETTINGS" />
+        </intent>
     </queries>
 
     <!-- No backup or device transfer: names and subscriptions stay on this device. -->

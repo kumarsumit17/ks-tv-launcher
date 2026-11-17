@@ -21,6 +21,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
@@ -43,8 +45,12 @@ import com.ks.tvlauncher.R
 import com.ks.tvlauncher.data.system.BluetoothStatus
 import com.ks.tvlauncher.data.system.NetworkKind
 import com.ks.tvlauncher.data.system.NetworkStatus
+import com.ks.tvlauncher.data.system.TvInputRepository
+import com.ks.tvlauncher.domain.TvInput
+import com.ks.tvlauncher.ui.apps.AppIntents
 import com.ks.tvlauncher.ui.components.GlassCard
 import com.ks.tvlauncher.ui.components.GlassChip
+import com.ks.tvlauncher.ui.components.GlassSnackbar
 import com.ks.tvlauncher.ui.components.glass
 import com.ks.tvlauncher.ui.components.modalFocus
 import com.ks.tvlauncher.ui.components.requestFocusSafely
@@ -54,6 +60,7 @@ import com.ks.tvlauncher.ui.theme.KsDimens
 import com.ks.tvlauncher.ui.theme.KsShapes
 import com.ks.tvlauncher.ui.theme.KsType
 import com.ks.tvlauncher.ui.theme.LocalMotion
+import kotlinx.coroutines.delay
 import kotlin.math.roundToInt
 
 /** The Launcher rows' current values, from Home's state. */
@@ -94,6 +101,8 @@ fun ControlCenterPanel(
     actions: ControlCenterActions,
     memoryFocus: FocusRequester,
     coveredByDialog: Boolean,
+    /** Passthrough inputs; null until read. Null or empty hides the Inputs tile. */
+    inputs: List<TvInput>? = null,
     /** A dialog opened from the panel; drawn inside its focus group so focus can reach it. */
     overlay: @Composable () -> Unit = {},
 ) {
@@ -101,8 +110,27 @@ fun ControlCenterPanel(
     val motion = LocalMotion.current
     val appear = remember { Animatable(if (motion.enabled) 0f else 1f) }
     val firstTile = remember { FocusRequester() }
+    val inputsTile = remember { FocusRequester() }
+    var inputsOpen by remember { mutableStateOf(false) }
+    var switchFailed by remember { mutableStateOf(false) }
+    // Checked once per opening: a package-manager lookup, not a poll.
+    val screensaverAvailable = remember { SystemIntents.screensaverAvailable(context) }
 
-    BackHandler(enabled = !coveredByDialog, onBack = actions.onDismiss)
+    BackHandler(enabled = !coveredByDialog && !inputsOpen, onBack = actions.onDismiss)
+    // The inputs went away while the list was open: close it and keep focus in the panel.
+    LaunchedEffect(inputsOpen, inputs.isNullOrEmpty()) {
+        if (inputsOpen && inputs.isNullOrEmpty()) {
+            inputsOpen = false
+            withFrameNanos { }
+            firstTile.requestFocusSafely()
+        }
+    }
+    LaunchedEffect(switchFailed) {
+        if (switchFailed) {
+            delay(SNACKBAR_MS)
+            switchFailed = false
+        }
+    }
     LaunchedEffect(Unit) { appear.animateTo(1f, motion.panel()) }
     LaunchedEffect(Unit) {
         withFrameNanos { }
@@ -138,37 +166,69 @@ fun ControlCenterPanel(
                 Text(stringResource(R.string.cc_title), style = KsType.ScreenTitle, color = KsColors.TextPrimary, modifier = Modifier.weight(1f))
                 Text(values.time, style = KsType.Label, color = KsColors.TextSecondary)
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                StatusTile(
-                    icon = KsIcons.Wifi,
-                    title = stringResource(if (network?.kind == NetworkKind.ETHERNET) R.string.cc_network else R.string.cc_wifi),
-                    subtitle = networkText(network),
-                    onClick = { SystemIntents.openSettings(context, Settings.ACTION_WIFI_SETTINGS) },
-                    modifier = Modifier.weight(1f).focusRequester(firstTile),
+            val tiles = buildList {
+                add(
+                    TileSpec(
+                        icon = KsIcons.Wifi,
+                        title = stringResource(if (network?.kind == NetworkKind.ETHERNET) R.string.cc_network else R.string.cc_wifi),
+                        subtitle = networkText(network),
+                        onClick = { SystemIntents.openSettings(context, Settings.ACTION_WIFI_SETTINGS) },
+                        focus = firstTile,
+                    ),
                 )
-                StatusTile(
-                    icon = KsIcons.Bluetooth,
-                    title = stringResource(R.string.cc_bluetooth),
-                    subtitle = bluetoothText(bluetooth),
-                    onClick = { SystemIntents.openSettings(context, Settings.ACTION_BLUETOOTH_SETTINGS) },
-                    modifier = Modifier.weight(1f),
+                add(
+                    TileSpec(
+                        icon = KsIcons.Bluetooth,
+                        title = stringResource(R.string.cc_bluetooth),
+                        subtitle = bluetoothText(bluetooth),
+                        onClick = { SystemIntents.openSettings(context, Settings.ACTION_BLUETOOTH_SETTINGS) },
+                    ),
                 )
+                add(
+                    TileSpec(
+                        icon = KsIcons.Monitor,
+                        title = stringResource(R.string.cc_display),
+                        subtitle = displayMode?.let { stringResource(R.string.cc_display_mode, it.first, it.second, it.third) }.orEmpty(),
+                        onClick = { SystemIntents.openSettings(context, Settings.ACTION_DISPLAY_SETTINGS) },
+                    ),
+                )
+                // Hidden when the TV has no passthrough inputs (docs/spec/inputs.md).
+                if (!inputs.isNullOrEmpty()) {
+                    add(
+                        TileSpec(
+                            icon = KsIcons.Plug,
+                            title = stringResource(R.string.cc_inputs),
+                            subtitle = pluralStringResource(R.plurals.cc_inputs_count, inputs.size, inputs.size),
+                            onClick = { inputsOpen = true },
+                            focus = inputsTile,
+                        ),
+                    )
+                }
+                // Hidden when there is no screensaver to start and no screensaver settings page.
+                if (screensaverAvailable) {
+                    add(
+                        TileSpec(
+                            icon = KsIcons.Moon,
+                            title = stringResource(R.string.cc_screensaver),
+                            subtitle = stringResource(R.string.cc_start_now),
+                            onClick = { SystemIntents.startScreensaver(context) },
+                        ),
+                    )
+                }
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                StatusTile(
-                    icon = KsIcons.Monitor,
-                    title = stringResource(R.string.cc_display),
-                    subtitle = displayMode?.let { stringResource(R.string.cc_display_mode, it.first, it.second, it.third) }.orEmpty(),
-                    onClick = { SystemIntents.openSettings(context, Settings.ACTION_DISPLAY_SETTINGS) },
-                    modifier = Modifier.weight(1f),
-                )
-                StatusTile(
-                    icon = KsIcons.Moon,
-                    title = stringResource(R.string.cc_screensaver),
-                    subtitle = stringResource(R.string.cc_start_now),
-                    onClick = { SystemIntents.startScreensaver(context) },
-                    modifier = Modifier.weight(1f),
-                )
+            tiles.chunked(2).forEach { pair ->
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    pair.forEach { tile ->
+                        StatusTile(
+                            icon = tile.icon,
+                            title = tile.title,
+                            subtitle = tile.subtitle,
+                            onClick = tile.onClick,
+                            modifier = Modifier.weight(1f).then(tile.focus?.let { Modifier.focusRequester(it) } ?: Modifier),
+                        )
+                    }
+                    if (pair.size == 1) Spacer(Modifier.weight(1f))
+                }
             }
             Spacer(Modifier.height(2.dp))
             Text(stringResource(R.string.cc_launcher).uppercase(), style = KsType.SectionLabel, color = KsColors.TextTertiary)
@@ -205,8 +265,38 @@ fun ControlCenterPanel(
             Text(stringResource(R.string.cc_limits), style = KsType.Caption, color = KsColors.TextSecondary)
         }
         overlay()
+        if (inputsOpen && !inputs.isNullOrEmpty()) {
+            InputsDialog(
+                inputs = inputs,
+                onSelect = { input ->
+                    if (AppIntents.start(context, TvInputRepository.switchIntent(input.id))) {
+                        inputsOpen = false
+                    } else {
+                        switchFailed = true
+                    }
+                },
+                onDismiss = { inputsOpen = false },
+                returnFocusTo = inputsTile,
+            )
+        }
+        if (switchFailed) {
+            Box(Modifier.fillMaxSize().padding(bottom = 36.dp), contentAlignment = Alignment.BottomCenter) {
+                GlassSnackbar(stringResource(R.string.cc_input_failed))
+            }
+        }
     }
 }
+
+/** One status tile; [focus] is attached when the panel needs to move focus to it. */
+private class TileSpec(
+    val icon: ImageVector,
+    val title: String,
+    val subtitle: String,
+    val onClick: () -> Unit,
+    val focus: FocusRequester? = null,
+)
+
+private const val SNACKBAR_MS = 3_000L
 
 @Composable
 private fun networkText(network: NetworkStatus?): String = when (network?.kind) {
@@ -274,5 +364,6 @@ fun ControlCenter(
 ) {
     val network by viewModel.network.collectAsStateWithLifecycle()
     val bluetooth by viewModel.bluetooth.collectAsStateWithLifecycle()
-    ControlCenterPanel(network, bluetooth, values, actions, memoryFocus, coveredByDialog, overlay)
+    val inputs by viewModel.inputs.collectAsStateWithLifecycle()
+    ControlCenterPanel(network, bluetooth, values, actions, memoryFocus, coveredByDialog, inputs, overlay)
 }

@@ -168,6 +168,15 @@
     <string name="cc_display_mode">%1$d × %2$d · %3$d Hz</string>
     <string name="cc_screensaver">Screensaver</string>
     <string name="cc_start_now">Start now</string>
+    <string name="cc_inputs">Inputs</string>
+    <plurals name="cc_inputs_count">
+        <item quantity="one">%d input</item>
+        <item quantity="other">%d inputs</item>
+    </plurals>
+    <string name="cc_input_connected">Connected</string>
+    <string name="cc_input_standby">Standby</string>
+    <string name="cc_input_disconnected">Not connected</string>
+    <string name="cc_input_failed">Couldn\'t switch to that input</string>
     <string name="cc_launcher">Launcher</string>
     <string name="cc_wallpaper">Wallpaper</string>
     <string name="cc_wallpaper_dynamic">Dynamic app artwork</string>
