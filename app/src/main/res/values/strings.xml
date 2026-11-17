@@ -233,6 +233,9 @@
     <string name="settings_glass_medium">Medium</string>
     <string name="settings_glass_high">High</string>
     <string name="settings_reduce_motion">Reduce motion</string>
+    <string name="settings_animation_speed">Transition speed</string>
+    <string name="settings_animation_speed_hint">How long animations take. Lower is quicker; 0.5× is the default, 1× is the original pace.</string>
+    <string name="settings_animation_speed_off">Reduce motion is on, so nothing animates. Turn it off to use this.</string>
     <string name="settings_clock">Clock</string>
     <string name="settings_clock_auto">Follow TV</string>
     <string name="settings_show_date">Show date</string>

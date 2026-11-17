@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.ks.tvlauncher.domain.AnimationSpeed
 import com.ks.tvlauncher.domain.Money
 import com.ks.tvlauncher.domain.RenewalReminders
 import com.ks.tvlauncher.domain.TemperatureUnit
@@ -39,6 +40,8 @@ data class LauncherSettings(
     /** The picture could not be read, so the mode fell back to PLAIN; Settings says so. */
     val wallpaperPictureFailed: Boolean = false,
     val reduceMotion: Boolean = false,
+    /** Animation durations in percent of the design-system ones; 50 (0.5×) by default. */
+    val animationSpeed: Int = AnimationSpeed.DEFAULT,
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
     /** ISO 4217 code for subscription amounts and the CSV export. Default INR. */
     val currency: String = Money.DEFAULT_CURRENCY,
@@ -69,6 +72,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
                 wallpaperDim = Wallpapers.dim(prefs[WALLPAPER_DIM]),
                 wallpaperPictureFailed = prefs[WALLPAPER_PICTURE_FAILED] ?: false,
                 reduceMotion = prefs[REDUCE_MOTION] ?: false,
+                animationSpeed = AnimationSpeed.normalise(prefs[ANIMATION_SPEED]),
                 glassIntensity = prefs[GLASS_INTENSITY]
                     ?.let { saved -> GlassIntensity.entries.firstOrNull { it.name == saved } }
                     ?: GlassIntensity.MEDIUM,
@@ -150,6 +154,10 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[REDUCE_MOTION] = value }
     }
 
+    suspend fun setAnimationSpeed(percent: Int) {
+        store.edit { it[ANIMATION_SPEED] = AnimationSpeed.normalise(percent) }
+    }
+
     suspend fun setGlassIntensity(value: GlassIntensity) {
         store.edit { it[GLASS_INTENSITY] = value.name }
     }
@@ -209,6 +217,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val WALLPAPER_DIM = stringPreferencesKey("wallpaper_dim")
         val WALLPAPER_PICTURE_FAILED = booleanPreferencesKey("wallpaper_picture_failed")
         val REDUCE_MOTION = booleanPreferencesKey("reduce_motion")
+        val ANIMATION_SPEED = intPreferencesKey("animation_speed_percent")
         val GLASS_INTENSITY = stringPreferencesKey("glass_intensity")
         val CURRENCY = stringPreferencesKey("currency")
         val SHOW_MEMORY_CARD = booleanPreferencesKey("show_memory_card")

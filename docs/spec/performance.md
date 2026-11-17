@@ -23,6 +23,7 @@ KS - TV Launcher must stay a lightweight, high-performance launcher. Responsiven
 ## User switches ([settings](settings.md))
 - Dynamic wallpaper on/off.
 - Reduce motion (no animations).
+- Transition speed (shorter animations mean fewer frames on a slow TV; default 0.5×).
 - Glass intensity; Low means no blur.
 
 ## Checks

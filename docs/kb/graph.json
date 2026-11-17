@@ -356,6 +356,9 @@
   },
   "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+     "AnimationSpeed"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
@@ -380,19 +383,19 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 28,
+     "line": 29,
      "name": "GlassIntensity",
      "private": false
     },
     {
      "kind": "class",
-     "line": 30,
+     "line": 31,
      "name": "LauncherSettings",
      "private": false
     },
     {
      "kind": "class",
-     "line": 58,
+     "line": 61,
      "name": "SettingsRepository",
      "private": false
     }
@@ -684,6 +687,20 @@
      "kind": "class",
      "line": 44,
      "name": "WeatherRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 11,
+     "name": "AnimationSpeed",
      "private": false
     }
    ]
@@ -2692,6 +2709,9 @@
     "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+     "AnimationSpeed"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ],
@@ -2758,61 +2778,61 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 74,
+     "line": 75,
      "name": "SettingsSection",
      "private": false
     },
     {
      "kind": "val",
-     "line": 77,
+     "line": 78,
      "name": "CURRENCIES",
      "private": true
     },
     {
      "kind": "val",
-     "line": 80,
+     "line": 81,
      "name": "ITEM_PROFILE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 81,
+     "line": 82,
      "name": "ITEM_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 83,
+     "line": 84,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 90,
+     "line": 91,
      "name": "SettingsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 337,
+     "line": 354,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 457,
+     "line": 474,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 530,
+     "line": 547,
      "name": "ChoiceRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 539,
+     "line": 556,
      "name": "ValueRow",
      "private": false
     }
@@ -3303,32 +3323,36 @@
    ]
   },
   "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": {
-   "deps": {},
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+     "AnimationSpeed"
+    ]
+   },
    "module": "ui.theme",
    "package": "com.ks.tvlauncher.ui.theme",
    "source_set": "main",
    "symbols": [
     {
      "kind": "object",
-     "line": 12,
+     "line": 13,
      "name": "KsMotion",
      "private": false
     },
     {
      "kind": "class",
-     "line": 24,
+     "line": 26,
      "name": "MotionPolicy",
      "private": false
     },
     {
      "kind": "val",
-     "line": 33,
+     "line": 40,
      "name": "LocalMotion",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 36,
+     "line": 43,
      "name": "systemAnimationsEnabled",
      "private": false
     }
@@ -3383,31 +3407,31 @@
     },
     {
      "kind": "class",
-     "line": 30,
+     "line": 32,
      "name": "GlassStyle",
      "private": false
     },
     {
      "kind": "val",
-     "line": 34,
+     "line": 36,
      "name": "LocalGlassStyle",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 36,
+     "line": 38,
      "name": "glassStyleFor",
      "private": true
     },
     {
      "kind": "val",
-     "line": 46,
+     "line": 48,
      "name": "KsColorScheme",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 57,
+     "line": 59,
      "name": "KsTheme",
      "private": false
     }
@@ -3883,6 +3907,24 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/AnimationSpeedTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+     "AnimationSpeed"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "AnimationSpeedTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/AppFilterTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
@@ -4164,6 +4206,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "38ae4514914b4e79b618384b657febef605163d9",
+ "source_hash": "114d91a5fbdd41a0072ee1ef5a5836889c3f7c4f",
  "version": 1
 }

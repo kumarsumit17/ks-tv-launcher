@@ -169,6 +169,7 @@ class SettingsViewModel(
     }
     fun setGlassIntensity(value: GlassIntensity) = write { settingsRepository.setGlassIntensity(value) }
     fun setReduceMotion(value: Boolean) = write { settingsRepository.setReduceMotion(value) }
+    fun setAnimationSpeed(percent: Int) = write { settingsRepository.setAnimationSpeed(percent) }
     fun setUse24Hour(value: Boolean?) = write { settingsRepository.setUse24Hour(value) }
     fun setShowDate(value: Boolean) = write { settingsRepository.setShowDate(value) }
     fun setTemperatureUnit(value: TemperatureUnit) = write { settingsRepository.setTemperatureUnit(value) }

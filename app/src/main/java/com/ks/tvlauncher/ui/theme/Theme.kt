@@ -18,6 +18,8 @@ import com.ks.tvlauncher.data.settings.GlassIntensity
 @Immutable
 data class VisualSettings(
     val reduceMotion: Boolean = false,
+    /** Percent of the design-system durations ([com.ks.tvlauncher.domain.AnimationSpeed]). */
+    val animationSpeed: Int = com.ks.tvlauncher.domain.AnimationSpeed.DEFAULT,
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
 )
 
@@ -60,8 +62,8 @@ fun KsTheme(
 ) {
     val context = LocalContext.current
     val systemAnimations = remember(context) { systemAnimationsEnabled(context) }
-    val motion = remember(visual.reduceMotion, systemAnimations) {
-        MotionPolicy(enabled = systemAnimations && !visual.reduceMotion)
+    val motion = remember(visual.reduceMotion, visual.animationSpeed, systemAnimations) {
+        MotionPolicy(enabled = systemAnimations && !visual.reduceMotion, speedPercent = visual.animationSpeed)
     }
     val glass = remember(visual.glassIntensity) { glassStyleFor(visual.glassIntensity) }
 

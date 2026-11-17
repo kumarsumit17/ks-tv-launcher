@@ -160,4 +160,20 @@ class SettingsRepositoryTest {
         assertEquals(WallpaperImage.BuiltIn(2), repo.settings.first().wallpaperImage)
         job.cancelAndJoin()
     }
+
+    @Test
+    fun animationSpeedDefaultsToHalfAndSnapsToSteps() = runTest {
+        val job = Job()
+        val store = newStore(job, "speed.preferences_pb")
+        val repo = SettingsRepository(store)
+        assertEquals(50, repo.settings.first().animationSpeed)
+
+        repo.setAnimationSpeed(125)
+        assertEquals(125, repo.settings.first().animationSpeed)
+
+        // An odd stored value reads as the nearest step instead of failing.
+        store.edit { it[androidx.datastore.preferences.core.intPreferencesKey("animation_speed_percent")] = 990 }
+        assertEquals(150, repo.settings.first().animationSpeed)
+        job.cancelAndJoin()
+    }
 }

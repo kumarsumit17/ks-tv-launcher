@@ -36,7 +36,7 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - [data.system](data-system.md) via `DeviceInfo`, `DeviceInfoRepository`
 - [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `ResolvedCity`, `WeatherRepository`
-- [domain](domain.md) via `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim`, `WallpaperImage` +4
+- [domain](domain.md) via `AnimationSpeed`, `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim` +5
 - [root](root.md) via `KsApplication`
 - [ui.components](ui-components.md) via `BuiltInWallpaper`, `DpadFocusable`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog` +8
 - [ui.controlcenter](ui-controlcenter.md) via `SystemIntents`

@@ -53,3 +53,7 @@ One entry per stage: what changed and why.
 - New module `data.wallpaper`: `WallpaperPictureStore` (import once to `filesDir/wallpaper.jpg`, Coil load at screen size, remove, document-picker check that ignores the Android TV stub package).
 - `ui.components.BuiltInWallpaper`: six wallpapers drawn with gradients. `HomeBackground` draws `HomeWallpaper` (Plain / Dynamic / BuiltIn / Picture) with the dim overlay; `VisualSettings` loses `dynamicWallpaper`.
 - Settings gains a Wallpaper section (`WallpaperSettings`); Control Center's Wallpaper row cycles the three modes. Manifest `<queries>` gains `OPEN_DOCUMENT image/*`.
+
+## Fix after the 6b TV test: transition speed and Reduce motion
+- `domain.AnimationSpeed` with `AnimationSpeedTest`; `LauncherSettings.animationSpeed` (`animation_speed_percent`, default 50); `MotionPolicy` scales every tween; Settings › Look and motion gains a Transition speed stepper.
+- `LocalMotion` changed from `staticCompositionLocalOf` to `compositionLocalOf`, so toggling Reduce motion or the speed no longer recomposes the whole screen.

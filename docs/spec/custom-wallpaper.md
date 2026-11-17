@@ -14,7 +14,7 @@ A background the user picks, next to the existing [dynamic-wallpaper](dynamic-wa
 - `PLAIN`: the navy gradient only.
 
 ## Choosing an image ([settings](settings.md) › Wallpaper)
-- **Built-in set**: 6 wallpapers drawn in code (gradients and soft shapes in the design-system palette). No bundled photos, no downloads, nothing third-party.
+- **Built-in set**: 6 wallpapers drawn in code (gradients and soft shapes in the design-system palette). No bundled photos, no downloads, nothing third-party. Shown in Settings › Wallpaper as a row of swatches under the Background chips; the selected one has a check mark. Control Center only switches the mode; the image is chosen in Settings.
 - **From a file**: `ACTION_OPEN_DOCUMENT` with `image/*` (USB drive or the TV's storage). Show this row only if an activity resolves the intent; many TVs have no file picker. Android TV's placeholder package `com.android.tv.frameworkpackagestubs` answers the intent with a "no app" message, so it does not count (the owner's Lumio Vision has only that).
 - The picked image is decoded once, downscaled to at most 1920×1080, and copied to `filesDir/wallpaper.jpg`. KS keeps no permission on the original and never reads it again. "Remove image" deletes the copy; if Custom was showing it, the mode becomes `PLAIN` and the image choice returns to the first built-in.
 - Picking a built-in or a picture switches the mode to `CUSTOM`. Control Center's Wallpaper row cycles Dynamic → Custom → Plain; the image and dim are chosen in Settings.

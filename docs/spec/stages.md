@@ -17,5 +17,6 @@ stage: all
    - 6a [inputs](inputs.md)
    - 6b [custom-wallpaper](custom-wallpaper.md)
    - 6c [app-updates](app-updates.md) (last; needs checklist steps 3 and 5 confirmed by the owner)
+     - Also in 6c ([focus-navigation](focus-navigation.md)): in Settings, Left on the first control of a row must not jump to the Home button at the top-left. Seen on the TV after 6b: Left from "−" of Transition speed focused Home, and OK there closed Settings.
 
 Every stage ends with [definition-of-done](definition-of-done.md), including `kb.py build` and `kb.py check` ([knowledge-graph](knowledge-graph.md)), and [verification](verification.md) before any commit.

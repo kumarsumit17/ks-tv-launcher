@@ -21,7 +21,9 @@ Hero title 44sp ExtraBold (−1sp tracking) · Screen title 24sp ExtraBold · Cl
 
 ## Shapes and motion
 - Radius: tiles 11dp, cards 12dp, dialogs/panels 16dp, pills fully rounded.
-- Focus 200ms `FastOutSlowInEasing`; wallpaper crossfade 400ms; panel slide 280ms. Animator scale 0 → no animation.
+- Base durations: focus 200ms `FastOutSlowInEasing`; wallpaper crossfade 400ms; panel slide 280ms. Animator scale 0 → no animation.
+- **Transition speed** ([settings](settings.md)) multiplies every duration: 0.25×, 0.5×, 0.75×, 1×, 1.25×, 1.5×. **Default 0.5×** (focus 100ms, panel 140ms, crossfade 200ms): the owner found 1× too slow on the TV, where even the release build draws at about 14 frames a second. Reduce motion still turns all animation off.
+- Motion is provided with `compositionLocalOf`, not `staticCompositionLocalOf`: changing Reduce motion or the speed must recompose only what animates, never the whole screen (a whole-screen recomposition froze the TV and made the Reduce motion toggle seem to ignore presses).
 
 ## Blur budget
 Blur only static layers: the top-bar weather pill, dialogs and side panels (Haze, API 31+). The dynamic wallpaper is a bitmap blurred once, not a live blur. Tiles and cards in scrolling rows and grids use the translucent fill only; never blur behind a scrolling row.

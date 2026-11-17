@@ -329,6 +329,7 @@ class HomeViewModel(
         androidVersion = device?.androidRelease.orEmpty(),
         visual = VisualSettings(
             reduceMotion = settings.reduceMotion,
+            animationSpeed = settings.animationSpeed,
             glassIntensity = settings.glassIntensity,
         ),
         wallpaperMode = settings.wallpaperMode,

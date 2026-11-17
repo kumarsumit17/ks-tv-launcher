@@ -51,6 +51,7 @@ import com.ks.tvlauncher.BuildConfig
 import com.ks.tvlauncher.R
 import com.ks.tvlauncher.data.reminders.ReminderNotifier
 import com.ks.tvlauncher.data.settings.GlassIntensity
+import com.ks.tvlauncher.domain.AnimationSpeed
 import com.ks.tvlauncher.domain.RenewalReminders
 import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.domain.WeatherCityMode
@@ -206,6 +207,22 @@ fun SettingsScreen(
                                 }
                             }
                             GlassToggle(stringResource(R.string.settings_reduce_motion), settings.reduceMotion, viewModel::setReduceMotion)
+                            ChoiceRow(stringResource(R.string.settings_animation_speed)) {
+                                GlassStepper(
+                                    value = AnimationSpeed.label(settings.animationSpeed),
+                                    onStep = { direction, _ ->
+                                        val next = AnimationSpeed.step(settings.animationSpeed, direction)
+                                        if (next != settings.animationSpeed) viewModel.setAnimationSpeed(next)
+                                    },
+                                )
+                            }
+                            Text(
+                                stringResource(
+                                    if (settings.reduceMotion) R.string.settings_animation_speed_off else R.string.settings_animation_speed_hint,
+                                ),
+                                style = KsType.Caption,
+                                color = KsColors.TextSecondary,
+                            )
                         }
                     }
                 }

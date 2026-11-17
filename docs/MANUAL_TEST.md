@@ -263,3 +263,17 @@ Run by Claude Code over adb. The real KS TV (0.5.0) was not touched.
 - Not run · importing through a real document picker (none on this TV), so the decode and downscale of a picked file were not exercised on a device; a TV with a file picker is needed for that.
 - Test file removed from `/data/local/tmp`; only KS TV Dev data was used.
 
+## Transition speed and Reduce motion (test in KS TV Dev)
+- [ ] Settings › Look and motion › Transition speed shows 0.5× on a fresh install or after updating; − and + step through 0.25×, 0.5×, 0.75×, 1×, 1.25×, 1.5× and stop at the ends.
+- [ ] At 0.5× focus moves, the Control Center slide and dialogs are visibly quicker than at 1×; 1.5× is slower. The value survives a force-stop.
+- [ ] Reduce motion: every OK press flips the toggle, also when pressed quickly; with it on nothing animates and the hint under Transition speed says it has no effect.
+
+#### 2026-11-17 · KS TV Dev (debug, uncommitted fix), KTC Lumio Vision (Android 14, API 34)
+Run by Claude Code over adb. The real KS TV was not changed (only focus moved on its Home and Settings to record the owner's data for the release check).
+- Measured before the fix · six pinned-row moves: KS TV Dev (debug, Reduce motion on) 13 frames, 100 % janky, median 105 ms; the real KS TV 0.5.0 (release) 110 frames, 65 % janky, median 69 ms. The TV renders slowly in both builds.
+- Before the fix · one of six Reduce motion presses was lost (pressed 1.5 s after the previous one).
+- Pass · Transition speed shows 0.5× after updating; + stops at 1.5×, − stops at 0.25×; 1× survived a force-stop; left at 0.5×.
+- Pass · three Control Center open/close cycles: 55 frames at 0.5×, 72 at 1×.
+- Pass · Reduce motion flipped on all 8 presses at 1 s gaps; with it on, the hint under Transition speed says it has no effect.
+- Seen, not changed · Left from the leftmost control of a Settings row (for example − of Transition speed) moves focus to the Home button at the top-left; OK there closes Settings. A stray OK opened the profile dialog in KS TV Dev; it was cancelled, nothing saved. The dev wallpaper changed to Ember by a stray press (test data only).
+

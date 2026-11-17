@@ -13,6 +13,8 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 ## Rules
 - Values come from the design-system spec.
 - With motion off, animation specs snap.
+- Every tween duration goes through `AnimationSpeed.scale` with the "Transition speed" percent (default 50).
+- `LocalMotion` is a `compositionLocalOf`, never static: a static local recomposed the whole screen on every Reduce motion or speed change and froze the TV.
 
 <!-- kb:generated:start -->
 
@@ -25,6 +27,7 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 
 ## Depends on (generated)
 - [data.settings](data-settings.md) via `GlassIntensity`
+- [domain](domain.md) via `AnimationSpeed`
 
 ## Used by (generated)
 - [root](root.md) via `KsTheme`
