@@ -22,7 +22,7 @@ Always read [ground-rules](ground-rules.md), [performance](performance.md), [def
 | 6b Wallpaper | [custom-wallpaper](custom-wallpaper.md), [dynamic-wallpaper](dynamic-wallpaper.md), [settings](settings.md) | none |
 | 6c.1 Smoothness | [smoothness](smoothness.md), [performance](performance.md), [design-system](design-system.md), [dev-workflow](dev-workflow.md) | none |
 | 6c.2 Updates | [app-updates](app-updates.md), [reminders](reminders.md), [settings](settings.md), [app-config](app-config.md) | none |
-| 6c.3 Final check | [final-check](final-check.md), [release-checklist](release-checklist.md), [dev-workflow](dev-workflow.md), [reminders](reminders.md) | none |
+| 6c.3 Final check | [final-check](final-check.md), [release-checklist](release-checklist.md), [dev-workflow](dev-workflow.md), [smoothness](smoothness.md) (`perf` build), [reminders](reminders.md) | none |
 
 Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mockup and this spec disagree, follow the spec.
 
@@ -53,7 +53,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [custom-wallpaper](custom-wallpaper.md): built-in or user-picked background (Stage 6)
 - [app-updates](app-updates.md): check, download, verify and install new releases, keeping data (Stage 6)
 - [smoothness](smoothness.md): measured frame-time pass on a `perf` build, before the update work (Stage 6c part 1)
-- [final-check](final-check.md): Stage 1–3 checklists on the release build and reminders after a TV restart (Stage 6c part 3, last)
+- [final-check](final-check.md): Stage 1–3 checklists (read-only on the real app, data entry on the `perf` build) and reminders after a TV restart (Stage 6c part 3, last)
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
 - [definition-of-done](definition-of-done.md): build, tests, report

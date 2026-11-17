@@ -382,3 +382,110 @@ Result 2026-11-17, KS TV Dev 0.7.0 (18) debug, owner's TV: rows in the release o
 - [ ] First time: Android's "Install unknown apps" page for KS opens; after allowing and pressing Back the install continues; Android asks to confirm; Cancel there says "Update cancelled. KS was not changed."
 - [ ] Confirm: KS updates in place. After reopening, About shows vN+1 and no pill. Names, active name, TV name, pins and order, subscriptions and totals, weather mode and city, wallpaper and settings are unchanged (record date and versions).
 
+
+## Stage 6c part 3: Final release check
+See [final-check](spec/final-check.md). Run by Claude Code over adb on 2026-11-17 on the owner's TV, KTC Lumio Vision (Android 14, API 34). Every item names its build:
+- **[real]**: the released KS TV 0.7.2 (702), `com.ks.tvlauncher`, the owner's data.
+- **[debug]**: KS TV Dev debug build from `dev` at `6d47426`, `com.ks.tvlauncher.dev`, own empty data. Used before the owner moved data-entry checks to the perf build.
+- **[perf]**: `perf` build at `6d47426`, release code as KS TV Dev (`-PversionName=0.7.2 -PversionCode=702`, debug key, not debuggable), own data, `TEST ` items only.
+
+At the owner's request partway through, the real app gets read-only checks only from then on. Before that, a few UI actions ran on the real app; each is marked below and was put back. The real app was never uninstalled or cleared, and no subscription or name was saved in it. KS TV Dev was uninstalled at the end.
+
+### Baseline of the owner's data [real] (about 13:30, from KS's own screens)
+- Names: Sumit (only name, active). TV name: Living Room (automatic); own TV name off. Android 14 · API 34.
+- Pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin. All apps: 20 installed.
+- Subscriptions: none. Currency INR.
+- Memory card on; wallpaper Dynamic; glass Medium; Reduce motion off; Transition speed 0.5×; clock Follow TV; show date on.
+- Weather: Bengaluru, Karnataka, India · automatic, °C.
+- Renewal reminders on, 3 days before. Automatic update checks on.
+- System: `versionName=0.7.2`, `versionCode=702`, first install 08:06:08, last update 13:23:12, installer `com.ks.tvlauncher`; `POST_NOTIFICATIONS` granted; two WorkManager jobs (`u0a152/3`, network-constrained, the update check; `u0a152/4`, timing only, the reminders); no KS notifications; Home resolves to the TV's own launcher (`com.sumit.lumiohome/.MainActivity`).
+
+### Stage 1
+- Pass [real] · cold start: frames go from the TV's launcher straight to the dark navy screen, no white flash; 694 and 709 ms (`am start -W`). Done with `am force-stop`, which also cancelled the real app's jobs (see "Finding" below). Later runs use [perf].
+- Pass [real] · top bar, current form: "KS" badge, "TV Launcher", time, short date, weather pill, gear. The pill shows the weather ("28° Clear · Bengaluru") since weather is set up (Stage 4), not "Weather not set up".
+- Pass [real] · the clock changed from 1:39 to 1:40 pm by 13:40:02 device time (sampled about every 3 s).
+- Pass [real] · "Good afternoon, Sumit" at 1:35 pm. Only the current period is visible; boundaries are covered by unit tests.
+- Pass [debug] · with no name saved: "Good afternoon", no name.
+- Pass [real] · long date "Tuesday, 17 November"; third line "Living Room · Android 14"; text inside the screen edges.
+- Changed [real] · the weather pill is no longer skipped: since Stage 4 it is focusable and OK opens Settings at Weather (focus on "Detect again"); Back returns to the pill. Pass in this form.
+- **Fault 1** [real] · Left on the weather pill jumps to the Memory & storage card in the bottom strip (twice). Expected: focus stays in the top bar. Down from the pill goes to "Unpin" rather than "Open ‹app›".
+- Changed [real] · the gear opens KS Settings (focus on "Who's watching"); Back returns with focus on the gear. "Android settings", the last row of KS Settings, opens the TV's settings; Back returns to that row. Pass.
+- Pass [real] · the pill looks frosted over the dynamic wallpaper (API 34).
+- Not run · TV time, time zone and 12/24-hour changes; renaming the TV in Android settings; Animator duration scale "Animation off". These are Android system settings, for the owner to change with the remote.
+
+### Stage 2
+App mode
+- Pass [real] · the TV's launcher shows "KS TV" with the KS banner; `resolve-activity … HOME` prints `com.sumit.lumiohome/.MainActivity`.
+- Pass [real] · Back on Home returns to the TV's launcher; reopening is a HOT start (96 ms) with focus on the same tile (YouTube). From a bottom card (Control Center), reopening focuses the last pinned tile.
+- Pass [real] · reopening with the drawer open, or a tile menu open, shows Home with them closed. The Home key goes to the TV's launcher.
+- Pass [real] · after the TV restart the TV started on its own launcher, not KS.
+- Not run · `connectedDebugAndroidTest` (optional).
+Pinned row and hero
+- Pass [debug] · first run pins Netflix, Prime Video, YouTube, JioHotstar in that order (Spotify, Plex, Kodi not installed).
+- Not possible on this TV · "none of the defaults installed".
+- Pass [real] · own banners; cold start focuses the first pinned tile; only the focused tile shows its label; Left/Right along the row; at the end Jellyfin, its border and glow are fully visible; the hero follows focus.
+- Pass [real] · OK on the Jellyfin tile, and "Open Jellyfin" in the hero, open Jellyfin; back in KS, focus is on the tile or the hero button.
+- Pass [real] · Up from a tile → "Open ‹app›"; Down from the hero → the same tile; Down from a tile → All apps; Up from All apps or Subscriptions → the same tile.
+- Pass [real, written, put back] · "Unpin" in the hero on Apple TV (not one of the owner's pins, pinned from the drawer for this check): it left the row, the hero moved to Netflix, the owner's order unchanged.
+- Pass [debug] · unpinning the last app shows "No pinned apps yet", focus on the All apps card.
+- Pass [real] · holding OK opens the tile menu; Back closes it with focus on the tile.
+All apps drawer
+- Pass [real] · "20 installed" = 21 launchable packages minus KS; focus starts in the grid; six columns, A to Z, PINNED on the six pins, KS not listed.
+- Pass [real] · moving past the search field does not open the keyboard; OK does; "mx" leaves MX Player and MX Player TV; Search key and Back close the keyboard with focus on the field; no result shows "No apps match". The search was cleared afterwards.
+- Pass [real] · categories All, Video (Jellyfin, Live TV, MX Player), Music (VLC), Tools (Play Store). A–Z ↔ Z–A. Both left on All / A–Z.
+- Pass [real] · OK on a tile opens the app; holding OK opens the menu; with Edit on, OK opens the same menu.
+- Pass [real, written, put back] · Pin to Home put Apple TV at the end ("7 pinned"); Move left / Move right moved it and the menu stayed open; Unpin removed it.
+- **Fault 2** [real] · on Move right, when the app reaches the end the "Move right" button disappears and focus leaves the still-open menu for the drawer's "Home" button behind it (twice). Down then reached the search field behind the menu. Back still closes the menu. Expected: focus stays in the menu. Move left at the start of the row probably does the same (not tried, to keep the owner's order).
+- Pass [real] · App info opens the system page; Back returns with focus on the tile. (A wrong key here opened KtcAutoBacklight's App info and its "Force stop" confirmation; it was cancelled and nothing was stopped.)
+- Pass [real] · Uninstall opens the system dialog; Back cancelled it and Apple TV is still installed.
+- Pass [real] · Back closes the menu, then the drawer, focus on All apps; reopening: search empty, Edit off.
+Apps changing underneath (test app: KS TV Dev [debug])
+- Pass [real] · installing KS TV Dev while KS was open: 20 → 21 installed and listed, no restart.
+- Pass [real, written, put back] · KS TV Dev pinned, then `adb uninstall com.ks.tvlauncher.dev` with OK pressed on its tile: "KS TV Dev is no longer installed", tile gone, count back to 20. Focus then went to the weather pill rather than a neighbouring tile.
+- Pass [real] · reinstalling KS TV Dev did not bring its tile back.
+- Not possible on this TV · an app update that changes its banner.
+Dynamic wallpaper
+- Pass [real] · resting on a tile tints the background with its banner; text stays readable. Quick moves showed no intermediate tint (screencap is too slow to see the crossfade itself).
+- Not run · animations off (owner's system setting).
+Persistence
+- Pass [real] · after `am force-stop` (before the change of approach) and after the TV restart, the six pins and their order are unchanged.
+
+### Stage 3 (data entry on [perf]; the real app's screen opened read-only)
+- Pass [real] · Subscriptions sits next to All apps; OK opens Active Subscriptions with focus on Add subscription; empty state "No subscriptions yet…", ACTIVE 0 of 0, ₹0, ₹0, "None active"; Export CSV skipped (disabled). Back returns to Home on the card.
+- Pass [real] · Add subscription dialog: every control reachable with the D-pad; Name opens and closes the keyboard; − / + step ₹10, hold ₹100, never below ₹0; «, ‹, ›, », the Active switch respond; Save not focusable without a name. The dialog was closed with Back; nothing saved (list still empty).
+- Pass [perf] · "TEST Netflix" ₹500 monthly, renews 17 Dec 2026: after Save, focus on the new row; ACTIVE 1 of 1, ₹500 / month, ₹6,000 / year, next renewal "in 30 days · 17 Dec 2026"; the Home card updates.
+- Pass [perf] · "TEST Prime" ₹1,500 yearly, renewal set to 17 Sept 2026 (past): row shows "≈ ₹125 / month" and rolls forward to 17 Sept 2027; totals ₹625 / ₹7,500. (₹1,499 and ₹499 can't be entered with ₹10 steps, so ₹1,500 and ₹500 were used.)
+- Pass [perf] · "TEST Big" ₹10,000 monthly: "₹1,20,000 / year", total "₹1,27,500" (Indian grouping).
+- Pass [perf] · Right from a row reaches its Active pill; OK → Paused, ACTIVE 2 of 3, totals ₹625 / ₹7,500; OK → Active again.
+- Pass [perf] · OK on a row opens "Edit subscription" filled in; a change then Back changed nothing; a change then Save kept focus on the row (₹10,010); Delete removed it, focus on Add subscription.
+- Pass [perf] · Export CSV opens the share sheet with `name,amount_minor,currency,cycle,next_due`, CRLF rows, `TEST Netflix,50000,INR,monthly,2026-12-17` and `TEST Prime,150000,INR,yearly,2027-09-17`. Closed without sharing.
+- **Fault 3** [perf, and seen on real] · with Subscriptions open, reopening KS from the TV's launcher closes the screen but focuses the Subscriptions card, not the last focused tile as [app-mode](spec/app-mode.md) and the checklist say. The real app did the same when reopened after being left on that screen.
+- Pass [perf] · after `am force-stop` and after the TV restart, every subscription, its status and order are unchanged.
+
+### Part 2: reminders after a TV restart [perf]
+- Pass · reminders turned on in KS TV Dev (3 days before; `POST_NOTIFICATIONS` already granted); job `u0a158/0` registered. The real app's reminder setting was not touched.
+- Pass · "TEST Reboot" ₹100 monthly renewing 18 Nov 2026 posted "TEST Reboot renews tomorrow · ₹100 · Monthly · 18 Nov 2026" on the `renewals` channel.
+- Note · the notification could not be dismissed over adb (no shell command to cancel another app's notification; this TV's launcher has no notification panel intent). The restart cleared it.
+- The owner agreed to the restart; `adb reboot` at 14:41:32, booted at 14:42:11.
+- Pass · at about 100 s uptime, without opening either app: KS TV Dev's reminder job registered (`u0a158/0`, timing only, about 24 h); both KS processes cached and empty (started by the boot receiver), no services, alarms or running jobs; no KS notifications.
+- Pass · KS TV Dev opened: reminders still on, 3 days before, settings unchanged, all three subscriptions there; "TEST Reboot" was not notified again.
+- Pass · "TEST Reboot 2" renewing 18 Nov posted "TEST Reboot 2 renews tomorrow · ₹100 · Monthly · 18 Nov 2026", the only KS notification, so checks still run after the restart.
+- KS TV Dev uninstalled at the end (its `TEST ` items went with it).
+
+### Finding: force-stop drops the real app's jobs until a restart [real]
+- After the two `am force-stop` runs on the real app (cold start and persistence checks), `dumpsys jobscheduler` showed neither of its jobs (update check and reminders). Android cancels a force-stopped app's jobs. KS starts WorkManager only on demand, and later starts of the same version don't touch it ([UpdateScheduler](../app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt)), so opening KS did not restore them.
+- After the TV restart, both jobs were back (`u0a152/3` and `/4`), re-registered by WorkManager's boot receiver. So the owner's TV ended in its baseline state.
+- Effect for a user: after a force-stop from Android's app settings, renewal reminders and update checks stop until the next TV restart or a change to either setting. Not one of the spec's checklist items; recorded for the owner to decide whether it needs a fix.
+
+### Owner's data after the check [real] (about 14:46, after the restart, read-only)
+- Pass · names: Sumit (only, active); TV name Living Room (automatic), own TV name off.
+- Pass · pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin. All apps 20 installed once KS TV Dev was removed.
+- Pass · subscriptions: none ("No subscriptions yet", 0 of 0). Currency INR.
+- Pass · Memory card on; wallpaper Dynamic; glass Medium; Reduce motion off; Transition speed 0.5×; clock Follow TV; show date on.
+- Pass · weather Bengaluru, Karnataka, India · automatic, °C.
+- Pass · reminders on, 3 days before; automatic update checks on.
+- Pass · `0.7.2` / `702`, first install 08:06:08, last update 13:23:12 (never reinstalled); jobs `u0a152/3` and `/4` registered; no KS notifications; only `com.ks.tvlauncher` installed.
+
+### Still open
+- Owner-only items: TV time, time zone and 12/24-hour; TV rename; Animator duration scale off (focus changes and wallpaper without a fade).
+- Faults 1–3 and the force-stop finding need the owner's decision; each fix goes through [verification](spec/verification.md) and its own release.
