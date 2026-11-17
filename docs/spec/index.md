@@ -24,6 +24,8 @@ Always read [ground-rules](ground-rules.md), [performance](performance.md), [def
 | 6c.2 Updates | [app-updates](app-updates.md), [reminders](reminders.md), [settings](settings.md), [app-config](app-config.md) | none |
 | 6c.3 Final check | [final-check](final-check.md), [release-checklist](release-checklist.md), [dev-workflow](dev-workflow.md), [smoothness](smoothness.md) (`perf` build), [reminders](reminders.md) | none |
 
+**Status: complete as specified on 2026-11-17 at 16:00 IST (release `v0.7.3`).** For any later work, read [future-development](future-development.md) first.
+
 Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mockup and this spec disagree, follow the spec.
 
 ## All concepts
@@ -54,6 +56,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [app-updates](app-updates.md): check, download, verify and install new releases, keeping data (Stage 6)
 - [smoothness](smoothness.md): measured frame-time pass on a `perf` build, before the update work (Stage 6c part 1)
 - [final-check](final-check.md): Stage 1–3 checklists (read-only on the real app, data entry on the `perf` build) and reminders after a TV restart (Stage 6c part 3, last)
+- [future-development](future-development.md): rules for any change after completion, the signing key, open items
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
 - [definition-of-done](definition-of-done.md): build, tests, report

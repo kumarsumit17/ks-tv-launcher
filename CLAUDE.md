@@ -32,6 +32,9 @@ adb shell am start -n com.ks.tvlauncher/.MainActivity   # open KS on the TV
 ```
 Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
 
+## After completion (2026-11-17)
+- The staged build is finished. For any new work, read `docs/spec/future-development.md` first and follow its cycle.
+
 ## Always
 - One stage per request; finish with `docs/spec/definition-of-done.md` (includes `kb.py build` + `kb.py check`).
 - Never claim a build or test passed unless the command succeeded.
