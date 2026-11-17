@@ -323,6 +323,13 @@ Baseline recorded on 0.7.0 at about 13:07 (fresh, from KS's own screens), compar
 - Pass · OK on "Check for updates" showed "KS TV is up to date." (live check against GitHub; v0.7.1 is the newest release). No pill on Home.
 - KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
 
+#### 2026-11-17 · v0.7.2 (702), release, KTC Lumio Vision (Android 14, API 34): in-app update, end to end
+Release: v0.7.2, a version-only release (code identical to v0.7.1; only this file changed), tagged from `main` (`fe79feb`), published by the Release workflow (run 44041385868, success) with `app-release.apk` (1,938,023 bytes); APK and AAB signer SHA-256 `2aa25f08e6b8addc54f9af9b8ccabcd9cf890902b1939b5ca2e6ac25a3776448`, checked again on the downloaded APK (0.7.2 / 702). `releases/latest` returned `v0.7.2`.
+- Pass · the owner updated from 0.7.1 to 0.7.2 from inside KS (Settings › About), not with adb. The TV reports `installerPackageName=com.ks.tvlauncher` (KS installed itself), versionCode 702, first-install time unchanged (08:06:08), last update 13:23:12, so it was an update in place.
+- Pass · the owner checked the result: About shows 0.7.2 and everything looks as before (names, TV name, pins, reminders, settings).
+- Not recorded step by step: which Android prompts appeared (unknown-apps permission, confirm) and whether the notification or the Home pill showed first; the owner reported the whole flow as fine.
+- This completes the TV test in [app-updates](spec/app-updates.md) › Tests (release N on the TV, N+1 published, updated from inside KS, data unchanged).
+
 ## Stage 6c part 1: Smoothness (test in KS TV Dev, `perf` build)
 How: `./gradlew assemblePerf`, `adb install -r app/build/outputs/apk/perf/app-perf.apk` (installs as KS TV Dev, never over the real app), then `scripts/perf.sh` (scenarios 1, 3, 4, 5) and `scripts/perf.sh 2` with the background set to Plain. Each run: force-stop, cold start, 5 s settle, `gfxinfo reset`, the keys, `gfxinfo`. Three runs per scenario; the medians are shown. Glass Medium, Transition speed 0.5×, Reduce motion off, 8 pinned apps, 21 installed.
 - [ ] `scripts/perf.sh` scenario 1 on the `perf` build: at most 25 % janky and a median of 33 ms or less.
