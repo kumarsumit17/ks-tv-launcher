@@ -138,6 +138,99 @@ object KsIcons {
             moveTo(18f, 6f); lineTo(6f, 18f)
         }
     }
+
+    val Wifi: ImageVector by lazy {
+        stroked("Wifi") {
+            moveTo(3f, 9.5f); curveTo(8f, 4.8f, 16f, 4.8f, 21f, 9.5f)
+            moveTo(6f, 12.8f); curveTo(9.4f, 9.8f, 14.6f, 9.8f, 18f, 12.8f)
+            moveTo(9f, 16f); curveTo(10.8f, 14.6f, 13.2f, 14.6f, 15f, 16f)
+            circle(12f, 19f, 0.6f)
+        }
+    }
+
+    val Bluetooth: ImageVector by lazy {
+        stroked("Bluetooth") {
+            moveTo(7f, 7.5f); lineTo(16.5f, 16f); lineTo(12f, 20f); lineTo(12f, 4f); lineTo(16.5f, 8f); lineTo(7f, 16.5f)
+        }
+    }
+
+    val Monitor: ImageVector by lazy {
+        stroked("Monitor") {
+            roundRect(3f, 4.5f, 18f, 12f, 2f)
+            moveTo(9f, 20f); lineTo(15f, 20f)
+            moveTo(12f, 16.5f); lineTo(12f, 20f)
+        }
+    }
+
+    val Moon: ImageVector by lazy {
+        stroked("Moon") {
+            moveTo(19.5f, 14.5f)
+            curveTo(15f, 16f, 9f, 12f, 10.5f, 4.5f)
+            curveTo(6.5f, 5.5f, 4f, 9f, 4f, 12.5f)
+            curveTo(4f, 17f, 7.5f, 20f, 12f, 20f)
+            curveTo(15.3f, 20f, 18.2f, 17.8f, 19.5f, 14.5f)
+            close()
+        }
+    }
+
+    val Fog: ImageVector by lazy {
+        stroked("Fog") {
+            moveTo(4f, 9f); lineTo(20f, 9f)
+            moveTo(6f, 13f); lineTo(18f, 13f)
+            moveTo(4f, 17f); lineTo(20f, 17f)
+        }
+    }
+
+    val Rain: ImageVector by lazy {
+        stroked("Rain") {
+            moveTo(7f, 14.5f)
+            curveTo(4.8f, 14.5f, 3.5f, 13f, 3.5f, 11.3f)
+            curveTo(3.5f, 9.5f, 4.8f, 8.2f, 6.6f, 8.1f)
+            curveTo(7.2f, 5.6f, 9.4f, 4f, 12f, 4f)
+            curveTo(15f, 4f, 17.3f, 6.2f, 17.5f, 9f)
+            curveTo(19.2f, 9.3f, 20.5f, 10.6f, 20.5f, 12f)
+            curveTo(20.5f, 13.5f, 19.2f, 14.5f, 17.5f, 14.5f)
+            close()
+            moveTo(8f, 17.5f); lineTo(7f, 20f)
+            moveTo(12.5f, 17.5f); lineTo(11.5f, 20f)
+            moveTo(17f, 17.5f); lineTo(16f, 20f)
+        }
+    }
+
+    val Snow: ImageVector by lazy {
+        stroked("Snow") {
+            moveTo(12f, 3.5f); lineTo(12f, 20.5f)
+            moveTo(4.6f, 7.75f); lineTo(19.4f, 16.25f)
+            moveTo(4.6f, 16.25f); lineTo(19.4f, 7.75f)
+            moveTo(9.5f, 4.5f); lineTo(12f, 6.5f); lineTo(14.5f, 4.5f)
+            moveTo(9.5f, 19.5f); lineTo(12f, 17.5f); lineTo(14.5f, 19.5f)
+        }
+    }
+
+    val Storm: ImageVector by lazy {
+        stroked("Storm") {
+            moveTo(13f, 3.5f); lineTo(6.5f, 13f); lineTo(11.5f, 13f); lineTo(10.5f, 20.5f); lineTo(17.5f, 10.5f); lineTo(12.5f, 10.5f)
+            close()
+        }
+    }
+
+    val Memory: ImageVector by lazy {
+        stroked("Memory") {
+            roundRect(6f, 6f, 12f, 12f, 2f)
+            roundRect(9.5f, 9.5f, 5f, 5f, 1f)
+            moveTo(9f, 3f); lineTo(9f, 6f); moveTo(15f, 3f); lineTo(15f, 6f)
+            moveTo(9f, 18f); lineTo(9f, 21f); moveTo(15f, 18f); lineTo(15f, 21f)
+            moveTo(3f, 9f); lineTo(6f, 9f); moveTo(3f, 15f); lineTo(6f, 15f)
+            moveTo(18f, 9f); lineTo(21f, 9f); moveTo(18f, 15f); lineTo(21f, 15f)
+        }
+    }
+
+    val ArrowUpRight: ImageVector by lazy {
+        stroked("ArrowUpRight") {
+            moveTo(7f, 17f); lineTo(17f, 7f)
+            moveTo(9f, 7f); lineTo(17f, 7f); lineTo(17f, 15f)
+        }
+    }
 }
 
 private fun stroked(name: String, block: PathBuilder.() -> Unit): ImageVector =

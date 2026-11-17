@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,11 @@ fun HomeHero(
     onOpen: (AppInfo) -> Unit,
     onUnpin: (AppInfo) -> Unit,
     modifier: Modifier = Modifier,
+    /** Holding OK on either button (Control Center). */
+    onLongPress: (() -> Unit)? = null,
+    unpinFocus: FocusRequester = remember { FocusRequester() },
+    /** Called with true for Open, false for Unpin, when a button gains focus. */
+    onButtonFocused: (open: Boolean) -> Unit = {},
 ) {
     Column(modifier = modifier) {
         Text(
@@ -66,12 +73,20 @@ fun HomeHero(
                     onClick = { onOpen(app) },
                     icon = KsIcons.Play,
                     primary = true,
-                    modifier = Modifier.focusRequester(openFocus).focusProperties { down = downFocus() },
+                    onLongClick = onLongPress,
+                    modifier = Modifier
+                        .focusRequester(openFocus)
+                        .onFocusChanged { if (it.isFocused) onButtonFocused(true) }
+                        .focusProperties { down = downFocus() },
                 )
                 GlassButton(
                     text = stringResource(R.string.hero_unpin),
                     onClick = { onUnpin(app) },
-                    modifier = Modifier.focusProperties { down = downFocus() },
+                    onLongClick = onLongPress,
+                    modifier = Modifier
+                        .focusRequester(unpinFocus)
+                        .onFocusChanged { if (it.isFocused) onButtonFocused(false) }
+                        .focusProperties { down = downFocus() },
                 )
             }
         }

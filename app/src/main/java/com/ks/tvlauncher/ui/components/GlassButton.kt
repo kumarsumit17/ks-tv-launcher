@@ -31,11 +31,14 @@ fun GlassButton(
     icon: ImageVector? = null,
     primary: Boolean = false,
     enabled: Boolean = true,
+    /** Optional hold-OK action; always also reachable another way. */
+    onLongClick: (() -> Unit)? = null,
 ) {
     val contentColor = if (primary) KsColors.OnPrimaryButton else KsColors.TextPrimary
     DpadFocusable(
         modifier = modifier.semantics { role = Role.Button },
         onClick = onClick,
+        onLongClick = onLongClick,
         enabled = enabled,
         shape = KsShapes.Pill,
     ) {
@@ -68,10 +71,12 @@ fun GlassIconButton(
     contentDescription: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
 ) {
     DpadFocusable(
         modifier = modifier.semantics { role = Role.Button },
         onClick = onClick,
+        onLongClick = onLongClick,
         shape = KsShapes.Pill,
         focusedScale = 1.1f,
     ) {

@@ -14,11 +14,14 @@ Saved viewer names and the active name ("who's watching"), stored as a JSON arra
 - Names always pass through `ProfileNames.sanitize` (max 8 names, 1-20 chars).
 - Switching to the next name wraps round.
 - Names never leave the device.
+- `save` writes the whole profile dialog in one edit and sets `setupDone`; `markSetupDone` is for Cancel on the first-run dialog. Home opens the dialog by itself only while `!setupDone` and no names are saved.
 
 <!-- kb:generated:start -->
 
 ## Files (generated)
 - `data/profile/ProfileRepository.kt` — `Profile`, `ProfileRepository`
+
+Tests: `data/profile/ProfileRepositoryTest.kt`
 
 ## Depends on (generated)
 - [domain](domain.md) via `ProfileNames`
@@ -26,6 +29,7 @@ Saved viewer names and the active name ("who's watching"), stored as a JSON arra
 ## Used by (generated)
 - [root](root.md) via `ProfileRepository`
 - [ui.home](ui-home.md) via `Profile`, `ProfileRepository`
+- [ui.settings](ui-settings.md) via `Profile`, `ProfileRepository`
 
 ## Spec
 - [greeting-widget](../../spec/greeting-widget.md)

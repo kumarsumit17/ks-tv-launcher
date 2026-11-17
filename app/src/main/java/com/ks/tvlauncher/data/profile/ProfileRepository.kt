@@ -22,6 +22,8 @@ data class Profile(
     val activeName: String? = null,
     val useOwnTvName: Boolean = false,
     val ownTvName: String = "",
+    /** False until the profile dialog has been saved or cancelled once (first run). */
+    val setupDone: Boolean = false,
 )
 
 /** Who's watching, and the optional custom TV name. Used on screen only; never leaves the device. */
@@ -40,6 +42,27 @@ class ProfileRepository(private val store: DataStore<Preferences>) {
         }
     }
 
+    /**
+     * Saves the profile dialog in one write. Names are cleaned with [ProfileNames.normalize];
+     * an active name that is not in the list is dropped. Also marks first-run setup as done.
+     */
+    suspend fun save(names: List<String>, activeName: String?, useOwnTvName: Boolean, ownTvName: String) {
+        val clean = ProfileNames.normalize(names)
+        store.edit { prefs ->
+            prefs[NAMES] = Json.encodeToString(NAMES_SERIALIZER, clean)
+            val active = activeName?.takeIf { it in clean }
+            if (active == null) prefs.remove(ACTIVE_NAME) else prefs[ACTIVE_NAME] = active
+            prefs[USE_OWN_TV_NAME] = useOwnTvName
+            prefs[OWN_TV_NAME] = ownTvName.trim().take(ProfileNames.MAX_LENGTH)
+            prefs[SETUP_DONE] = true
+        }
+    }
+
+    /** The first-run dialog was dismissed without saving: do not open it again by itself. */
+    suspend fun markSetupDone() {
+        store.edit { it[SETUP_DONE] = true }
+    }
+
     private fun read(prefs: Preferences): Profile {
         val names = ProfileNames.normalize(decodeNames(prefs[NAMES]))
         return Profile(
@@ -47,6 +70,7 @@ class ProfileRepository(private val store: DataStore<Preferences>) {
             activeName = prefs[ACTIVE_NAME]?.takeIf { it in names },
             useOwnTvName = prefs[USE_OWN_TV_NAME] ?: false,
             ownTvName = prefs[OWN_TV_NAME].orEmpty(),
+            setupDone = prefs[SETUP_DONE] ?: false,
         )
     }
 
@@ -67,6 +91,7 @@ class ProfileRepository(private val store: DataStore<Preferences>) {
         val ACTIVE_NAME = stringPreferencesKey("profile_active_name")
         val USE_OWN_TV_NAME = booleanPreferencesKey("tv_name_use_own")
         val OWN_TV_NAME = stringPreferencesKey("tv_name_own")
+        val SETUP_DONE = booleanPreferencesKey("profile_setup_done")
         val NAMES_SERIALIZER = ListSerializer(String.serializer())
     }
 }

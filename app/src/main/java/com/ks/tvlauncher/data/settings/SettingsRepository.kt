@@ -7,10 +7,15 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.ks.tvlauncher.domain.Money
+import com.ks.tvlauncher.domain.TemperatureUnit
+import com.ks.tvlauncher.domain.WeatherCity
+import com.ks.tvlauncher.domain.WeatherCityMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 import java.io.IOException
 
 /** Low: no blur, cheapest. Medium: light blur on still surfaces. High: stronger blur. */
@@ -25,6 +30,12 @@ data class LauncherSettings(
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
     /** ISO 4217 code for subscription amounts and the CSV export. Default INR. */
     val currency: String = Money.DEFAULT_CURRENCY,
+    val showMemoryCard: Boolean = true,
+    /** AUTO (default): detected from the network. MANUAL: [weatherCity]. */
+    val weatherCityMode: WeatherCityMode = WeatherCityMode.AUTO,
+    /** The city the user picked in Settings; used only in MANUAL mode. */
+    val weatherCity: WeatherCity? = null,
+    val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
 )
 
 /** Launcher preferences, stored on the device only. */
@@ -43,6 +54,14 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
                     ?.let { saved -> GlassIntensity.entries.firstOrNull { it.name == saved } }
                     ?: GlassIntensity.MEDIUM,
                 currency = prefs[CURRENCY] ?: Money.DEFAULT_CURRENCY,
+                showMemoryCard = prefs[SHOW_MEMORY_CARD] ?: true,
+                weatherCityMode = prefs[WEATHER_CITY_MODE]
+                    ?.let { saved -> WeatherCityMode.entries.firstOrNull { it.name == saved } }
+                    ?: WeatherCityMode.AUTO,
+                weatherCity = decodeCity(prefs[WEATHER_CITY]),
+                temperatureUnit = prefs[TEMPERATURE_UNIT]
+                    ?.let { saved -> TemperatureUnit.entries.firstOrNull { it.name == saved } }
+                    ?: TemperatureUnit.CELSIUS,
             )
         }
         .distinctUntilChanged()
@@ -71,6 +90,39 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[CURRENCY] = code.uppercase() }
     }
 
+    suspend fun setShowMemoryCard(value: Boolean) {
+        store.edit { it[SHOW_MEMORY_CARD] = value }
+    }
+
+    /** A city picked in Settings: stores it and switches to MANUAL in one write. */
+    suspend fun setManualCity(city: WeatherCity) {
+        store.edit {
+            it[WEATHER_CITY] = Json.encodeToString(WeatherCity.serializer(), city)
+            it[WEATHER_CITY_MODE] = WeatherCityMode.MANUAL.name
+        }
+    }
+
+    /** AUTO returns to the detected city; the manual city is kept for next time. */
+    suspend fun setWeatherCityMode(mode: WeatherCityMode) {
+        store.edit { it[WEATHER_CITY_MODE] = mode.name }
+    }
+
+    suspend fun setTemperatureUnit(value: TemperatureUnit) {
+        store.edit { it[TEMPERATURE_UNIT] = value.name }
+    }
+
+    /** A damaged value counts as "no city", so the user can simply pick one again. */
+    private fun decodeCity(raw: String?): WeatherCity? {
+        if (raw.isNullOrEmpty()) return null
+        return try {
+            Json.decodeFromString(WeatherCity.serializer(), raw)
+        } catch (e: SerializationException) {
+            null
+        } catch (e: IllegalArgumentException) {
+            null
+        }
+    }
+
     private companion object {
         val USE_24_HOUR = booleanPreferencesKey("clock_24_hour")
         val SHOW_DATE = booleanPreferencesKey("clock_show_date")
@@ -78,5 +130,9 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val REDUCE_MOTION = booleanPreferencesKey("reduce_motion")
         val GLASS_INTENSITY = stringPreferencesKey("glass_intensity")
         val CURRENCY = stringPreferencesKey("currency")
+        val SHOW_MEMORY_CARD = booleanPreferencesKey("show_memory_card")
+        val WEATHER_CITY = stringPreferencesKey("weather_city")
+        val WEATHER_CITY_MODE = stringPreferencesKey("weather_city_mode")
+        val TEMPERATURE_UNIT = stringPreferencesKey("temperature_unit")
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Text
 import com.ks.tvlauncher.R
@@ -26,11 +27,17 @@ import com.ks.tvlauncher.ui.theme.KsType
  * same state as the Subscriptions screen. OK opens that screen.
  */
 @Composable
-fun SubscriptionsCard(state: SubscriptionsUiState, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun SubscriptionsCard(
+    state: SubscriptionsUiState,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
+) {
     val summary = state.summary
     GlassCard(
         modifier = modifier,
         onClick = onClick,
+        onLongClick = onLongClick,
         contentPadding = PaddingValues(horizontal = 14.dp, vertical = 9.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -40,6 +47,7 @@ fun SubscriptionsCard(state: SubscriptionsUiState, onClick: () -> Unit, modifier
                     style = KsType.Label,
                     color = KsColors.TextPrimary,
                     maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
                 Text(
                     text = if (summary.totalCount == 0) {
@@ -54,6 +62,7 @@ fun SubscriptionsCard(state: SubscriptionsUiState, onClick: () -> Unit, modifier
                     style = KsType.Caption,
                     color = KsColors.TextSecondary,
                     maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
             summary.next?.let { next ->

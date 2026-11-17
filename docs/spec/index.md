@@ -8,7 +8,7 @@ An ad-free, Apple TV–style launcher app for Google TV / Android TV, fully cont
 
 ## Read for each stage
 
-Always read [ground-rules](ground-rules.md), [performance](performance.md) and [definition-of-done](definition-of-done.md), and [knowledge-graph](knowledge-graph.md); look code up with `python3 scripts/kb.py query` before reading it. Then only:
+Always read [ground-rules](ground-rules.md), [performance](performance.md), [definition-of-done](definition-of-done.md) and [verification](verification.md), and [knowledge-graph](knowledge-graph.md); look code up with `python3 scripts/kb.py query` before reading it. Then only:
 
 | Stage | Read these | Mockups |
 |---|---|---|
@@ -43,7 +43,8 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [google-tv-setup](google-tv-setup.md): installing KS and pinning it to favourites
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
-- [definition-of-done](definition-of-done.md): build, tests, commit, report
+- [definition-of-done](definition-of-done.md): build, tests, report
+- [verification](verification.md): TV test with sample data, Claude Cowork review, then commit and push
 - [knowledge-graph](knowledge-graph.md): `docs/kb/` code graph, `scripts/kb.py`, OKF writing rules
 
 Changes to this spec are recorded in [log](log.md).

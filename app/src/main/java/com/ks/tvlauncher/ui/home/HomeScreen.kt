@@ -26,6 +26,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import android.provider.Settings
+import com.ks.tvlauncher.data.system.DeviceStats
+import com.ks.tvlauncher.domain.Money
+import com.ks.tvlauncher.domain.TemperatureUnit
+import com.ks.tvlauncher.ui.controlcenter.ControlCenter
+import com.ks.tvlauncher.ui.controlcenter.ControlCenterActions
+import com.ks.tvlauncher.ui.controlcenter.ControlCenterCard
+import com.ks.tvlauncher.ui.controlcenter.ControlCenterValues
+import com.ks.tvlauncher.ui.controlcenter.ControlCenterViewModel
+import com.ks.tvlauncher.ui.controlcenter.SystemIntents
+import com.ks.tvlauncher.ui.settings.ProfileDialog
+import com.ks.tvlauncher.ui.settings.SettingsScreen
+import com.ks.tvlauncher.ui.settings.SettingsSection
+import com.ks.tvlauncher.ui.settings.SettingsViewModel
+import com.ks.tvlauncher.ui.widgets.MemoryStorageCard
+import com.ks.tvlauncher.ui.widgets.MemoryStoragePanel
+import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -57,7 +80,6 @@ private const val MENU_SETTLE_MS = 120L
 /** What Home can ask the view model to do. Grouped so the screen takes one parameter for them. */
 class HomeActions(
     val onSwitchProfile: () -> Unit,
-    val onOpenSettings: () -> Unit,
     val onTileFocused: (String) -> Unit,
     val launchIntent: (String) -> Intent?,
     val onLaunchFailed: (String) -> Unit,
@@ -65,7 +87,31 @@ class HomeActions(
     val onUnpin: (String) -> Unit,
     val onMove: (String, Int) -> Unit,
     val onDismissMessage: () -> Unit,
+    val onSetDynamicWallpaper: (Boolean) -> Unit,
+    val onSetClock24Hour: (Boolean) -> Unit,
+    /** True while the Memory & storage panel is open, for the Apps / Other split. */
+    val onSetStatsBreakdown: (Boolean) -> Unit,
+    val usageAccessGranted: () -> Boolean,
 )
+
+/** Where the Memory & storage panel was opened from, so focus can go back there. */
+private enum class MemoryOpener { CARD, CONTROL_CENTER }
+
+// Keys for the Home controls whose focus is restored after Control Center or Settings.
+private const val KEY_ROW = "row"
+private const val KEY_WEATHER = "weather"
+private const val KEY_GEAR = "gear"
+private const val KEY_CHIP = "chip"
+private const val KEY_HERO_OPEN = "heroOpen"
+private const val KEY_HERO_UNPIN = "heroUnpin"
+private const val KEY_ALL_APPS = "allApps"
+private const val KEY_SUBS = "subs"
+private const val KEY_MEMORY = "memory"
+private const val KEY_CC = "cc"
+
+/** Remembers [key] as the Home control focused last. */
+private fun Modifier.trackFocus(memory: FocusMemory, key: String): Modifier =
+    focusRequester(memory.requester(key)).onFocusChanged { if (it.isFocused) memory.lastKey = key }
 
 /**
  * The main screen: top bar, greeting, hero, pinned row and the bottom strip, with the All apps
@@ -79,6 +125,7 @@ fun HomeScreen(
     state: HomeUiState,
     wallpaper: Wallpaper?,
     subscriptions: SubscriptionsUiState,
+    deviceStats: StateFlow<DeviceStats?>,
     reopenEvents: Flow<Unit>,
     actions: HomeActions,
     modifier: Modifier = Modifier,
@@ -94,8 +141,19 @@ fun HomeScreen(
 
     var drawerOpen by rememberSaveable { mutableStateOf(false) }
     var subscriptionsOpen by rememberSaveable { mutableStateOf(false) }
+    var settingsAt by rememberSaveable { mutableStateOf<SettingsSection?>(null) }
+    var controlCenterOpen by rememberSaveable { mutableStateOf(false) }
+    var memoryOpener by rememberSaveable { mutableStateOf<MemoryOpener?>(null) }
+    var firstRunProfileOpen by rememberSaveable { mutableStateOf(false) }
+    var firstRunProfileShown by rememberSaveable { mutableStateOf(false) }
+    val homeMemory = remember { FocusMemory() }
+    // Builds no flows until Settings or the profile dialog collects them.
+    val settingsViewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.Factory)
+    val ccMemoryFocus = remember { FocusRequester() }
     // The app whose menu is open, from either the pinned row or the drawer.
     var menuApp by remember { mutableStateOf<AppInfo?>(null) }
+    val anyOverlay = drawerOpen || subscriptionsOpen || settingsAt != null || controlCenterOpen ||
+        memoryOpener != null || firstRunProfileOpen || menuApp != null
     var initialFocusDone by remember { mutableStateOf(false) }
     val hasPinned = state.pinned.isNotEmpty()
     // Read through updated state so long-running effects always see the current pins.
@@ -103,6 +161,28 @@ fun HomeScreen(
 
     /** The pinned tile focused last (else the first one); the All apps card if none are pinned. */
     fun rowTarget(): FocusRequester = rowMemory.target(pinnedKeys, fallback = allAppsFocus)
+
+    // The Home control focused when Control Center, Settings or the first-run dialog opened.
+    // Captured at open time: while an overlay closes, focus briefly lands on another Home
+    // control, which would otherwise overwrite homeMemory.lastKey (seen on the TV).
+    var restoreKey by rememberSaveable { mutableStateOf<String?>(null) }
+
+    /** Back to the Home control focused before an overlay opened; the pinned row by default. */
+    fun restoreHomeFocus() {
+        val key = restoreKey ?: homeMemory.lastKey
+        val target = when {
+            key == null || key == KEY_ROW -> rowTarget()
+            (key == KEY_HERO_OPEN || key == KEY_HERO_UNPIN) && !hasPinned -> allAppsFocus
+            key == KEY_MEMORY && !state.showMemoryCard -> allAppsFocus
+            key == KEY_CHIP && state.nextName == null -> rowTarget()
+            else -> homeMemory.requester(key)
+        }
+        target.requestFocusSafely()
+    }
+
+    fun openControlCenter() {
+        if (!anyOverlay) controlCenterOpen = true
+    }
 
     fun open(app: AppInfo) {
         if (!AppIntents.start(context, actions.launchIntent(app.packageName))) actions.onLaunchFailed(app.label)
@@ -112,13 +192,13 @@ fun HomeScreen(
     LaunchedEffect(state.appsLoaded) {
         if (state.appsLoaded && !initialFocusDone) {
             withFrameNanos { }
-            rowTarget().requestFocusSafely()
+            if (!anyOverlay) rowTarget().requestFocusSafely()
             initialFocusDone = true
         }
     }
     // The last pinned app was unpinned from the hero: its buttons are gone, so move focus on.
     LaunchedEffect(hasPinned) {
-        if (initialFocusDone && !hasPinned && !drawerOpen && !subscriptionsOpen) {
+        if (initialFocusDone && !hasPinned && !anyOverlay) {
             withFrameNanos { }
             allAppsFocus.requestFocusSafely()
         }
@@ -130,6 +210,14 @@ fun HomeScreen(
             menuApp = null
             drawerOpen = false
             subscriptionsOpen = false
+            settingsAt = null
+            controlCenterOpen = false
+            memoryOpener = null
+            if (firstRunProfileOpen) {
+                firstRunProfileOpen = false
+                settingsViewModel.dismissFirstRunProfile()
+            }
+            homeMemory.lastKey = KEY_ROW
             withFrameNanos { }
             rowTarget().requestFocusSafely()
         }
@@ -195,13 +283,83 @@ fun HomeScreen(
         }
     }
 
-    FrostSource(modifier = modifier.fillMaxSize(), background = { HomeBackground(wallpaper) }) {
+    // First run: once Home has settled, ask who's watching.
+    LaunchedEffect(initialFocusDone, state.profileSetupNeeded) {
+        if (initialFocusDone && state.profileSetupNeeded && !firstRunProfileShown && !anyOverlay) {
+            firstRunProfileShown = true
+            firstRunProfileOpen = true
+        }
+    }
+    // Control Center, Settings or the first-run dialog closed: return to where focus was,
+    // unless another overlay (Subscriptions, Settings) took over.
+    var focusOverlayWasOpen by remember { mutableStateOf(false) }
+    val focusOverlayOpen = controlCenterOpen || settingsAt != null || firstRunProfileOpen
+    LaunchedEffect(focusOverlayOpen) {
+        if (focusOverlayOpen) {
+            if (!focusOverlayWasOpen) restoreKey = homeMemory.lastKey
+            focusOverlayWasOpen = true
+        } else if (focusOverlayWasOpen) {
+            focusOverlayWasOpen = false
+            delay(MENU_SETTLE_MS)
+            if (!anyOverlay) restoreHomeFocus()
+            restoreKey = null
+        }
+    }
+    // The Apps / Other split is read only while the panel is open.
+    LaunchedEffect(memoryOpener != null) { actions.onSetStatsBreakdown(memoryOpener != null) }
+    val stats: DeviceStats? = if (state.showMemoryCard || memoryOpener != null) {
+        deviceStats.collectAsStateWithLifecycle().value
+    } else {
+        null
+    }
+
+    val memoryPanel: @Composable () -> Unit = {
+        memoryOpener?.let { opener ->
+            val usageGranted = remember(stats) { actions.usageAccessGranted() }
+            MemoryStoragePanel(
+                stats = stats,
+                usageAccessGranted = usageGranted,
+                onManageApps = { SystemIntents.openSettings(context, Settings.ACTION_APPLICATION_SETTINGS) },
+                onFreeUpSpace = { SystemIntents.openSettings(context, Settings.ACTION_INTERNAL_STORAGE_SETTINGS) },
+                onEnableUsageAccess = { SystemIntents.openSettings(context, Settings.ACTION_USAGE_ACCESS_SETTINGS) },
+                onDismiss = { memoryOpener = null },
+                returnFocusTo = if (opener == MemoryOpener.CARD) homeMemory.requester(KEY_MEMORY) else ccMemoryFocus,
+            )
+        }
+    }
+
+    FrostSource(
+        modifier = modifier
+            .fillMaxSize()
+            // MENU opens Control Center when nothing else is open, and closes it again.
+            .onPreviewKeyEvent { event ->
+                if (event.key != Key.Menu) return@onPreviewKeyEvent false
+                when {
+                    controlCenterOpen && memoryOpener == null -> {
+                        if (event.type == KeyEventType.KeyUp) controlCenterOpen = false
+                        true
+                    }
+                    !anyOverlay -> {
+                        if (event.type == KeyEventType.KeyUp) controlCenterOpen = true
+                        true
+                    }
+                    else -> false
+                }
+            },
+        background = { HomeBackground(wallpaper) },
+    ) {
         Column(Modifier.fillMaxSize().padding(vertical = KsDimens.OverscanVertical)) {
             HomeTopBar(
                 time = state.time,
                 shortDate = state.shortDate,
-                onOpenSettings = actions.onOpenSettings,
+                weather = state.weather,
+                temperatureUnit = state.temperatureUnit,
+                onOpenWeather = { settingsAt = SettingsSection.WEATHER },
+                onOpenSettings = { settingsAt = SettingsSection.PROFILE },
+                onLongPress = ::openControlCenter,
                 modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal),
+                weatherModifier = Modifier.trackFocus(homeMemory, KEY_WEATHER),
+                gearModifier = Modifier.trackFocus(homeMemory, KEY_GEAR),
             )
             Spacer(Modifier.height(12.dp))
             GreetingWidget(
@@ -212,6 +370,8 @@ fun HomeScreen(
                 androidVersion = state.androidVersion,
                 nextName = state.nextName,
                 onSwitchProfile = actions.onSwitchProfile,
+                onLongPress = ::openControlCenter,
+                chipModifier = Modifier.trackFocus(homeMemory, KEY_CHIP),
                 modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal).width(500.dp),
             )
             Spacer(Modifier.weight(1f))
@@ -221,6 +381,9 @@ fun HomeScreen(
                 downFocus = ::rowTarget,
                 onOpen = ::open,
                 onUnpin = { actions.onUnpin(it.packageName) },
+                onLongPress = ::openControlCenter,
+                unpinFocus = homeMemory.requester(KEY_HERO_UNPIN),
+                onButtonFocused = { isOpen -> homeMemory.lastKey = if (isOpen) KEY_HERO_OPEN else KEY_HERO_UNPIN },
                 modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal),
             )
             Spacer(Modifier.height(8.dp))
@@ -233,11 +396,16 @@ fun HomeScreen(
                     downFocus = allAppsFocus,
                     onOpen = ::open,
                     onOpenMenu = { menuApp = it },
-                    onTileFocused = { actions.onTileFocused(it.packageName) },
+                    onTileFocused = {
+                        homeMemory.lastKey = KEY_ROW
+                        actions.onTileFocused(it.packageName)
+                    },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 Spacer(Modifier.height(6.dp))
             }
+            // With pinned apps, Up from any card returns to the tile that was focused last.
+            val upToRow = Modifier.focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default }
             Row(
                 modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -245,18 +413,33 @@ fun HomeScreen(
                 AllAppsCard(
                     installedCount = state.installedCount,
                     onClick = { drawerOpen = true },
+                    onLongClick = ::openControlCenter,
                     modifier = Modifier
                         .focusRequester(allAppsFocus)
-                        // With pinned apps, Up returns to the tile that was focused last.
-                        .focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default },
+                        .onFocusChanged { if (it.isFocused) homeMemory.lastKey = KEY_ALL_APPS }
+                        .then(upToRow),
                 )
                 SubscriptionsCard(
                     state = subscriptions,
                     onClick = { subscriptionsOpen = true },
+                    onLongClick = ::openControlCenter,
                     modifier = Modifier
-                        .width(460.dp)
+                        .weight(1f)
                         .focusRequester(subscriptionsFocus)
-                        .focusProperties { up = if (hasPinned) rowTarget() else FocusRequester.Default },
+                        .onFocusChanged { if (it.isFocused) homeMemory.lastKey = KEY_SUBS }
+                        .then(upToRow),
+                )
+                if (state.showMemoryCard) {
+                    MemoryStorageCard(
+                        stats = stats,
+                        onClick = { memoryOpener = MemoryOpener.CARD },
+                        onLongClick = ::openControlCenter,
+                        modifier = Modifier.width(230.dp).trackFocus(homeMemory, KEY_MEMORY).then(upToRow),
+                    )
+                }
+                ControlCenterCard(
+                    onClick = ::openControlCenter,
+                    modifier = Modifier.trackFocus(homeMemory, KEY_CC).then(upToRow),
                 )
             }
         }
@@ -287,6 +470,46 @@ fun HomeScreen(
             menu()
         }
 
+        if (controlCenterOpen) {
+            val ccViewModel: ControlCenterViewModel = viewModel(factory = ControlCenterViewModel.Factory)
+            ControlCenter(
+                viewModel = ccViewModel,
+                values = ControlCenterValues(
+                    time = state.time,
+                    dynamicWallpaper = state.visual.dynamicWallpaper,
+                    clock24Hour = state.clock24Hour,
+                    weather = stringResource(
+                        R.string.cc_weather_value,
+                        state.weatherCity?.let { resolved ->
+                            if (resolved.automatic) stringResource(R.string.cc_weather_auto, resolved.city.name) else resolved.city.name
+                        } ?: stringResource(R.string.weather_set_city),
+                        stringResource(if (state.temperatureUnit == TemperatureUnit.CELSIUS) R.string.unit_celsius else R.string.unit_fahrenheit),
+                    ),
+                    subscriptions = Money.currency(state.currency).getSymbol(Money.localeFor(state.currency)) + " " + state.currency,
+                ),
+                actions = ControlCenterActions(
+                    onDismiss = { controlCenterOpen = false },
+                    onSetDynamicWallpaper = actions.onSetDynamicWallpaper,
+                    onSetClock24Hour = actions.onSetClock24Hour,
+                    onOpenWeather = {
+                        controlCenterOpen = false
+                        settingsAt = SettingsSection.WEATHER
+                    },
+                    onOpenSubscriptions = {
+                        controlCenterOpen = false
+                        subscriptionsOpen = true
+                    },
+                    onOpenMemory = { memoryOpener = MemoryOpener.CONTROL_CENTER },
+                ),
+                memoryFocus = ccMemoryFocus,
+                coveredByDialog = memoryOpener != null,
+                overlay = { if (memoryOpener == MemoryOpener.CONTROL_CENTER) memoryPanel() },
+            )
+        }
+
+        // From the card the panel sits over Home; from Control Center it is drawn inside it.
+        if (memoryOpener == MemoryOpener.CARD) memoryPanel()
+
         if (subscriptionsOpen) {
             val subsViewModel: SubscriptionsViewModel = viewModel(factory = SubscriptionsViewModel.Factory)
             val subsState by subsViewModel.uiState.collectAsStateWithLifecycle()
@@ -308,6 +531,35 @@ fun HomeScreen(
                 subscriptionsWasOpen = false
                 withFrameNanos { }
                 subscriptionsFocus.requestFocusSafely()
+            }
+        }
+
+        settingsAt?.let { section ->
+            val settingsState by settingsViewModel.uiState.collectAsStateWithLifecycle()
+            SettingsScreen(
+                state = settingsState,
+                viewModel = settingsViewModel,
+                startAt = section,
+                onClose = { settingsAt = null },
+            )
+        }
+
+        if (firstRunProfileOpen) {
+            val settingsState by settingsViewModel.uiState.collectAsStateWithLifecycle()
+            if (settingsState.loaded) {
+                ProfileDialog(
+                    profile = settingsState.profile,
+                    device = settingsState.device,
+                    onSave = { names, active, useOwn, own ->
+                        settingsViewModel.saveProfile(names, active, useOwn, own)
+                        firstRunProfileOpen = false
+                    },
+                    onDismiss = {
+                        settingsViewModel.dismissFirstRunProfile()
+                        firstRunProfileOpen = false
+                    },
+                    returnFocusTo = null,
+                )
             }
         }
 

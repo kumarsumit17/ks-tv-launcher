@@ -33,6 +33,7 @@ fun GlassPill(
     tone: PillTone = PillTone.Neutral,
     frosted: Boolean = false,
     onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
 ) {
     val contentColor: Color
     val container: Color?
@@ -67,6 +68,6 @@ fun GlassPill(
     if (onClick == null) {
         body(modifier)
     } else {
-        DpadFocusable(modifier = modifier, onClick = onClick, shape = KsShapes.Pill) { body(Modifier) }
+        DpadFocusable(modifier = modifier, onClick = onClick, onLongClick = onLongClick, shape = KsShapes.Pill) { body(Modifier) }
     }
 }

@@ -45,6 +45,8 @@ fun GlassDialog(
     title: String? = null,
     maxWidth: Dp = 420.dp,
     returnFocusTo: FocusRequester? = null,
+    /** Gap between the panel's children. */
+    spacing: Dp = 12.dp,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val motion = LocalMotion.current
@@ -90,7 +92,7 @@ fun GlassDialog(
                 .focusGroup()
                 .glass(shape = KsShapes.Panel, frosted = true, fill = KsColors.PanelFill)
                 .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
             if (title != null) {
                 Text(title, style = KsType.ScreenTitle, color = KsColors.TextPrimary)

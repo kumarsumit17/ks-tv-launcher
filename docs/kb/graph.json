@@ -47,6 +47,24 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
      "DeviceInfoRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+     "DeviceStatsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+     "SystemStatusRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+     "IpWhoIsLocator"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+     "CityResolver"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
+     "OpenMeteoProvider"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherRepository"
     ]
    },
    "module": "root",
@@ -55,7 +73,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 31,
+     "line": 38,
      "name": "AppContainer",
      "private": false
     }
@@ -87,9 +105,6 @@
     "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
      "LocalAppImageLoader"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
-     "AppIntents"
-    ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": [
      "HomeActions",
      "HomeScreen"
@@ -107,7 +122,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 25,
+     "line": 23,
      "name": "MainActivity",
      "private": false
     }
@@ -231,7 +246,7 @@
     },
     {
      "kind": "class",
-     "line": 28,
+     "line": 30,
      "name": "ProfileRepository",
      "private": false
     }
@@ -241,6 +256,11 @@
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCity",
+     "WeatherCityMode"
     ]
    },
    "module": "data.settings",
@@ -249,19 +269,19 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 17,
+     "line": 22,
      "name": "GlassIntensity",
      "private": false
     },
     {
      "kind": "class",
-     "line": 19,
+     "line": 24,
      "name": "LauncherSettings",
      "private": false
     },
     {
      "kind": "class",
-     "line": 31,
+     "line": 42,
      "name": "SettingsRepository",
      "private": false
     }
@@ -330,6 +350,193 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": {
+   "deps": {},
+   "module": "data.system",
+   "package": "com.ks.tvlauncher.data.system",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 24,
+     "name": "StorageBreakdown",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 27,
+     "name": "DeviceStats",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 40,
+     "name": "DeviceStatsRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": {
+   "deps": {},
+   "module": "data.system",
+   "package": "com.ks.tvlauncher.data.system",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 26,
+     "name": "NetworkKind",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 29,
+     "name": "NetworkStatus",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 36,
+     "name": "BluetoothStatus",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 48,
+     "name": "SystemStatusRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 14,
+     "name": "CityLocator",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 24,
+     "name": "IpWhoIsLocator",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "LauncherSettings"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+     "CityLocator"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity",
+     "WeatherCityMode"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 29,
+     "name": "ResolvedCity",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 37,
+     "name": "CityResolver",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+     "CurrentWeather",
+     "WeatherProvider"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 20,
+     "name": "OpenMeteoProvider",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 9,
+     "name": "CurrentWeather",
+     "private": false
+    },
+    {
+     "kind": "interface",
+     "line": 16,
+     "name": "WeatherProvider",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+     "CurrentWeather",
+     "WeatherProvider"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 25,
+     "name": "WeatherState",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 44,
+     "name": "WeatherRepository",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
@@ -365,6 +572,26 @@
      "kind": "class",
      "line": 7,
      "name": "AppInfo",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "UsageLevel",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 12,
+     "name": "ByteFormatter",
      "private": false
     }
    ]
@@ -514,6 +741,44 @@
      "kind": "object",
      "line": 9,
      "name": "SubscriptionCsv",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "WeatherGroup",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 8,
+     "name": "TemperatureUnit",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 10,
+     "name": "WeatherCodes",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 37,
+     "name": "WeatherCity",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 53,
+     "name": "WeatherCityMode",
      "private": false
     }
    ]
@@ -890,7 +1155,7 @@
     },
     {
      "kind": "fun",
-     "line": 66,
+     "line": 69,
      "name": "GlassIconButton",
      "private": false
     }
@@ -1172,6 +1437,177 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.controlcenter",
+   "package": "com.ks.tvlauncher.ui.controlcenter",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 24,
+     "name": "ControlCenterCard",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+     "BluetoothStatus",
+     "NetworkKind",
+     "NetworkStatus"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "modalFocus",
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+     "glass"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+     "GlassChip"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
+     "ControlCenterViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+     "SystemIntents"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+     "LocalMotion"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsDimens",
+     "KsShapes"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.controlcenter",
+   "package": "com.ks.tvlauncher.ui.controlcenter",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 60,
+     "name": "ControlCenterValues",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 71,
+     "name": "ControlCenterActions",
+     "private": false
+    },
+    {
+     "kind": "val",
+     "line": 80,
+     "name": "PanelWidth",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 90,
+     "name": "ControlCenterPanel",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 212,
+     "name": "networkText",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 221,
+     "name": "bluetoothText",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 230,
+     "name": "StatusTile",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 246,
+     "name": "ValueRow",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 267,
+     "name": "ControlCenter",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+     "BluetoothStatus",
+     "NetworkStatus",
+     "SystemStatusRepository"
+    ]
+   },
+   "module": "ui.controlcenter",
+   "package": "com.ks.tvlauncher.ui.controlcenter",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 17,
+     "name": "ControlCenterViewModel",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+     "AppIntents"
+    ]
+   },
+   "module": "ui.controlcenter",
+   "package": "com.ks.tvlauncher.ui.controlcenter",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 10,
+     "name": "SystemIntents",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
@@ -1250,7 +1686,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 33,
+     "line": 35,
      "name": "HomeHero",
      "private": false
     }
@@ -1261,8 +1697,17 @@
     "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
      "Wallpaper"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+     "DeviceStats"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+     "Money"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
@@ -1287,6 +1732,20 @@
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
      "GlassSnackbar"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": [
+     "ControlCenterCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": [
+     "ControlCenter",
+     "ControlCenterActions",
+     "ControlCenterValues"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
+     "ControlCenterViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+     "SystemIntents"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": [
      "AllAppsCard"
     ],
@@ -1310,6 +1769,16 @@
     "app/src/main/java/com/ks/tvlauncher/ui/home/SubscriptionsCard.kt": [
      "SubscriptionsCard"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
+     "ProfileDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
+     "SettingsScreen",
+     "SettingsSection"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+     "SettingsViewModel"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": [
      "SubscriptionsScreen"
     ],
@@ -1322,6 +1791,12 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/widgets/GreetingWidget.kt": [
      "GreetingWidget"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": [
+     "MemoryStorageCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": [
+     "MemoryStoragePanel"
     ]
    },
    "module": "ui.home",
@@ -1330,25 +1805,97 @@
    "symbols": [
     {
      "kind": "val",
-     "line": 54,
+     "line": 77,
      "name": "SNACKBAR_MS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 55,
+     "line": 78,
      "name": "MENU_SETTLE_MS",
      "private": true
     },
     {
      "kind": "class",
-     "line": 58,
+     "line": 81,
      "name": "HomeActions",
      "private": false
     },
     {
+     "kind": "class",
+     "line": 98,
+     "name": "MemoryOpener",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 101,
+     "name": "KEY_ROW",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 102,
+     "name": "KEY_WEATHER",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 103,
+     "name": "KEY_GEAR",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 104,
+     "name": "KEY_CHIP",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 105,
+     "name": "KEY_HERO_OPEN",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 106,
+     "name": "KEY_HERO_UNPIN",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 107,
+     "name": "KEY_ALL_APPS",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 108,
+     "name": "KEY_SUBS",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 109,
+     "name": "KEY_MEMORY",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 110,
+     "name": "KEY_CC",
+     "private": true
+    },
+    {
      "kind": "fun",
-     "line": 78,
+     "line": 113,
+     "name": "trackFocus",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 124,
      "name": "HomeScreen",
      "private": false
     }
@@ -1356,14 +1903,20 @@
   },
   "app/src/main/java/com/ks/tvlauncher/ui/home/HomeTopBar.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassIconButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
-     "GlassPill"
+    "app/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": [
+     "WeatherPill"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
@@ -1384,7 +1937,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 28,
+     "line": 31,
      "name": "HomeTopBar",
      "private": false
     }
@@ -1420,6 +1973,18 @@
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+     "DeviceStats",
+     "DeviceStatsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+     "CityResolver",
+     "ResolvedCity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherRepository",
+     "WeatherState"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
@@ -1435,6 +2000,9 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionsUiState",
@@ -1456,19 +2024,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 55,
+     "line": 63,
      "name": "HomeMessage",
      "private": false
     },
     {
      "kind": "class",
-     "line": 60,
+     "line": 68,
      "name": "HomeUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 83,
+     "line": 101,
      "name": "HomeViewModel",
      "private": false
     }
@@ -1544,8 +2112,52 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 29,
+     "line": 30,
      "name": "SubscriptionsCard",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCodes",
+     "WeatherGroup"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+     "GlassPill"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+     "LocalMotion"
+    ]
+   },
+   "module": "ui.home",
+   "package": "com.ks.tvlauncher.ui.home",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 27,
+     "name": "WeatherPill",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 90,
+     "name": "groupIcon",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 99,
+     "name": "groupLabel",
      "private": false
     }
    ]
@@ -1564,21 +2176,276 @@
     },
     {
      "kind": "fun",
-     "line": 143,
+     "line": 236,
      "name": "stroked",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 154,
+     "line": 247,
      "name": "circle",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 160,
+     "line": 253,
      "name": "roundRect",
      "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+     "Profile"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+     "DeviceInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+     "ProfileNames"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+     "GlassChip"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+     "GlassDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+     "GlassPill"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+     "GlassSearchField"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+     "GlassToggle"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.settings",
+   "package": "com.ks.tvlauncher.ui.settings",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 52,
+     "name": "ProfileDialog",
+     "private": false
+    },
+    {
+     "kind": "val",
+     "line": 259,
+     "name": "FOCUS_FIELD",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 262,
+     "name": "AutoRow",
+     "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "GlassIntensity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCityMode"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "modalFocus",
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+     "GlassChip"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+     "GlassSearchField"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": [
+     "GlassSection"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+     "GlassToggle"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+     "SystemIntents"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
+     "ProfileDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+     "CitySearch",
+     "DetectState",
+     "SettingsUiState",
+     "SettingsViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsDimens"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.settings",
+   "package": "com.ks.tvlauncher.ui.settings",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 63,
+     "name": "SettingsSection",
+     "private": false
+    },
+    {
+     "kind": "val",
+     "line": 66,
+     "name": "CURRENCIES",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 69,
+     "name": "ITEM_PROFILE",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 70,
+     "name": "ITEM_WEATHER",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 72,
+     "name": "DIALOG_SETTLE_MS",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 79,
+     "name": "SettingsScreen",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 308,
+     "name": "WeatherSettings",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 425,
+     "name": "ChoiceRow",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 434,
+     "name": "ValueRow",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+     "AppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+     "Profile",
+     "ProfileRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "GlassIntensity",
+     "LauncherSettings",
+     "SettingsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+     "DeviceInfo",
+     "DeviceInfoRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+     "CityResolver",
+     "ResolvedCity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCity",
+     "WeatherCityMode"
+    ]
+   },
+   "module": "ui.settings",
+   "package": "com.ks.tvlauncher.ui.settings",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 36,
+     "name": "CitySearch",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 44,
+     "name": "DetectState",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 47,
+     "name": "SettingsUiState",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 61,
+     "name": "SettingsViewModel",
+     "private": false
     }
    ]
   },
@@ -2095,9 +2962,149 @@
     },
     {
      "kind": "fun",
-     "line": 113,
+     "line": 118,
      "name": "deviceLine",
      "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+     "DeviceStats"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+     "ByteFormatter"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+     "GlassCard"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
+     "UsageBar"
+    ]
+   },
+   "module": "ui.widgets",
+   "package": "com.ks.tvlauncher.ui.widgets",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 31,
+     "name": "MemoryStorageCard",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 55,
+     "name": "UsageLine",
+     "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+     "DeviceStats"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+     "ByteFormatter"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+     "requestFocusSafely"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+     "GlassDialog"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+     "GlassPill"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
+     "UsageRing",
+     "usageTag",
+     "usageTone"
+    ]
+   },
+   "module": "ui.widgets",
+   "package": "com.ks.tvlauncher.ui.widgets",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 44,
+     "name": "MemoryStoragePanel",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 117,
+     "name": "Gauge",
+     "private": true
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+     "UsageLevel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+     "PillTone"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ]
+   },
+   "module": "ui.widgets",
+   "package": "com.ks.tvlauncher.ui.widgets",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 22,
+     "name": "usageColors",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 28,
+     "name": "usageTone",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 35,
+     "name": "usageTag",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 45,
+     "name": "UsageBar",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 63,
+     "name": "UsageRing",
+     "private": false
     }
    ]
   },
@@ -2173,6 +3180,48 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/data/profile/ProfileRepositoryTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+     "ProfileRepository"
+    ]
+   },
+   "module": "data.profile",
+   "package": "com.ks.tvlauncher.data.profile",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 18,
+     "name": "ProfileRepositoryTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/settings/SettingsRepositoryTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "GlassIntensity",
+     "SettingsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCity",
+     "WeatherCityMode"
+    ]
+   },
+   "module": "data.settings",
+   "package": "com.ks.tvlauncher.data.settings",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 23,
+     "name": "SettingsRepositoryTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepositoryTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
@@ -2198,6 +3247,106 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/data/weather/CityResolverTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "LauncherSettings"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+     "CityLocator"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+     "CityResolver",
+     "ResolvedCity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity",
+     "WeatherCityMode"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 31,
+     "name": "CityResolverTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/weather/IpWhoIsLocatorTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+     "IpWhoIsLocator"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 8,
+     "name": "IpWhoIsLocatorTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/weather/OpenMeteoParsingTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
+     "OpenMeteoProvider"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+     "CurrentWeather"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 9,
+     "name": "OpenMeteoParsingTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/weather/WeatherRepositoryTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+     "CurrentWeather",
+     "WeatherProvider"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+     "WeatherRepository",
+     "WeatherState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "WeatherCity"
+    ]
+   },
+   "module": "data.weather",
+   "package": "com.ks.tvlauncher.data.weather",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 25,
+     "name": "WeatherRepositoryTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/AppFilterTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
@@ -2216,6 +3365,25 @@
      "kind": "class",
      "line": 6,
      "name": "AppFilterTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/domain/ByteFormatterTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+     "ByteFormatter",
+     "UsageLevel"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "ByteFormatterTest",
      "private": false
     }
    ]
@@ -2293,6 +3461,24 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/ProfileNamesEditTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+     "ProfileNames"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 9,
+     "name": "ProfileNamesEditTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/ProfileNamesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
@@ -2354,9 +3540,30 @@
      "private": false
     }
    ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/domain/WeatherCodesTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCity",
+     "WeatherCodes",
+     "WeatherGroup"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "WeatherCodesTest",
+     "private": false
+    }
+   ]
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "ba3cf393ca7c4964b5b42b5e00502a8e5c8a2e05",
+ "source_hash": "10f6a9b356b1fd25586cea885e07ead914bc2921",
  "version": 1
 }

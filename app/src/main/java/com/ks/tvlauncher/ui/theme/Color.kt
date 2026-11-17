@@ -31,4 +31,12 @@ object KsColors {
     val Accent = Color(0xFF7FB2FF)
     val NameGradientStart = Color(0xFFFFE1B0)
     val NameGradientEnd = Color(0xFFFFB9C8)
+
+    // Memory & storage levels (docs/spec/memory-storage-widget.md).
+    val UsageNormalStart = Color(0xFF7FB2FF)
+    val UsageNormalEnd = Color(0xFFB9D3FF)
+    val UsageFullStart = Color(0xFFFFB45A)
+    val UsageFullEnd = Color(0xFFFFD9A3)
+    val UsageCritical = Color(0xFFFF8A8A)
+    val UsageTrack = Color.White.copy(alpha = 0.14f)
 }

@@ -14,3 +14,9 @@
 - Added [app-mode](app-mode.md): KS runs as an app opened from the owner's launcher (`com.sumit.lumiohome`), never the default Home. Manifest drops HOME/DEFAULT, Back on the main screen moves KS to the background, tile label "KS TV". [google-tv-setup](google-tv-setup.md) no longer covers disabling the stock launcher. Implemented at the start of Stage 2.
 - Stage 2: [app-config](app-config.md) now lists the `REQUEST_DELETE_PACKAGES` permission, which `ACTION_DELETE` in the app menu ([apps](apps.md)) needs on API 28+.
 - Stage 3: [subscriptions](subscriptions.md) currency line: INR grouping is done in `domain/Money`, not `NumberFormat`, because the JVM's java.text cannot group in lakhs (unit tests and devices would disagree). CSV contract unchanged.
+
+## 2026-11-17
+- Added [verification](verification.md): every stage and fix is tested on the TV with `TEST ` sample data, confirmed by the owner, reviewed by Claude Cowork, and only then committed and pushed. [definition-of-done](definition-of-done.md) and `CLAUDE.md` updated to match.
+- Stage 4: [app-config](app-config.md) lists the `BLUETOOTH` (maxSdk 30) and `PACKAGE_USAGE_STATS` permissions. [home-screen](home-screen.md) clarified: the gear opens KS Settings (Android settings are a row in Settings and Control Center). [control-center](control-center.md): "long-press OK on Home" applies to Home controls without their own hold action; pinned tiles keep hold-OK for the app menu.
+- [weather](weather.md): the city is now detected automatically by default (public-IP lookup via `https://ipwho.is/`, cached, at most once a day) so weather works straight after install; a manual city in [settings](settings.md) overrides it. Replaces "no city until the user sets one".
+- Stage 4: confirmed `https://ipwho.is/` answers over HTTPS with `success`, `city`, `region`, `country`, `latitude`, `longitude` from the owner's network, so [weather](weather.md) keeps it (no change of service).

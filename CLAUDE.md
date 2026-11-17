@@ -34,3 +34,4 @@ Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hi
 ## Always
 - One stage per request; finish with `docs/spec/definition-of-done.md` (includes `kb.py build` + `kb.py check`).
 - Never claim a build or test passed unless the command succeeded.
+- Never commit or push a stage or a fix until it has been tested on the TV with sample data, the owner has confirmed, and Claude Cowork has reviewed it (`docs/spec/verification.md`). Stop and hand off for review; commit and push only after approval.

@@ -44,9 +44,11 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `AppTile`, `FocusMemory`, `GlassButton`, `GlassChip`, `GlassDialog`, `GlassSearchField` +2
+- [ui.controlcenter](ui-controlcenter.md) via `GlassCard`, `GlassChip`, `glass`, `modalFocus`, `requestFocusSafely`
 - [ui.home](ui-home.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +5
+- [ui.settings](ui-settings.md) via `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill`, `GlassSearchField` +4
 - [ui.subscriptions](ui-subscriptions.md) via `FocusMemory`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill` +6
-- [ui.widgets](ui-widgets.md) via `GlassCard`, `GlassPill`
+- [ui.widgets](ui-widgets.md) via `GlassButton`, `GlassCard`, `GlassDialog`, `GlassPill`, `PillTone`, `requestFocusSafely`
 
 ## Spec
 - [design-system](../../spec/design-system.md), [focus-navigation](../../spec/focus-navigation.md)

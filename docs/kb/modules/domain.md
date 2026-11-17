@@ -8,7 +8,7 @@ spec: [../../spec/subscriptions.md, ../../spec/greeting-widget.md, ../../spec/ap
 # domain
 
 ## Purpose
-Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-name tidying, the `AppInfo` model, pinned-app rules (`PinnedApps`) and the drawer's search/filter/sort (`AppFilter`). Stage 3-4 add `SubscriptionCalculator` and `ByteFormatter`.
+Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-name tidying, the `AppInfo` model, pinned-app rules (`PinnedApps`) and the drawer's search/filter/sort (`AppFilter`). Stage 3-4 add `SubscriptionCalculator`, `ByteFormatter` (decimal GB/MB, 75 % / 90 % levels), `WeatherCodes` (WMO → 6 icon groups, °C/°F) and `WeatherCity`; `ProfileNames` gains add/rename/remove.
 
 ## Rules
 - No Android or Compose imports.
@@ -24,6 +24,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 ## Files (generated)
 - `domain/AppFilter.kt` — `AppFilter`
 - `domain/AppInfo.kt` — `AppCategory`, `AppInfo`
+- `domain/ByteFormatter.kt` — `ByteFormatter`, `UsageLevel`
 - `domain/DeviceNames.kt` — `DeviceNames`
 - `domain/Greeting.kt` — `Greeting`, `GreetingPeriod`
 - `domain/Money.kt` — `Money`
@@ -32,8 +33,9 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/Subscription.kt` — `BillingCycle`, `Subscription`
 - `domain/SubscriptionCalculator.kt` — `NextRenewal`, `SubscriptionCalculator`, `SubscriptionSummary`
 - `domain/SubscriptionCsv.kt` — `SubscriptionCsv`
+- `domain/Weather.kt` — `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`, `WeatherCodes`, `WeatherGroup`
 
-Tests: `domain/AppFilterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`
+Tests: `domain/AppFilterTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/WeatherCodesTest.kt`
 
 ## Depends on (generated)
 - nothing inside the app
@@ -41,13 +43,15 @@ Tests: `domain/AppFilterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingT
 ## Used by (generated)
 - [data.apps](data-apps.md) via `AppCategory`, `AppInfo`, `PinnedApps`
 - [data.profile](data-profile.md) via `ProfileNames`
-- [data.settings](data-settings.md) via `Money`
+- [data.settings](data-settings.md) via `Money`, `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`
 - [data.subscriptions](data-subscriptions.md) via `Subscription`
 - [data.system](data-system.md) via `DeviceNames`
+- [data.weather](data-weather.md) via `WeatherCity`, `WeatherCityMode`
 - [ui.apps](ui-apps.md) via `AppCategory`, `AppFilter`, `AppInfo`
-- [ui.home](ui-home.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +1
+- [ui.home](ui-home.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +4
+- [ui.settings](ui-settings.md) via `AppInfo`, `ProfileNames`, `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`
 - [ui.subscriptions](ui-subscriptions.md) via `BillingCycle`, `Money`, `NextRenewal`, `Subscription`, `SubscriptionCalculator`, `SubscriptionCsv` +1
-- [ui.widgets](ui-widgets.md) via `GreetingPeriod`
+- [ui.widgets](ui-widgets.md) via `ByteFormatter`, `GreetingPeriod`, `UsageLevel`
 
 ## Spec
 - [subscriptions](../../spec/subscriptions.md), [greeting-widget](../../spec/greeting-widget.md), [apps](../../spec/apps.md), [subscriptions](../../spec/subscriptions.md)

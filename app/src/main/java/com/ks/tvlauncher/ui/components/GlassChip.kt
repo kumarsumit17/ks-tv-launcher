@@ -28,11 +28,14 @@ fun GlassChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
+    /** Optional hold-OK action; always also reachable another way. */
+    onLongClick: (() -> Unit)? = null,
 ) {
     val contentColor = if (selected) KsColors.OnPrimaryButton else KsColors.TextPrimary
     DpadFocusable(
         modifier = modifier.semantics { this.selected = selected },
         onClick = onClick,
+        onLongClick = onLongClick,
         shape = KsShapes.Pill,
     ) {
         Row(

@@ -22,10 +22,16 @@ import com.ks.tvlauncher.ui.theme.KsType
 
 /** Bottom-strip card: "All apps" with the installed count. OK opens the drawer. */
 @Composable
-fun AllAppsCard(installedCount: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun AllAppsCard(
+    installedCount: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
+) {
     GlassCard(
         modifier = modifier,
         onClick = onClick,
+        onLongClick = onLongClick,
         contentPadding = PaddingValues(horizontal = 14.dp, vertical = 9.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

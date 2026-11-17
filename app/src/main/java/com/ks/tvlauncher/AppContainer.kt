@@ -18,6 +18,13 @@ import com.ks.tvlauncher.data.settings.SettingsRepository
 import com.ks.tvlauncher.data.subscriptions.SubscriptionDataStore
 import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
+import com.ks.tvlauncher.data.system.DeviceStatsRepository
+import com.ks.tvlauncher.data.system.SystemStatusRepository
+import com.ks.tvlauncher.data.weather.CityResolver
+import com.ks.tvlauncher.data.weather.IpWhoIsLocator
+import com.ks.tvlauncher.data.weather.OpenMeteoProvider
+import com.ks.tvlauncher.data.weather.WeatherRepository
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -42,6 +49,14 @@ class AppContainer(context: Context) {
     val settingsRepository: SettingsRepository by lazy { SettingsRepository(preferences) }
     val profileRepository: ProfileRepository by lazy { ProfileRepository(preferences) }
     val deviceInfoRepository: DeviceInfoRepository by lazy { DeviceInfoRepository(appContext) }
+    val deviceStatsRepository: DeviceStatsRepository by lazy { DeviceStatsRepository(appContext) }
+    val systemStatusRepository: SystemStatusRepository by lazy { SystemStatusRepository(appContext) }
+    val cityResolver: CityResolver by lazy {
+        CityResolver(preferences, IpWhoIsLocator(), settingsRepository.settings)
+    }
+    val weatherRepository: WeatherRepository by lazy {
+        WeatherRepository(preferences, OpenMeteoProvider(), cityResolver.city.map { it?.city })
+    }
     val appsRepository: AppsRepository by lazy { AppsRepository(appContext, appScope) }
     val pinnedAppsRepository: PinnedAppsRepository by lazy { PinnedAppsRepository(preferences) }
     val subscriptionRepository: SubscriptionRepository by lazy {

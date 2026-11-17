@@ -35,6 +35,7 @@ Tests: `data/apps/AppArtworkKeyerTest.kt`, `data/apps/PinnedAppsRepositoryTest.k
 - [root](root.md) via `AppArtworkFetcher`, `AppArtworkKeyer`, `AppsRepository`, `PinnedAppsRepository`, `WallpaperSource`
 - [ui.apps](ui-apps.md) via `AppsRepository`, `PinnedAppsRepository`, `artwork`
 - [ui.home](ui-home.md) via `AppsRepository`, `PinnedAppsRepository`, `Wallpaper`, `WallpaperSource`
+- [ui.settings](ui-settings.md) via `AppsRepository`, `PinnedAppsRepository`
 
 ## Spec
 - [apps](../../spec/apps.md), [dynamic-wallpaper](../../spec/dynamic-wallpaper.md), [performance](../../spec/performance.md)

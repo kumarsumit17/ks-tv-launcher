@@ -22,4 +22,27 @@ object ProfileNames {
         val index = names.indexOf(active)
         return names[(index + 1) % names.size]
     }
+
+    /** [names] with [raw] added at the end; unchanged if it is invalid, a duplicate or the list is full. */
+    fun add(names: List<String>, raw: String): List<String> {
+        val name = sanitize(raw) ?: return names
+        if (name in names || names.size >= MAX_NAMES) return names
+        return names + name
+    }
+
+    /** True when [raw] could be added to [names]. */
+    fun canAdd(names: List<String>, raw: String): Boolean {
+        val name = sanitize(raw) ?: return false
+        return name !in names && names.size < MAX_NAMES
+    }
+
+    /** [old] replaced by [raw] in place; unchanged if [raw] is invalid or already used by another name. */
+    fun rename(names: List<String>, old: String, raw: String): List<String> {
+        val name = sanitize(raw) ?: return names
+        val index = names.indexOf(old)
+        if (index < 0 || (name != old && name in names)) return names
+        return names.toMutableList().also { it[index] = name }
+    }
+
+    fun remove(names: List<String>, name: String): List<String> = names - name
 }

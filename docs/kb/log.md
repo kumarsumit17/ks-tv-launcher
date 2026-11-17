@@ -20,3 +20,12 @@ One entry per stage: what changed and why.
 - Home's bottom strip now has the Subscriptions card next to All apps; `LauncherSettings.currency` added (picker in Stage 4).
 - `GlassSearchField` takes `icon`, `imeAction` and `maxLength` so dialogs can use it as a plain text field. The serialization compiler plugin is now applied for `@Serializable` models.
 
+## Stage 4
+- New modules `data.weather` (Open-Meteo provider, cached `WeatherState` flow), `ui.controlcenter` (side panel, card, status VM, `SystemIntents`) and `ui.settings` (Settings screen, `SettingsViewModel` with city search, `ProfileDialog`).
+- `data.system` gains `DeviceStatsRepository` (RAM/storage every 10 s while collected, optional Apps/Other via Usage access) and `SystemStatusRepository` (network callback, Bluetooth state receiver).
+- `domain` gains `ByteFormatter`, `WeatherCodes`, `WeatherCity`; `ProfileNames` gains add/rename/remove. Settings gain Memory card, weather city, °C/°F; profile gains `save` and `setupDone`.
+- Home: focusable weather pill, gear → KS Settings, bottom strip with Memory & storage and Control Center cards, MENU / hold-OK open Control Center, first-run profile dialog, focus restored to the last Home control after overlays.
+- Glass components (`GlassButton`, `GlassIconButton`, `GlassPill`, `GlassChip`) take an optional `onLongClick`. New icons for weather groups, Wi-Fi, Bluetooth, display, moon, memory.
+- Manifest: `BLUETOOTH` (maxSdk 30), `PACKAGE_USAGE_STATS` (user-granted only), Bluetooth feature not required.
+- Spec change during Stage 4: the weather city is automatic by default. Added `CityLocator`/`IpWhoIsLocator` (ipwho.is over HTTPS, checked from the owner's network before coding) and `CityResolver` (AUTO/MANUAL, 24 h detection cache, keep-last-on-failure); `LauncherSettings.weatherCityMode`; Settings gains Detect again, Change city and Use my current city.
+- TV test fixes: focus snapshot when overlays open (`restoreKey`), focus handed to a chip or the field when the focused profile control disappears, Down from the rename field goes to Rename, profile dialog spacing 8dp so it fits the safe area, Settings pinned rows keyed with never-disabled move buttons.

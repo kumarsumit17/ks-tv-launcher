@@ -10,26 +10,35 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Text
 import com.ks.tvlauncher.R
 import com.ks.tvlauncher.ui.components.GlassIconButton
-import com.ks.tvlauncher.ui.components.GlassPill
+import com.ks.tvlauncher.data.weather.WeatherState
+import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.ui.components.glass
 import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsShapes
 import com.ks.tvlauncher.ui.theme.KsType
 
-/** Brand, live clock, short date, weather pill and the settings button. */
+/**
+ * Brand, live clock, short date, weather pill and the settings button. Holding OK on the pill
+ * or the gear opens Control Center ([onLongPress]).
+ */
 @Composable
 fun HomeTopBar(
     time: String,
     shortDate: String?,
+    weather: WeatherState,
+    temperatureUnit: TemperatureUnit,
+    onOpenWeather: () -> Unit,
     onOpenSettings: () -> Unit,
+    onLongPress: () -> Unit,
     modifier: Modifier = Modifier,
+    weatherModifier: Modifier = Modifier,
+    gearModifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.fillMaxWidth().focusGroup(),
@@ -52,18 +61,20 @@ fun HomeTopBar(
             Text(shortDate, style = KsType.Body, color = KsColors.TextSecondary)
         }
         Spacer(Modifier.width(14.dp))
-        // Display-only until weather is set up; it is not a focus stop.
-        GlassPill(
-            text = stringResource(R.string.weather_not_set),
-            icon = KsIcons.Cloud,
-            frosted = true,
-            modifier = Modifier.alpha(0.7f),
+        WeatherPill(
+            state = weather,
+            unit = temperatureUnit,
+            onClick = onOpenWeather,
+            onLongClick = onLongPress,
+            modifier = weatherModifier,
         )
         Spacer(Modifier.width(10.dp))
         GlassIconButton(
             icon = KsIcons.Gear,
-            contentDescription = stringResource(R.string.open_android_settings),
+            contentDescription = stringResource(R.string.open_settings),
             onClick = onOpenSettings,
+            onLongClick = onLongPress,
+            modifier = gearModifier,
         )
     }
 }

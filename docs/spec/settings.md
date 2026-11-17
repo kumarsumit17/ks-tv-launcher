@@ -10,7 +10,7 @@ stage: 4
 - Show Memory & storage card on/off
 - Dynamic wallpaper on/off; glass intensity (3 levels); reduce motion
 - Clock 12/24h; show/hide date
-- Weather city; °C/°F ([weather](weather.md))
+- Weather city: automatic by default (detected from the network), with "Change city" for a manual city and "Use my current city (automatic)" to go back; "Detect again"; °C/°F ([weather](weather.md))
 - Pinned apps order
 - Currency
 - Renewal reminder lead time (Stage 5, [reminders](reminders.md))

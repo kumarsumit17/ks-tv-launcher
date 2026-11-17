@@ -35,7 +35,8 @@ The All apps drawer (`AppsDrawer`, `AppsDrawerViewModel`), the per-app glass men
 - [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsType`
 
 ## Used by (generated)
-- [root](root.md) via `AppIntents`, `LocalAppImageLoader`
+- [root](root.md) via `LocalAppImageLoader`
+- [ui.controlcenter](ui-controlcenter.md) via `AppIntents`
 - [ui.home](ui-home.md) via `AppArtworkImage`, `AppIntents`, `AppMenu`, `AppMenuState`, `AppsDrawer`, `AppsDrawerViewModel`
 - [ui.subscriptions](ui-subscriptions.md) via `AppIntents`
 

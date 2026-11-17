@@ -48,6 +48,9 @@ fun GreetingWidget(
     nextName: String?,
     onSwitchProfile: () -> Unit,
     modifier: Modifier = Modifier,
+    /** Holding OK on the switch chip (Control Center). */
+    onLongPress: (() -> Unit)? = null,
+    chipModifier: Modifier = Modifier,
 ) {
     val greetingText = stringResource(
         when (greeting) {
@@ -102,6 +105,8 @@ fun GreetingWidget(
                     text = stringResource(R.string.switch_to, nextName),
                     icon = KsIcons.Person,
                     onClick = onSwitchProfile,
+                    onLongClick = onLongPress,
+                    modifier = chipModifier,
                 )
             }
         }

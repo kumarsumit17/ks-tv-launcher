@@ -30,14 +30,17 @@ Tests: `HomeIntentTest.kt`
 - [data.profile](data-profile.md) via `ProfileRepository`
 - [data.settings](data-settings.md) via `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionDataStore`, `SubscriptionRepository`
-- [data.system](data-system.md) via `DeviceInfoRepository`
-- [ui.apps](ui-apps.md) via `AppIntents`, `LocalAppImageLoader`
+- [data.system](data-system.md) via `DeviceInfoRepository`, `DeviceStatsRepository`, `SystemStatusRepository`
+- [data.weather](data-weather.md) via `CityResolver`, `IpWhoIsLocator`, `OpenMeteoProvider`, `WeatherRepository`
+- [ui.apps](ui-apps.md) via `LocalAppImageLoader`
 - [ui.home](ui-home.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`
 - [ui.theme](ui-theme.md) via `KsTheme`
 
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `KsApplication`
+- [ui.controlcenter](ui-controlcenter.md) via `KsApplication`
 - [ui.home](ui-home.md) via `KsApplication`
+- [ui.settings](ui-settings.md) via `KsApplication`
 - [ui.subscriptions](ui-subscriptions.md) via `KsApplication`
 
 ## Spec

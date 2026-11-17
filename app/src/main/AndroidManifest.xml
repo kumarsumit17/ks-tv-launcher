@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Weather (Stage 4) and connectivity status (Control Center). Nothing personal leaves the device. -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,6 +9,16 @@
     <!-- Lets "Uninstall" in the app menu open the system uninstall dialog (needed since API 28).
          The user still confirms every uninstall. -->
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <!-- Control Center: Bluetooth on/off. A normal, install-time permission on Android 11 and
+         lower; from Android 12 reading on/off needs none. KS never asks for BLUETOOTH_CONNECT. -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <!-- Optional Apps / Other storage split. Never requested at runtime: the user may grant
+         Usage access in Android settings from the Memory & storage panel. Off by default. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-feature
         android:name="android.software.leanback"
@@ -19,6 +30,11 @@
          Ethernet-only TVs. -->
     <uses-feature
         android:name="android.hardware.wifi"
+        android:required="false" />
+
+    <!-- BLUETOOTH would otherwise imply Bluetooth is required. -->
+    <uses-feature
+        android:name="android.hardware.bluetooth"
         android:required="false" />
 
     <!-- Package visibility (API 30+). QUERY_ALL_PACKAGES is deliberately not requested. -->

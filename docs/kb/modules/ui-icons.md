@@ -25,7 +25,9 @@ Hand-written stroke `ImageVector`s (`KsIcons`).
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `KsIcons`
 - [ui.components](ui-components.md) via `KsIcons`
+- [ui.controlcenter](ui-controlcenter.md) via `KsIcons`
 - [ui.home](ui-home.md) via `KsIcons`
+- [ui.settings](ui-settings.md) via `KsIcons`
 - [ui.subscriptions](ui-subscriptions.md) via `KsIcons`
 - [ui.widgets](ui-widgets.md) via `KsIcons`
 

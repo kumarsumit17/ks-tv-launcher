@@ -11,5 +11,7 @@ stage: all
 3. **Subscriptions**: [subscriptions](subscriptions.md) with unit tests.
 4. **Control & widgets**: [control-center](control-center.md), [settings](settings.md), [weather](weather.md), profile dialog ([greeting-widget](greeting-widget.md)), [memory-storage-widget](memory-storage-widget.md).
 5. **Polish**: [reminders](reminders.md), performance pass, empty/error states, [google-tv-setup](google-tv-setup.md).
+   - Cold start: Home briefly shows "No pinned apps yet · 0 installed" before the first app scan finishes; show a loading state until apps have loaded (found in the Stage 4 TV test).
+   - Text fields (`GlassSearchField`): the first Back only hides the keyboard and a second Back is needed to leave editing; one Back should do both (found in the Stage 4 TV test).
 
-Every stage ends with [definition-of-done](definition-of-done.md), including `kb.py build` and `kb.py check` ([knowledge-graph](knowledge-graph.md)).
+Every stage ends with [definition-of-done](definition-of-done.md), including `kb.py build` and `kb.py check` ([knowledge-graph](knowledge-graph.md)), and [verification](verification.md) before any commit.

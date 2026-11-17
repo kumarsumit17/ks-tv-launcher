@@ -2,7 +2,6 @@ package com.ks.tvlauncher
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -11,7 +10,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ks.tvlauncher.ui.apps.AppIntents
 import com.ks.tvlauncher.ui.apps.LocalAppImageLoader
 import com.ks.tvlauncher.ui.home.HomeActions
 import com.ks.tvlauncher.ui.home.HomeScreen
@@ -36,7 +34,6 @@ class MainActivity : ComponentActivity() {
             val actions = remember {
                 HomeActions(
                     onSwitchProfile = viewModel::switchProfile,
-                    onOpenSettings = ::openAndroidSettings,
                     onTileFocused = viewModel::onTileFocused,
                     launchIntent = viewModel::launchIntent,
                     onLaunchFailed = viewModel::onLaunchFailed,
@@ -44,6 +41,10 @@ class MainActivity : ComponentActivity() {
                     onUnpin = viewModel::unpin,
                     onMove = viewModel::move,
                     onDismissMessage = viewModel::dismissMessage,
+                    onSetDynamicWallpaper = viewModel::setDynamicWallpaper,
+                    onSetClock24Hour = viewModel::setUse24Hour,
+                    onSetStatsBreakdown = viewModel::setStatsBreakdown,
+                    usageAccessGranted = viewModel::usageAccessGranted,
                 )
             }
             KsTheme(visual = state.visual) {
@@ -55,6 +56,7 @@ class MainActivity : ComponentActivity() {
                         state = state,
                         wallpaper = wallpaper,
                         subscriptions = subscriptions,
+                        deviceStats = viewModel.deviceStats,
                         reopenEvents = viewModel.reopenEvents,
                         actions = actions,
                     )
@@ -67,9 +69,5 @@ class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         viewModel.onReopened()
-    }
-
-    private fun openAndroidSettings() {
-        AppIntents.start(this, Intent(Settings.ACTION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 }

@@ -109,3 +109,49 @@ _Not yet testable: the profile switch chip (needs two saved names; the profile d
 - [ ] Export CSV opens the share sheet (or shows a notice if no app can receive text/csv). The CSV has the header `name,amount_minor,currency,cycle,next_due`.
 - [ ] After force-stopping KS or rebooting, every subscription, its status and order are unchanged.
 
+## Stage 4: Control Center, Settings, weather, profile, memory & storage
+
+Use sample data whose names start with `TEST ` and remove it afterwards ([verification](spec/verification.md)).
+
+### First run and profile
+- [ ] On a TV with no saved names, "Who's watching?" opens by itself once Home has loaded. Cancel closes it and it does not come back after reopening KS.
+- [ ] Settings › Profile › Who's watching: OK on the name field opens the keyboard; type `TEST Goldi`, Done, then Add name: the chip appears selected. Add `TEST Sumit`.
+- [ ] OK on a chip selects it. Holding OK on a chip, or "Rename or remove ‹name›", opens Rename/Remove; Rename to `TEST Gold` keeps its place; Remove drops it; Back returns without changes.
+- [ ] TV name, Model and Android version (with API level) show AUTO values. "Use my own TV name" reveals a field; with a name typed and Save, the greeting's line 3 shows it.
+- [ ] Save updates the greeting and the "Switch to …" chip at once; Cancel and Back change nothing. A 9th name cannot be added.
+- [ ] Focus returns to the Profile row after the dialog closes.
+
+### Weather
+- [ ] On a TV with no city set, the pill shows a shimmer, then the detected city (e.g. "19° Clear · Bengaluru") without any setup.
+- [ ] OK on the pill opens Settings at Weather with focus on Detect again; the line reads "‹city, region, country› · automatic" with the privacy line under it.
+- [ ] Detect again refreshes the city; with the network off it shows "Could not detect the city. The last one is kept." and the pill keeps the old city.
+- [ ] Change city reveals the search field; search a city (e.g. Pune): up to five places; choosing one shows "· manual", focus moves to "Use my current city (automatic)", and the pill changes.
+- [ ] "Use my current city (automatic)" goes back to the detected city.
+- [ ] °C/°F switches the pill at once. Back returns focus to the pill.
+- [ ] With the network off, reopening KS shows the cached reading dimmed; with no cache it shows "Weather unavailable"; with no city ever detected it shows "Set city".
+- [ ] Control Center's Weather city row shows "‹city› · automatic · °C" (or the manual city).
+
+### Memory & storage
+- [ ] The card shows RAM and Storage bars with "used / total" in decimal GB (MB below 1 GB), matching Android Settings › Storage within rounding.
+- [ ] Colours: blue under 75 %, amber 75–90 %, red over 90 %.
+- [ ] OK opens the panel: two ring gauges, used/free lines and tags. Manage apps opens Android's app settings; Free up space opens storage settings; Back returns focus to the card.
+- [ ] "Show Apps / Other" opens Usage access (or Android settings). After allowing KS TV, the storage line adds Apps and Other.
+- [ ] Settings › Show Memory & storage card off hides the card; the strip still navigates left/right and Up goes to the pinned row.
+
+### Control Center
+- [ ] Opens from the Control Center card, from MENU (if the remote has one), and by holding OK on the hero buttons, weather pill, gear, switch chip or a bottom card. Holding OK on a pinned tile still opens the app menu.
+- [ ] Panel slides in from the right (no slide with Reduce motion). Focus starts on Wi-Fi; Up/Down/Left/Right reach every tile and row; focus never leaves the panel.
+- [ ] Wi-Fi shows "Connected"/"Offline" (or the SSID if Android allows it), Ethernet shows "Ethernet"; Bluetooth shows On/Off/Not available; Display shows resolution and refresh rate.
+- [ ] Each tile opens its Android settings page; Screensaver starts the screensaver or opens its settings.
+- [ ] Wallpaper toggles Dynamic/Plain; 12-hour/24-hour changes the top-bar clock at once.
+- [ ] Weather city opens Settings at Weather; Subscriptions opens the Subscriptions screen; Memory & storage opens the panel over Control Center and Back returns to that row.
+- [ ] Back (or MENU) closes Control Center and focus returns to the control that was focused before.
+- [ ] Reopening KS from the TV's launcher with Control Center, Settings or the panel open closes it and focuses the last pinned tile.
+
+### Settings
+- [ ] Every row is reachable with the D-pad; Back or Home returns to Home with focus on the gear.
+- [ ] Dynamic wallpaper, glass intensity (Low = no blur), Reduce motion, clock Follow TV/12/24, Show date, currency (Subscriptions totals change symbol), pinned order (Move left/right reflects on Home at once).
+- [ ] About shows the version name and code.
+
+### Persistence
+- [ ] After force-stopping KS or rebooting: names, active name, own TV name, city, unit, card visibility and every switch are unchanged.

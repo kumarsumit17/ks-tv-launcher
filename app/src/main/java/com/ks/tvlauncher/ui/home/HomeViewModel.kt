@@ -20,6 +20,13 @@ import com.ks.tvlauncher.data.settings.SettingsRepository
 import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
 import com.ks.tvlauncher.data.system.DeviceInfo
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
+import com.ks.tvlauncher.data.system.DeviceStats
+import com.ks.tvlauncher.data.system.DeviceStatsRepository
+import com.ks.tvlauncher.data.weather.CityResolver
+import com.ks.tvlauncher.data.weather.ResolvedCity
+import com.ks.tvlauncher.data.weather.WeatherRepository
+import com.ks.tvlauncher.data.weather.WeatherState
+import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.domain.AppInfo
 import com.ks.tvlauncher.domain.DeviceNames
 import com.ks.tvlauncher.domain.Greeting
@@ -42,6 +49,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -78,17 +86,30 @@ data class HomeUiState(
     /** The app the hero shows: the last focused pinned tile, else the first pinned app. */
     val hero: AppInfo? = null,
     val message: HomeMessage? = null,
+    val showMemoryCard: Boolean = true,
+    /** The clock format in use, after "follow the TV" is resolved. */
+    val clock24Hour: Boolean = false,
+    val currency: String = com.ks.tvlauncher.domain.Money.DEFAULT_CURRENCY,
+    val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
+    val weather: WeatherState = WeatherState.Loading,
+    /** The weather city and whether it was detected; null when there is none yet. */
+    val weatherCity: ResolvedCity? = null,
+    /** First run: no names and the profile dialog never saved or dismissed. */
+    val profileSetupNeeded: Boolean = false,
 )
 
 class HomeViewModel(
     private val appContext: Context,
-    settingsRepository: SettingsRepository,
     private val profileRepository: ProfileRepository,
     deviceInfoRepository: DeviceInfoRepository,
     private val appsRepository: AppsRepository,
     private val pinnedAppsRepository: PinnedAppsRepository,
     private val wallpaperSource: WallpaperSource,
     subscriptionRepository: SubscriptionRepository,
+    private val settingsRepository: SettingsRepository,
+    weatherRepository: WeatherRepository,
+    cityResolver: CityResolver,
+    private val deviceStatsRepository: DeviceStatsRepository,
 ) : ViewModel() {
 
     /** The Home card's numbers: the same state the Subscriptions screen shows. */
@@ -141,8 +162,16 @@ class HomeViewModel(
      * package callback, DataStore) is active only while Home collects, and stops 5 s after it
      * goes to the background.
      */
-    val uiState: StateFlow<HomeUiState> = combine(shell, appsPart, focusedPackage, message) { base, apps, focused, msg ->
+    val uiState: StateFlow<HomeUiState> = combine(
+        shell,
+        appsPart,
+        focusedPackage,
+        message,
+        combine(weatherRepository.state, cityResolver.city, ::Pair),
+    ) { base, apps, focused, msg, (weather, city) ->
         base.copy(
+            weather = weather,
+            weatherCity = city,
             appsLoaded = apps.loaded,
             pinned = apps.pinned,
             installedCount = apps.installedCount,
@@ -155,7 +184,8 @@ class HomeViewModel(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             // Correct clock and greeting on the very first frame, before storage has been read.
-            initialValue = buildShell(ZonedDateTime.now(), LauncherSettings(), Profile(), null),
+            // setupDone = true: the first-run dialog waits for the real profile.
+            initialValue = buildShell(ZonedDateTime.now(), LauncherSettings(), Profile(setupDone = true), null),
         )
 
     /**
@@ -171,6 +201,31 @@ class HomeViewModel(
         .mapLatest { app -> app?.let { wallpaperSource.load(it) } }
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    private val statsBreakdown = MutableStateFlow(false)
+
+    /**
+     * RAM and storage every 10 s, only while the card or the panel collects it; stops at once
+     * when Home is hidden. The Apps / Other split is read only while the panel is open.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val deviceStats: StateFlow<DeviceStats?> = statsBreakdown
+        .flatMapLatest { deviceStatsRepository.stats(withBreakdown = it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(0), null)
+
+    fun setStatsBreakdown(enabled: Boolean) {
+        statsBreakdown.value = enabled
+    }
+
+    fun usageAccessGranted(): Boolean = deviceStatsRepository.usageAccessGranted()
+
+    fun setDynamicWallpaper(enabled: Boolean) {
+        viewModelScope.launch { settingsRepository.setDynamicWallpaper(enabled) }
+    }
+
+    fun setUse24Hour(value: Boolean) {
+        viewModelScope.launch { settingsRepository.setUse24Hour(value) }
+    }
 
     private val reopens = Channel<Unit>(Channel.CONFLATED)
 
@@ -235,6 +290,11 @@ class HomeViewModel(
             glassIntensity = settings.glassIntensity,
             dynamicWallpaper = settings.dynamicWallpaper,
         ),
+        showMemoryCard = settings.showMemoryCard,
+        clock24Hour = settings.use24Hour ?: android.text.format.DateFormat.is24HourFormat(appContext),
+        currency = settings.currency,
+        temperatureUnit = settings.temperatureUnit,
+        profileSetupNeeded = !profile.setupDone && profile.names.isEmpty(),
     )
 
     companion object {
@@ -250,13 +310,16 @@ class HomeViewModel(
                 val container = app.container
                 HomeViewModel(
                     appContext = app,
-                    settingsRepository = container.settingsRepository,
                     profileRepository = container.profileRepository,
                     deviceInfoRepository = container.deviceInfoRepository,
                     appsRepository = container.appsRepository,
                     pinnedAppsRepository = container.pinnedAppsRepository,
                     wallpaperSource = container.wallpaperSource,
                     subscriptionRepository = container.subscriptionRepository,
+                    settingsRepository = container.settingsRepository,
+                    weatherRepository = container.weatherRepository,
+                    cityResolver = container.cityResolver,
+                    deviceStatsRepository = container.deviceStatsRepository,
                 )
             }
         }
