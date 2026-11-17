@@ -13,7 +13,7 @@ In-app updates (release builds only): `GitHubUpdateSource` (releases/latest), `U
 ## Rules
 - Off unless `BuildConfig.IN_APP_UPDATES` (true for release only; debug and perf are KS TV Dev, signed differently, and never check).
 - Independent of reminders: own WorkManager name (`app_update_check_daily`), own channel (`app_updates`) and notification tag (`app_update`). Reminders cancel only renewal-channel notifications (`cancelAllReminders`); never call `cancelAll()`.
-- WorkManager is touched only by `ensureScheduled`, 10 s after `MainActivity` starts and once per installed versionCode (`update_scheduled_for`), or by the Settings switch.
+- WorkManager is touched only by `ensureDaily` (KEEP, while the switch is on), called from `AppContainer.ensureDailyWork` about 5 s after Home is first shown, or by the Settings switch. `update_scheduled_for` from 0.7.x is no longer read.
 - HTTP 403/429 stores tomorrow as `update_wait_until_day`; no request (manual or daily) until then.
 - Verify before any prompt, in order: size, package = `context.packageName`, signer SHA-256 set = installed app's (`apkContentsSigners`), versionCode higher. Any failure deletes `cacheDir/updates/update.apk` and installs nothing.
 - The install status receiver is registered at runtime (`RECEIVER_NOT_EXPORTED`) for one install; the manifest declares no receiver. Every install sets `USER_ACTION_REQUIRED` (API 31+); KS never tries to skip Android's prompts.
@@ -32,7 +32,6 @@ Tests: `data/updates/GitHubReleaseParsingTest.kt`, `data/updates/StoredDataCompa
 
 ## Depends on (generated)
 - [data.reminders](data-reminders.md) via `ReminderNotifier`
-- [data.settings](data-settings.md) via `SettingsRepository`
 - [domain](domain.md) via `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - [root](root.md) via `KsApplication`, `MainActivity`
 

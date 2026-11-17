@@ -19,8 +19,8 @@ import java.io.IOException
 
 /**
  * Update bookkeeping in the shared `ks_launcher` DataStore: the pending release, the day
- * GitHub said to wait until, which version was notified, and which build scheduled the daily
- * check. A damaged value reads as "nothing pending".
+ * GitHub said to wait until and which version was notified. A damaged value reads as
+ * "nothing pending". (`update_scheduled_for`, written by 0.7.x, is no longer read.)
  */
 class UpdateStore(private val store: DataStore<Preferences>) {
     private val json = Json { ignoreUnknownKeys = true }
@@ -51,13 +51,6 @@ class UpdateStore(private val store: DataStore<Preferences>) {
         store.edit { it[NOTIFIED_CODE] = code }
     }
 
-    /** The installed versionCode that last (re)scheduled the daily check; 0 if never. */
-    suspend fun scheduledFor(): Int = prefs.first()[SCHEDULED_FOR] ?: 0
-
-    suspend fun setScheduledFor(code: Int) {
-        store.edit { it[SCHEDULED_FOR] = code }
-    }
-
     private fun decode(raw: String?): ReleaseInfo? {
         if (raw.isNullOrEmpty()) return null
         return try {
@@ -73,6 +66,5 @@ class UpdateStore(private val store: DataStore<Preferences>) {
         val AVAILABLE = stringPreferencesKey("update_available")
         val WAIT_UNTIL_DAY = longPreferencesKey("update_wait_until_day")
         val NOTIFIED_CODE = intPreferencesKey("update_notified_code")
-        val SCHEDULED_FOR = intPreferencesKey("update_scheduled_for")
     }
 }

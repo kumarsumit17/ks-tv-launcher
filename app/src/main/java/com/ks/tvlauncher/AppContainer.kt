@@ -34,7 +34,11 @@ import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.IpWhoIsLocator
 import com.ks.tvlauncher.data.weather.OpenMeteoProvider
 import com.ks.tvlauncher.data.weather.WeatherRepository
+import com.ks.tvlauncher.domain.DailyWork
+import com.ks.tvlauncher.domain.DailyWorkPlan
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -90,7 +94,22 @@ class AppContainer(context: Context) {
             },
         )
     }
-    val updateScheduler: UpdateScheduler by lazy { UpdateScheduler(appContext, settingsRepository, updateStore) }
+    val updateScheduler: UpdateScheduler by lazy { UpdateScheduler(appContext) }
+
+    private val dailyWorkChecked = AtomicBoolean(false)
+
+    /**
+     * Once per process, about 5 s after Home is first shown and off the main thread: re-registers
+     * the daily reminder and update-check work whose switches are on (unique work, KEEP). A
+     * force-stop makes Android drop both jobs; this brings them back on the next start.
+     */
+    suspend fun ensureDailyWork() {
+        if (!dailyWorkChecked.compareAndSet(false, true)) return
+        val current = settingsRepository.settings.first()
+        val plan = DailyWorkPlan.toRegister(current.remindersEnabled, current.autoUpdateCheck, BuildConfig.IN_APP_UPDATES)
+        if (DailyWork.RENEWAL_REMINDERS in plan) reminderScheduler.ensureDaily()
+        if (DailyWork.UPDATE_CHECK in plan) updateScheduler.ensureDaily()
+    }
     val updateManager: UpdateManager by lazy {
         UpdateManager(appContext, appScope, updateChecker, updateStore, updateNotifier)
     }

@@ -27,6 +27,7 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - `homeMemory` remembers the Home control focused last (`trackFocus`); `restoreKey` snapshots it when Control Center, Settings or the first-run dialog opens, because focus briefly lands on another Home control while an overlay closes (seen on the TV). Closing calls `restoreHomeFocus()` once the overlay has gone and no other overlay took over.
 - Hold OK on non-tile controls and MENU open Control Center only when no overlay is open (`openControlCenter`).
 - First run: the profile dialog opens after initial focus has settled, never on top of another overlay.
+- `HomeTopBar`: Left on the first control (update pill, else weather pill) and Right on the gear are `FocusRequester.Cancel`, so focus never jumps from the bar to the bottom strip.
 
 <!-- kb:generated:start -->
 

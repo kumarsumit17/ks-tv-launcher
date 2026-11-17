@@ -31,7 +31,6 @@ Tests: `data/settings/SettingsRepositoryTest.kt`
 
 ## Used by (generated)
 - [data.reminders](data-reminders.md) via `SettingsRepository`
-- [data.updates](data-updates.md) via `SettingsRepository`
 - [data.weather](data-weather.md) via `LauncherSettings`
 - [root](root.md) via `SettingsRepository`
 - [ui.home](ui-home.md) via `LauncherSettings`, `SettingsRepository`

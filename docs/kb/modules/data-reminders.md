@@ -16,6 +16,7 @@ Renewal reminders: `ReminderScheduler` (unique daily WorkManager job + a one-off
 - `SubscriptionRepository` calls `onChanged` after every write; that re-checks only while reminders are on. Paused, deleted or re-dated subscriptions lose their notification.
 - Cancel before posting (same notification id per subscription). While notifications are blocked, nothing new is marked notified, so the reminder comes once they are allowed.
 - Never promise exact timing in the UI: WorkManager may defer the work.
+- `ReminderScheduler.ensureDaily()` re-registers the daily job with KEEP and runs no immediate check. It is called by `AppContainer.ensureDailyWork` while reminders are on, so the job returns after a force-stop.
 
 <!-- kb:generated:start -->
 

@@ -16,6 +16,7 @@ The All apps drawer (`AppsDrawer`, `AppsDrawerViewModel`), the per-app glass men
 - The app menu is drawn inside the drawer's focus group (`overlay`), so focus never leaves the drawer.
 - Closing the drawer returns focus to the control that opened it.
 - Pinning, moving and launching are done by `HomeViewModel`; the drawer view model only filters.
+- `AppMenu` sends focus after a Move through `AppMenuFocus.afterMove` (pure): when the pressed Move button disappears, the other Move button, else Unpin.
 
 <!-- kb:generated:start -->
 
@@ -23,8 +24,11 @@ The All apps drawer (`AppsDrawer`, `AppsDrawerViewModel`), the per-app glass men
 - `ui/apps/AppArtworkImage.kt` — `AppArtworkImage`, `LocalAppImageLoader`
 - `ui/apps/AppIntents.kt` — `AppIntents`
 - `ui/apps/AppMenu.kt` — `AppMenu`, `AppMenuState`
+- `ui/apps/AppMenuFocus.kt` — `AppMenuButton`, `AppMenuFocus`
 - `ui/apps/AppsDrawer.kt` — `AppsDrawer`
 - `ui/apps/AppsDrawerViewModel.kt` — `AppsDrawerUiState`, `AppsDrawerViewModel`, `DrawerApp`
+
+Tests: `ui/apps/AppMenuFocusTest.kt`
 
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppsRepository`, `PinnedAppsRepository`, `artwork`

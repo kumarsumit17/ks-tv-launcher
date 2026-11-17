@@ -16,6 +16,7 @@ App entry: `KsApplication` (holds the lazy `AppContainer`), `AppContainer` (manu
 - Back with nothing open calls `moveTaskToBack(true)`; overlays close first through their own back handlers.
 - No Hilt.
 - `KsApplication` is WorkManager's `Configuration.Provider` (on-demand start); `AppContainer` holds `reminderStore` and `reminderScheduler`.
+- `AppContainer.ensureDailyWork()` runs once per process (guarded by an `AtomicBoolean`), from `MainActivity` on `Dispatchers.Default` about 5 s after the activity is first resumed. It registers what `DailyWorkPlan` returns, then `UpdateManager.cleanUpAfterStart()` runs.
 
 <!-- kb:generated:start -->
 
@@ -36,6 +37,7 @@ Tests: `HomeIntentTest.kt`
 - [data.updates](data-updates.md) via `GitHubUpdateSource`, `UpdateChecker`, `UpdateManager`, `UpdateNotifier`, `UpdateScheduler`, `UpdateStore`
 - [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `IpWhoIsLocator`, `OpenMeteoProvider`, `WeatherRepository`
+- [domain](domain.md) via `DailyWork`, `DailyWorkPlan`
 - [ui.apps](ui-apps.md) via `LocalAppImageLoader`
 - [ui.home](ui-home.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`
 - [ui.theme](ui-theme.md) via `KsTheme`

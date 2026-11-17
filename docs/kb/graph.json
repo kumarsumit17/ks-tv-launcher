@@ -95,6 +95,10 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
+     "DailyWork",
+     "DailyWorkPlan"
     ]
    },
    "module": "root",
@@ -103,7 +107,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 48,
+     "line": 52,
      "name": "AppContainer",
      "private": false
     }
@@ -152,7 +156,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 26,
+     "line": 29,
      "name": "MainActivity",
      "private": false
     }
@@ -668,12 +672,6 @@
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
-    ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
-     "SettingsRepository"
-    ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
-     "UpdateStore"
     ]
    },
    "module": "data.updates",
@@ -682,13 +680,13 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 22,
+     "line": 21,
      "name": "UpdateScheduler",
      "private": false
     },
     {
      "kind": "class",
-     "line": 61,
+     "line": 54,
      "name": "UpdateCheckWorker",
      "private": false
     }
@@ -985,6 +983,26 @@
      "kind": "object",
      "line": 12,
      "name": "ByteFormatter",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 4,
+     "name": "DailyWork",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 13,
+     "name": "DailyWorkPlan",
      "private": false
     }
    ]
@@ -1325,6 +1343,10 @@
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
+     "AppMenuButton",
+     "AppMenuFocus"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
@@ -1341,14 +1363,34 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 17,
+     "line": 23,
      "name": "AppMenuState",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 32,
+     "line": 40,
      "name": "AppMenu",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": {
+   "deps": {},
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 4,
+     "name": "AppMenuButton",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 11,
+     "name": "AppMenuFocus",
      "private": false
     }
    ]
@@ -1786,7 +1828,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 42,
+     "line": 49,
      "name": "GlassDialog",
      "private": false
     }
@@ -2630,7 +2672,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 33,
+     "line": 39,
      "name": "HomeTopBar",
      "private": false
     }
@@ -4429,6 +4471,25 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/DailyWorkPlanTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
+     "DailyWork",
+     "DailyWorkPlan"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "DailyWorkPlanTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/DeviceNamesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
@@ -4666,9 +4727,28 @@
      "private": false
     }
    ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/ui/apps/AppMenuFocusTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
+     "AppMenuButton",
+     "AppMenuFocus"
+    ]
+   },
+   "module": "ui.apps",
+   "package": "com.ks.tvlauncher.ui.apps",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "AppMenuFocusTest",
+     "private": false
+    }
+   ]
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "7f86106553b08e54531baa97c7844b1425367ec4",
+ "source_hash": "7b4e68dd6c389a31b65dfcf308740018a9158454",
  "version": 1
 }

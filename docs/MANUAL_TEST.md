@@ -489,3 +489,31 @@ Persistence
 ### Still open
 - Owner-only items: TV time, time zone and 12/24-hour; TV rename; Animator duration scale off (focus changes and wallpaper without a fade).
 - Faults 1–3 and the force-stop finding need the owner's decision; each fix goes through [verification](spec/verification.md) and its own release.
+
+## Fixes after the final release check (test in KS TV Dev; perf build for the force-stop check)
+Focus (debug build)
+- [ ] Home: Left on the weather pill stays on the pill; Right on the gear stays on the gear. With an update pill shown, Left on it stays put and Right goes to the weather pill.
+- [ ] Drawer menu on a pinned app at the second-last place: Move right moves it to the end, the "Move right" button disappears and focus lands on "Move left" inside the open menu. Down/Up stay inside the menu; Back closes it.
+- [ ] The same at the start: Move left to the first place → focus lands on "Move right".
+- [ ] Only one pinned app: no Move buttons; the menu works as before.
+- [ ] The same paths from the Home row's menu (hold OK on a tile).
+- [ ] Unchanged: reopening KS with Subscriptions open closes it with focus on the Subscriptions card (now the specified behaviour).
+Force-stop (perf build: release code, reminders on in KS TV Dev only)
+- [ ] With reminders on: `am force-stop com.ks.tvlauncher.dev` removes its daily job (`dumpsys jobscheduler`). Opening KS TV Dev re-registers `renewal_reminders_daily` about 5 s after Home shows; no notification is posted by this alone.
+- [ ] With reminders off: after a force-stop and reopening, no KS TV Dev job is registered.
+- [ ] Cold start time stays near the previous 0.6–0.7 s (`am start -W`).
+- [ ] Release only, after the next release: the update-check job (network-constrained) is also back about 5 s after a force-stop and reopen.
+
+#### 2026-11-17 · KS TV Dev (uncommitted fix on `dev` after `12f7021`), KTC Lumio Vision (Android 14, API 34)
+Debug build for focus, `perf` build (0.7.2 / 702, release code, not debuggable) for the force-stop check. The real KS TV was not opened; afterwards it is still 0.7.2, last update 13:23:12, with its two jobs registered.
+- Pass [debug] · Left on the weather pill stays on the pill (twice); Right on the gear stays on the gear (three times); Left from the gear → pill. Not testable: the update pill (KS TV Dev never has an update).
+- Pass [debug] · drawer menu on Prime Video (2nd of 4): Move left → 1st, "Move left" gone, focus on "Move right". Up/Down walk Open, Unpin, Move right, App info, Uninstall and stop at both ends.
+- Pass [debug] · Move right ×3 to the end: "Move right" gone, focus on "Move left". Up stops at Open, Down at Uninstall, Left/Right stay on Uninstall. Focus never reached the drawer behind.
+- Pass [debug] · Home row menu (hold OK on JioHotstar, 3rd of 4): Move right to the end → focus on "Move left"; Back → focus on the JioHotstar tile, now last.
+- Pass [debug] · one pinned app: the menu shows Open, Unpin, App info, Uninstall, with no Move buttons.
+- Pass [debug] · reopening KS TV Dev with Subscriptions open closes it with focus on the Subscriptions card (now the specified behaviour).
+- Pass [perf] · reminders off: after a force-stop and reopen, no KS TV Dev job after 9 s.
+- Pass [perf] · reminders on: job `u0a160/0` registered; `am force-stop` → 0 jobs; reopen → the job is back about 6 s later (timing only, about 24 h); no notification posted.
+- Pass [perf] · cold start 559, 567, 569 ms, then 575 ms with reminders on (was 611 ms on the 0.7.2 perf build before the fix).
+- Not testable until the next release · the update-check job after a force-stop (the perf build has no update checks).
+- KS TV Dev uninstalled after the test.

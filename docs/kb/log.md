@@ -76,3 +76,6 @@ One entry per stage: what changed and why.
 ## Fix after v0.7.0: About update rows reachable, dev preview
 - `UpdateRows` (shared layout), `UpdateSettings` (release) and `UpdatePreview` (debug/perf, inert). Explicit `focusProperties`: switch Down → Check, "Android settings" Up → Check. Preview message overridden in `src/debug/res` so the release APK has no dev wording.
 
+
+## Fixes from the final release check
+- Top bar ends hold focus (`HomeTopBar`). `AppMenu` + `AppMenuFocus` keep focus in the menu when a Move button disappears; `GlassDialog` pulls escaped focus back. `AppContainer.ensureDailyWork` + `DailyWorkPlan` re-register daily reminder and update work (KEEP) about 5 s after Home is first shown; `UpdateScheduler.ensureScheduled` and `UpdateStore.scheduledFor` removed. Tests: `DailyWorkPlanTest`, `AppMenuFocusTest`.

@@ -20,6 +20,7 @@ An update is an in-place install of the same package signed with the same key, s
 
 ## When KS checks
 - Automatically once a day with WorkManager (unmetered network), plus "Check for updates" in [settings](settings.md) › About. Honour HTTP 403/429 by waiting until the next day. Setting "Check for updates automatically", on by default.
+- While that setting is on, the daily check is re-registered about 5 s after Home is first shown (unique work, KEEP), which also starts it on a fresh install and brings it back after a force-stop ([performance](performance.md)). Release builds only; debug and `perf` builds never schedule it.
 - **Release builds only.** A debug build is signed differently and can never be updated by a release, so in debug the About row says so and nothing is checked. KS TV Dev still shows the same update rows, focusable and laid out as in release, as an inert preview for focus testing ([dev-workflow](dev-workflow.md)).
 
 ## Telling the user

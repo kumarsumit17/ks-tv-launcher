@@ -18,6 +18,7 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 - Overlays use `modalFocus()` and return focus to their opener.
 - In lazy rows and grids use `FocusMemory` (a requester per item), not `Modifier.focusRestorer()`: on a real TV the restorer returned focus to the wrong item.
 - `focusProperties` on a container does not affect moves that start from its children; set `up`/`down` on the focusable items themselves.
+- `GlassDialog` takes focus back within a frame if it ends up outside the open panel (a focused control disappeared). A GlassDialog never opens another GlassDialog on top, or the two would fight over focus.
 
 <!-- kb:generated:start -->
 

@@ -22,6 +22,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `Wallpapers` (Stage 6b): a missing mode follows the old dynamic switch (off → PLAIN); a damaged image reads as built-in 0; `fitWithin` never scales up and never returns 0.
 - `AnimationSpeed`: steps 25-150 %, default 50; odd stored values snap to the nearest step; a scaled duration is never 0.
 - `PinnedApps.DEFAULT_CANDIDATES` holds real package names only; check a new one exists before adding it.
+- `DailyWorkPlan.toRegister` is pure: reminders when on; the update check only when automatic checks are on and the build has in-app updates.
 
 <!-- kb:generated:start -->
 
@@ -31,6 +32,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/AppInfo.kt` — `AppCategory`, `AppInfo`
 - `domain/AppUpdates.kt` — `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - `domain/ByteFormatter.kt` — `ByteFormatter`, `UsageLevel`
+- `domain/DailyWork.kt` — `DailyWork`, `DailyWorkPlan`
 - `domain/DeviceNames.kt` — `DeviceNames`
 - `domain/Greeting.kt` — `Greeting`, `GreetingPeriod`
 - `domain/Money.kt` — `Money`
@@ -44,7 +46,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/Wallpapers.kt` — `WallpaperDim`, `WallpaperImage`, `WallpaperMode`, `Wallpapers`
 - `domain/Weather.kt` — `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`, `WeatherCodes`, `WeatherGroup`
 
-Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpdatesTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
+Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpdatesTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DailyWorkPlanTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
 
 ## Depends on (generated)
 - nothing inside the app
@@ -59,6 +61,7 @@ Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpd
 - [data.updates](data-updates.md) via `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - [data.wallpaper](data-wallpaper.md) via `Wallpapers`
 - [data.weather](data-weather.md) via `WeatherCity`, `WeatherCityMode`
+- [root](root.md) via `DailyWork`, `DailyWorkPlan`
 - [ui.apps](ui-apps.md) via `AppCategory`, `AppFilter`, `AppInfo`
 - [ui.components](ui-components.md) via `Wallpapers`
 - [ui.controlcenter](ui-controlcenter.md) via `InputConnection`, `TvInput`, `WallpaperMode`, `Wallpapers`

@@ -10,14 +10,17 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withResumed
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ks.tvlauncher.ui.apps.LocalAppImageLoader
 import com.ks.tvlauncher.ui.home.HomeActions
 import com.ks.tvlauncher.ui.home.HomeScreen
 import com.ks.tvlauncher.ui.home.HomeViewModel
 import com.ks.tvlauncher.ui.theme.KsTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * The single activity. KS runs in app mode (docs/spec/app-mode.md): it is opened from the
@@ -32,12 +35,14 @@ class MainActivity : ComponentActivity() {
         val container = (application as KsApplication).container
         val imageLoader = container.imageLoader
         if (savedInstanceState == null && intent.getBooleanExtra(EXTRA_OPEN_UPDATES, false)) viewModel.onOpenUpdates()
-        if (BuildConfig.IN_APP_UPDATES) {
-            // Well after Home has shown: schedule the daily check once per version and tidy
-            // up after an update. Never at app start (docs/spec/performance.md).
-            lifecycleScope.launch {
-                delay(UPDATE_HOUSEKEEPING_DELAY_MS)
-                container.updateScheduler.ensureScheduled()
+        // About 5 s after Home is first shown, off the main thread: re-register the daily
+        // reminder and update-check work (both dropped by a force-stop), then tidy up after an
+        // update. Never at app start (docs/spec/performance.md).
+        lifecycleScope.launch {
+            withResumed { }
+            delay(DAILY_WORK_DELAY_MS)
+            withContext(Dispatchers.Default) {
+                container.ensureDailyWork()
                 container.updateManager.cleanUpAfterStart()
             }
         }
@@ -92,6 +97,6 @@ class MainActivity : ComponentActivity() {
     companion object {
         /** Set by the update notification. */
         const val EXTRA_OPEN_UPDATES = "open_updates"
-        private const val UPDATE_HOUSEKEEPING_DELAY_MS = 10_000L
+        private const val DAILY_WORK_DELAY_MS = 5_000L
     }
 }

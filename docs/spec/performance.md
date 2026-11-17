@@ -10,6 +10,7 @@ KS - TV Launcher must stay a lightweight, high-performance launcher. Responsiven
 
 ## Requirements
 - **Startup**: keep cold start short. No work in `Application.onCreate`; create dependencies lazily.
+  - **Daily work after start**: about 5 s after Home is first shown (once per process, off the main thread), KS re-registers the daily reminder and update-check work whose switches are on, as unique work with the KEEP policy, so an existing schedule is left alone. This starts WorkManager on every cold start, after Home is up. A force-stop makes Android drop an app's scheduled jobs, and without this they stayed gone until the next TV restart or setting change ([reminders](reminders.md), [app-updates](app-updates.md)). Leftover update files are tidied in the same step.
 - **Background**: no persistent service, no manifest (startup) receivers, no wake locks. Weather refreshes periodically and is configurable ([weather](weather.md)); reminders use scheduled work ([reminders](reminders.md)).
   - **WorkManager's own manifest entries are accepted.** The library merges in its own permissions (`WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `ACCESS_NETWORK_STATE`), services and receivers so it can run scheduled work. That is the library, not KS: KS code never acquires a wake lock, never starts or declares a service, and declares no receiver of its own in the manifest.
 - **No polling** for clock, app or system status. Use system broadcasts, observers and callbacks, registered only while the screen is visible.

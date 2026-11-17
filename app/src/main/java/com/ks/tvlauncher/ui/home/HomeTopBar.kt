@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Text
@@ -28,6 +30,10 @@ import com.ks.tvlauncher.ui.theme.KsType
 /**
  * Brand, live clock, short date, weather pill and the settings button. Holding OK on the pill
  * or the gear opens Control Center ([onLongPress]).
+ *
+ * Left on the first control (the update pill, else the weather pill) and Right on the gear stay
+ * put: nothing focusable sits beside them in the bar, and the focus search would otherwise
+ * jump down to the bottom strip.
  */
 @Composable
 fun HomeTopBar(
@@ -46,6 +52,8 @@ fun HomeTopBar(
     onOpenUpdate: () -> Unit = {},
     updateModifier: Modifier = Modifier,
 ) {
+    val firstInBar = Modifier.focusProperties { left = FocusRequester.Cancel }
+    val lastInBar = Modifier.focusProperties { right = FocusRequester.Cancel }
     Row(
         modifier = modifier.fillMaxWidth().focusGroup(),
         verticalAlignment = Alignment.CenterVertically,
@@ -76,7 +84,7 @@ fun HomeTopBar(
                 tone = PillTone.Success,
                 onClick = onOpenUpdate,
                 onLongClick = onLongPress,
-                modifier = updateModifier,
+                modifier = updateModifier.then(firstInBar),
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -85,7 +93,7 @@ fun HomeTopBar(
             unit = temperatureUnit,
             onClick = onOpenWeather,
             onLongClick = onLongPress,
-            modifier = weatherModifier,
+            modifier = if (updateVersion == null) weatherModifier.then(firstInBar) else weatherModifier,
         )
         Spacer(Modifier.width(10.dp))
         GlassIconButton(
@@ -93,7 +101,7 @@ fun HomeTopBar(
             contentDescription = stringResource(R.string.open_settings),
             onClick = onOpenSettings,
             onLongClick = onLongPress,
-            modifier = gearModifier,
+            modifier = gearModifier.then(lastInBar),
         )
     }
 }
