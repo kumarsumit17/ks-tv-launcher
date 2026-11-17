@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KS TV Dev only: an amber banner and icon, so the test copy is never mistaken for KS TV.
+     These colours are used only by the banner and the launcher icon background. -->
+<resources>
+    <color name="ks_navy_top">#FFB8650A</color>
+    <color name="ks_navy_bottom">#FF4A2604</color>
+</resources>

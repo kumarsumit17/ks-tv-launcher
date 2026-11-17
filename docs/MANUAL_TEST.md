@@ -188,3 +188,18 @@ Use sample data whose names start with `TEST ` and remove it afterwards ([verifi
 
 ### Setup
 - [ ] Following [SETUP.md](../SETUP.md) from a clean TV installs KS, and "KS TV" can be pinned to the launcher's favourites. Home stays the TV's own launcher.
+
+## Stage 6: Release checklist
+
+### KS TV Dev (test copy)
+- [ ] `./gradlew installDebug` installs `com.ks.tvlauncher.dev` next to the real KS TV; `adb shell pm list packages | grep tvlauncher` shows both, and the real app's `versionName` and data are unchanged.
+- [ ] The dev tile reads "KS TV Dev" with an amber banner; the real tile still reads "KS TV" in navy.
+- [ ] `adb shell am start -n com.ks.tvlauncher.dev/com.ks.tvlauncher.MainActivity` opens KS TV Dev empty (its own data, not the owner's).
+- [ ] KS TV Dev lists the real "KS TV" in All apps and hides only itself; the real KS TV lists "KS TV Dev" and hides only itself.
+- [ ] Reminders in KS TV Dev: a `TEST ` subscription notifies as "KS - TV Launcher Dev", and turning them off there leaves the real app's job and notifications alone.
+- [ ] `app-release.apk` from the Release workflow is labelled "KS TV", package `com.ks.tvlauncher` (`aapt2 dump badging`), with no ".dev" anywhere.
+
+### Full on-device check (release build, after the one-time switch)
+Record each run here: date, build version, pass or the fault found.
+- [ ] Memory card on/off, glass intensity (Low/Medium/High), Reduce motion, currency, pinned order, Screensaver, weather with Wi-Fi off.
+- [ ] Every earlier stage's checks above, run against `com.ks.tvlauncher`.

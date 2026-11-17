@@ -70,6 +70,12 @@ android {
     }
 
     buildTypes {
+        // KS TV Dev (docs/spec/dev-workflow.md): debug builds are a separate app, so testing
+        // never touches the real com.ks.tvlauncher or its data. Label and banner tint come from
+        // src/debug/res. The namespace stays com.ks.tvlauncher.
+        debug {
+            applicationIdSuffix = ".dev"
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true

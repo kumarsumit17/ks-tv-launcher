@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KS TV Dev only (docs/spec/dev-workflow.md). Release builds use src/main/res. -->
+<resources>
+    <string name="app_name">KS - TV Launcher Dev</string>
+    <string name="app_name_short">KS TV Dev</string>
+</resources>

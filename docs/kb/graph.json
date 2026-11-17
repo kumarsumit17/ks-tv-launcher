@@ -12,7 +12,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 16,
+     "line": 17,
      "name": "HomeIntentTest",
      "private": false
     }
@@ -3736,6 +3736,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "2c5a2c4ecee46377624e9554df9fa65561cf6416",
+ "source_hash": "f27d4ce5a1c4499658a1f31aa7cd417748aec09c",
  "version": 1
 }

@@ -3,6 +3,7 @@ package com.ks.tvlauncher
 import android.content.Intent
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -41,6 +42,7 @@ class HomeIntentTest {
         val label = context.packageManager
             .getActivityInfo(android.content.ComponentName(context, MainActivity::class.java), 0)
             .loadLabel(context.packageManager)
-        assertTrue(label.toString() == "KS TV")
+        // "KS TV" in release, "KS TV Dev" in debug (src/debug/res): compare with the resource.
+        assertEquals(context.getString(R.string.app_name_short), label.toString())
     }
 }

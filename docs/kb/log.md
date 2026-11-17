@@ -38,3 +38,7 @@ One entry per stage: what changed and why.
 - Found in the Stage 5 TV test: the Subscriptions card flashed "0 · Track what you pay for" on cold start (now "Loading…"); focus escaped to Settings' Home button when the "Open notification settings" row disappeared on return (now handed to the toggle).
 - Performance pass on the TV (API 34, 32-bit ARM, 2.4 GB): debug cold start about 6.3 s before and after this stage, about 2.6 s once AOT-compiled; 75 MB PSS on Home; 0 % CPU when idle. Release builds include profileinstaller (Compose baseline profiles).
 - `SETUP.md` written; README links it and lists WorkManager.
+
+## Stage 6: release checklist
+- Debug builds are the separate app KS TV Dev: `applicationIdSuffix = ".dev"` in `app/build.gradle.kts`, label "KS TV Dev" and an amber banner and icon from `src/debug/res`. The namespace and code are unchanged; nothing in the code hardcodes the package (the app list hides `context.packageName`, WorkManager's startup provider uses `${applicationId}`).
+- Noted for 6c: `ReminderNotifier.cancelAll()` uses `NotificationManager.cancelAll()`, which would also clear an update notification; [app-updates](../spec/app-updates.md) now requires reminders off to cancel only reminder notifications.

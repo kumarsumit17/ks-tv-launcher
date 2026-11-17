@@ -11,6 +11,7 @@ KS - TV Launcher must stay a lightweight, high-performance launcher. Responsiven
 ## Requirements
 - **Startup**: keep cold start short. No work in `Application.onCreate`; create dependencies lazily.
 - **Background**: no persistent service, no manifest (startup) receivers, no wake locks. Weather refreshes periodically and is configurable ([weather](weather.md)); reminders use scheduled work ([reminders](reminders.md)).
+  - **WorkManager's own manifest entries are accepted.** The library merges in its own permissions (`WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `ACCESS_NETWORK_STATE`), services and receivers so it can run scheduled work. That is the library, not KS: KS code never acquires a wake lock, never starts or declares a service, and declares no receiver of its own in the manifest.
 - **No polling** for clock, app or system status. Use system broadcasts, observers and callbacks, registered only while the screen is visible.
 - **Compose**: lazy rows and grids; avoid needless recomposition; animate in the draw or layer phase; keep UI state immutable.
 - **Images**: load asynchronously, cache icons and artwork, and do not load large wallpapers until they are needed. Release what is no longer used.

@@ -23,7 +23,8 @@ An update is an in-place install of the same package signed with the same key, s
 - **Release builds only.** A debug build is signed differently and can never be updated by a release, so in debug the About row says so and nothing is checked.
 
 ## Telling the user
-- A notification "KS TV update available: vX.Y.Z" (the Stage 5 notification channel pattern and permission, [reminders](reminders.md)).
+- A notification "KS TV update available: vX.Y.Z" (the Stage 5 notification channel pattern and permission, [reminders](reminders.md)), on its own "App updates" channel and its own WorkManager work.
+- Reminders and updates are independent: turning renewal reminders off cancels only reminder work and reminder notifications, never the update check or an update notification. Likewise, "Check for updates automatically" off never touches reminders.
 - Because TV notifications are easy to miss, also a glass "Update available" pill in the Home top bar while an update is pending; OK opens Settings › About.
 - About shows the installed version, the available version and the release notes text.
 
