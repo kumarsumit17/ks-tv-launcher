@@ -19,7 +19,6 @@ import com.ks.tvlauncher.data.settings.GlassIntensity
 data class VisualSettings(
     val reduceMotion: Boolean = false,
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
-    val dynamicWallpaper: Boolean = true,
 )
 
 /**

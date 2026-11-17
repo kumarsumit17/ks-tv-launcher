@@ -33,6 +33,7 @@ Tests: `HomeIntentTest.kt`
 - [data.settings](data-settings.md) via `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionDataStore`, `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfoRepository`, `DeviceStatsRepository`, `SystemStatusRepository`, `TvInputRepository`
+- [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `IpWhoIsLocator`, `OpenMeteoProvider`, `WeatherRepository`
 - [ui.apps](ui-apps.md) via `LocalAppImageLoader`
 - [ui.home](ui-home.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`

@@ -8,7 +8,7 @@ spec: [../../spec/design-system.md, ../../spec/focus-navigation.md]
 # ui.components
 
 ## Purpose
-Reusable glass building blocks and the single focus treatment (`animateDpadFocus`, `DpadFocusable`), plus focus helpers (`requestFocusSafely`, `modalFocus`).
+Reusable glass building blocks and the single focus treatment (`animateDpadFocus`, `DpadFocusable`), plus focus helpers (`requestFocusSafely`, `modalFocus`) and the six code-drawn wallpapers (`BuiltInWallpaper`, used full screen on Home and as Settings swatches).
 
 ## Rules
 - Every focusable control uses `animateDpadFocus`.
@@ -23,6 +23,7 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 
 ## Files (generated)
 - `ui/components/AppTile.kt` — `AppTile`
+- `ui/components/BuiltInWallpaper.kt` — `BuiltInWallpaper`, `builtInWallpaperName`
 - `ui/components/DpadFocus.kt` — `DpadFocusable`, `animateDpadFocus`
 - `ui/components/FocusUtil.kt` — `FocusMemory`, `modalFocus`, `requestFocusSafely`
 - `ui/components/Frost.kt` — `FrostSource`, `frost`
@@ -39,14 +40,15 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 - `ui/components/GlassToggle.kt` — `GlassToggle`
 
 ## Depends on (generated)
+- [domain](domain.md) via `Wallpapers`
 - [ui.icons](ui-icons.md) via `KsIcons`
 - [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion`
 
 ## Used by (generated)
 - [ui.apps](ui-apps.md) via `AppTile`, `FocusMemory`, `GlassButton`, `GlassChip`, `GlassDialog`, `GlassSearchField` +2
 - [ui.controlcenter](ui-controlcenter.md) via `GlassCard`, `GlassChip`, `GlassDialog`, `GlassSnackbar`, `glass`, `modalFocus` +1
-- [ui.home](ui-home.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +5
-- [ui.settings](ui-settings.md) via `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill`, `GlassSearchField` +5
+- [ui.home](ui-home.md) via `AppTile`, `BuiltInWallpaper`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard` +6
+- [ui.settings](ui-settings.md) via `BuiltInWallpaper`, `DpadFocusable`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog` +8
 - [ui.subscriptions](ui-subscriptions.md) via `FocusMemory`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill` +6
 - [ui.widgets](ui-widgets.md) via `GlassButton`, `GlassCard`, `GlassDialog`, `GlassPill`, `PillTone`, `requestFocusSafely`
 

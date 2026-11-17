@@ -2,7 +2,7 @@
 type: Module
 title: ui.home
 package: com.ks.tvlauncher.ui.home
-spec: [../../spec/home-screen.md, ../../spec/focus-navigation.md, ../../spec/dynamic-wallpaper.md, ../../spec/app-mode.md]
+spec: [../../spec/home-screen.md, ../../spec/focus-navigation.md, ../../spec/dynamic-wallpaper.md, ../../spec/custom-wallpaper.md, ../../spec/app-mode.md]
 ---
 
 # ui.home
@@ -15,7 +15,8 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - Initial focus: the first pinned tile once apps have loaded, else the All apps card; always via `requestFocusSafely`.
 - Vertical order is fixed with `focusProperties` on each tile and button: hero buttons ↔ pinned row ↔ bottom strip. `FocusMemory` sends focus back to the tile focused last.
 - Reopening KS (`reopenEvents`) closes overlays, keeps the row position and refocuses the last tile. There is no Home-key logic.
-- The hero follows the last focused pinned tile; the wallpaper follows the hero after a 250 ms debounce.
+- The hero follows the last focused pinned tile; in Dynamic mode the wallpaper follows the hero after a 250 ms debounce.
+- `HomeWallpaper` (Plain, Dynamic, BuiltIn, Picture) comes from the wallpaper mode via `flatMapLatest`; dim is applied in `HomeBackground`, so changing it never reloads the picture. The picture flow uses `replayExpirationMillis = 0`, so the bitmap is dropped 5 s after Home is hidden. Custom wallpapers are never blurred.
 - Each new app list writes first-run pins once and prunes uninstalled ones (in `HomeViewModel`).
 - After the app menu closes, `HomeScreen` refocuses the tile it was opened from; do not move that into the dialog.
 - Bottom strip: All apps card and Subscriptions card side by side; both send Up to the last pinned tile. OK on the Subscriptions card opens `SubscriptionsScreen` over Home; Back or reopening closes it and focus returns to the card.
@@ -30,7 +31,7 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 
 ## Files (generated)
 - `ui/home/AllAppsCard.kt` — `AllAppsCard`
-- `ui/home/HomeBackground.kt` — `HomeBackground`
+- `ui/home/HomeBackground.kt` — `HomeBackground`, `HomeWallpaper`
 - `ui/home/HomeHero.kt` — `HomeHero`
 - `ui/home/HomeScreen.kt` — `HomeActions`, `HomeScreen`
 - `ui/home/HomeTopBar.kt` — `HomeTopBar`
@@ -45,11 +46,12 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - [data.settings](data-settings.md) via `LauncherSettings`, `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfo`, `DeviceInfoRepository`, `DeviceStats`, `DeviceStatsRepository`
+- [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `ResolvedCity`, `WeatherRepository`, `WeatherState`
-- [domain](domain.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +4
+- [domain](domain.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +8
 - [root](root.md) via `KsApplication`
 - [ui.apps](ui-apps.md) via `AppArtworkImage`, `AppIntents`, `AppMenu`, `AppMenuState`, `AppsDrawer`, `AppsDrawerViewModel`
-- [ui.components](ui-components.md) via `AppTile`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard`, `GlassIconButton` +5
+- [ui.components](ui-components.md) via `AppTile`, `BuiltInWallpaper`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard` +6
 - [ui.controlcenter](ui-controlcenter.md) via `ControlCenter`, `ControlCenterActions`, `ControlCenterCard`, `ControlCenterValues`, `ControlCenterViewModel`, `SystemIntents`
 - [ui.icons](ui-icons.md) via `KsIcons`
 - [ui.settings](ui-settings.md) via `ProfileDialog`, `SettingsScreen`, `SettingsSection`, `SettingsViewModel`
@@ -62,6 +64,6 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - [root](root.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`
 
 ## Spec
-- [home-screen](../../spec/home-screen.md), [focus-navigation](../../spec/focus-navigation.md), [dynamic-wallpaper](../../spec/dynamic-wallpaper.md), [app-mode](../../spec/app-mode.md)
+- [home-screen](../../spec/home-screen.md), [focus-navigation](../../spec/focus-navigation.md), [dynamic-wallpaper](../../spec/dynamic-wallpaper.md), [custom-wallpaper](../../spec/custom-wallpaper.md), [app-mode](../../spec/app-mode.md)
 
 <!-- kb:generated:end -->

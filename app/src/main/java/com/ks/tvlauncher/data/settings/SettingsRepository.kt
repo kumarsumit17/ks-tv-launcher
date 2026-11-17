@@ -10,6 +10,10 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.ks.tvlauncher.domain.Money
 import com.ks.tvlauncher.domain.RenewalReminders
 import com.ks.tvlauncher.domain.TemperatureUnit
+import com.ks.tvlauncher.domain.WallpaperDim
+import com.ks.tvlauncher.domain.WallpaperImage
+import com.ks.tvlauncher.domain.WallpaperMode
+import com.ks.tvlauncher.domain.Wallpapers
 import com.ks.tvlauncher.domain.WeatherCity
 import com.ks.tvlauncher.domain.WeatherCityMode
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +31,13 @@ data class LauncherSettings(
     /** Null follows the TV's own 12/24-hour setting. */
     val use24Hour: Boolean? = null,
     val showDate: Boolean = true,
-    val dynamicWallpaper: Boolean = true,
+    /** DYNAMIC (default), CUSTOM or PLAIN; replaces the old dynamic on/off switch. */
+    val wallpaperMode: WallpaperMode = WallpaperMode.DYNAMIC,
+    /** What CUSTOM shows: a built-in wallpaper or the user's picture. */
+    val wallpaperImage: WallpaperImage = Wallpapers.DEFAULT_IMAGE,
+    val wallpaperDim: WallpaperDim = WallpaperDim.MEDIUM,
+    /** The picture could not be read, so the mode fell back to PLAIN; Settings says so. */
+    val wallpaperPictureFailed: Boolean = false,
     val reduceMotion: Boolean = false,
     val glassIntensity: GlassIntensity = GlassIntensity.MEDIUM,
     /** ISO 4217 code for subscription amounts and the CSV export. Default INR. */
@@ -54,7 +64,10 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             LauncherSettings(
                 use24Hour = prefs[USE_24_HOUR],
                 showDate = prefs[SHOW_DATE] ?: true,
-                dynamicWallpaper = prefs[DYNAMIC_WALLPAPER] ?: true,
+                wallpaperMode = Wallpapers.mode(prefs[WALLPAPER_MODE], prefs[DYNAMIC_WALLPAPER]),
+                wallpaperImage = Wallpapers.decode(prefs[WALLPAPER_IMAGE]),
+                wallpaperDim = Wallpapers.dim(prefs[WALLPAPER_DIM]),
+                wallpaperPictureFailed = prefs[WALLPAPER_PICTURE_FAILED] ?: false,
                 reduceMotion = prefs[REDUCE_MOTION] ?: false,
                 glassIntensity = prefs[GLASS_INTENSITY]
                     ?.let { saved -> GlassIntensity.entries.firstOrNull { it.name == saved } }
@@ -84,8 +97,53 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[SHOW_DATE] = value }
     }
 
-    suspend fun setDynamicWallpaper(value: Boolean) {
-        store.edit { it[DYNAMIC_WALLPAPER] = value }
+    /** Also drops the old dynamic on/off key, now replaced by the mode, and any failure note. */
+    suspend fun setWallpaperMode(mode: WallpaperMode) {
+        store.edit {
+            it[WALLPAPER_MODE] = mode.name
+            it.remove(DYNAMIC_WALLPAPER)
+            it.remove(WALLPAPER_PICTURE_FAILED)
+        }
+    }
+
+    /** Picking an image always switches to CUSTOM, in one write. */
+    suspend fun setWallpaperImage(image: WallpaperImage) {
+        store.edit {
+            it[WALLPAPER_IMAGE] = Wallpapers.encode(image)
+            it[WALLPAPER_MODE] = WallpaperMode.CUSTOM.name
+            it.remove(DYNAMIC_WALLPAPER)
+            it.remove(WALLPAPER_PICTURE_FAILED)
+        }
+    }
+
+    suspend fun setWallpaperDim(dim: WallpaperDim) {
+        store.edit { it[WALLPAPER_DIM] = dim.name }
+    }
+
+    /**
+     * The picture is missing or unreadable: show PLAIN and note it for Settings. Only if the
+     * stored choice is still that picture, so a newer pick is never overwritten.
+     */
+    suspend fun onWallpaperPictureFailed(image: WallpaperImage.Picture) {
+        store.edit {
+            if (Wallpapers.decode(it[WALLPAPER_IMAGE]) == image && it[WALLPAPER_MODE] == WallpaperMode.CUSTOM.name) {
+                it[WALLPAPER_MODE] = WallpaperMode.PLAIN.name
+                it[WALLPAPER_PICTURE_FAILED] = true
+            }
+        }
+    }
+
+    /** "Remove image": back to the first built-in; CUSTOM showing the picture becomes PLAIN. */
+    suspend fun onWallpaperPictureRemoved() {
+        store.edit {
+            if (Wallpapers.decode(it[WALLPAPER_IMAGE]) is WallpaperImage.Picture) {
+                it[WALLPAPER_IMAGE] = Wallpapers.encode(Wallpapers.DEFAULT_IMAGE)
+                if (Wallpapers.mode(it[WALLPAPER_MODE], it[DYNAMIC_WALLPAPER]) == WallpaperMode.CUSTOM) {
+                    it[WALLPAPER_MODE] = WallpaperMode.PLAIN.name
+                }
+            }
+            it.remove(WALLPAPER_PICTURE_FAILED)
+        }
     }
 
     suspend fun setReduceMotion(value: Boolean) {
@@ -144,7 +202,12 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
     private companion object {
         val USE_24_HOUR = booleanPreferencesKey("clock_24_hour")
         val SHOW_DATE = booleanPreferencesKey("clock_show_date")
+        /** Before Stage 6b; read only to migrate "off" to PLAIN. */
         val DYNAMIC_WALLPAPER = booleanPreferencesKey("dynamic_wallpaper")
+        val WALLPAPER_MODE = stringPreferencesKey("wallpaper_mode")
+        val WALLPAPER_IMAGE = stringPreferencesKey("wallpaper_image")
+        val WALLPAPER_DIM = stringPreferencesKey("wallpaper_dim")
+        val WALLPAPER_PICTURE_FAILED = booleanPreferencesKey("wallpaper_picture_failed")
         val REDUCE_MOTION = booleanPreferencesKey("reduce_motion")
         val GLASS_INTENSITY = stringPreferencesKey("glass_intensity")
         val CURRENCY = stringPreferencesKey("currency")

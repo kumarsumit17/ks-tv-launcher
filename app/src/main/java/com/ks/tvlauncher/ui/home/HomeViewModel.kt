@@ -11,7 +11,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.ks.tvlauncher.KsApplication
 import com.ks.tvlauncher.data.apps.AppsRepository
 import com.ks.tvlauncher.data.apps.PinnedAppsRepository
-import com.ks.tvlauncher.data.apps.Wallpaper
 import com.ks.tvlauncher.data.apps.WallpaperSource
 import com.ks.tvlauncher.data.profile.Profile
 import com.ks.tvlauncher.data.profile.ProfileRepository
@@ -22,6 +21,7 @@ import com.ks.tvlauncher.data.system.DeviceInfo
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import com.ks.tvlauncher.data.system.DeviceStats
 import com.ks.tvlauncher.data.system.DeviceStatsRepository
+import com.ks.tvlauncher.data.wallpaper.WallpaperPictureStore
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.ResolvedCity
 import com.ks.tvlauncher.data.weather.WeatherRepository
@@ -33,6 +33,9 @@ import com.ks.tvlauncher.domain.Greeting
 import com.ks.tvlauncher.domain.GreetingPeriod
 import com.ks.tvlauncher.domain.PinnedApps
 import com.ks.tvlauncher.domain.ProfileNames
+import com.ks.tvlauncher.domain.WallpaperDim
+import com.ks.tvlauncher.domain.WallpaperImage
+import com.ks.tvlauncher.domain.WallpaperMode
 import com.ks.tvlauncher.ui.subscriptions.SubscriptionsUiState
 import com.ks.tvlauncher.ui.subscriptions.subscriptionsState
 import com.ks.tvlauncher.ui.theme.VisualSettings
@@ -50,6 +53,8 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -78,6 +83,8 @@ data class HomeUiState(
     val tvName: String = "",
     val androidVersion: String = "",
     val visual: VisualSettings = VisualSettings(),
+    val wallpaperMode: WallpaperMode = WallpaperMode.DYNAMIC,
+    val wallpaperDim: WallpaperDim = WallpaperDim.MEDIUM,
     /** False until the first app scan and the pinned list have both loaded. */
     val appsLoaded: Boolean = false,
     /** Pinned apps that are installed, in the user's order. */
@@ -105,6 +112,7 @@ class HomeViewModel(
     private val appsRepository: AppsRepository,
     private val pinnedAppsRepository: PinnedAppsRepository,
     private val wallpaperSource: WallpaperSource,
+    private val wallpaperPictureStore: WallpaperPictureStore,
     subscriptionRepository: SubscriptionRepository,
     private val settingsRepository: SettingsRepository,
     weatherRepository: WeatherRepository,
@@ -189,18 +197,52 @@ class HomeViewModel(
         )
 
     /**
-     * The dynamic wallpaper for the hero app, or null for the plain background.
-     * Waits 250 ms after focus settles, so tiles passed while scrolling load nothing, and a
-     * newer focus cancels a load still in flight. Off when the user disables the setting.
+     * The dynamic wallpaper for the hero app. Waits 250 ms after focus settles, so tiles passed
+     * while scrolling load nothing, and a newer focus cancels a load still in flight.
      */
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-    val wallpaper: StateFlow<Wallpaper?> = uiState
-        .map { state -> state.hero.takeIf { state.visual.dynamicWallpaper } }
+    private fun dynamicWallpaper(): Flow<HomeWallpaper> = uiState
+        .map { it.hero }
         .distinctUntilChanged()
         .debounce(WALLPAPER_DEBOUNCE_MS)
-        .mapLatest { app -> app?.let { wallpaperSource.load(it) } }
+        .mapLatest { app -> HomeWallpaper.Dynamic(app?.let { wallpaperSource.load(it) }) }
+
+    /**
+     * The user's picture, loaded once at screen size. Missing or unreadable: PLAIN, and the
+     * setting falls back to PLAIN with a note for Settings.
+     */
+    private fun pictureWallpaper(image: WallpaperImage.Picture): Flow<HomeWallpaper> = flow {
+        val metrics = appContext.resources.displayMetrics
+        val bitmap = wallpaperPictureStore.load(metrics.widthPixels, metrics.heightPixels)
+        if (bitmap == null) {
+            settingsRepository.onWallpaperPictureFailed(image)
+            emit(HomeWallpaper.Plain)
+        } else {
+            emit(HomeWallpaper.Picture(bitmap))
+        }
+    }
+
+    /**
+     * What Home draws behind everything, from the wallpaper mode. The dim level is applied by
+     * the background itself, so changing it never reloads the picture. The picture is dropped
+     * 5 s after Home is hidden (`replayExpirationMillis = 0`) and loaded again on return.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val wallpaper: StateFlow<HomeWallpaper> = settingsRepository.settings
+        .map { it.wallpaperMode to it.wallpaperImage }
+        .distinctUntilChanged()
+        .flatMapLatest { (mode, image) ->
+            when (mode) {
+                WallpaperMode.PLAIN -> flowOf(HomeWallpaper.Plain)
+                WallpaperMode.DYNAMIC -> dynamicWallpaper()
+                WallpaperMode.CUSTOM -> when (image) {
+                    is WallpaperImage.BuiltIn -> flowOf(HomeWallpaper.BuiltIn(image.id))
+                    is WallpaperImage.Picture -> pictureWallpaper(image)
+                }
+            }
+        }
         .flowOn(Dispatchers.Default)
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000, replayExpirationMillis = 0), HomeWallpaper.Plain)
 
     private val statsBreakdown = MutableStateFlow(false)
 
@@ -219,8 +261,8 @@ class HomeViewModel(
 
     fun usageAccessGranted(): Boolean = deviceStatsRepository.usageAccessGranted()
 
-    fun setDynamicWallpaper(enabled: Boolean) {
-        viewModelScope.launch { settingsRepository.setDynamicWallpaper(enabled) }
+    fun setWallpaperMode(mode: WallpaperMode) {
+        viewModelScope.launch { settingsRepository.setWallpaperMode(mode) }
     }
 
     fun setUse24Hour(value: Boolean) {
@@ -288,8 +330,9 @@ class HomeViewModel(
         visual = VisualSettings(
             reduceMotion = settings.reduceMotion,
             glassIntensity = settings.glassIntensity,
-            dynamicWallpaper = settings.dynamicWallpaper,
         ),
+        wallpaperMode = settings.wallpaperMode,
+        wallpaperDim = settings.wallpaperDim,
         showMemoryCard = settings.showMemoryCard,
         clock24Hour = settings.use24Hour ?: android.text.format.DateFormat.is24HourFormat(appContext),
         currency = settings.currency,
@@ -315,6 +358,7 @@ class HomeViewModel(
                     appsRepository = container.appsRepository,
                     pinnedAppsRepository = container.pinnedAppsRepository,
                     wallpaperSource = container.wallpaperSource,
+                    wallpaperPictureStore = container.wallpaperPictureStore,
                     subscriptionRepository = container.subscriptionRepository,
                     settingsRepository = container.settingsRepository,
                     weatherRepository = container.weatherRepository,

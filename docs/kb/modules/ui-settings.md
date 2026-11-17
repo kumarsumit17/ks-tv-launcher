@@ -2,7 +2,7 @@
 type: Module
 title: ui.settings
 package: com.ks.tvlauncher.ui.settings
-spec: [../../spec/settings.md, ../../spec/greeting-widget.md, ../../spec/weather.md]
+spec: [../../spec/settings.md, ../../spec/greeting-widget.md, ../../spec/weather.md, ../../spec/custom-wallpaper.md]
 ---
 
 # ui.settings
@@ -17,14 +17,16 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - Screen is opaque over Home with `modalFocus`; the profile dialog is drawn inside it and focus returns to the Profile row after it has gone.
 - Weather section: city line with "· automatic"/"· manual", privacy line, Detect again / Change city (AUTO) or Use my current city (MANUAL), units, then the search field last, so Down from the field never lands on a mode button.
 - A control that disappears or disables under focus must hand focus on first (`refocusTarget`, `focusChip`, `FOCUS_FIELD`): on the TV, focus otherwise escaped the modal dialog.
+- Wallpaper section (Stage 6b, `WallpaperSettings`): mode chips, six built-in swatches plus "Your picture", "Choose a picture" only when `canPickFiles`, "Remove image" (hands focus to "Choose a picture" or the Dynamic chip before it disappears), and Dim only in Custom. File state (`WallpaperFiles`) is read when the section opens, not when Home starts. Section indexes: Weather is item 5.
 - Renewal reminders (Stage 5): turning the toggle on asks for `POST_NOTIFICATIONS` on API 33+ and only turns on if granted. The lead-time stepper shows only while on and never disables at 1 or 14. A blocked line with "Open notification settings" shows when notifications are off; it is re-checked on resume. Back from that page with notifications allowed, the row disappears and focus goes to the toggle (`openedSettings` → `refocusToggle`); a focus listener on the row does not work because the row reports losing focus as it is removed.
 
 <!-- kb:generated:start -->
 
 ## Files (generated)
 - `ui/settings/ProfileDialog.kt` — `ProfileDialog`
-- `ui/settings/SettingsScreen.kt` — `SettingsScreen`, `SettingsSection`, `ValueRow`
-- `ui/settings/SettingsViewModel.kt` — `CitySearch`, `DetectState`, `SettingsUiState`, `SettingsViewModel`
+- `ui/settings/SettingsScreen.kt` — `ChoiceRow`, `SettingsScreen`, `SettingsSection`, `ValueRow`
+- `ui/settings/SettingsViewModel.kt` — `CitySearch`, `DetectState`, `SettingsUiState`, `SettingsViewModel`, `WallpaperFiles`
+- `ui/settings/WallpaperSettings.kt` — `WallpaperSettings`
 
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppsRepository`, `PinnedAppsRepository`
@@ -32,18 +34,19 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - [data.reminders](data-reminders.md) via `ReminderNotifier`, `ReminderScheduler`
 - [data.settings](data-settings.md) via `GlassIntensity`, `LauncherSettings`, `SettingsRepository`
 - [data.system](data-system.md) via `DeviceInfo`, `DeviceInfoRepository`
+- [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `ResolvedCity`, `WeatherRepository`
-- [domain](domain.md) via `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`
+- [domain](domain.md) via `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim`, `WallpaperImage` +4
 - [root](root.md) via `KsApplication`
-- [ui.components](ui-components.md) via `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill`, `GlassSearchField` +5
+- [ui.components](ui-components.md) via `BuiltInWallpaper`, `DpadFocusable`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog` +8
 - [ui.controlcenter](ui-controlcenter.md) via `SystemIntents`
 - [ui.icons](ui-icons.md) via `KsIcons`
-- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsType`
+- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`
 
 ## Used by (generated)
 - [ui.home](ui-home.md) via `ProfileDialog`, `SettingsScreen`, `SettingsSection`, `SettingsViewModel`
 
 ## Spec
-- [settings](../../spec/settings.md), [greeting-widget](../../spec/greeting-widget.md), [weather](../../spec/weather.md)
+- [settings](../../spec/settings.md), [greeting-widget](../../spec/greeting-widget.md), [weather](../../spec/weather.md), [custom-wallpaper](../../spec/custom-wallpaper.md)
 
 <!-- kb:generated:end -->

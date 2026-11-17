@@ -47,3 +47,9 @@ One entry per stage: what changed and why.
 - `domain.TvInputs` (pure filter, label and order rules, `TvInputsTest`) and `data.system.TvInputRepository` (`TvInputManager` list + `TvInputCallback` while collected, passthrough switch intent). `ControlCenterViewModel` exposes `inputs`.
 - Control Center: Inputs tile and `InputsDialog` (glass list with Connected / Standby / Not connected; OK switches, failure shows a snackbar), with its own plug icon (`KsIcons.Plug`) so it is not confused with Display. Status tiles are now a list laid out two per row so hidden tiles leave no gap.
 - Fix from the release check: the Screensaver tile is hidden when neither SystemUI's Somnambulator nor the dream settings page resolves, and `startScreensaver` no longer falls back to the main settings page. Manifest `<queries>` gains `com.android.systemui` and the `DREAM_SETTINGS` action so the check can see them.
+
+## Stage 6b: Wallpaper
+- `domain.Wallpapers` (mode, dim, image encoding, migration, `fitWithin`) with `WallpapersTest`; `LauncherSettings` swaps `dynamicWallpaper` for `wallpaperMode`, `wallpaperImage`, `wallpaperDim` and `wallpaperPictureFailed` (migration and fallback covered in `SettingsRepositoryTest`).
+- New module `data.wallpaper`: `WallpaperPictureStore` (import once to `filesDir/wallpaper.jpg`, Coil load at screen size, remove, document-picker check that ignores the Android TV stub package).
+- `ui.components.BuiltInWallpaper`: six wallpapers drawn with gradients. `HomeBackground` draws `HomeWallpaper` (Plain / Dynamic / BuiltIn / Picture) with the dim overlay; `VisualSettings` loses `dynamicWallpaper`.
+- Settings gains a Wallpaper section (`WallpaperSettings`); Control Center's Wallpaper row cycles the three modes. Manifest `<queries>` gains `OPEN_DOCUMENT image/*`.

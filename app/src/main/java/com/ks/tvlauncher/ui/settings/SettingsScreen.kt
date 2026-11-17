@@ -78,7 +78,7 @@ private val CURRENCIES = listOf("INR", "USD", "EUR", "GBP", "JPY", "AUD", "CAD",
 
 // LazyColumn item indexes, so Settings can open scrolled to a section.
 private const val ITEM_PROFILE = 0
-private const val ITEM_WEATHER = 4
+private const val ITEM_WEATHER = 5
 
 private const val DIALOG_SETTLE_MS = 120L
 
@@ -177,10 +177,19 @@ fun SettingsScreen(
                         GlassToggle(stringResource(R.string.settings_show_memory), settings.showMemoryCard, viewModel::setShowMemoryCard)
                     }
                 }
+                item(key = "wallpaper") {
+                    GlassSection(stringResource(R.string.settings_wallpaper)) {
+                        WallpaperSettings(
+                            settings = settings,
+                            files = state.wallpaperFiles,
+                            viewModel = viewModel,
+                            onRefocus = { refocusTarget = it },
+                        )
+                    }
+                }
                 item(key = "look") {
                     GlassSection(stringResource(R.string.settings_look)) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            GlassToggle(stringResource(R.string.settings_dynamic_wallpaper), settings.dynamicWallpaper, viewModel::setDynamicWallpaper)
                             ChoiceRow(stringResource(R.string.settings_glass)) {
                                 GlassIntensity.entries.forEach { level ->
                                     GlassChip(
@@ -518,7 +527,7 @@ private fun ReminderSettings(enabled: Boolean, leadDays: Int, viewModel: Setting
 
 /** A label and a row of chips. */
 @Composable
-private fun ChoiceRow(label: String, content: @Composable () -> Unit) {
+internal fun ChoiceRow(label: String, content: @Composable () -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(label, style = KsType.Label, color = KsColors.TextPrimary, modifier = Modifier.width(140.dp))
         content()

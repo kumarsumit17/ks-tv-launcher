@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     onUnpin = viewModel::unpin,
                     onMove = viewModel::move,
                     onDismissMessage = viewModel::dismissMessage,
-                    onSetDynamicWallpaper = viewModel::setDynamicWallpaper,
+                    onSetWallpaperMode = viewModel::setWallpaperMode,
                     onSetClock24Hour = viewModel::setUse24Hour,
                     onSetStatsBreakdown = viewModel::setStatsBreakdown,
                     usageAccessGranted = viewModel::usageAccessGranted,

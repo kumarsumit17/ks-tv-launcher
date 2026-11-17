@@ -1,5 +1,6 @@
 package com.ks.tvlauncher.ui.settings
 
+import android.net.Uri
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -17,19 +18,25 @@ import com.ks.tvlauncher.data.settings.LauncherSettings
 import com.ks.tvlauncher.data.settings.SettingsRepository
 import com.ks.tvlauncher.data.system.DeviceInfo
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
+import com.ks.tvlauncher.data.wallpaper.WallpaperPictureStore
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.ResolvedCity
 import com.ks.tvlauncher.data.weather.WeatherRepository
 import com.ks.tvlauncher.domain.AppInfo
 import com.ks.tvlauncher.domain.TemperatureUnit
+import com.ks.tvlauncher.domain.WallpaperDim
+import com.ks.tvlauncher.domain.WallpaperImage
+import com.ks.tvlauncher.domain.WallpaperMode
 import com.ks.tvlauncher.domain.WeatherCity
 import com.ks.tvlauncher.domain.WeatherCityMode
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -40,6 +47,18 @@ sealed interface CitySearch {
     data class Results(val cities: List<WeatherCity>) : CitySearch
     data object Failed : CitySearch
 }
+
+/** The Wallpaper section's file state, read when Settings opens it. */
+@Immutable
+data class WallpaperFiles(
+    /** A picture has been copied to app storage. */
+    val pictureSaved: Boolean = false,
+    /** The TV has a document picker, so "Choose a picture" can be offered. */
+    val canPickFiles: Boolean = false,
+    val importing: Boolean = false,
+    /** The last picked file could not be read. */
+    val importFailed: Boolean = false,
+)
 
 /** "Detect again" progress. */
 enum class DetectState { IDLE, DETECTING, FAILED }
@@ -56,6 +75,7 @@ data class SettingsUiState(
     /** The city weather uses now; null when automatic detection has not succeeded yet. */
     val weatherCity: ResolvedCity? = null,
     val detect: DetectState = DetectState.IDLE,
+    val wallpaperFiles: WallpaperFiles = WallpaperFiles(),
 )
 
 /** Reads and writes every launcher setting, the profile and the weather city. */
@@ -68,7 +88,10 @@ class SettingsViewModel(
     private val weatherRepository: WeatherRepository,
     private val cityResolver: CityResolver,
     private val reminderScheduler: ReminderScheduler,
+    private val wallpaperPictureStore: WallpaperPictureStore,
 ) : ViewModel() {
+
+    private val wallpaperFiles = MutableStateFlow(WallpaperFiles())
 
     private val detectState = MutableStateFlow(DetectState.IDLE)
 
@@ -89,9 +112,11 @@ class SettingsViewModel(
         profileRepository.profile,
         deviceInfoRepository.deviceInfo,
         pinnedApps,
-        combine(citySearch, cityResolver.city, detectState, ::Triple),
-    ) { settings, profile, device, pinned, (search, city, detect) ->
-        SettingsUiState(true, settings, profile, device, pinned, search, city, detect)
+        combine(citySearch, cityResolver.city, detectState, wallpaperFiles) { search, city, detect, files ->
+            SettingsUiState(citySearch = search, weatherCity = city, detect = detect, wallpaperFiles = files)
+        },
+    ) { settings, profile, device, pinned, extra ->
+        extra.copy(loaded = true, settings = settings, profile = profile, device = device, pinned = pinned)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), SettingsUiState())
 
     private fun write(block: suspend () -> Unit) {
@@ -99,7 +124,49 @@ class SettingsViewModel(
     }
 
     fun setShowMemoryCard(value: Boolean) = write { settingsRepository.setShowMemoryCard(value) }
-    fun setDynamicWallpaper(value: Boolean) = write { settingsRepository.setDynamicWallpaper(value) }
+    fun setWallpaperMode(mode: WallpaperMode) = write { settingsRepository.setWallpaperMode(mode) }
+    fun setWallpaperDim(dim: WallpaperDim) = write { settingsRepository.setWallpaperDim(dim) }
+
+    /** A built-in wallpaper picked: it becomes the CUSTOM image. */
+    fun chooseBuiltInWallpaper(id: Int) = write { settingsRepository.setWallpaperImage(WallpaperImage.BuiltIn(id)) }
+
+    /** The saved picture picked again; a new version makes Home load it afresh. */
+    fun chooseSavedPicture() = write {
+        if (wallpaperPictureStore.exists()) {
+            settingsRepository.setWallpaperImage(WallpaperImage.Picture(System.currentTimeMillis()))
+        } else {
+            wallpaperFiles.update { it.copy(pictureSaved = false) }
+        }
+    }
+
+    /** Reads whether a picture is saved and whether the TV has a file picker (off the main thread). */
+    fun refreshWallpaperFiles() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val saved = wallpaperPictureStore.exists()
+            val canPick = wallpaperPictureStore.canPickFiles()
+            wallpaperFiles.update { it.copy(pictureSaved = saved, canPickFiles = canPick) }
+        }
+    }
+
+    /** A file came back from the picker: copy it, then show it. The original is never kept. */
+    fun importPicture(uri: Uri) {
+        if (wallpaperFiles.value.importing) return
+        wallpaperFiles.update { it.copy(importing = true, importFailed = false) }
+        viewModelScope.launch {
+            val ok = wallpaperPictureStore.import(uri)
+            if (ok) settingsRepository.setWallpaperImage(WallpaperImage.Picture(System.currentTimeMillis()))
+            wallpaperFiles.update {
+                it.copy(importing = false, importFailed = !ok, pictureSaved = it.pictureSaved || ok)
+            }
+        }
+    }
+
+    /** "Remove image": deletes the copy; if it was showing, the wallpaper becomes Plain. */
+    fun removePicture() = write {
+        wallpaperPictureStore.remove()
+        settingsRepository.onWallpaperPictureRemoved()
+        wallpaperFiles.update { it.copy(pictureSaved = false, importFailed = false) }
+    }
     fun setGlassIntensity(value: GlassIntensity) = write { settingsRepository.setGlassIntensity(value) }
     fun setReduceMotion(value: Boolean) = write { settingsRepository.setReduceMotion(value) }
     fun setUse24Hour(value: Boolean?) = write { settingsRepository.setUse24Hour(value) }
@@ -177,6 +244,7 @@ class SettingsViewModel(
                     c.weatherRepository,
                     c.cityResolver,
                     c.reminderScheduler,
+                    c.wallpaperPictureStore,
                 )
             }
         }

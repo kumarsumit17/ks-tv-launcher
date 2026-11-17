@@ -13,5 +13,5 @@ mockups: [ControlCenter.png]
 - **Screensaver** starts the system dream (SystemUI's `Somnambulator`), else opens the screensaver settings page (`Settings.ACTION_DREAM_SETTINGS`). If the TV has neither (no dream component and no dream settings page), the tile is **hidden**; it never falls back to the main Android settings page. Checked each time the panel opens.
 - Stage 6: an "Inputs" tile for HDMI sources ([inputs](inputs.md)), hidden when the TV has no passthrough inputs.
 - Tiles sit two per row in this order: Wi-Fi, Bluetooth, Display, Inputs, Screensaver. A hidden tile leaves no gap; an odd last tile keeps half width.
-- Rows: Wallpaper, Clock format, Weather city, Subscriptions, Memory & storage (opens the [memory-storage-widget](memory-storage-widget.md) panel), Android settings.
+- Rows: Wallpaper (cycles Dynamic → Custom → Plain), Clock format, Weather city, Subscriptions, Memory & storage (opens the [memory-storage-widget](memory-storage-widget.md) panel), Android settings.
 - Back closes it and restores focus ([focus-navigation](focus-navigation.md)).

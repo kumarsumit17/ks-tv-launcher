@@ -239,3 +239,27 @@ Run by Claude Code over adb. The real KS TV (0.5.0) was not touched. Inputs has 
 - Pass · after Cowork review: the Inputs tile and each list row use a plug icon, clearly unlike Display's monitor.
 - Not run · switch-failure snackbar, a TV with no passthrough inputs, plugging or unplugging while the list is open, and a TV that does have a screensaver.
 
+## Stage 6b: Wallpaper (test in KS TV Dev)
+- [ ] Settings › Wallpaper: Background chips Dynamic / Custom / Plain; Dynamic follows the focused app as before, Plain shows the navy background.
+- [ ] Six built-in swatches (Midnight, Aurora, Dusk, Ember, Ocean, Mist): OK on one selects Custom, shows a check, and Home shows it full screen behind readable text.
+- [ ] Dim (Custom only): Low / Medium / High visibly darken the wallpaper; switching Dim does not flash or reload.
+- [ ] Control Center › Wallpaper cycles Dynamic → Custom → Plain and Home follows each time.
+- [ ] Choices survive `am force-stop` and a cold start.
+- [ ] Updating from a build with "Dynamic wallpaper" off opens in Plain (migration).
+- [ ] "Choose a picture" appears only on a TV with a real document picker (not on the Lumio Vision, whose only handler is the framework stub). Where it appears: a picture from USB shows on Home, a large photo is stored at most 1920×1080 (`adb shell run-as com.ks.tvlauncher.dev ls -l files`), "Your picture" swatch appears, "Remove image" deletes it and focus stays in Settings.
+- [ ] Missing picture (`run-as … rm files/wallpaper.jpg` while Custom shows it, then reopen KS): Home shows Plain and Settings says the picture couldn't be read; a new choice clears the note.
+- [ ] D-pad: every swatch, chip, row and button is reachable; focus never leaves Settings.
+
+#### 2026-11-17 · KS TV Dev (debug, uncommitted Stage 6b), KTC Lumio Vision (Android 14, API 34)
+Run by Claude Code over adb. The real KS TV (0.5.0) was not touched.
+- Pass · migration: the 6a build of KS TV Dev with the old switch set to Plain, then 6b installed over it, opened in Plain.
+- Pass · Control Center › Wallpaper cycled Plain → Dynamic (Netflix's red tint) → Custom (Midnight), and Home followed each time.
+- Pass · Settings › Wallpaper: mode chips, six swatches and Dim (Custom only). Selecting Ember showed a warm brown background behind readable text; Dim High measured about half the brightness of Low. Custom + Ember survived `am force-stop` and a cold start.
+- Fixed during the test · the selected swatch's check badge was stretched across the whole swatch (`DpadFocusable` passes minimum size to its children); it is now a small corner badge.
+- Pass · "Choose a picture" is hidden on this TV (its only `OPEN_DOCUMENT` handler is the framework stub).
+- Pass · picture path, with a `TEST_wallpaper.jpg` copied into the dev app's `files/wallpaper.jpg` over `run-as`: the "Your picture" swatch and "Remove image" appeared; selecting it showed the picture full screen on Home with the dim.
+- Pass · fallback: deleting the copy while it was showing, then a cold start, gave a Plain Home, and Settings showed Plain with "Your picture couldn't be read…". Choosing Ocean cleared the note.
+- Pass · "Remove image" while the picture was showing deleted the file, set Plain, removed the swatch, and moved focus to the Dynamic chip; the D-pad kept working in Settings.
+- Not run · importing through a real document picker (none on this TV), so the decode and downscale of a picked file were not exercised on a device; a TV with a file picker is needed for that.
+- Test file removed from `/data/local/tmp`; only KS TV Dev data was used.
+

@@ -51,6 +51,11 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
+        <!-- Settings › Wallpaper shows "Choose a picture" only if a document picker exists. -->
+        <intent>
+            <action android:name="android.intent.action.OPEN_DOCUMENT" />
+            <data android:mimeType="image/*" />
+        </intent>
         <!-- Control Center hides the Screensaver tile unless one of these exists. -->
         <package android:name="com.android.systemui" />
         <intent>

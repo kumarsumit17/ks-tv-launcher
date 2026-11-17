@@ -47,6 +47,8 @@ import com.ks.tvlauncher.data.system.NetworkKind
 import com.ks.tvlauncher.data.system.NetworkStatus
 import com.ks.tvlauncher.data.system.TvInputRepository
 import com.ks.tvlauncher.domain.TvInput
+import com.ks.tvlauncher.domain.WallpaperMode
+import com.ks.tvlauncher.domain.Wallpapers
 import com.ks.tvlauncher.ui.apps.AppIntents
 import com.ks.tvlauncher.ui.components.GlassCard
 import com.ks.tvlauncher.ui.components.GlassChip
@@ -66,7 +68,7 @@ import kotlin.math.roundToInt
 /** The Launcher rows' current values, from Home's state. */
 class ControlCenterValues(
     val time: String,
-    val dynamicWallpaper: Boolean,
+    val wallpaperMode: WallpaperMode,
     val clock24Hour: Boolean,
     /** "Pune · °C", or "Set city". */
     val weather: String,
@@ -77,7 +79,7 @@ class ControlCenterValues(
 /** What the Launcher rows do. Each closes or covers the panel as Home decides. */
 class ControlCenterActions(
     val onDismiss: () -> Unit,
-    val onSetDynamicWallpaper: (Boolean) -> Unit,
+    val onSetWallpaperMode: (WallpaperMode) -> Unit,
     val onSetClock24Hour: (Boolean) -> Unit,
     val onOpenWeather: () -> Unit,
     val onOpenSubscriptions: () -> Unit,
@@ -234,8 +236,15 @@ fun ControlCenterPanel(
             Text(stringResource(R.string.cc_launcher).uppercase(), style = KsType.SectionLabel, color = KsColors.TextTertiary)
             ValueRow(
                 label = stringResource(R.string.cc_wallpaper),
-                value = stringResource(if (values.dynamicWallpaper) R.string.cc_wallpaper_dynamic else R.string.cc_wallpaper_plain),
-                onClick = { actions.onSetDynamicWallpaper(!values.dynamicWallpaper) },
+                value = stringResource(
+                    when (values.wallpaperMode) {
+                        WallpaperMode.DYNAMIC -> R.string.cc_wallpaper_dynamic
+                        WallpaperMode.CUSTOM -> R.string.cc_wallpaper_custom
+                        WallpaperMode.PLAIN -> R.string.cc_wallpaper_plain
+                    },
+                ),
+                // Cycles Dynamic → Custom → Plain; the image and dim are chosen in Settings.
+                onClick = { actions.onSetWallpaperMode(Wallpapers.next(values.wallpaperMode)) },
             )
             Row(
                 Modifier.fillMaxWidth().glass(shape = KsShapes.Card).padding(start = 14.dp, end = 6.dp, top = 4.dp, bottom = 4.dp),

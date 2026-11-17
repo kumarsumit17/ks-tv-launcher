@@ -8,7 +8,7 @@ stage: 4
 
 - Profile: names, active name, "Use my own TV name" ([greeting-widget](greeting-widget.md))
 - Show Memory & storage card on/off
-- Dynamic wallpaper on/off; glass intensity (3 levels); reduce motion
+- Wallpaper mode (Dynamic / Custom / Plain), built-in or picked image, dim ([custom-wallpaper](custom-wallpaper.md)); glass intensity (3 levels); reduce motion
 - Clock 12/24h; show/hide date
 - Weather city: automatic by default (detected from the network), with "Change city" for a manual city and "Use my current city (automatic)" to go back; "Detect again"; °C/°F ([weather](weather.md))
 - Pinned apps order

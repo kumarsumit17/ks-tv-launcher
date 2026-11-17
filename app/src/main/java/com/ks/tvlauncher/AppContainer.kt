@@ -23,6 +23,7 @@ import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import com.ks.tvlauncher.data.system.DeviceStatsRepository
 import com.ks.tvlauncher.data.system.SystemStatusRepository
 import com.ks.tvlauncher.data.system.TvInputRepository
+import com.ks.tvlauncher.data.wallpaper.WallpaperPictureStore
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.IpWhoIsLocator
 import com.ks.tvlauncher.data.weather.OpenMeteoProvider
@@ -85,4 +86,5 @@ class AppContainer(context: Context) {
     }
 
     val wallpaperSource: WallpaperSource by lazy { WallpaperSource(appContext, imageLoader) }
+    val wallpaperPictureStore: WallpaperPictureStore by lazy { WallpaperPictureStore(appContext, imageLoader) }
 }

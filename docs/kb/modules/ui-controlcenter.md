@@ -29,7 +29,7 @@ Control Center: the glass side panel (status tiles, Launcher rows), its compact 
 
 ## Depends on (generated)
 - [data.system](data-system.md) via `BluetoothStatus`, `NetworkKind`, `NetworkStatus`, `SystemStatusRepository`, `TvInputRepository`
-- [domain](domain.md) via `InputConnection`, `TvInput`
+- [domain](domain.md) via `InputConnection`, `TvInput`, `WallpaperMode`, `Wallpapers`
 - [root](root.md) via `KsApplication`
 - [ui.apps](ui-apps.md) via `AppIntents`
 - [ui.components](ui-components.md) via `GlassCard`, `GlassChip`, `GlassDialog`, `GlassSnackbar`, `glass`, `modalFocus` +1

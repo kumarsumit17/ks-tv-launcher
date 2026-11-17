@@ -63,6 +63,9 @@
     "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
      "TvInputRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+     "WallpaperPictureStore"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "IpWhoIsLocator"
     ],
@@ -82,7 +85,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 41,
+     "line": 42,
      "name": "AppContainer",
      "private": false
     }
@@ -359,6 +362,12 @@
     "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode",
+     "Wallpapers"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
@@ -371,19 +380,19 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 24,
+     "line": 28,
      "name": "GlassIntensity",
      "private": false
     },
     {
      "kind": "class",
-     "line": 26,
+     "line": 30,
      "name": "LauncherSettings",
      "private": false
     },
     {
      "kind": "class",
-     "line": 48,
+     "line": 58,
      "name": "SettingsRepository",
      "private": false
     }
@@ -528,6 +537,24 @@
      "kind": "class",
      "line": 26,
      "name": "TvInputRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "Wallpapers"
+    ]
+   },
+   "module": "data.wallpaper",
+   "package": "com.ks.tvlauncher.data.wallpaper",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 30,
+     "name": "WallpaperPictureStore",
      "private": false
     }
    ]
@@ -940,6 +967,38 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 4,
+     "name": "WallpaperMode",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "WallpaperDim",
+     "private": false
+    },
+    {
+     "kind": "interface",
+     "line": 10,
+     "name": "WallpaperImage",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 19,
+     "name": "Wallpapers",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": {
    "deps": {},
    "module": "domain",
@@ -1189,6 +1248,57 @@
      "line": 46,
      "name": "AppTile",
      "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "Wallpapers"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ]
+   },
+   "module": "ui.components",
+   "package": "com.ks.tvlauncher.ui.components",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 17,
+     "name": "Glow",
+     "private": true
+    },
+    {
+     "kind": "class",
+     "line": 19,
+     "name": "Design",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 25,
+     "name": "Designs",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 58,
+     "name": "builtInWallpaperName",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 65,
+     "name": "BuiltInWallpaper",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 70,
+     "name": "draw",
+     "private": true
     }
    ]
   },
@@ -1672,6 +1782,10 @@
     "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "TvInput"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperMode",
+     "Wallpapers"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
     ],
@@ -1723,67 +1837,67 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 67,
+     "line": 69,
      "name": "ControlCenterValues",
      "private": false
     },
     {
      "kind": "class",
-     "line": 78,
+     "line": 80,
      "name": "ControlCenterActions",
      "private": false
     },
     {
      "kind": "val",
-     "line": 87,
+     "line": 89,
      "name": "PanelWidth",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 97,
+     "line": 99,
      "name": "ControlCenterPanel",
      "private": false
     },
     {
      "kind": "class",
-     "line": 291,
+     "line": 300,
      "name": "TileSpec",
      "private": true
     },
     {
      "kind": "val",
-     "line": 299,
+     "line": 308,
      "name": "SNACKBAR_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 302,
+     "line": 311,
      "name": "networkText",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 311,
+     "line": 320,
      "name": "bluetoothText",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 320,
+     "line": 329,
      "name": "StatusTile",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 336,
+     "line": 345,
      "name": "ValueRow",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 357,
+     "line": 366,
      "name": "ControlCenter",
      "private": false
     }
@@ -1911,6 +2025,13 @@
     "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
      "Wallpaper"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "Wallpapers"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
+     "BuiltInWallpaper"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
@@ -1926,10 +2047,28 @@
    "source_set": "main",
    "symbols": [
     {
+     "kind": "interface",
+     "line": 31,
+     "name": "HomeWallpaper",
+     "private": false
+    },
+    {
      "kind": "fun",
-     "line": 38,
+     "line": 60,
      "name": "HomeBackground",
      "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 126,
+     "name": "PlainGlow",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 141,
+     "name": "DynamicArt",
+     "private": true
     }
    ]
   },
@@ -1965,9 +2104,6 @@
   },
   "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
-     "Wallpaper"
-    ],
     "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats"
     ],
@@ -1976,6 +2112,9 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperMode"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit"
@@ -2021,7 +2160,8 @@
      "AllAppsCard"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
-     "HomeBackground"
+     "HomeBackground",
+     "HomeWallpaper"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": [
      "HomeHero"
@@ -2226,7 +2366,6 @@
      "PinnedAppsRepository"
     ],
     "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
-     "Wallpaper",
      "WallpaperSource"
     ],
     "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
@@ -2247,6 +2386,9 @@
     "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats",
      "DeviceStatsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+     "WallpaperPictureStore"
     ],
     "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver",
@@ -2272,8 +2414,16 @@
     "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
+     "HomeWallpaper"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionsUiState",
@@ -2295,19 +2445,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 63,
+     "line": 68,
      "name": "HomeMessage",
      "private": false
     },
     {
      "kind": "class",
-     "line": 68,
+     "line": 73,
      "name": "HomeUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 101,
+     "line": 108,
      "name": "HomeViewModel",
      "private": false
     }
@@ -2589,6 +2739,9 @@
      "SettingsUiState",
      "SettingsViewModel"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": [
+     "WallpaperSettings"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
@@ -2641,25 +2794,25 @@
     },
     {
      "kind": "fun",
-     "line": 328,
+     "line": 337,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 448,
+     "line": 457,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 521,
+     "line": 530,
      "name": "ChoiceRow",
-     "private": true
+     "private": false
     },
     {
      "kind": "fun",
-     "line": 530,
+     "line": 539,
      "name": "ValueRow",
      "private": false
     }
@@ -2692,6 +2845,9 @@
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+     "WallpaperPictureStore"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver",
      "ResolvedCity"
@@ -2701,6 +2857,11 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
@@ -2714,27 +2875,108 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 37,
+     "line": 44,
      "name": "CitySearch",
      "private": false
     },
     {
      "kind": "class",
-     "line": 45,
+     "line": 53,
+     "name": "WallpaperFiles",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 64,
      "name": "DetectState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 48,
+     "line": 67,
      "name": "SettingsUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 62,
+     "line": 82,
      "name": "SettingsViewModel",
      "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "LauncherSettings"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode",
+     "Wallpapers"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
+     "BuiltInWallpaper",
+     "builtInWallpaperName"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+     "DpadFocusable"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+     "GlassChip"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+     "KsIcons"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
+     "ChoiceRow",
+     "ValueRow"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+     "SettingsViewModel",
+     "WallpaperFiles"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+     "KsShapes"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.settings",
+   "package": "com.ks.tvlauncher.ui.settings",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "val",
+     "line": 44,
+     "name": "SwatchWidth",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 45,
+     "name": "SwatchHeight",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 53,
+     "name": "WallpaperSettings",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 158,
+     "name": "Swatch",
+     "private": true
     }
    ]
   },
@@ -3141,31 +3383,31 @@
     },
     {
      "kind": "class",
-     "line": 31,
+     "line": 30,
      "name": "GlassStyle",
      "private": false
     },
     {
      "kind": "val",
-     "line": 35,
+     "line": 34,
      "name": "LocalGlassStyle",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 37,
+     "line": 36,
      "name": "glassStyleFor",
      "private": true
     },
     {
      "kind": "val",
-     "line": 47,
+     "line": 46,
      "name": "KsColorScheme",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 58,
+     "line": 57,
      "name": "KsTheme",
      "private": false
     }
@@ -3493,6 +3735,11 @@
      "GlassIntensity",
      "SettingsRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode"
+    ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
@@ -3505,7 +3752,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 23,
+     "line": 28,
      "name": "SettingsRepositoryTest",
      "private": false
     }
@@ -3873,6 +4120,27 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/WallpapersTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode",
+     "Wallpapers"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "WallpapersTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/WeatherCodesTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
@@ -3896,6 +4164,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "4f761eb7ce8912bed8579bdff457c4b67e460a97",
+ "source_hash": "38ae4514914b4e79b618384b657febef605163d9",
  "version": 1
 }

@@ -55,7 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ks.tvlauncher.R
-import com.ks.tvlauncher.data.apps.Wallpaper
+import com.ks.tvlauncher.domain.WallpaperMode
 import com.ks.tvlauncher.domain.AppInfo
 import com.ks.tvlauncher.ui.apps.AppIntents
 import com.ks.tvlauncher.ui.apps.AppMenu
@@ -87,7 +87,7 @@ class HomeActions(
     val onUnpin: (String) -> Unit,
     val onMove: (String, Int) -> Unit,
     val onDismissMessage: () -> Unit,
-    val onSetDynamicWallpaper: (Boolean) -> Unit,
+    val onSetWallpaperMode: (WallpaperMode) -> Unit,
     val onSetClock24Hour: (Boolean) -> Unit,
     /** True while the Memory & storage panel is open, for the Apps / Other split. */
     val onSetStatsBreakdown: (Boolean) -> Unit,
@@ -123,7 +123,7 @@ private fun Modifier.trackFocus(memory: FocusMemory, key: String): Modifier =
 @Composable
 fun HomeScreen(
     state: HomeUiState,
-    wallpaper: Wallpaper?,
+    wallpaper: HomeWallpaper,
     subscriptions: SubscriptionsUiState,
     deviceStats: StateFlow<DeviceStats?>,
     reopenEvents: Flow<Unit>,
@@ -346,7 +346,7 @@ fun HomeScreen(
                     else -> false
                 }
             },
-        background = { HomeBackground(wallpaper) },
+        background = { HomeBackground(wallpaper, state.wallpaperDim) },
     ) {
         Column(Modifier.fillMaxSize().padding(vertical = KsDimens.OverscanVertical)) {
             HomeTopBar(
@@ -477,7 +477,7 @@ fun HomeScreen(
                 viewModel = ccViewModel,
                 values = ControlCenterValues(
                     time = state.time,
-                    dynamicWallpaper = state.visual.dynamicWallpaper,
+                    wallpaperMode = state.wallpaperMode,
                     clock24Hour = state.clock24Hour,
                     weather = stringResource(
                         R.string.cc_weather_value,
@@ -490,7 +490,7 @@ fun HomeScreen(
                 ),
                 actions = ControlCenterActions(
                     onDismiss = { controlCenterOpen = false },
-                    onSetDynamicWallpaper = actions.onSetDynamicWallpaper,
+                    onSetWallpaperMode = actions.onSetWallpaperMode,
                     onSetClock24Hour = actions.onSetClock24Hour,
                     onOpenWeather = {
                         controlCenterOpen = false
