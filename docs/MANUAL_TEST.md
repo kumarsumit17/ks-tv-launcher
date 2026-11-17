@@ -277,3 +277,17 @@ Run by Claude Code over adb. The real KS TV was not changed (only focus moved on
 - Pass · Reduce motion flipped on all 8 presses at 1 s gaps; with it on, the hint under Transition speed says it has no effect.
 - Seen, not changed · Left from the leftmost control of a Settings row (for example − of Transition speed) moves focus to the Home button at the top-left; OK there closes Settings. A stray OK opened the profile dialog in KS TV Dev; it was cancelled, nothing saved. The dev wallpaper changed to Ember by a stray press (test data only).
 
+#### 2026-11-17 · v0.6.1 (601), release, KTC Lumio Vision (Android 14, API 34): data check after the update
+Release: v0.6.0 was never published (its run failed in the signing check script) and its tag was deleted. v0.6.1 (6a + 6b + the transition-speed fix) published by the Release workflow; APK and AAB signer SHA-256 `2aa25f08e6b8addc54f9af9b8ccabcd9cf890902b1939b5ca2e6ac25a3776448`, checked again on the downloaded APK (package `com.ks.tvlauncher`, 0.6.1 / 601, no ".dev"). Installed with `adb install -r` over 0.5.0; first-install time unchanged (08:06:08), so it was an update in place.
+
+Baseline recorded on 0.5.0 at about 09:47, compared on 0.6.1 at about 10:47:
+- Pass · profile names: Sumit (active).
+- Pass · TV name: Living Room · Android 14.
+- Pass · pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin.
+- Pass · subscriptions: none (as before); currency INR.
+- Pass · weather: automatic, Bengaluru, Karnataka, India, °C.
+- Pass · settings: Memory card on, glass Medium, Reduce motion off, clock Follow TV, show date on, reminders off.
+- New · Transition speed 0.5× (the default, as intended).
+- Pass · wallpaper: Dynamic on 0.6.1. The 0.5.0 baseline had "Dynamic wallpaper" off, but the owner confirmed turning it on in 0.5.0's Control Center after the baseline and before the update, so Dynamic is the correct migrated value. The off → Plain migration itself passed in KS TV Dev.
+- Note · right after the install the TV showed a black screen and dropped off the network (standby); no KS crash was logged, and KS opened normally once the TV was back.
+- KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
