@@ -17,6 +17,7 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - Reopening KS (`reopenEvents`) closes overlays, keeps the row position and refocuses the last tile. There is no Home-key logic.
 - The hero follows the last focused pinned tile; in Dynamic mode the wallpaper follows the hero after a 250 ms debounce.
 - `HomeWallpaper` (Plain, Dynamic, BuiltIn, Picture) comes from the wallpaper mode via `flatMapLatest`; dim is applied in `HomeBackground`, so changing it never reloads the picture. The picture flow uses `replayExpirationMillis = 0`, so the bitmap is dropped 5 s after Home is hidden. Custom wallpapers are never blurred.
+- `HomeBackground` draws everything in one cached offscreen layer; never add a full-screen layer outside it (it would be redrawn on every focus frame). Only smooth content goes in `SmoothLayer` (quarter resolution); the user's picture stays full resolution. Re-measure with `scripts/perf.sh` after changing it.
 - Each new app list writes first-run pins once and prunes uninstalled ones (in `HomeViewModel`).
 - After the app menu closes, `HomeScreen` refocuses the tile it was opened from; do not move that into the dialog.
 - Bottom strip: All apps card and Subscriptions card side by side; both send Up to the last pinned tile. OK on the Subscriptions card opens `SubscriptionsScreen` over Home; Back or reopening closes it and focus returns to the card.

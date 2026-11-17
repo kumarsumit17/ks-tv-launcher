@@ -19,6 +19,7 @@ Applies from the [release-checklist](release-checklist.md) onward. Two apps can 
 - Debug build type: `applicationIdSuffix = ".dev"`, activity label "KS TV Dev" (`app_name_short` overridden in `src/debug/res`), a visibly different banner tint. `namespace` stays `com.ks.tvlauncher`.
 - Nothing may hardcode the package name; use `context.packageName` / `BuildConfig.APPLICATION_ID` (own-app exclusion in the app list, intents, tests).
 - The release APK contains no dev code paths, label or suffix. Anyone given `app-release.apk` sees only "KS TV".
+- A `perf` build type ([smoothness](smoothness.md)) is release code installed as KS TV Dev with the debug key, for measuring only; it is never released.
 - In-app updates stay off in the dev app ([app-updates](app-updates.md)).
 
 ## Branches

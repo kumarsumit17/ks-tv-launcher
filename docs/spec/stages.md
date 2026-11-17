@@ -16,7 +16,10 @@ stage: all
 6. **Release readiness and extras**, all under [dev-workflow](dev-workflow.md) (separate KS TV Dev app, `dev` → `main` → tag, verify data after each release). Start with the [release-checklist](release-checklist.md) (finish Stage 5, release `v0.5.0`, move the TV to the release build, full on-device check, key backup). Then three independent parts, each tested, reviewed and committed on its own ([verification](verification.md)):
    - 6a [inputs](inputs.md)
    - 6b [custom-wallpaper](custom-wallpaper.md)
-   - 6c [app-updates](app-updates.md) (last; needs checklist steps 3 and 5 confirmed by the owner)
+   - 6c, last, in three parts, each tested, reviewed by Cowork and committed on its own, in this order:
+     1. [smoothness](smoothness.md) pass (measure on a `perf` build, find the cause, fix).
+     2. [app-updates](app-updates.md) (needs checklist steps 3 and 5 confirmed by the owner).
+     3. [final-check](final-check.md) (Stage 1–3 checklists on the release build, reminders after a TV restart), after 1 and 2 are released.
      - Also in 6c ([focus-navigation](focus-navigation.md)): in Settings, Left on the first control of a row must not jump to the Home button at the top-left. Seen on the TV after 6b: Left from "−" of Transition speed focused Home, and OK there closed Settings.
 
 Every stage ends with [definition-of-done](definition-of-done.md), including `kb.py build` and `kb.py check` ([knowledge-graph](knowledge-graph.md)), and [verification](verification.md) before any commit.

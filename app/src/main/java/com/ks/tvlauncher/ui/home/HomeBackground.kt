@@ -6,6 +6,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,6 +26,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.CompositingStrategy
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.ks.tvlauncher.data.apps.Wallpaper
@@ -45,80 +56,140 @@ sealed interface HomeWallpaper {
 /**
  * Home's background, back to front:
  * 1. the plain navy gradient (always there, and the fallback when there is no wallpaper);
- * 2. the wallpaper, crossfading over 400 ms when it changes:
+ * 2. the wallpaper, crossfading when it changes:
  *    - dynamic: the focused app's own artwork as a tiny bitmap stretched over the screen and
  *      tinted with its accent colour;
  *    - custom: a built-in wallpaper or the user's picture, darkened by [dim];
  * 3. the dark left and bottom overlays that keep text readable.
  *
- * Cost: the dynamic bitmap is 32x18 px, so stretching it already gives a soft blur on every API
- * level. On API 31+ with blur enabled, one extra blur pass smooths it further; that layer
- * only re-renders when the wallpaper changes, never per frame. Custom wallpapers are never
- * blurred: the picture is drawn as it is, and built-ins are gradients.
+ * Cost (measured on a 32-bit TV, docs/spec/smoothness.md): these full-screen layers were
+ * redrawn on every frame, even while only a tile's focus animated, and that GPU fill was most
+ * of each frame. So the whole stack is drawn into one cached offscreen layer that is only
+ * redrawn while the wallpaper itself changes. Everything except the user's picture is smooth
+ * gradients or a 32x18 px bitmap, so it is drawn at a quarter of the screen size and scaled up
+ * ([SmoothLayer]), which looks the same and makes each crossfade frame about 16x cheaper. The
+ * picture keeps full resolution. Custom wallpapers are never blurred.
  */
 @Composable
 fun HomeBackground(wallpaper: HomeWallpaper, dim: WallpaperDim, modifier: Modifier = Modifier) {
     val motion = LocalMotion.current
     val extraBlur = LocalGlassStyle.current.blurEnabled
+    val dimAlpha = Wallpapers.dimAlpha(dim)
+    // The last wallpaper of each kind, so the outgoing side of a switch between a picture and
+    // the others keeps showing what it showed while it fades out.
+    var lastSmooth by remember { mutableStateOf<HomeWallpaper>(HomeWallpaper.Plain) }
+    var lastPicture by remember { mutableStateOf<HomeWallpaper.Picture?>(null) }
+    SideEffect {
+        if (wallpaper is HomeWallpaper.Picture) lastPicture = wallpaper else lastSmooth = wallpaper
+    }
+    val smooth = if (wallpaper is HomeWallpaper.Picture) lastSmooth else wallpaper
+    val picture = wallpaper as? HomeWallpaper.Picture ?: lastPicture
 
-    Box(
-        modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(listOf(KsColors.BackgroundTop, KsColors.BackgroundBottom))),
-    ) {
-        Crossfade(
-            targetState = wallpaper,
-            animationSpec = motion.wallpaper(),
-            modifier = Modifier.fillMaxSize(),
-            label = "wallpaper",
-        ) { current ->
-            val dimAlpha = Wallpapers.dimAlpha(dim)
-            when (current) {
-                is HomeWallpaper.BuiltIn -> BuiltInWallpaper(
-                    id = current.id,
-                    modifier = Modifier.fillMaxSize().drawWithContent {
-                        drawContent()
-                        drawRect(Color.Black.copy(alpha = dimAlpha))
-                    },
-                )
-                is HomeWallpaper.Picture -> {
-                    val image = remember(current) { current.bitmap.asImageBitmap() }
-                    Image(
-                        bitmap = image,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        filterQuality = FilterQuality.Medium,
-                        modifier = Modifier.fillMaxSize().drawWithContent {
-                            drawContent()
-                            drawRect(Color.Black.copy(alpha = dimAlpha))
-                        },
-                    )
+    Crossfade(
+        targetState = wallpaper is HomeWallpaper.Picture,
+        animationSpec = motion.wallpaper(),
+        modifier = modifier.fillMaxSize(),
+        label = "wallpaperKind",
+    ) { isPicture ->
+        if (isPicture) {
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
+                    .background(BaseGradient),
+            ) {
+                Crossfade(picture, animationSpec = motion.wallpaper(), label = "picture") { current ->
+                    if (current != null) PictureImage(current, dimAlpha)
                 }
-                is HomeWallpaper.Dynamic -> {
-                    val art = current.art
-                    if (art == null) PlainGlow() else DynamicArt(art, extraBlur)
+                ReadabilityOverlays()
+            }
+        } else {
+            SmoothLayer {
+                Box(Modifier.fillMaxSize().background(BaseGradient)) {
+                    Crossfade(smooth, animationSpec = motion.wallpaper(), label = "wallpaper") { current ->
+                        when (current) {
+                            is HomeWallpaper.BuiltIn -> BuiltInWallpaper(
+                                id = current.id,
+                                modifier = Modifier.fillMaxSize().drawWithContent {
+                                    drawContent()
+                                    drawRect(Color.Black.copy(alpha = dimAlpha))
+                                },
+                            )
+                            is HomeWallpaper.Dynamic -> {
+                                val art = current.art
+                                if (art == null) PlainGlow() else DynamicArt(art, extraBlur)
+                            }
+                            HomeWallpaper.Plain, is HomeWallpaper.Picture -> PlainGlow()
+                        }
+                    }
+                    ReadabilityOverlays()
                 }
-                HomeWallpaper.Plain -> PlainGlow()
             }
         }
-
-        Box(
-            Modifier.fillMaxSize().drawBehind {
-                drawRect(
-                    Brush.horizontalGradient(
-                        colors = listOf(Color.Black.copy(alpha = 0.45f), Color.Transparent),
-                        endX = size.width * 0.65f,
-                    ),
-                )
-                drawRect(
-                    Brush.verticalGradient(
-                        colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.55f)),
-                        startY = size.height * 0.5f,
-                    ),
-                )
-            },
-        )
     }
+}
+
+private val BaseGradient = Brush.verticalGradient(listOf(KsColors.BackgroundTop, KsColors.BackgroundBottom))
+
+/** How much smaller [SmoothLayer] draws than the screen. */
+private const val SMOOTH_SCALE = 4
+
+/**
+ * Draws [content] at 1/[SMOOTH_SCALE] of the available size into a cached offscreen layer,
+ * then scales the layer up to fill. Only for smooth content (gradients, glows, the tiny
+ * dynamic bitmap), where the lower resolution cannot be seen.
+ */
+@Composable
+private fun SmoothLayer(content: @Composable () -> Unit) {
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        Box(
+            Modifier
+                .wrapContentSize(Alignment.TopStart, unbounded = true)
+                .requiredSize(maxWidth / SMOOTH_SCALE, maxHeight / SMOOTH_SCALE)
+                .graphicsLayer {
+                    scaleX = SMOOTH_SCALE.toFloat()
+                    scaleY = SMOOTH_SCALE.toFloat()
+                    transformOrigin = TransformOrigin(0f, 0f)
+                    compositingStrategy = CompositingStrategy.Offscreen
+                },
+        ) { content() }
+    }
+}
+
+@Composable
+private fun PictureImage(picture: HomeWallpaper.Picture, dimAlpha: Float) {
+    val image = remember(picture) { picture.bitmap.asImageBitmap() }
+    Image(
+        bitmap = image,
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        filterQuality = FilterQuality.Medium,
+        modifier = Modifier.fillMaxSize().drawWithContent {
+            drawContent()
+            drawRect(Color.Black.copy(alpha = dimAlpha))
+        },
+    )
+}
+
+/** The dark left and bottom overlays that keep text readable over any wallpaper. */
+@Composable
+private fun ReadabilityOverlays() {
+    Box(
+        Modifier.fillMaxSize().drawBehind {
+            drawRect(
+                Brush.horizontalGradient(
+                    colors = listOf(Color.Black.copy(alpha = 0.45f), Color.Transparent),
+                    endX = size.width * 0.65f,
+                ),
+            )
+            drawRect(
+                Brush.verticalGradient(
+                    colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.55f)),
+                    startY = size.height * 0.5f,
+                ),
+            )
+        },
+    )
 }
 
 /** Plain background: a soft accent glow so the screen is not flat. */
@@ -148,7 +219,8 @@ private fun DynamicArt(art: Wallpaper, extraBlur: Boolean) {
         filterQuality = FilterQuality.Low,
         modifier = Modifier
             .fillMaxSize()
-            .then(if (extraBlur) Modifier.blur(48.dp) else Modifier)
+            // Drawn inside SmoothLayer, so the radius is divided by its scale (48 dp on screen).
+            .then(if (extraBlur) Modifier.blur((48 / SMOOTH_SCALE).dp) else Modifier)
             .drawWithContent {
                 drawContent()
                 drawRect(tint)

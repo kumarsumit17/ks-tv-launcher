@@ -291,3 +291,27 @@ Baseline recorded on 0.5.0 at about 09:47, compared on 0.6.1 at about 10:47:
 - Pass · wallpaper: Dynamic on 0.6.1. The 0.5.0 baseline had "Dynamic wallpaper" off, but the owner confirmed turning it on in 0.5.0's Control Center after the baseline and before the update, so Dynamic is the correct migrated value. The off → Plain migration itself passed in KS TV Dev.
 - Note · right after the install the TV showed a black screen and dropped off the network (standby); no KS crash was logged, and KS opened normally once the TV was back.
 - KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
+
+## Stage 6c part 1: Smoothness (test in KS TV Dev, `perf` build)
+How: `./gradlew assemblePerf`, `adb install -r app/build/outputs/apk/perf/app-perf.apk` (installs as KS TV Dev, never over the real app), then `scripts/perf.sh` (scenarios 1, 3, 4, 5) and `scripts/perf.sh 2` with the background set to Plain. Each run: force-stop, cold start, 5 s settle, `gfxinfo reset`, the keys, `gfxinfo`. Three runs per scenario; the medians are shown. Glass Medium, Transition speed 0.5×, Reduce motion off, 8 pinned apps, 21 installed.
+- [ ] `scripts/perf.sh` scenario 1 on the `perf` build: at most 25 % janky and a median of 33 ms or less.
+- [ ] No scenario worse than the baseline below.
+- [ ] Home looks the same as before in Dynamic (red Netflix wash, readable text, frosted weather pill), a built-in wallpaper and Plain.
+
+#### 2026-11-17 · KS TV Dev 0.6.1 (`perf` build: release code, debug key), KTC Lumio Vision (Android 14, API 34, armeabi-v7a, UI 1920×1080)
+Run by Claude Code over adb. The real KS TV was not opened, changed or measured in this pass.
+
+| Scenario | Before: frames | janky | p50 | p90 | p95 | After: frames | janky | p50 | p90 | p95 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 Pinned row, Dynamic | 217 | 66.4 % | 69 ms | 93 ms | 97 ms | 293 | 8.2 % | 32 ms | 40 ms | 42 ms |
+| 2 Pinned row, Plain | 98 | 76.3 % | 77 ms | 89 ms | 93 ms | 129 | 11.6 % | 36 ms | 46 ms | 48 ms |
+| 3 Control Center ×3 | 65 | 86.2 % | 85 ms | 125 ms | 150 ms | 82 | 22.0 % | 24 ms | 57 ms | 81 ms |
+| 4 All apps drawer | 109 | 67.9 % | 61 ms | 85 ms | 89 ms | 126 | 13.5 % | 36 ms | 44 ms | 46 ms |
+| 5 Settings scroll | 475 | 55.3 % | 57 ms | 73 ms | 81 ms | 564 | 16.0 % | 25 ms | 36 ms | 38 ms |
+
+- Pass · target met: scenario 1 at 8.2 % janky, median 32 ms (target ≤ 25 %, ≤ 33 ms). More frames in the same time means fewer were dropped.
+- Pass · every scenario better than its baseline.
+- Pass · screenshots: Dynamic and the Ocean built-in look as before; the frosted weather pill still blurs.
+- Note · Plain's p50 sits on a frame-time boundary: runs give 23–24 or 36 ms with the same janky %, p90 and p95.
+- Not possible on this TV · a picked picture (Custom with your own image): the TV has no file picker. That path keeps full resolution and the same cached layer.
+- Test data in KS TV Dev only: 4 extra pins (Apple TV, Castle for TV, Hoichoi, Jellyfin); wallpaper and glass changed for measuring and set back to Dynamic and Medium.

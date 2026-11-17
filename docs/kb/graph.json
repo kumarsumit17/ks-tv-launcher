@@ -2065,25 +2065,55 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 31,
+     "line": 42,
      "name": "HomeWallpaper",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 60,
+     "line": 74,
      "name": "HomeBackground",
      "private": false
     },
     {
+     "kind": "val",
+     "line": 132,
+     "name": "BaseGradient",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 135,
+     "name": "SMOOTH_SCALE",
+     "private": true
+    },
+    {
      "kind": "fun",
-     "line": 126,
+     "line": 143,
+     "name": "SmoothLayer",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 160,
+     "name": "PictureImage",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 176,
+     "name": "ReadabilityOverlays",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 197,
      "name": "PlainGlow",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 141,
+     "line": 212,
      "name": "DynamicArt",
      "private": true
     }
@@ -4206,6 +4236,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "114d91a5fbdd41a0072ee1ef5a5836889c3f7c4f",
+ "source_hash": "fe5e75186802c41e563eda74717edeeec9ea6ea1",
  "version": 1
 }

@@ -88,7 +88,18 @@ android {
                 signingConfig = it
             }
         }
+        // Smoothness measurements only (docs/spec/smoothness.md): release code (minified, not
+        // debuggable) installed as KS TV Dev with the debug key. Never released.
+        create("perf") {
+            initWith(getByName("release"))
+            applicationIdSuffix = ".dev"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+        }
     }
+
+    // perf shares KS TV Dev's label and banner tint with debug.
+    sourceSets.getByName("perf").res.directories.add("src/debug/res")
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -129,4 +140,13 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
+}
+
+// Compose compiler reports for the smoothness pass (docs/spec/smoothness.md):
+// ./gradlew assemblePerf -PcomposeReports  → app/build/compose-reports
+if (providers.gradleProperty("composeReports").isPresent) {
+    composeCompiler {
+        reportsDestination = layout.buildDirectory.dir("compose-reports")
+        metricsDestination = layout.buildDirectory.dir("compose-reports")
+    }
 }

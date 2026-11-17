@@ -42,6 +42,10 @@ KS runs as a normal app. It never becomes, or offers to become, the TV's Home la
 
 On-device checks for each stage are in [docs/MANUAL_TEST.md](docs/MANUAL_TEST.md).
 
+### Measuring smoothness
+
+Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` builds release code that installs as KS TV Dev (`app/build/outputs/apk/perf/app-perf.apk`). `scripts/perf.sh` runs the fixed scenarios over adb and prints janky frames and frame-time percentiles ([docs/spec/smoothness.md](docs/spec/smoothness.md)).
+
 ## Versioning and release
 
 `versionCode` and `versionName` are never hardcoded. In order of priority they come from `-PversionCode` / `-PversionName`, the `VERSION_CODE` / `VERSION_NAME` environment variables, then git (`rev-list --count HEAD` and the latest tag), then the fallbacks `1` and `0.1.0-dev`.
