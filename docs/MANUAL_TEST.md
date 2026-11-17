@@ -307,6 +307,22 @@ Baseline recorded on 0.6.1 at about 12:45 (fresh, from KS's own screens), compar
 - Fault · "Check for updates" cannot be reached with the D-pad when scrolling through Settings: Down from the automatic-check switch goes straight to "Android settings", and Up from "Android settings" goes back to the switch. The narrow left-aligned button loses Compose's focus search to the full-width rows above and below it (the search penalises the sideways offset between centres). It is reachable only when Settings opens at About (Home pill or notification), which focuses it directly. Needs a fix through [verification](spec/verification.md) before v0.7.1.
 - KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
 
+#### 2026-11-17 · v0.7.1 (701), release, KTC Lumio Vision (Android 14, API 34): data check after the update
+Release: v0.7.1 (the About focus fix and the KS TV Dev update preview) tagged from `main` (`3770838`), published by the Release workflow (run 44039574130, success) with `app-release.apk` (1,938,023 bytes) and `app-release.aab`; APK and AAB signer SHA-256 `2aa25f08e6b8addc54f9af9b8ccabcd9cf890902b1939b5ca2e6ac25a3776448`, checked again on the downloaded APK with `apksigner` (package `com.ks.tvlauncher`, 0.7.1 / 701, no "KS TV Dev" text). Installed with `adb install -r` over 0.7.0; first-install time unchanged (08:06:08), so it was an update in place.
+
+Baseline recorded on 0.7.0 at about 13:07 (fresh, from KS's own screens), compared on 0.7.1 at about 13:10:
+- Pass · profile names: Sumit (active).
+- Pass · TV name: Living Room · Android 14.
+- Pass · pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin.
+- Pass · subscriptions: none; currency INR.
+- Pass · weather: automatic, Bengaluru, Karnataka, India, °C.
+- Pass · wallpaper: Dynamic.
+- Pass · settings: Memory card on, glass Medium, Reduce motion off, Transition speed 0.5×, clock Follow TV, show date on, automatic update checks on.
+- Pass · renewal reminders on, 3 days before. Changed by the owner since the v0.7.0 check (then off); this baseline has it on, and 0.7.1 kept it.
+- Pass · About: "Version 0.7.1 (701)". Up from "Android settings" → "Check for updates"; Up → the automatic-check switch; Down → "Check for updates"; Down → "Android settings". The v0.7.0 fault is fixed on the real app.
+- Pass · OK on "Check for updates" showed "KS TV is up to date." (live check against GitHub; v0.7.1 is the newest release). No pill on Home.
+- KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
+
 ## Stage 6c part 1: Smoothness (test in KS TV Dev, `perf` build)
 How: `./gradlew assemblePerf`, `adb install -r app/build/outputs/apk/perf/app-perf.apk` (installs as KS TV Dev, never over the real app), then `scripts/perf.sh` (scenarios 1, 3, 4, 5) and `scripts/perf.sh 2` with the background set to Plain. Each run: force-stop, cold start, 5 s settle, `gfxinfo reset`, the keys, `gfxinfo`. Three runs per scenario; the medians are shown. Glass Medium, Transition speed 0.5×, Reduce motion off, 8 pinned apps, 21 installed.
 - [ ] `scripts/perf.sh` scenario 1 on the `perf` build: at most 25 % janky and a median of 33 ms or less.
