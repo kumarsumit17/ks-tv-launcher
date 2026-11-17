@@ -343,15 +343,17 @@ fun SettingsScreen(
                             if (BuildConfig.IN_APP_UPDATES) {
                                 UpdateSettings(settings.autoUpdateCheck, viewModel, checkFocus = aboutFocus)
                             } else {
-                                // A test build is signed with another key: no release can update it.
-                                Text(stringResource(R.string.settings_update_debug), style = KsType.Caption, color = KsColors.TextSecondary)
+                                // A test build is signed with another key: no release can update
+                                // it. The rows still show, inert, so their focus can be tested.
+                                UpdatePreview(settings.autoUpdateCheck, checkFocus = aboutFocus)
                             }
                             ValueRow(
                                 label = stringResource(R.string.cc_android_settings),
                                 value = stringResource(R.string.cc_android_settings_value),
                                 trailing = KsIcons.ArrowUpRight,
                                 onClick = { SystemIntents.openSettings(context, Settings.ACTION_SETTINGS) },
-                                modifier = if (BuildConfig.IN_APP_UPDATES) Modifier else Modifier.focusRequester(aboutFocus),
+                                // Up goes to "Check for updates" explicitly (see UpdateRows).
+                                modifier = Modifier.focusProperties { up = aboutFocus },
                             )
                         }
                     }

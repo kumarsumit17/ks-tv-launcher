@@ -292,6 +292,21 @@ Baseline recorded on 0.5.0 at about 09:47, compared on 0.6.1 at about 10:47:
 - Note · right after the install the TV showed a black screen and dropped off the network (standby); no KS crash was logged, and KS opened normally once the TV was back.
 - KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
 
+#### 2026-11-17 · v0.7.0 (700), release, KTC Lumio Vision (Android 14, API 34): data check after the update
+Release: v0.7.0 (6c part 1 smoothness + 6c part 2 in-app updates) tagged from `main` (`e6f199d`), published by the Release workflow (run 44036675156, success) with `app-release.apk` (1,937,327 bytes) and `app-release.aab`; APK and AAB signer SHA-256 `2aa25f08e6b8addc54f9af9b8ccabcd9cf890902b1939b5ca2e6ac25a3776448`, checked again on the downloaded APK with `apksigner` (package `com.ks.tvlauncher`, 0.7.0 / 700). Installed with `adb install -r` over 0.6.1; first-install time unchanged (08:06:08), so it was an update in place.
+
+Baseline recorded on 0.6.1 at about 12:45 (fresh, from KS's own screens), compared on 0.7.0 at about 12:48:
+- Pass · profile names: Sumit (active).
+- Pass · TV name: Living Room · Android 14.
+- Pass · pinned apps and order: Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin.
+- Pass · subscriptions: none; currency INR.
+- Pass · weather: automatic, Bengaluru, Karnataka, India, °C.
+- Pass · wallpaper: Dynamic.
+- Pass · settings: Memory card on, glass Medium, Reduce motion off, Transition speed 0.5×, clock Follow TV, show date on, reminders off.
+- New · About: "Version 0.7.0 (700)", "Check for updates automatically" on (default), "Check for updates". No "Update available" pill (no newer release).
+- Fault · "Check for updates" cannot be reached with the D-pad when scrolling through Settings: Down from the automatic-check switch goes straight to "Android settings", and Up from "Android settings" goes back to the switch. The narrow left-aligned button loses Compose's focus search to the full-width rows above and below it (the search penalises the sideways offset between centres). It is reachable only when Settings opens at About (Home pill or notification), which focuses it directly. Needs a fix through [verification](spec/verification.md) before v0.7.1.
+- KS TV Dev (`com.ks.tvlauncher.dev`) uninstalled after the check; the real app was never uninstalled or cleared.
+
 ## Stage 6c part 1: Smoothness (test in KS TV Dev, `perf` build)
 How: `./gradlew assemblePerf`, `adb install -r app/build/outputs/apk/perf/app-perf.apk` (installs as KS TV Dev, never over the real app), then `scripts/perf.sh` (scenarios 1, 3, 4, 5) and `scripts/perf.sh 2` with the background set to Plain. Each run: force-stop, cold start, 5 s settle, `gfxinfo reset`, the keys, `gfxinfo`. Three runs per scenario; the medians are shown. Glass Medium, Transition speed 0.5×, Reduce motion off, 8 pinned apps, 21 installed.
 - [ ] `scripts/perf.sh` scenario 1 on the `perf` build: at most 25 % janky and a median of 33 ms or less.
@@ -319,12 +334,20 @@ Run by Claude Code over adb. The real KS TV was not opened, changed or measured 
 ## Stage 6c part 2: In-app updates (KS TV Dev for the riders and the debug note; release builds for the update itself)
 
 ### In KS TV Dev (debug)
-- [x] Settings › About: version line, then "This is a test build. Updates are off…", then Android settings. No update switch or buttons. No network request to api.github.com (`adb logcat`, Wi-Fi traffic).
+- [x] Settings › About: version line, then "This is a test build. Updates are off…", then Android settings. No update switch or buttons. (Superseded after v0.7.0: the rows now show as an inert preview; see the fix section below.) No network request to api.github.com (`adb logcat`, Wi-Fi traffic).
 - [x] No "Update available" pill on Home.
 - [x] Rider, focus: Settings › Look and motion › Transition speed: Left from "−" stays on "−". Same on the first chip of Glass, Clock, °C/°F, the first currency, the Wallpaper mode chips, "Move left" of a pinned app, and the Weather buttons. Up from the first row still reaches Home, and OK there closes Settings.
 - [x] Rider, reminders: with a TEST subscription due inside the lead time and a reminder posted, turning renewal reminders off withdraws the reminder. (An update notification cannot be posted from the dev app; the rule is covered by `cancelAllReminders` filtering the renewal channel.)
 
 Result 2026-11-17, KS TV Dev 0.6.1 (17) debug, owner's TV (KTC Lumio Vision, Android 14): About shows the test-build note and no update controls; no pill on Home. Left held on "−" of Transition speed (3 presses), "Follow TV", "Detect again", Netflix "Move left" and "INR"; Up from the Profile row reached Home. TEST Netflix (renews today) gave a reminder on the `renewals` channel; turning reminders off withdrew it (0 KS Dev notifications left). TEST item deleted, reminders left off as found. Not checked: network traffic to api.github.com (no capture tool on the TV).
+
+### Fix after v0.7.0: About update rows (KS TV Dev, from now on)
+- [x] About shows, in order: version, device, "Check for updates automatically", "Check for updates" + "Download and install", "This is a test build…", "Android settings".
+- [x] Down from the switch → "Check for updates"; Down again → "Android settings"; Up from "Android settings" → "Check for updates"; Up again → the switch.
+- [x] Right from "Check for updates" → "Download and install"; Left back → "Check for updates"; Left again stays; Up from "Download and install" → the switch; Down → "Android settings".
+- [x] OK on the switch, "Check for updates" and "Download and install" each shows "Updates are off in KS TV Dev." and changes nothing (switch stays on; no pill on Home; no request to api.github.com).
+- [ ] Release only: the same paths in KS TV (the action button reads Cancel during a download and Install while waiting for permission, in the same place).
+Result 2026-11-17, KS TV Dev 0.7.0 (18) debug, owner's TV: rows in the release order, preview "Download and install" beside "Check for updates". All eight paths above as listed (Down/Up through switch → Check → Android settings and back, Right/Left between the buttons, Left stops on Check, Up/Down from "Download and install"). OK on Check, Download and install and the switch each showed "Updates are off in KS TV Dev."; the switch stayed on; Up from the switch reached "Remind me before renewals"; no pill on Home; no KS Dev notifications. The release APK built from this tree has no "KS TV Dev" text (`aapt2 dump strings`). First-run profile dialog in the fresh dev install was cancelled; nothing saved.
 
 ### On a release build (needs release N on the TV and N+1 published)
 - [ ] About shows "Check for updates automatically" (on) and "Check for updates". With no newer release: "KS TV is up to date."

@@ -73,3 +73,6 @@ One entry per stage: what changed and why.
 - Rider: Settings' list cancels Left focus exits, so Left from "−" of Transition speed (or any first control) no longer jumps to the Home button.
 - Stored-data fixture `app/src/test/resources/stored/ks_launcher-v0.6.1.json` and `StoredDataCompatibilityTest` read every v0.6.1 value through this build's repositories.
 
+## Fix after v0.7.0: About update rows reachable, dev preview
+- `UpdateRows` (shared layout), `UpdateSettings` (release) and `UpdatePreview` (debug/perf, inert). Explicit `focusProperties`: switch Down → Check, "Android settings" Up → Check. Preview message overridden in `src/debug/res` so the release APK has no dev wording.
+

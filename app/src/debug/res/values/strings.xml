@@ -3,4 +3,5 @@
 <resources>
     <string name="app_name">KS - TV Launcher Dev</string>
     <string name="app_name_short">KS TV Dev</string>
+    <string name="settings_update_preview_off">Updates are off in KS TV Dev.</string>
 </resources>

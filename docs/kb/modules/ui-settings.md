@@ -12,7 +12,8 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 
 ## Rules
 - Left never leaves the settings list: `focusProperties { onExit }` cancels a Left exit, so Left on the first control of a row cannot reach the Home button (OK there closed Settings). Up still reaches it.
-- About › updates (`UpdateSettings`, release builds only): automatic-check switch, "Check for updates", and one action button whose label follows the flow (Download and install → Cancel → Install), so focus never moves while it runs. Debug builds show a one-line note instead.
+- About › updates: `UpdateRows` is the one layout (automatic-check switch, "Check for updates", one action button whose label follows the flow: Download and install → Cancel → Install, so focus never moves while it runs). Release uses it through `UpdateSettings`; debug and perf through `UpdatePreview`, inert (every press shows "Updates are off in KS TV Dev", nothing is checked or saved), so focus can be tested on the dev app.
+- Down from the switch and Up from "Android settings" point at "Check for updates" explicitly (`focusProperties`): the narrow left button lost Compose's focus search to the full-width rows around it and was unreachable in 0.7.0.
 - Every setting is written straight to DataStore through the view model; there is no Save step on the screen.
 - The profile dialog edits a local copy and writes once on Save via `ProfileRepository.save`; Cancel changes nothing. Both mark first-run setup done.
 - Rename/Remove: hold OK on a name chip, or the "Rename or remove ‹name›" button (second path, no long-press-only action).
@@ -28,7 +29,7 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - `ui/settings/ProfileDialog.kt` — `ProfileDialog`
 - `ui/settings/SettingsScreen.kt` — `ChoiceRow`, `SettingsScreen`, `SettingsSection`, `ValueRow`
 - `ui/settings/SettingsViewModel.kt` — `CitySearch`, `DetectState`, `SettingsUiState`, `SettingsViewModel`, `WallpaperFiles`
-- `ui/settings/UpdateSettings.kt` — `UpdateSettings`
+- `ui/settings/UpdateSettings.kt` — `UpdatePreview`, `UpdateSettings`
 - `ui/settings/WallpaperSettings.kt` — `WallpaperSettings`
 
 ## Depends on (generated)

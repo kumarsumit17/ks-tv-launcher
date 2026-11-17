@@ -3031,6 +3031,7 @@
      "SettingsViewModel"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": [
+     "UpdatePreview",
      "UpdateSettings"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": [
@@ -3094,25 +3095,25 @@
     },
     {
      "kind": "fun",
-     "line": 379,
+     "line": 381,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 499,
+     "line": 501,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 572,
+     "line": 574,
      "name": "ChoiceRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 581,
+     "line": 583,
      "name": "ValueRow",
      "private": false
     }
@@ -3243,13 +3244,25 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 32,
+     "line": 36,
      "name": "UpdateSettings",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 79,
+     "line": 82,
+     "name": "UpdatePreview",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 104,
+     "name": "UpdateRows",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 137,
      "name": "statusText",
      "private": true
     }
@@ -4656,6 +4669,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "17762d00e892f54fa916c9a50de28d4478265d34",
+ "source_hash": "7f86106553b08e54531baa97c7844b1425367ec4",
  "version": 1
 }

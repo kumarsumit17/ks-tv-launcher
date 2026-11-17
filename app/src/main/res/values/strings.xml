@@ -335,5 +335,8 @@
     <string name="settings_update_not_verified">Update could not be verified. Nothing was installed.</string>
     <string name="settings_update_install_failed">The update could not be installed. KS was not changed.</string>
     <string name="settings_update_install_cancelled">Update cancelled. KS was not changed.</string>
+    <string name="settings_update_download_preview">Download and install</string>
+    <!-- Overridden in src/debug/res: the release APK never names the dev app. -->
+    <string name="settings_update_preview_off">Updates are off in this build.</string>
     <string name="settings_update_debug">This is a test build. Updates are off: only the released KS TV can update itself.</string>
 </resources>
