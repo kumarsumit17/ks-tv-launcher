@@ -16,6 +16,7 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV launcher, run
 - Never blur behind a scrolling row.
 - Subscription data stays on the device (no backup, no sync). Never silently wipe corrupt data.
 - The subscription CSV export is a cross-app contract with `ks-expense-manager`: see `docs/spec/subscriptions.md` before touching it.
+- From Stage 6: test only with the KS TV Dev app (`com.ks.tvlauncher.dev`). Never uninstall, clear or debug-install over the real app `com.ks.tvlauncher` (`docs/spec/dev-workflow.md`).
 - AGP 9 has built-in Kotlin: don't apply `org.jetbrains.kotlin.android`.
 
 ## Commands

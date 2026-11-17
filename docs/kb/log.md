@@ -29,3 +29,12 @@ One entry per stage: what changed and why.
 - Manifest: `BLUETOOTH` (maxSdk 30), `PACKAGE_USAGE_STATS` (user-granted only), Bluetooth feature not required.
 - Spec change during Stage 4: the weather city is automatic by default. Added `CityLocator`/`IpWhoIsLocator` (ipwho.is over HTTPS, checked from the owner's network before coding) and `CityResolver` (AUTO/MANUAL, 24 h detection cache, keep-last-on-failure); `LauncherSettings.weatherCityMode`; Settings gains Detect again, Change city and Use my current city.
 - TV test fixes: focus snapshot when overlays open (`restoreKey`), focus handed to a chip or the field when the focused profile control disappears, Down from the rename field goes to Rename, profile dialog spacing 8dp so it fits the safe area, Settings pinned rows keyed with never-disabled move buttons.
+
+## Stage 5
+- New module `data.reminders`: `ReminderScheduler` (unique daily WorkManager job, one-off check after changes), `RenewalReminderWorker`, `ReminderNotifier`, `ReminderStore`. `domain.RenewalReminders` holds the pure plan (due window, notify once, cancel on pause/delete/date change) with `RenewalRemindersTest`.
+- WorkManager 2.12.0 added; it starts on demand (`KsApplication` is the `Configuration.Provider`, default initializer removed in the manifest). `POST_NOTIFICATIONS` added, asked only when the user turns reminders on (API 33+).
+- Settings: `remindersEnabled` (default off) and `reminderLeadDays` (1-14, default 3) with a Renewal reminders section. `SubscriptionRepository` takes an `onChanged` hook wired to the scheduler.
+- Fixes from the Stage 4 TV test: Home shows a loading state until the first app scan (hero + All apps card); `GlassSearchField` leaves editing on one Back (`onPreInterceptKeyBeforeSoftKeyboard`).
+- Found in the Stage 5 TV test: the Subscriptions card flashed "0 · Track what you pay for" on cold start (now "Loading…"); focus escaped to Settings' Home button when the "Open notification settings" row disappeared on return (now handed to the toggle).
+- Performance pass on the TV (API 34, 32-bit ARM, 2.4 GB): debug cold start about 6.3 s before and after this stage, about 2.6 s once AOT-compiled; 75 MB PSS on Home; 0 % CPU when idle. Release builds include profileinstaller (Compose baseline profiles).
+- `SETUP.md` written; README links it and lists WorkManager.

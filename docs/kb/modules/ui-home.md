@@ -11,6 +11,7 @@ spec: [../../spec/home-screen.md, ../../spec/focus-navigation.md, ../../spec/dyn
 The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewModel`/`HomeUiState`, top bar, hero, pinned row, All apps card and the wallpaper background.
 
 ## Rules
+- Until `appsLoaded`, the hero shows "Loading your apps…" and the All apps card "Loading…" (count `null`), never the empty state. The Subscriptions card shows "Loading…" until `SubscriptionsUiState.loaded`.
 - Initial focus: the first pinned tile once apps have loaded, else the All apps card; always via `requestFocusSafely`.
 - Vertical order is fixed with `focusProperties` on each tile and button: hero buttons ↔ pinned row ↔ bottom strip. `FocusMemory` sends focus back to the tile focused last.
 - Reopening KS (`reopenEvents`) closes overlays, keeps the row position and refocuses the last tile. There is no Home-key logic.

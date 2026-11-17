@@ -5,8 +5,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.ks.tvlauncher.domain.Money
+import com.ks.tvlauncher.domain.RenewalReminders
 import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.domain.WeatherCity
 import com.ks.tvlauncher.domain.WeatherCityMode
@@ -36,6 +38,10 @@ data class LauncherSettings(
     /** The city the user picked in Settings; used only in MANUAL mode. */
     val weatherCity: WeatherCity? = null,
     val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
+    /** Renewal reminders are off until the user turns them on (and allows notifications). */
+    val remindersEnabled: Boolean = false,
+    /** Days before a renewal to notify, 1-14. */
+    val reminderLeadDays: Int = RenewalReminders.DEFAULT_LEAD_DAYS,
 )
 
 /** Launcher preferences, stored on the device only. */
@@ -62,6 +68,10 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
                 temperatureUnit = prefs[TEMPERATURE_UNIT]
                     ?.let { saved -> TemperatureUnit.entries.firstOrNull { it.name == saved } }
                     ?: TemperatureUnit.CELSIUS,
+                remindersEnabled = prefs[REMINDERS_ENABLED] ?: false,
+                reminderLeadDays = RenewalReminders.clampLeadDays(
+                    prefs[REMINDER_LEAD_DAYS] ?: RenewalReminders.DEFAULT_LEAD_DAYS,
+                ),
             )
         }
         .distinctUntilChanged()
@@ -111,6 +121,14 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[TEMPERATURE_UNIT] = value.name }
     }
 
+    suspend fun setRemindersEnabled(value: Boolean) {
+        store.edit { it[REMINDERS_ENABLED] = value }
+    }
+
+    suspend fun setReminderLeadDays(days: Int) {
+        store.edit { it[REMINDER_LEAD_DAYS] = RenewalReminders.clampLeadDays(days) }
+    }
+
     /** A damaged value counts as "no city", so the user can simply pick one again. */
     private fun decodeCity(raw: String?): WeatherCity? {
         if (raw.isNullOrEmpty()) return null
@@ -134,5 +152,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val WEATHER_CITY = stringPreferencesKey("weather_city")
         val WEATHER_CITY_MODE = stringPreferencesKey("weather_city_mode")
         val TEMPERATURE_UNIT = stringPreferencesKey("temperature_unit")
+        val REMINDERS_ENABLED = booleanPreferencesKey("reminders_enabled")
+        val REMINDER_LEAD_DAYS = intPreferencesKey("reminder_lead_days")
     }
 }

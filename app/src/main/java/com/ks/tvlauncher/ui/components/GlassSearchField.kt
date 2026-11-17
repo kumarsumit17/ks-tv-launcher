@@ -25,6 +25,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreInterceptKeyBeforeSoftKeyboard
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -39,8 +44,9 @@ import com.ks.tvlauncher.ui.theme.KsType
 /**
  * Search (or plain text) field for the remote. At rest it is an ordinary focus stop, so moving past it with
  * the D-pad never pops the keyboard. OK starts editing and opens the keyboard (voice input
- * works through it); the keyboard's Search action, or Back, ends editing and returns focus
- * to the field.
+ * works through it); the keyboard's Search action, or one Back, ends editing, hides the
+ * keyboard and returns focus to the field. Back is caught before the keyboard sees it:
+ * otherwise the keyboard takes the first Back just to hide itself.
  */
 @Composable
 fun GlassSearchField(
@@ -102,7 +108,14 @@ fun GlassSearchField(
                     cursorBrush = SolidColor(KsColors.TextPrimary),
                     keyboardOptions = KeyboardOptions(imeAction = imeAction),
                     keyboardActions = KeyboardActions(onSearch = { editing = false }, onDone = { editing = false }),
-                    modifier = Modifier.fillMaxWidth().focusRequester(editFocus),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusRequester(editFocus)
+                        .onPreInterceptKeyBeforeSoftKeyboard { event ->
+                            if (event.key != Key.Back) return@onPreInterceptKeyBeforeSoftKeyboard false
+                            if (event.type == KeyEventType.KeyUp) editing = false
+                            true
+                        },
                 )
             }
         }

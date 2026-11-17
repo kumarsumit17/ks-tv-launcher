@@ -15,6 +15,7 @@ App entry: `KsApplication` (holds the lazy `AppContainer`), `AppContainer` (manu
 - `MAIN` + `LEANBACK_LAUNCHER` only; never `HOME`/`DEFAULT` ([app-mode](../../spec/app-mode.md)).
 - Back with nothing open calls `moveTaskToBack(true)`; overlays close first through their own back handlers.
 - No Hilt.
+- `KsApplication` is WorkManager's `Configuration.Provider` (on-demand start); `AppContainer` holds `reminderStore` and `reminderScheduler`.
 
 <!-- kb:generated:start -->
 
@@ -28,6 +29,7 @@ Tests: `HomeIntentTest.kt`
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppArtworkFetcher`, `AppArtworkKeyer`, `AppsRepository`, `PinnedAppsRepository`, `WallpaperSource`
 - [data.profile](data-profile.md) via `ProfileRepository`
+- [data.reminders](data-reminders.md) via `ReminderScheduler`, `ReminderStore`
 - [data.settings](data-settings.md) via `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionDataStore`, `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfoRepository`, `DeviceStatsRepository`, `SystemStatusRepository`
@@ -37,6 +39,7 @@ Tests: `HomeIntentTest.kt`
 - [ui.theme](ui-theme.md) via `KsTheme`
 
 ## Used by (generated)
+- [data.reminders](data-reminders.md) via `KsApplication`, `MainActivity`
 - [ui.apps](ui-apps.md) via `KsApplication`
 - [ui.controlcenter](ui-controlcenter.md) via `KsApplication`
 - [ui.home](ui-home.md) via `KsApplication`

@@ -23,6 +23,7 @@ Small helpers: `minuteTicker` (flow on `ACTION_TIME_TICK`) and `DateTimeFormats`
 - nothing inside the app
 
 ## Used by (generated)
+- [data.reminders](data-reminders.md) via `DateTimeFormats`
 - [ui.home](ui-home.md) via `DateTimeFormats`, `minuteTicker`
 - [ui.subscriptions](ui-subscriptions.md) via `DateTimeFormats`, `minuteTicker`
 

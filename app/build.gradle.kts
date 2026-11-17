@@ -113,6 +113,8 @@ dependencies {
     implementation(libs.haze.blur)
     implementation(libs.coil.compose)
     implementation(libs.androidx.palette)
+    // Renewal reminders (Stage 5): one daily check, no service.
+    implementation(libs.androidx.work.runtime)
 
     // With the serialization compiler plugin for @Serializable models (subscriptions).
     implementation(libs.kotlinx.serialization.json)

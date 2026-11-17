@@ -38,12 +38,16 @@ class SettingsRepositoryTest {
         assertNull(defaults.weatherCity)
         assertEquals(WeatherCityMode.AUTO, defaults.weatherCityMode)
         assertEquals(TemperatureUnit.CELSIUS, defaults.temperatureUnit)
+        assertFalse(defaults.remindersEnabled)
+        assertEquals(3, defaults.reminderLeadDays)
 
         repo.setShowMemoryCard(false)
         repo.setManualCity(pune)
         repo.setTemperatureUnit(TemperatureUnit.FAHRENHEIT)
         repo.setGlassIntensity(GlassIntensity.LOW)
         repo.setCurrency("usd")
+        repo.setRemindersEnabled(true)
+        repo.setReminderLeadDays(30)
         val saved = repo.settings.first()
         assertFalse(saved.showMemoryCard)
         assertEquals(pune, saved.weatherCity)
@@ -51,6 +55,9 @@ class SettingsRepositoryTest {
         assertEquals(TemperatureUnit.FAHRENHEIT, saved.temperatureUnit)
         assertEquals(GlassIntensity.LOW, saved.glassIntensity)
         assertEquals("USD", saved.currency)
+        assertEquals(true, saved.remindersEnabled)
+        // Clamped to the 14-day maximum.
+        assertEquals(14, saved.reminderLeadDays)
 
         // Back to automatic keeps the manual city for next time.
         repo.setWeatherCityMode(WeatherCityMode.AUTO)

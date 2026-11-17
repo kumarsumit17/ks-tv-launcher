@@ -14,6 +14,8 @@ import com.ks.tvlauncher.data.apps.AppsRepository
 import com.ks.tvlauncher.data.apps.PinnedAppsRepository
 import com.ks.tvlauncher.data.apps.WallpaperSource
 import com.ks.tvlauncher.data.profile.ProfileRepository
+import com.ks.tvlauncher.data.reminders.ReminderScheduler
+import com.ks.tvlauncher.data.reminders.ReminderStore
 import com.ks.tvlauncher.data.settings.SettingsRepository
 import com.ks.tvlauncher.data.subscriptions.SubscriptionDataStore
 import com.ks.tvlauncher.data.subscriptions.SubscriptionRepository
@@ -60,8 +62,10 @@ class AppContainer(context: Context) {
     val appsRepository: AppsRepository by lazy { AppsRepository(appContext, appScope) }
     val pinnedAppsRepository: PinnedAppsRepository by lazy { PinnedAppsRepository(preferences) }
     val subscriptionRepository: SubscriptionRepository by lazy {
-        SubscriptionRepository(SubscriptionDataStore(preferences))
+        SubscriptionRepository(SubscriptionDataStore(preferences)) { reminderScheduler.onChanged() }
     }
+    val reminderStore: ReminderStore by lazy { ReminderStore(preferences) }
+    val reminderScheduler: ReminderScheduler by lazy { ReminderScheduler(appContext, settingsRepository) }
 
     /**
      * Loads app banners and icons. A small memory cache (15 % of the app's heap budget) and no

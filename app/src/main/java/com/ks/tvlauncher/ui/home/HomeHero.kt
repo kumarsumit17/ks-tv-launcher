@@ -27,7 +27,8 @@ import com.ks.tvlauncher.ui.theme.KsType
 
 /**
  * The large block above the pinned row. With a pinned app it shows that app's name and the
- * "Open ‹app›" and "Unpin" buttons; with none it explains how to pin one.
+ * "Open ‹app›" and "Unpin" buttons; with none it explains how to pin one. While the first
+ * app scan runs ([loading]) it says so, instead of claiming there are no pinned apps.
  *
  * Down from the buttons goes to [downFocus], the pinned tile that was focused last.
  */
@@ -39,6 +40,7 @@ fun HomeHero(
     onOpen: (AppInfo) -> Unit,
     onUnpin: (AppInfo) -> Unit,
     modifier: Modifier = Modifier,
+    loading: Boolean = false,
     /** Holding OK on either button (Control Center). */
     onLongPress: (() -> Unit)? = null,
     unpinFocus: FocusRequester = remember { FocusRequester() },
@@ -47,7 +49,7 @@ fun HomeHero(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = app?.label ?: stringResource(R.string.hero_empty_title),
+            text = app?.label ?: stringResource(if (loading) R.string.hero_loading_title else R.string.hero_empty_title),
             style = KsType.HeroTitle,
             color = KsColors.TextPrimary,
             maxLines = 1,
@@ -55,7 +57,13 @@ fun HomeHero(
         )
         Spacer(Modifier.height(2.dp))
         Text(
-            text = stringResource(if (app != null) R.string.hero_pinned_body else R.string.hero_empty_body),
+            text = stringResource(
+                when {
+                    app != null -> R.string.hero_pinned_body
+                    loading -> R.string.hero_loading_body
+                    else -> R.string.hero_empty_body
+                },
+            ),
             style = KsType.Body,
             color = KsColors.TextSecondary,
             maxLines = 1,

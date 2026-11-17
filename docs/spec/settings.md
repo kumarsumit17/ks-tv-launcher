@@ -15,3 +15,4 @@ stage: 4
 - Currency
 - Renewal reminder lead time (Stage 5, [reminders](reminders.md))
 - About: version name/code from `BuildConfig`
+- Stage 6: Wallpaper mode (Dynamic / Custom / Plain), image choice and dim ([custom-wallpaper](custom-wallpaper.md)); in About, "Check for updates", automatic checks on/off, and the update flow ([app-updates](app-updates.md))

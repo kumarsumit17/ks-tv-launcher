@@ -155,3 +155,36 @@ Use sample data whose names start with `TEST ` and remove it afterwards ([verifi
 
 ### Persistence
 - [ ] After force-stopping KS or rebooting: names, active name, own TV name, city, unit, card visibility and every switch are unchanged.
+
+## Stage 5: Polish (reminders, loading state, text fields, setup)
+
+### Loading and empty states
+- [ ] Cold start (`adb shell am force-stop com.ks.tvlauncher`, then open KS): until the app scan finishes the hero reads "Loading your apps…" and the All apps card "Loading…", never "No pinned apps yet · 0 installed". The Subscriptions card reads "Loading…", never "0 · Track what you pay for", until the list has been read.
+- [ ] With every app unpinned, the hero reads "No pinned apps yet" and the card shows the real installed count.
+- [ ] Subscriptions with no entries shows its empty line; weather offline states are unchanged from Stage 4.
+
+### Text fields
+- [ ] In the All apps search, Settings › Weather city search, the profile name field and the subscription dialog fields: OK opens the keyboard; **one** Back hides it and leaves editing, with focus on the same field. A second Back then closes the screen or dialog as usual.
+- [ ] The keyboard's Search / Done key also ends editing.
+
+### Renewal reminders
+- [ ] Settings › Renewal reminders: the toggle is off by default; the lead-time stepper is hidden while off.
+- [ ] On Android 13+: turning it on shows Android's notification permission prompt. Allow: the toggle turns on and "3 days before" appears. Deny: the toggle stays off and the "Notifications are off for KS" line and "Open notification settings" row appear; the row opens KS's notification (or app info) page. After allowing notifications there and pressing Back, the line and row disappear and focus lands on the toggle.
+- [ ] The stepper goes from 1 to 14 days; − at 1 and + at 14 do nothing and keep focus.
+- [ ] With reminders on, add "TEST Netflix", ₹499 monthly, renewing tomorrow: a notification "TEST Netflix renews tomorrow" (₹499.00 · Monthly · date) arrives within a minute or so. Selecting it opens KS.
+- [ ] Add "TEST Prime", ₹1,499 yearly, renewing in 10 days with a 3-day lead: no notification. Raise the lead to 10 days: it arrives.
+- [ ] Pausing or deleting TEST Netflix removes its notification. Moving its date outside the window removes it; moving it inside again re-notifies.
+- [ ] Each renewal is notified once: reopening KS or the next daily check does not repeat it.
+- [ ] Turning reminders off removes all KS notifications.
+- [ ] After a reboot with reminders on, the daily job is still registered (`adb shell dumpsys jobscheduler | grep -c "JOB androidx.work.systemjobscheduler:u0a<KS uid>"` is 1; the uid is in `adb shell dumpsys package com.ks.tvlauncher | grep userId`).
+- [ ] Remove every `TEST ` subscription afterwards.
+
+### Performance pass
+- [ ] `adb shell am start -W -n com.ks.tvlauncher/.MainActivity` after force-stop: record TotalTime (cold start).
+- [ ] `adb shell dumpsys meminfo com.ks.tvlauncher`: record TOTAL PSS on Home after scrolling the pinned row and opening/closing the drawer.
+- [ ] `adb shell top -n 1 | grep tvlauncher` on an idle Home screen: CPU near 0 %.
+- [ ] With reminders off no KS job is registered (the `grep -c "JOB androidx.work.systemjobscheduler:u0a<KS uid>"` count above is 0). Lines under the job history are past runs, not registered jobs.
+- [ ] Measure cold start on a release build (or after `adb shell cmd package compile -m speed -f com.ks.tvlauncher` on debug): debug builds run un-optimised and are about 2.5x slower.
+
+### Setup
+- [ ] Following [SETUP.md](../SETUP.md) from a clean TV installs KS, and "KS TV" can be pinned to the launcher's favourites. Home stays the TV's own launcher.

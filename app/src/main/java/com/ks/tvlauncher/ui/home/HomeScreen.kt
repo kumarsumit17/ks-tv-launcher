@@ -377,6 +377,7 @@ fun HomeScreen(
             Spacer(Modifier.weight(1f))
             HomeHero(
                 app = state.hero,
+                loading = !state.appsLoaded,
                 openFocus = heroFocus,
                 downFocus = ::rowTarget,
                 onOpen = ::open,
@@ -411,7 +412,7 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 AllAppsCard(
-                    installedCount = state.installedCount,
+                    installedCount = state.installedCount.takeIf { state.appsLoaded },
                     onClick = { drawerOpen = true },
                     onLongClick = ::openControlCenter,
                     modifier = Modifier

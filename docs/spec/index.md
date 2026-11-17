@@ -17,6 +17,10 @@ Always read [ground-rules](ground-rules.md), [performance](performance.md), [def
 | 3 Subscriptions | [subscriptions](subscriptions.md) | Subscriptions |
 | 4 Control & widgets | [control-center](control-center.md), [settings](settings.md), [weather](weather.md), [greeting-widget](greeting-widget.md), [memory-storage-widget](memory-storage-widget.md) | ControlCenter, Greeting, MemoryStorage |
 | 5 Polish | [reminders](reminders.md), [google-tv-setup](google-tv-setup.md) | none |
+| 6 Release checklist | [release-checklist](release-checklist.md), [dev-workflow](dev-workflow.md), [verification](verification.md) | none |
+| 6a Inputs | [inputs](inputs.md), [control-center](control-center.md) | none |
+| 6b Wallpaper | [custom-wallpaper](custom-wallpaper.md), [dynamic-wallpaper](dynamic-wallpaper.md), [settings](settings.md) | none |
+| 6c Updates | [app-updates](app-updates.md), [reminders](reminders.md), [settings](settings.md), [app-config](app-config.md) | none |
 
 Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mockup and this spec disagree, follow the spec.
 
@@ -41,6 +45,11 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 - [reminders](reminders.md): renewal notifications (Stage 5)
 - [app-mode](app-mode.md): KS is an app, never the default Home
 - [google-tv-setup](google-tv-setup.md): installing KS and pinning it to favourites
+- [release-checklist](release-checklist.md): finish Stage 5, final release, move the TV to the release build, full check, key backup (Stage 6)
+- [dev-workflow](dev-workflow.md): separate KS TV Dev test app, `dev`/`main` branches, release cycle, data check after every release (Stage 6 on; read for every 6x part)
+- [inputs](inputs.md): HDMI and other inputs from Control Center (Stage 6)
+- [custom-wallpaper](custom-wallpaper.md): built-in or user-picked background (Stage 6)
+- [app-updates](app-updates.md): check, download, verify and install new releases, keeping data (Stage 6)
 - [architecture](architecture.md): packages, MVVM rules
 - [stages](stages.md): the five stages
 - [definition-of-done](definition-of-done.md): build, tests, report

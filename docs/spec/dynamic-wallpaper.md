@@ -13,4 +13,4 @@ mockups: [Flow.png]
 4. Keep the left-to-right and bottom dark gradient overlays from the Home mockup so text stays readable.
 5. Fallback: the plain background gradient.
 
-Toggle in [settings](settings.md). Never use hardcoded web URLs or third-party artwork.
+Toggle in [settings](settings.md); Stage 6 turns the toggle into a wallpaper mode ([custom-wallpaper](custom-wallpaper.md)). Never use hardcoded web URLs or third-party artwork.

@@ -13,5 +13,9 @@ stage: all
 5. **Polish**: [reminders](reminders.md), performance pass, empty/error states, [google-tv-setup](google-tv-setup.md).
    - Cold start: Home briefly shows "No pinned apps yet · 0 installed" before the first app scan finishes; show a loading state until apps have loaded (found in the Stage 4 TV test).
    - Text fields (`GlassSearchField`): the first Back only hides the keyboard and a second Back is needed to leave editing; one Back should do both (found in the Stage 4 TV test).
+6. **Release readiness and extras**, all under [dev-workflow](dev-workflow.md) (separate KS TV Dev app, `dev` → `main` → tag, verify data after each release). Start with the [release-checklist](release-checklist.md) (finish Stage 5, release `v0.5.0`, move the TV to the release build, full on-device check, key backup). Then three independent parts, each tested, reviewed and committed on its own ([verification](verification.md)):
+   - 6a [inputs](inputs.md)
+   - 6b [custom-wallpaper](custom-wallpaper.md)
+   - 6c [app-updates](app-updates.md) (last; needs checklist steps 3 and 5 confirmed by the owner)
 
 Every stage ends with [definition-of-done](definition-of-done.md), including `kb.py build` and `kb.py check` ([knowledge-graph](knowledge-graph.md)), and [verification](verification.md) before any commit.

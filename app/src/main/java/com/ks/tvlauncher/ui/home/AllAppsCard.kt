@@ -20,10 +20,10 @@ import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsType
 
-/** Bottom-strip card: "All apps" with the installed count. OK opens the drawer. */
+/** Bottom-strip card: "All apps" with the installed count (null while loading). OK opens the drawer. */
 @Composable
 fun AllAppsCard(
-    installedCount: Int,
+    installedCount: Int?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     onLongClick: (() -> Unit)? = null,
@@ -40,7 +40,11 @@ fun AllAppsCard(
             Column {
                 Text(stringResource(R.string.all_apps), style = KsType.Label, color = KsColors.TextPrimary)
                 Text(
-                    text = pluralStringResource(R.plurals.installed_count, installedCount, installedCount),
+                    text = if (installedCount == null) {
+                        stringResource(R.string.apps_loading)
+                    } else {
+                        pluralStringResource(R.plurals.installed_count, installedCount, installedCount)
+                    },
                     style = KsType.Caption,
                     color = KsColors.TextSecondary,
                 )

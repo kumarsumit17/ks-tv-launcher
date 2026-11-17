@@ -2,12 +2,12 @@
 
 > Part of the [KS-Suite](https://github.com/kumarsumit17/KS-Suite).
 
-An ad-free, Apple TV-style launcher for Android TV / Google TV that you open like any other app, fully controlled by the remote: glass UI, a greeting widget, pinned apps, an All apps drawer, a wallpaper that follows the focused app, a weather pill and a streaming-subscription tracker.
+An ad-free, Apple TV-style launcher for Android TV / Google TV that you open like any other app, fully controlled by the remote: glass UI, a greeting widget, pinned apps, an All apps drawer, a wallpaper that follows the focused app, a weather pill and a streaming-subscription tracker with optional renewal reminders.
 
 | | |
 |---|---|
 | **Platform** | Android TV / Google TV (minSdk 26, compileSdk and targetSdk 37) |
-| **Tech stack** | Kotlin, Jetpack Compose for TV (`androidx.tv:tv-material`), Preferences DataStore, kotlinx-serialization, Coil 3, Palette, Haze |
+| **Tech stack** | Kotlin, Jetpack Compose for TV (`androidx.tv:tv-material`), Preferences DataStore, kotlinx-serialization, Coil 3, Palette, Haze, WorkManager (renewal reminders) |
 | **Toolchain** | JDK 17 · Gradle 9.9.1 · AGP 9.5.1 · Kotlin 2.4.21 |
 
 The spec lives in [docs/spec/](docs/spec/index.md). The app is built in stages; see [docs/spec/stages.md](docs/spec/stages.md).
@@ -34,7 +34,7 @@ No API keys are needed. Weather uses Open-Meteo, which has none; only the city y
 
 ### Opening it on the TV
 
-KS runs as a normal app. It never becomes, or offers to become, the TV's Home launcher ([docs/spec/app-mode.md](docs/spec/app-mode.md)), so keep your current launcher as Home.
+KS runs as a normal app. It never becomes, or offers to become, the TV's Home launcher ([docs/spec/app-mode.md](docs/spec/app-mode.md)), so keep your current launcher as Home. Step-by-step TV setup (ADB, install, pinning to favourites, permissions) is in [SETUP.md](SETUP.md).
 
 - Install: `adb install -r app/build/outputs/apk/debug/app-debug.apk`. Debug and release builds are signed differently, so switching between them needs `adb uninstall com.ks.tvlauncher` first.
 - Open "KS TV" from the TV's app list, pin it to your launcher's favourites row, or run `adb shell am start -n com.ks.tvlauncher/.MainActivity`.

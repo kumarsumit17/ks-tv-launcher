@@ -1,6 +1,11 @@
 package com.ks.tvlauncher.ui.settings
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,15 +38,20 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.tv.material3.Icon
 import androidx.tv.material3.Text
 import com.ks.tvlauncher.BuildConfig
 import com.ks.tvlauncher.R
+import com.ks.tvlauncher.data.reminders.ReminderNotifier
 import com.ks.tvlauncher.data.settings.GlassIntensity
+import com.ks.tvlauncher.domain.RenewalReminders
 import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.domain.WeatherCityMode
 import com.ks.tvlauncher.ui.components.GlassButton
@@ -49,6 +59,7 @@ import com.ks.tvlauncher.ui.components.GlassCard
 import com.ks.tvlauncher.ui.components.GlassChip
 import com.ks.tvlauncher.ui.components.GlassSearchField
 import com.ks.tvlauncher.ui.components.GlassSection
+import com.ks.tvlauncher.ui.components.GlassStepper
 import com.ks.tvlauncher.ui.components.GlassToggle
 import com.ks.tvlauncher.ui.components.modalFocus
 import com.ks.tvlauncher.ui.components.requestFocusSafely
@@ -261,6 +272,15 @@ fun SettingsScreen(
                         }
                     }
                 }
+                item(key = "reminders") {
+                    GlassSection(stringResource(R.string.settings_reminders)) {
+                        ReminderSettings(
+                            enabled = settings.remindersEnabled,
+                            leadDays = settings.reminderLeadDays,
+                            viewModel = viewModel,
+                        )
+                    }
+                }
                 item(key = "about") {
                     GlassSection(stringResource(R.string.settings_about)) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -416,6 +436,82 @@ private fun WeatherSettings(
                     }
                 }
             }
+        }
+    }
+}
+
+/**
+ * Reminders on/off and the lead time. Turning them on asks for the notification permission on
+ * Android 13+; if notifications are blocked, a line says so with a way to Android settings.
+ */
+@Composable
+private fun ReminderSettings(enabled: Boolean, leadDays: Int, viewModel: SettingsViewModel) {
+    val context = LocalContext.current
+    val notifier = remember { ReminderNotifier(context) }
+    var canNotify by remember { mutableStateOf(notifier.canNotify()) }
+    // Set when the user declined the permission, so the blocked line shows even while off.
+    var declined by rememberSaveable { mutableStateOf(false) }
+    val toggleFocus = remember { FocusRequester() }
+    // Back from Android settings with notifications allowed, the focused "Open notification
+    // settings" row disappears: hand focus to the toggle instead of letting it escape.
+    var openedSettings by remember { mutableStateOf(false) }
+    var refocusToggle by remember { mutableStateOf(false) }
+    LifecycleResumeEffect(Unit) {
+        val now = notifier.canNotify()
+        if (now && !canNotify && enabled) viewModel.recheckReminders()
+        canNotify = now
+        if (openedSettings) {
+            openedSettings = false
+            refocusToggle = now
+        }
+        onPauseOrDispose { }
+    }
+    LaunchedEffect(refocusToggle) {
+        if (!refocusToggle) return@LaunchedEffect
+        withFrameNanos { }
+        withFrameNanos { }
+        toggleFocus.requestFocusSafely()
+        refocusToggle = false
+    }
+    val showBlocked = !canNotify && (enabled || declined)
+    val askPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        canNotify = notifier.canNotify()
+        declined = !granted
+        if (granted) viewModel.setRemindersEnabled(true)
+    }
+
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        GlassToggle(stringResource(R.string.settings_reminders_toggle), enabled, modifier = Modifier.focusRequester(toggleFocus), onCheckedChange = { on ->
+            val needsAsk = on && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+            if (needsAsk) {
+                askPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                viewModel.setRemindersEnabled(on)
+            }
+        })
+        if (enabled) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(stringResource(R.string.settings_reminder_lead), style = KsType.Label, color = KsColors.TextPrimary, modifier = Modifier.width(140.dp))
+                // Never disables at the ends (1 and 14 days): a step past either end does nothing.
+                GlassStepper(
+                    value = pluralStringResource(R.plurals.settings_reminder_days, leadDays, leadDays),
+                    onStep = { direction, _ ->
+                        val next = RenewalReminders.clampLeadDays(leadDays + direction)
+                        if (next != leadDays) viewModel.setReminderLeadDays(next)
+                    },
+                )
+            }
+        }
+        Text(stringResource(R.string.settings_reminders_note), style = KsType.Caption, color = KsColors.TextSecondary)
+        if (showBlocked) {
+            Text(stringResource(R.string.settings_reminders_blocked), style = KsType.Caption, color = KsColors.Warning)
+            ValueRow(
+                label = stringResource(R.string.settings_reminders_open),
+                value = "",
+                trailing = KsIcons.ArrowUpRight,
+                onClick = { openedSettings = SystemIntents.openAppNotificationSettings(context) },
+            )
         }
     }
 }

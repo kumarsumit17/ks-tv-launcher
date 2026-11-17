@@ -36,6 +36,12 @@
     "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "ProfileRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
+     "ReminderScheduler"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
+     "ReminderStore"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "SettingsRepository"
     ],
@@ -73,7 +79,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 38,
+     "line": 40,
      "name": "AppContainer",
      "private": false
     }
@@ -91,7 +97,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 5,
+     "line": 10,
      "name": "KsApplication",
      "private": false
     }
@@ -252,10 +258,103 @@
     }
    ]
   },
+  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
+     "MainActivity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+     "Money"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+     "DueReminder",
+     "RenewalReminders"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+     "BillingCycle"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
+     "DateTimeFormats"
+    ]
+   },
+   "module": "data.reminders",
+   "package": "com.ks.tvlauncher.data.reminders",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 22,
+     "name": "ReminderNotifier",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": [
+     "RenewalReminderWorker"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "SettingsRepository"
+    ]
+   },
+   "module": "data.reminders",
+   "package": "com.ks.tvlauncher.data.reminders",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 18,
+     "name": "ReminderScheduler",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": {
+   "deps": {},
+   "module": "data.reminders",
+   "package": "com.ks.tvlauncher.data.reminders",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 17,
+     "name": "ReminderStore",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+     "ReminderNotifier"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+     "RenewalReminders"
+    ]
+   },
+   "module": "data.reminders",
+   "package": "com.ks.tvlauncher.data.reminders",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 16,
+     "name": "RenewalReminderWorker",
+     "private": false
+    }
+   ]
+  },
   "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+     "RenewalReminders"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
@@ -269,19 +368,19 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 22,
+     "line": 24,
      "name": "GlassIntensity",
      "private": false
     },
     {
      "kind": "class",
-     "line": 24,
+     "line": 26,
      "name": "LauncherSettings",
      "private": false
     },
     {
      "kind": "class",
-     "line": 42,
+     "line": 48,
      "name": "SettingsRepository",
      "private": false
     }
@@ -320,7 +419,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 7,
+     "line": 10,
      "name": "SubscriptionRepository",
      "private": false
     }
@@ -668,6 +767,39 @@
      "kind": "object",
      "line": 4,
      "name": "ProfileNames",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+     "Subscription"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+     "SubscriptionCalculator"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 6,
+     "name": "DueReminder",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 12,
+     "name": "ReminderPlan",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 25,
+     "name": "RenewalReminders",
      "private": false
     }
    ]
@@ -1311,7 +1443,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 46,
+     "line": 52,
      "name": "GlassSearchField",
      "private": false
     }
@@ -1602,7 +1734,7 @@
    "symbols": [
     {
      "kind": "object",
-     "line": 10,
+     "line": 11,
      "name": "SystemIntents",
      "private": false
     }
@@ -1686,7 +1818,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 35,
+     "line": 36,
      "name": "HomeHero",
      "private": false
     }
@@ -2112,7 +2244,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 30,
+     "line": 31,
      "name": "SubscriptionsCard",
      "private": false
     }
@@ -2265,8 +2397,14 @@
   },
   "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": {
    "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+     "ReminderNotifier"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+     "RenewalReminders"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
@@ -2290,6 +2428,9 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": [
      "GlassSection"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": [
+     "GlassStepper"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
      "GlassToggle"
@@ -2325,55 +2466,61 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 63,
+     "line": 74,
      "name": "SettingsSection",
      "private": false
     },
     {
      "kind": "val",
-     "line": 66,
+     "line": 77,
      "name": "CURRENCIES",
      "private": true
     },
     {
      "kind": "val",
-     "line": 69,
+     "line": 80,
      "name": "ITEM_PROFILE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 70,
+     "line": 81,
      "name": "ITEM_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 72,
+     "line": 83,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 79,
+     "line": 90,
      "name": "SettingsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 308,
+     "line": 328,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 425,
+     "line": 448,
+     "name": "ReminderSettings",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 521,
      "name": "ChoiceRow",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 434,
+     "line": 530,
      "name": "ValueRow",
      "private": false
     }
@@ -2393,6 +2540,9 @@
     "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "Profile",
      "ProfileRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
+     "ReminderScheduler"
     ],
     "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity",
@@ -2425,25 +2575,25 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 36,
+     "line": 37,
      "name": "CitySearch",
      "private": false
     },
     {
      "kind": "class",
-     "line": 44,
+     "line": 45,
      "name": "DetectState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 47,
+     "line": 48,
      "name": "SettingsUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 61,
+     "line": 62,
      "name": "SettingsViewModel",
      "private": false
     }
@@ -3497,6 +3647,28 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/domain/RenewalRemindersTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+     "RenewalReminders"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+     "BillingCycle",
+     "Subscription"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 9,
+     "name": "RenewalRemindersTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/domain/SubscriptionCalculatorTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
@@ -3564,6 +3736,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "10f6a9b356b1fd25586cea885e07ead914bc2921",
+ "source_hash": "2c5a2c4ecee46377624e9554df9fa65561cf6416",
  "version": 1
 }

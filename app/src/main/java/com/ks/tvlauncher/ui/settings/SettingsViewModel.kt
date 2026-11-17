@@ -11,6 +11,7 @@ import com.ks.tvlauncher.data.apps.AppsRepository
 import com.ks.tvlauncher.data.apps.PinnedAppsRepository
 import com.ks.tvlauncher.data.profile.Profile
 import com.ks.tvlauncher.data.profile.ProfileRepository
+import com.ks.tvlauncher.data.reminders.ReminderScheduler
 import com.ks.tvlauncher.data.settings.GlassIntensity
 import com.ks.tvlauncher.data.settings.LauncherSettings
 import com.ks.tvlauncher.data.settings.SettingsRepository
@@ -66,6 +67,7 @@ class SettingsViewModel(
     private val pinnedAppsRepository: PinnedAppsRepository,
     private val weatherRepository: WeatherRepository,
     private val cityResolver: CityResolver,
+    private val reminderScheduler: ReminderScheduler,
 ) : ViewModel() {
 
     private val detectState = MutableStateFlow(DetectState.IDLE)
@@ -104,6 +106,20 @@ class SettingsViewModel(
     fun setShowDate(value: Boolean) = write { settingsRepository.setShowDate(value) }
     fun setTemperatureUnit(value: TemperatureUnit) = write { settingsRepository.setTemperatureUnit(value) }
     fun setCurrency(code: String) = write { settingsRepository.setCurrency(code) }
+    /** Writes the switch first, so the check that follows reads the new value. */
+    fun setRemindersEnabled(value: Boolean) = write {
+        settingsRepository.setRemindersEnabled(value)
+        reminderScheduler.setEnabled(value)
+    }
+
+    fun setReminderLeadDays(days: Int) = write {
+        settingsRepository.setReminderLeadDays(days)
+        reminderScheduler.onChanged()
+    }
+
+    /** Notifications were allowed again in Android settings: deliver what is due. */
+    fun recheckReminders() = write { reminderScheduler.onChanged() }
+
     fun movePinned(packageName: String, delta: Int) = write { pinnedAppsRepository.move(packageName, delta) }
 
     /** A search result picked: it becomes the manual city. */
@@ -160,6 +176,7 @@ class SettingsViewModel(
                     c.pinnedAppsRepository,
                     c.weatherRepository,
                     c.cityResolver,
+                    c.reminderScheduler,
                 )
             }
         }

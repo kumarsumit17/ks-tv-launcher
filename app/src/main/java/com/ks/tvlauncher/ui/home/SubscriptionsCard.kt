@@ -24,7 +24,8 @@ import com.ks.tvlauncher.ui.theme.KsType
 
 /**
  * Bottom-strip card: monthly and yearly totals, active count and the next renewal, from the
- * same state as the Subscriptions screen. OK opens that screen.
+ * same state as the Subscriptions screen. OK opens that screen. Until the list has been read
+ * it says "Loading…", never "0" or the empty line.
  */
 @Composable
 fun SubscriptionsCard(
@@ -43,14 +44,16 @@ fun SubscriptionsCard(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(
-                    text = stringResource(R.string.subs_card_title) + "  " + summary.activeCount,
+                    text = stringResource(R.string.subs_card_title) + if (state.loaded) "  " + summary.activeCount else "",
                     style = KsType.Label,
                     color = KsColors.TextPrimary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = if (summary.totalCount == 0) {
+                    text = if (!state.loaded) {
+                        stringResource(R.string.apps_loading)
+                    } else if (summary.totalCount == 0) {
                         stringResource(R.string.subs_card_empty)
                     } else {
                         stringResource(
