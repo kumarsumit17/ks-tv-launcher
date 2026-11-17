@@ -21,7 +21,7 @@ class RenewalReminderWorker(context: Context, params: WorkerParameters) : Corout
         val store = container.reminderStore
         val settings = container.settingsRepository.settings.first()
         if (!settings.remindersEnabled) {
-            notifier.cancelAll()
+            notifier.cancelAllReminders()
             store.setNotified(emptySet())
             return Result.success()
         }

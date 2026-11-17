@@ -308,4 +308,32 @@
     </plurals>
     <string name="profile_cancel">Cancel</string>
     <string name="profile_save">Save</string>
+
+    <!-- In-app updates (Stage 6c) -->
+    <string name="update_channel">App updates</string>
+    <string name="update_channel_description">Shown when a new KS TV version is available</string>
+    <string name="update_notification_title">KS TV update available: v%1$s</string>
+    <string name="update_notification_text">Open KS TV › Settings › About to install it.</string>
+    <string name="update_pill">Update available</string>
+    <string name="settings_update_auto">Check for updates automatically</string>
+    <string name="settings_update_check">Check for updates</string>
+    <string name="settings_update_download">Download and install v%1$s</string>
+    <string name="settings_update_install">Install v%1$s</string>
+    <string name="settings_update_cancel">Cancel</string>
+    <string name="settings_update_installing">Installing…</string>
+    <string name="settings_update_available">Available: v%1$s</string>
+    <string name="settings_update_explain">Android will ask you to allow KS to install apps the first time, then to confirm the update. Your names, pins, subscriptions and settings are kept.</string>
+    <string name="settings_update_checking">Checking for updates…</string>
+    <string name="settings_update_up_to_date">KS TV is up to date.</string>
+    <string name="settings_update_waiting">GitHub asked KS to wait. Try again tomorrow.</string>
+    <string name="settings_update_check_failed">Could not check for updates. Check the network and try again.</string>
+    <string name="settings_update_downloading">Downloading… %1$d %%</string>
+    <string name="settings_update_verifying">Checking the download…</string>
+    <string name="settings_update_permission">Allow KS to install apps on the Android page, then come back. Or press Install again.</string>
+    <string name="settings_update_confirm">Confirm the update in Android\'s dialog.</string>
+    <string name="settings_update_download_failed">The download failed. KS was not changed.</string>
+    <string name="settings_update_not_verified">Update could not be verified. Nothing was installed.</string>
+    <string name="settings_update_install_failed">The update could not be installed. KS was not changed.</string>
+    <string name="settings_update_install_cancelled">Update cancelled. KS was not changed.</string>
+    <string name="settings_update_debug">This is a test build. Updates are off: only the released KS TV can update itself.</string>
 </resources>

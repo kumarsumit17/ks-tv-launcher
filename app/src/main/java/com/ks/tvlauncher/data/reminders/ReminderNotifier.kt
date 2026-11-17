@@ -35,7 +35,15 @@ class ReminderNotifier(context: Context) {
 
     fun cancel(subscriptionId: String) = manager.cancel(RenewalReminders.notificationId(subscriptionId))
 
-    fun cancelAll() = manager.cancelAll()
+    /**
+     * Withdraws every renewal reminder, and nothing else: an update notification (its own
+     * channel and tag) stays. Never `cancelAll()`.
+     */
+    fun cancelAllReminders() {
+        manager.activeNotifications
+            .filter { it.tag == null && it.notification.channelId == CHANNEL_ID }
+            .forEach { manager.cancel(it.id) }
+    }
 
     fun post(reminder: DueReminder, currency: String) {
         if (!canNotify()) return

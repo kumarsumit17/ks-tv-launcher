@@ -29,6 +29,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/AnimationSpeed.kt` — `AnimationSpeed`
 - `domain/AppFilter.kt` — `AppFilter`
 - `domain/AppInfo.kt` — `AppCategory`, `AppInfo`
+- `domain/AppUpdates.kt` — `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - `domain/ByteFormatter.kt` — `ByteFormatter`, `UsageLevel`
 - `domain/DeviceNames.kt` — `DeviceNames`
 - `domain/Greeting.kt` — `Greeting`, `GreetingPeriod`
@@ -43,7 +44,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/Wallpapers.kt` — `WallpaperDim`, `WallpaperImage`, `WallpaperMode`, `Wallpapers`
 - `domain/Weather.kt` — `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`, `WeatherCodes`, `WeatherGroup`
 
-Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
+Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpdatesTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
 
 ## Depends on (generated)
 - nothing inside the app
@@ -55,13 +56,14 @@ Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/ByteFo
 - [data.settings](data-settings.md) via `AnimationSpeed`, `Money`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim`, `WallpaperImage` +4
 - [data.subscriptions](data-subscriptions.md) via `Subscription`
 - [data.system](data-system.md) via `DeviceNames`, `InputConnection`, `InputKind`, `TvInput`, `TvInputSource`, `TvInputs`
+- [data.updates](data-updates.md) via `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - [data.wallpaper](data-wallpaper.md) via `Wallpapers`
 - [data.weather](data-weather.md) via `WeatherCity`, `WeatherCityMode`
 - [ui.apps](ui-apps.md) via `AppCategory`, `AppFilter`, `AppInfo`
 - [ui.components](ui-components.md) via `Wallpapers`
 - [ui.controlcenter](ui-controlcenter.md) via `InputConnection`, `TvInput`, `WallpaperMode`, `Wallpapers`
-- [ui.home](ui-home.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +8
-- [ui.settings](ui-settings.md) via `AnimationSpeed`, `AppInfo`, `ProfileNames`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim` +5
+- [ui.home](ui-home.md) via `AppInfo`, `AppUpdates`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money` +9
+- [ui.settings](ui-settings.md) via `AnimationSpeed`, `AppInfo`, `ProfileNames`, `ReleaseInfo`, `RenewalReminders`, `TemperatureUnit` +6
 - [ui.subscriptions](ui-subscriptions.md) via `BillingCycle`, `Money`, `NextRenewal`, `Subscription`, `SubscriptionCalculator`, `SubscriptionCsv` +1
 - [ui.theme](ui-theme.md) via `AnimationSpeed`
 - [ui.widgets](ui-widgets.md) via `ByteFormatter`, `GreetingPeriod`, `UsageLevel`

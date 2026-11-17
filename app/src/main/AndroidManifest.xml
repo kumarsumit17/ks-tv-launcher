@@ -24,6 +24,10 @@
          reminders on in Settings. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <!-- In-app updates (Stage 6c): installs KS's own verified release through PackageInstaller.
+         Android asks the user to allow it and to confirm every install. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <uses-feature
         android:name="android.software.leanback"
         android:required="true" />

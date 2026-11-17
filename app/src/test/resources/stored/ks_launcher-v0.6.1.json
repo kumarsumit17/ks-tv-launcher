@@ -1,0 +1,37 @@
+{
+  "_comment": "Every value the ks_launcher DataStore holds, exactly as v0.6.1 writes it (sample data). Never edit a value: add a new fixture file for a new release. StoredDataCompatibilityTest loads it.",
+  "booleans": {
+    "clock_24_hour": true,
+    "clock_show_date": false,
+    "wallpaper_picture_failed": false,
+    "reduce_motion": true,
+    "show_memory_card": false,
+    "reminders_enabled": true,
+    "tv_name_use_own": true,
+    "profile_setup_done": true
+  },
+  "ints": {
+    "animation_speed_percent": 75,
+    "reminder_lead_days": 5
+  },
+  "strings": {
+    "wallpaper_mode": "CUSTOM",
+    "wallpaper_image": "builtin:3",
+    "wallpaper_dim": "HIGH",
+    "glass_intensity": "LOW",
+    "currency": "USD",
+    "weather_city": "{\"name\":\"Pune\",\"region\":\"Maharashtra\",\"country\":\"India\",\"latitude\":18.52,\"longitude\":73.86}",
+    "weather_city_mode": "AUTO",
+    "temperature_unit": "FAHRENHEIT",
+    "weather_detected_city": "{\"city\":{\"name\":\"Mumbai\",\"region\":\"Maharashtra\",\"country\":\"India\",\"latitude\":19.07,\"longitude\":72.88},\"detectedAtMillis\":1763380000000}",
+    "pinned_apps": "[\"com.netflix.ninja\",\"com.google.android.youtube.tv\",\"com.amazon.amazonvideo.livingroom\"]",
+    "profile_names": "[\"TEST Goldi\",\"TEST Sumi\"]",
+    "profile_active_name": "TEST Sumi",
+    "tv_name_own": "TEST Living room",
+    "subscriptions": "[{\"id\":\"a1\",\"name\":\"TEST Netflix\",\"provider\":\"Netflix\",\"costMinor\":49900,\"cycle\":\"MONTHLY\",\"renewsOn\":\"2026-11-20\",\"active\":true},{\"id\":\"b2\",\"name\":\"TEST Prime\",\"provider\":\"Amazon\",\"costMinor\":149900,\"cycle\":\"YEARLY\",\"renewsOn\":\"2026-03-01\",\"active\":false,\"note\":\"family\"}]",
+    "subscriptions_corrupt_backup": "[{\"id\":"
+  },
+  "stringSets": {
+    "reminders_notified": ["a1@2026-11-20"]
+  }
+}

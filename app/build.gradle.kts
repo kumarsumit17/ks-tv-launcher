@@ -56,6 +56,9 @@ android {
         versionCode = appVersionCode
         versionName = appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // In-app updates (docs/spec/app-updates.md): only the signed release can be updated by
+        // a release, so debug (KS TV Dev) and perf never check.
+        buildConfigField("boolean", "IN_APP_UPDATES", "false")
     }
 
     signingConfigs {
@@ -77,6 +80,7 @@ android {
             applicationIdSuffix = ".dev"
         }
         release {
+            buildConfigField("boolean", "IN_APP_UPDATES", "true")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -93,6 +97,7 @@ android {
         create("perf") {
             initWith(getByName("release"))
             applicationIdSuffix = ".dev"
+            buildConfigField("boolean", "IN_APP_UPDATES", "false")
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
         }

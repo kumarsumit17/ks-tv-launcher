@@ -23,6 +23,12 @@ import com.ks.tvlauncher.data.system.DeviceInfoRepository
 import com.ks.tvlauncher.data.system.DeviceStatsRepository
 import com.ks.tvlauncher.data.system.SystemStatusRepository
 import com.ks.tvlauncher.data.system.TvInputRepository
+import com.ks.tvlauncher.data.updates.GitHubUpdateSource
+import com.ks.tvlauncher.data.updates.UpdateChecker
+import com.ks.tvlauncher.data.updates.UpdateManager
+import com.ks.tvlauncher.data.updates.UpdateNotifier
+import com.ks.tvlauncher.data.updates.UpdateScheduler
+import com.ks.tvlauncher.data.updates.UpdateStore
 import com.ks.tvlauncher.data.wallpaper.WallpaperPictureStore
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.IpWhoIsLocator
@@ -69,6 +75,25 @@ class AppContainer(context: Context) {
     }
     val reminderStore: ReminderStore by lazy { ReminderStore(preferences) }
     val reminderScheduler: ReminderScheduler by lazy { ReminderScheduler(appContext, settingsRepository) }
+
+    // In-app updates (Stage 6c, release builds only): separate store, notifier and work.
+    val updateStore: UpdateStore by lazy { UpdateStore(preferences) }
+    val updateNotifier: UpdateNotifier by lazy { UpdateNotifier(appContext) }
+    val updateChecker: UpdateChecker by lazy {
+        UpdateChecker(
+            source = GitHubUpdateSource(),
+            store = updateStore,
+            installedCode = BuildConfig.VERSION_CODE,
+            today = { java.time.LocalDate.now().toEpochDay() },
+            notify = { release ->
+                updateNotifier.canNotify().also { if (it) updateNotifier.post(release) }
+            },
+        )
+    }
+    val updateScheduler: UpdateScheduler by lazy { UpdateScheduler(appContext, settingsRepository, updateStore) }
+    val updateManager: UpdateManager by lazy {
+        UpdateManager(appContext, appScope, updateChecker, updateStore, updateNotifier)
+    }
 
     /**
      * Loads app banners and icons. A small memory cache (15 % of the app's heap budget) and no

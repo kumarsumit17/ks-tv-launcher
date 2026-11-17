@@ -101,6 +101,7 @@ private enum class MemoryOpener { CARD, CONTROL_CENTER }
 private const val KEY_ROW = "row"
 private const val KEY_WEATHER = "weather"
 private const val KEY_GEAR = "gear"
+private const val KEY_UPDATE = "update"
 private const val KEY_CHIP = "chip"
 private const val KEY_HERO_OPEN = "heroOpen"
 private const val KEY_HERO_UNPIN = "heroUnpin"
@@ -129,6 +130,9 @@ fun HomeScreen(
     reopenEvents: Flow<Unit>,
     actions: HomeActions,
     modifier: Modifier = Modifier,
+    /** A pending update's version: the top bar shows the "Update available" pill. */
+    updateVersion: String? = null,
+    openUpdatesEvents: Flow<Unit> = kotlinx.coroutines.flow.emptyFlow(),
 ) {
     val context = LocalContext.current
     val rowState = rememberLazyListState()
@@ -220,6 +224,21 @@ fun HomeScreen(
             homeMemory.lastKey = KEY_ROW
             withFrameNanos { }
             rowTarget().requestFocusSafely()
+        }
+    }
+    // The update notification was opened: close other overlays and show Settings › About.
+    LaunchedEffect(openUpdatesEvents) {
+        openUpdatesEvents.collect {
+            menuApp = null
+            drawerOpen = false
+            subscriptionsOpen = false
+            controlCenterOpen = false
+            memoryOpener = null
+            if (firstRunProfileOpen) {
+                firstRunProfileOpen = false
+                settingsViewModel.dismissFirstRunProfile()
+            }
+            settingsAt = SettingsSection.ABOUT
         }
     }
     // When the app menu closes, put focus back on the tile it was opened from. This runs after
@@ -357,6 +376,9 @@ fun HomeScreen(
                 onOpenWeather = { settingsAt = SettingsSection.WEATHER },
                 onOpenSettings = { settingsAt = SettingsSection.PROFILE },
                 onLongPress = ::openControlCenter,
+                updateVersion = updateVersion,
+                onOpenUpdate = { settingsAt = SettingsSection.ABOUT },
+                updateModifier = Modifier.trackFocus(homeMemory, KEY_UPDATE),
                 modifier = Modifier.padding(horizontal = KsDimens.OverscanHorizontal),
                 weatherModifier = Modifier.trackFocus(homeMemory, KEY_WEATHER),
                 gearModifier = Modifier.trackFocus(homeMemory, KEY_GEAR),

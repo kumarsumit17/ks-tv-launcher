@@ -16,6 +16,7 @@ Every launcher setting as one `LauncherSettings` flow plus setters (24-hour cloc
 - `animation_speed_percent` (default 50, normalised on read and write) is the Transition speed.
 - `currency` (ISO 4217, default INR) feeds subscriptions and the CSV; picked in Settings.
 - `remindersEnabled` (default false) and `reminderLeadDays` (1-14, default 3, clamped on read and write) drive [data.reminders](data-reminders.md).
+- `autoUpdateCheck` (`update_auto_check`, default true) drives [data.updates](data-updates.md); writing it never touches reminders.
 - `weatherCityMode` defaults to AUTO; `setManualCity` writes the city and MANUAL in one edit; switching back to AUTO keeps the manual city. `weatherCity` is JSON; a damaged value reads as "no city", never an error.
 
 <!-- kb:generated:start -->
@@ -30,6 +31,7 @@ Tests: `data/settings/SettingsRepositoryTest.kt`
 
 ## Used by (generated)
 - [data.reminders](data-reminders.md) via `SettingsRepository`
+- [data.updates](data-updates.md) via `SettingsRepository`
 - [data.weather](data-weather.md) via `LauncherSettings`
 - [root](root.md) via `SettingsRepository`
 - [ui.home](ui-home.md) via `LauncherSettings`, `SettingsRepository`

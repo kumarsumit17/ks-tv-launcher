@@ -8,6 +8,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +35,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
@@ -72,7 +75,7 @@ import com.ks.tvlauncher.ui.theme.KsType
 import kotlinx.coroutines.delay
 
 /** Where Settings opens. */
-enum class SettingsSection { PROFILE, WEATHER }
+enum class SettingsSection { PROFILE, WEATHER, ABOUT }
 
 /** Currencies offered in the picker (ISO 4217). Subscriptions and the CSV use the chosen one. */
 private val CURRENCIES = listOf("INR", "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "SGD", "AED")
@@ -80,6 +83,7 @@ private val CURRENCIES = listOf("INR", "USD", "EUR", "GBP", "JPY", "AUD", "CAD",
 // LazyColumn item indexes, so Settings can open scrolled to a section.
 private const val ITEM_PROFILE = 0
 private const val ITEM_WEATHER = 5
+private const val ITEM_ABOUT = 9
 
 private const val DIALOG_SETTLE_MS = 120L
 
@@ -100,6 +104,7 @@ fun SettingsScreen(
     val profileFocus = remember { FocusRequester() }
     val cityFocus = remember { FocusRequester() }
     val weatherFocus = remember { FocusRequester() }
+    val aboutFocus = remember { FocusRequester() }
     var profileOpen by rememberSaveable { mutableStateOf(false) }
     var cityQuery by rememberSaveable { mutableStateOf("") }
     // The focused control (a result row, a mode button) is about to disappear: move focus to
@@ -125,6 +130,11 @@ fun SettingsScreen(
                 listState.scrollToItem(ITEM_WEATHER)
                 withFrameNanos { }
                 weatherFocus.requestFocusSafely()
+            }
+            SettingsSection.ABOUT -> {
+                listState.scrollToItem(ITEM_ABOUT)
+                withFrameNanos { }
+                aboutFocus.requestFocusSafely()
             }
         }
     }
@@ -158,7 +168,15 @@ fun SettingsScreen(
             Spacer(Modifier.height(12.dp))
             LazyColumn(
                 state = listState,
-                modifier = Modifier.widthIn(max = 640.dp),
+                modifier = Modifier
+                    .widthIn(max = 640.dp)
+                    // Left on the first control of a row stays put: it must never jump to the
+                    // Home button at the top left (OK there would close Settings). Up still
+                    // reaches it.
+                    .focusProperties {
+                        onExit = { if (requestedFocusDirection == FocusDirection.Left) cancelFocusChange() }
+                    }
+                    .focusGroup(),
                 verticalArrangement = Arrangement.spacedBy(18.dp),
                 contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
             ) {
@@ -322,11 +340,18 @@ fun SettingsScreen(
                                     color = KsColors.TextSecondary,
                                 )
                             }
+                            if (BuildConfig.IN_APP_UPDATES) {
+                                UpdateSettings(settings.autoUpdateCheck, viewModel, checkFocus = aboutFocus)
+                            } else {
+                                // A test build is signed with another key: no release can update it.
+                                Text(stringResource(R.string.settings_update_debug), style = KsType.Caption, color = KsColors.TextSecondary)
+                            }
                             ValueRow(
                                 label = stringResource(R.string.cc_android_settings),
                                 value = stringResource(R.string.cc_android_settings_value),
                                 trailing = KsIcons.ArrowUpRight,
                                 onClick = { SystemIntents.openSettings(context, Settings.ACTION_SETTINGS) },
+                                modifier = if (BuildConfig.IN_APP_UPDATES) Modifier else Modifier.focusRequester(aboutFocus),
                             )
                         }
                     }

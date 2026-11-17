@@ -64,3 +64,12 @@ One entry per stage: what changed and why.
 - Kept 2: everything except the user's picture (gradients, glows, the 32×18 dynamic bitmap) is drawn into that layer at a quarter of the screen size and scaled up (`SmoothLayer`), so a wallpaper crossfade frame is about 16× cheaper and looks the same. The picture keeps a full-resolution cached layer; switching between the two kinds still crossfades. The wallpaper blur radius is divided by the same scale. Scenario 1: 42 % → 8 % janky, median 44 → 32 ms.
 - Tried and dropped: folding the dynamic tint and darkening into a colour matrix (no measurable gain after kept 2); switching the wallpaper blur off (no gain).
 - Build: `perf` build type (`initWith(release)`, `.dev` suffix, debug key, KS TV Dev resources from `src/debug/res`, `profileable` from `src/perf`) and `-PcomposeReports` for compiler reports. `scripts/perf.sh` holds the scenarios.
+
+## Stage 6c part 2: In-app updates
+- New module `data.updates` and `domain.AppUpdates` (tag → versionCode like `release.yml`, `isNewer`, ordered `verify`, `ReleaseInfo`). GitHub `releases/latest` behind `UpdateSource`; daily `UpdateCheckWorker` on an unmetered network; pending release in the shared DataStore; 403/429 waits until the next day.
+- About gains the update flow (`UpdateSettings`); Home's top bar shows an "Update available" pill (not frosted, to keep the blur budget) that opens Settings › About, as does the notification (`MainActivity.EXTRA_OPEN_UPDATES`).
+- `BuildConfig.IN_APP_UPDATES`: release true, debug and perf false. Manifest adds `REQUEST_INSTALL_PACKAGES`. The install status receiver is runtime-registered.
+- Rider: `ReminderNotifier.cancelAll()` called `NotificationManager.cancelAll()`, which would also have withdrawn an update notification; now `cancelAllReminders()` cancels only the renewal channel.
+- Rider: Settings' list cancels Left focus exits, so Left from "−" of Transition speed (or any first control) no longer jumps to the Home button.
+- Stored-data fixture `app/src/test/resources/stored/ks_launcher-v0.6.1.json` and `StoredDataCompatibilityTest` read every v0.6.1 value through this build's repositories.
+

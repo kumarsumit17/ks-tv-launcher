@@ -12,7 +12,7 @@ Renewal reminders: `ReminderScheduler` (unique daily WorkManager job + a one-off
 
 ## Rules
 - WorkManager starts on demand: `KsApplication` is the `Configuration.Provider` and the manifest removes `WorkManagerInitializer`. Never touch WorkManager at app start.
-- Off by default. Settings writes the switch before calling the scheduler, so the check reads the new value; switching off cancels the daily job and withdraws every notification.
+- Off by default. Settings writes the switch before calling the scheduler, so the check reads the new value; switching off cancels the daily job and withdraws every renewal notification (`cancelAllReminders`: renewal channel only, never the update notification).
 - `SubscriptionRepository` calls `onChanged` after every write; that re-checks only while reminders are on. Paused, deleted or re-dated subscriptions lose their notification.
 - Cancel before posting (same notification id per subscription). While notifications are blocked, nothing new is marked notified, so the reminder comes once they are allowed.
 - Never promise exact timing in the UI: WorkManager may defer the work.
@@ -32,6 +32,7 @@ Renewal reminders: `ReminderScheduler` (unique daily WorkManager job + a one-off
 - [util](util.md) via `DateTimeFormats`
 
 ## Used by (generated)
+- [data.updates](data-updates.md) via `ReminderNotifier`
 - [root](root.md) via `ReminderScheduler`, `ReminderStore`
 - [ui.settings](ui-settings.md) via `ReminderNotifier`, `ReminderScheduler`
 

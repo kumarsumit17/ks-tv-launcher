@@ -18,6 +18,10 @@ import com.ks.tvlauncher.data.settings.LauncherSettings
 import com.ks.tvlauncher.data.settings.SettingsRepository
 import com.ks.tvlauncher.data.system.DeviceInfo
 import com.ks.tvlauncher.data.system.DeviceInfoRepository
+import com.ks.tvlauncher.data.updates.UpdateManager
+import com.ks.tvlauncher.data.updates.UpdateScheduler
+import com.ks.tvlauncher.data.updates.UpdateState
+import com.ks.tvlauncher.domain.ReleaseInfo
 import com.ks.tvlauncher.data.wallpaper.WallpaperPictureStore
 import com.ks.tvlauncher.data.weather.CityResolver
 import com.ks.tvlauncher.data.weather.ResolvedCity
@@ -89,7 +93,26 @@ class SettingsViewModel(
     private val cityResolver: CityResolver,
     private val reminderScheduler: ReminderScheduler,
     private val wallpaperPictureStore: WallpaperPictureStore,
+    private val updateManager: UpdateManager,
+    private val updateScheduler: UpdateScheduler,
 ) : ViewModel() {
+
+    /** About › updates (release builds only). */
+    val updateState: StateFlow<UpdateState> get() = updateManager.state
+    val updateAvailable: StateFlow<ReleaseInfo?> get() = updateManager.available
+
+    fun checkForUpdates() = updateManager.check()
+    fun startUpdate() = updateManager.start()
+    fun cancelUpdate() = updateManager.cancel()
+    fun installUpdate() = updateManager.install()
+    fun onUpdateResumed() = updateManager.onResumed()
+    fun resetUpdateMessage() = updateManager.reset()
+
+    /** Writes the switch, then starts or stops only the update work (never reminders). */
+    fun setAutoUpdateCheck(value: Boolean) = write {
+        settingsRepository.setAutoUpdateCheck(value)
+        updateScheduler.setEnabled(value)
+    }
 
     private val wallpaperFiles = MutableStateFlow(WallpaperFiles())
 
@@ -246,6 +269,8 @@ class SettingsViewModel(
                     c.cityResolver,
                     c.reminderScheduler,
                     c.wallpaperPictureStore,
+                    c.updateManager,
+                    c.updateScheduler,
                 )
             }
         }

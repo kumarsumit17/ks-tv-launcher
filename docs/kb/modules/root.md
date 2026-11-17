@@ -33,6 +33,7 @@ Tests: `HomeIntentTest.kt`
 - [data.settings](data-settings.md) via `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionDataStore`, `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfoRepository`, `DeviceStatsRepository`, `SystemStatusRepository`, `TvInputRepository`
+- [data.updates](data-updates.md) via `GitHubUpdateSource`, `UpdateChecker`, `UpdateManager`, `UpdateNotifier`, `UpdateScheduler`, `UpdateStore`
 - [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `IpWhoIsLocator`, `OpenMeteoProvider`, `WeatherRepository`
 - [ui.apps](ui-apps.md) via `LocalAppImageLoader`
@@ -41,6 +42,7 @@ Tests: `HomeIntentTest.kt`
 
 ## Used by (generated)
 - [data.reminders](data-reminders.md) via `KsApplication`, `MainActivity`
+- [data.updates](data-updates.md) via `KsApplication`, `MainActivity`
 - [ui.apps](ui-apps.md) via `KsApplication`
 - [ui.controlcenter](ui-controlcenter.md) via `KsApplication`
 - [ui.home](ui-home.md) via `KsApplication`

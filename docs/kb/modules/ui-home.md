@@ -47,9 +47,10 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - [data.settings](data-settings.md) via `LauncherSettings`, `SettingsRepository`
 - [data.subscriptions](data-subscriptions.md) via `SubscriptionRepository`
 - [data.system](data-system.md) via `DeviceInfo`, `DeviceInfoRepository`, `DeviceStats`, `DeviceStatsRepository`
+- [data.updates](data-updates.md) via `UpdateStore`
 - [data.wallpaper](data-wallpaper.md) via `WallpaperPictureStore`
 - [data.weather](data-weather.md) via `CityResolver`, `ResolvedCity`, `WeatherRepository`, `WeatherState`
-- [domain](domain.md) via `AppInfo`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money`, `PinnedApps` +8
+- [domain](domain.md) via `AppInfo`, `AppUpdates`, `DeviceNames`, `Greeting`, `GreetingPeriod`, `Money` +9
 - [root](root.md) via `KsApplication`
 - [ui.apps](ui-apps.md) via `AppArtworkImage`, `AppIntents`, `AppMenu`, `AppMenuState`, `AppsDrawer`, `AppsDrawerViewModel`
 - [ui.components](ui-components.md) via `AppTile`, `BuiltInWallpaper`, `FocusMemory`, `FrostSource`, `GlassButton`, `GlassCard` +6

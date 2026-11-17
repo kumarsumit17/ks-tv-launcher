@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Text
 import com.ks.tvlauncher.R
 import com.ks.tvlauncher.ui.components.GlassIconButton
+import com.ks.tvlauncher.ui.components.GlassPill
+import com.ks.tvlauncher.ui.components.PillTone
 import com.ks.tvlauncher.data.weather.WeatherState
 import com.ks.tvlauncher.domain.TemperatureUnit
 import com.ks.tvlauncher.ui.components.glass
@@ -39,6 +41,10 @@ fun HomeTopBar(
     modifier: Modifier = Modifier,
     weatherModifier: Modifier = Modifier,
     gearModifier: Modifier = Modifier,
+    /** Pending update's version; null hides the pill. */
+    updateVersion: String? = null,
+    onOpenUpdate: () -> Unit = {},
+    updateModifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.fillMaxWidth().focusGroup(),
@@ -61,6 +67,19 @@ fun HomeTopBar(
             Text(shortDate, style = KsType.Body, color = KsColors.TextSecondary)
         }
         Spacer(Modifier.width(14.dp))
+        if (updateVersion != null) {
+            // TV notifications are easy to miss: OK opens Settings › About.
+            GlassPill(
+                text = stringResource(R.string.update_pill),
+                icon = KsIcons.ArrowUpRight,
+                // Not frosted: blur stays limited to the weather pill and dialogs.
+                tone = PillTone.Success,
+                onClick = onOpenUpdate,
+                onLongClick = onLongPress,
+                modifier = updateModifier,
+            )
+            Spacer(Modifier.width(10.dp))
+        }
         WeatherPill(
             state = weather,
             unit = temperatureUnit,

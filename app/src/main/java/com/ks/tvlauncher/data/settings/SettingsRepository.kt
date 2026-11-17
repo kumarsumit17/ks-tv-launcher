@@ -55,6 +55,8 @@ data class LauncherSettings(
     val remindersEnabled: Boolean = false,
     /** Days before a renewal to notify, 1-14. */
     val reminderLeadDays: Int = RenewalReminders.DEFAULT_LEAD_DAYS,
+    /** "Check for updates automatically" (release builds only), on by default. */
+    val autoUpdateCheck: Boolean = true,
 )
 
 /** Launcher preferences, stored on the device only. */
@@ -89,6 +91,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
                 reminderLeadDays = RenewalReminders.clampLeadDays(
                     prefs[REMINDER_LEAD_DAYS] ?: RenewalReminders.DEFAULT_LEAD_DAYS,
                 ),
+                autoUpdateCheck = prefs[AUTO_UPDATE_CHECK] ?: true,
             )
         }
         .distinctUntilChanged()
@@ -195,6 +198,10 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[REMINDER_LEAD_DAYS] = RenewalReminders.clampLeadDays(days) }
     }
 
+    suspend fun setAutoUpdateCheck(value: Boolean) {
+        store.edit { it[AUTO_UPDATE_CHECK] = value }
+    }
+
     /** A damaged value counts as "no city", so the user can simply pick one again. */
     private fun decodeCity(raw: String?): WeatherCity? {
         if (raw.isNullOrEmpty()) return null
@@ -226,5 +233,6 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val TEMPERATURE_UNIT = stringPreferencesKey("temperature_unit")
         val REMINDERS_ENABLED = booleanPreferencesKey("reminders_enabled")
         val REMINDER_LEAD_DAYS = intPreferencesKey("reminder_lead_days")
+        val AUTO_UPDATE_CHECK = booleanPreferencesKey("update_auto_check")
     }
 }

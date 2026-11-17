@@ -1,5 +1,8 @@
 package com.ks.tvlauncher.ui.home
 
+import com.ks.tvlauncher.BuildConfig
+import com.ks.tvlauncher.data.updates.UpdateStore
+import com.ks.tvlauncher.domain.AppUpdates
 import android.content.Context
 import android.content.Intent
 import androidx.compose.runtime.Immutable
@@ -118,7 +121,31 @@ class HomeViewModel(
     weatherRepository: WeatherRepository,
     cityResolver: CityResolver,
     private val deviceStatsRepository: DeviceStatsRepository,
+    updateStore: UpdateStore,
 ) : ViewModel() {
+
+    /**
+     * The pending update's version for the top-bar pill, or null. Release builds only; a
+     * release that is already installed never shows.
+     */
+    val updateVersion: StateFlow<String?> = (
+        if (BuildConfig.IN_APP_UPDATES) {
+            updateStore.available.map { release ->
+                release?.takeIf { AppUpdates.isNewer(it.versionCode, BuildConfig.VERSION_CODE) }?.versionName
+            }
+        } else {
+            flowOf(null)
+        }
+        ).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    private val updateOpens = Channel<Unit>(Channel.CONFLATED)
+
+    /** Fires when the update notification was opened: Home shows Settings › About. */
+    val openUpdatesEvents: Flow<Unit> = updateOpens.receiveAsFlow()
+
+    fun onOpenUpdates() {
+        updateOpens.trySend(Unit)
+    }
 
     /** The Home card's numbers: the same state the Subscriptions screen shows. */
     val subscriptions: StateFlow<SubscriptionsUiState> =
@@ -365,6 +392,7 @@ class HomeViewModel(
                     weatherRepository = container.weatherRepository,
                     cityResolver = container.cityResolver,
                     deviceStatsRepository = container.deviceStatsRepository,
+                    updateStore = container.updateStore,
                 )
             }
         }

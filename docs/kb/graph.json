@@ -63,6 +63,24 @@
     "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
      "TvInputRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+     "UpdateChecker"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+     "UpdateManager"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
+     "UpdateNotifier"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
+     "UpdateScheduler"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+     "GitHubUpdateSource"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
@@ -85,7 +103,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 42,
+     "line": 48,
      "name": "AppContainer",
      "private": false
     }
@@ -134,7 +152,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 23,
+     "line": 26,
      "name": "MainActivity",
      "private": false
     }
@@ -395,7 +413,7 @@
     },
     {
      "kind": "class",
-     "line": 61,
+     "line": 63,
      "name": "SettingsRepository",
      "private": false
     }
@@ -540,6 +558,187 @@
      "kind": "class",
      "line": 26,
      "name": "TvInputRepository",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+     "RateLimitedException",
+     "UpdateSource"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates",
+     "ReleaseInfo"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 8,
+     "name": "CheckResult",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 20,
+     "name": "UpdateChecker",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+     "CheckResult",
+     "UpdateChecker"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
+     "UpdateNotifier"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+     "GitHubUpdateSource"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates",
+     "ReleaseInfo",
+     "UpdateVerdict"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 42,
+     "name": "UpdateState",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 57,
+     "name": "UpdateFailure",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 64,
+     "name": "UpdateManager",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
+     "MainActivity"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+     "ReminderNotifier"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates",
+     "ReleaseInfo"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 19,
+     "name": "UpdateNotifier",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+     "KsApplication"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "SettingsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 22,
+     "name": "UpdateScheduler",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 61,
+     "name": "UpdateCheckWorker",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates",
+     "ReleaseInfo"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "interface",
+     "line": 16,
+     "name": "UpdateSource",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 23,
+     "name": "RateLimitedException",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 29,
+     "name": "GitHubUpdateSource",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "ReleaseInfo"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 25,
+     "name": "UpdateStore",
      "private": false
     }
    ]
@@ -740,6 +939,32 @@
      "kind": "class",
      "line": 7,
      "name": "AppInfo",
+     "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": {
+   "deps": {},
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "ReleaseInfo",
+     "private": false
+    },
+    {
+     "kind": "class",
+     "line": 17,
+     "name": "UpdateVerdict",
+     "private": false
+    },
+    {
+     "kind": "object",
+     "line": 20,
+     "name": "AppUpdates",
      "private": false
     }
    ]
@@ -2306,54 +2531,60 @@
     {
      "kind": "val",
      "line": 104,
-     "name": "KEY_CHIP",
+     "name": "KEY_UPDATE",
      "private": true
     },
     {
      "kind": "val",
      "line": 105,
-     "name": "KEY_HERO_OPEN",
+     "name": "KEY_CHIP",
      "private": true
     },
     {
      "kind": "val",
      "line": 106,
-     "name": "KEY_HERO_UNPIN",
+     "name": "KEY_HERO_OPEN",
      "private": true
     },
     {
      "kind": "val",
      "line": 107,
-     "name": "KEY_ALL_APPS",
+     "name": "KEY_HERO_UNPIN",
      "private": true
     },
     {
      "kind": "val",
      "line": 108,
-     "name": "KEY_SUBS",
+     "name": "KEY_ALL_APPS",
      "private": true
     },
     {
      "kind": "val",
      "line": 109,
-     "name": "KEY_MEMORY",
+     "name": "KEY_SUBS",
      "private": true
     },
     {
      "kind": "val",
      "line": 110,
+     "name": "KEY_MEMORY",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 111,
      "name": "KEY_CC",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 113,
+     "line": 114,
      "name": "trackFocus",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 124,
+     "line": 125,
      "name": "HomeScreen",
      "private": false
     }
@@ -2372,6 +2603,10 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassIconButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+     "GlassPill",
+     "PillTone"
     ],
     "app/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": [
      "WeatherPill"
@@ -2395,7 +2630,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 31,
+     "line": 33,
      "name": "HomeTopBar",
      "private": false
     }
@@ -2434,6 +2669,9 @@
      "DeviceStats",
      "DeviceStatsRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
@@ -2447,6 +2685,9 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
      "DeviceNames"
@@ -2492,19 +2733,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 68,
+     "line": 71,
      "name": "HomeMessage",
      "private": false
     },
     {
      "kind": "class",
-     "line": 73,
+     "line": 76,
      "name": "HomeUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 108,
+     "line": 111,
      "name": "HomeViewModel",
      "private": false
     }
@@ -2789,6 +3030,9 @@
      "SettingsUiState",
      "SettingsViewModel"
     ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": [
+     "UpdateSettings"
+    ],
     "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": [
      "WallpaperSettings"
     ],
@@ -2808,61 +3052,67 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 75,
+     "line": 78,
      "name": "SettingsSection",
      "private": false
     },
     {
      "kind": "val",
-     "line": 78,
+     "line": 81,
      "name": "CURRENCIES",
      "private": true
     },
     {
      "kind": "val",
-     "line": 81,
+     "line": 84,
      "name": "ITEM_PROFILE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 82,
+     "line": 85,
      "name": "ITEM_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 84,
+     "line": 86,
+     "name": "ITEM_ABOUT",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 88,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 91,
+     "line": 95,
      "name": "SettingsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 354,
+     "line": 379,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 474,
+     "line": 499,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 547,
+     "line": 572,
      "name": "ChoiceRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 556,
+     "line": 581,
      "name": "ValueRow",
      "private": false
     }
@@ -2895,6 +3145,13 @@
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+     "UpdateManager",
+     "UpdateState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
+     "UpdateScheduler"
+    ],
     "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
@@ -2907,6 +3164,9 @@
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "ReleaseInfo"
     ],
     "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
@@ -2925,33 +3185,73 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 44,
+     "line": 48,
      "name": "CitySearch",
      "private": false
     },
     {
      "kind": "class",
-     "line": 53,
+     "line": 57,
      "name": "WallpaperFiles",
      "private": false
     },
     {
      "kind": "class",
-     "line": 64,
+     "line": 68,
      "name": "DetectState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 67,
+     "line": 71,
      "name": "SettingsUiState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 82,
+     "line": 86,
      "name": "SettingsViewModel",
      "private": false
+    }
+   ]
+  },
+  "app/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+     "UpdateFailure",
+     "UpdateState"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+     "GlassButton"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+     "GlassToggle"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+     "SettingsViewModel"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+     "KsColors"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+     "KsType"
+    ]
+   },
+   "module": "ui.settings",
+   "package": "com.ks.tvlauncher.ui.settings",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "fun",
+     "line": 32,
+     "name": "UpdateSettings",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 79,
+     "name": "statusText",
+     "private": true
     }
    ]
   },
@@ -3837,6 +4137,107 @@
     }
    ]
   },
+  "app/src/test/java/com/ks/tvlauncher/data/updates/GitHubReleaseParsingTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+     "GitHubUpdateSource"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 8,
+     "name": "GitHubReleaseParsingTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/updates/StoredDataCompatibilityTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+     "PinnedAppsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+     "ProfileRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
+     "ReminderStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+     "GlassIntensity",
+     "SettingsRepository"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
+     "SubscriptionDataStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+     "CityLocator"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+     "CityResolver"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+     "BillingCycle",
+     "Subscription"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+     "WallpaperDim",
+     "WallpaperImage",
+     "WallpaperMode"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+     "TemperatureUnit",
+     "WeatherCity",
+     "WeatherCityMode"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 53,
+     "name": "StoredDataCompatibilityTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/data/updates/UpdateCheckerTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+     "CheckResult",
+     "UpdateChecker"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+     "RateLimitedException",
+     "UpdateSource"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+     "UpdateStore"
+    ],
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "ReleaseInfo"
+    ]
+   },
+   "module": "data.updates",
+   "package": "com.ks.tvlauncher.data.updates",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 21,
+     "name": "UpdateCheckerTest",
+     "private": false
+    }
+   ]
+  },
   "app/src/test/java/com/ks/tvlauncher/data/weather/CityResolverTest.kt": {
    "deps": {
     "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
@@ -3973,6 +4374,25 @@
      "kind": "class",
      "line": 6,
      "name": "AppFilterTest",
+     "private": false
+    }
+   ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/domain/AppUpdatesTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+     "AppUpdates",
+     "UpdateVerdict"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 9,
+     "name": "AppUpdatesTest",
      "private": false
     }
    ]
@@ -4236,6 +4656,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "fe5e75186802c41e563eda74717edeeec9ea6ea1",
+ "source_hash": "17762d00e892f54fa916c9a50de28d4478265d34",
  "version": 1
 }

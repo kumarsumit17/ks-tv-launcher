@@ -315,3 +315,24 @@ Run by Claude Code over adb. The real KS TV was not opened, changed or measured 
 - Note · Plain's p50 sits on a frame-time boundary: runs give 23–24 or 36 ms with the same janky %, p90 and p95.
 - Not possible on this TV · a picked picture (Custom with your own image): the TV has no file picker. That path keeps full resolution and the same cached layer.
 - Test data in KS TV Dev only: 4 extra pins (Apple TV, Castle for TV, Hoichoi, Jellyfin); wallpaper and glass changed for measuring and set back to Dynamic and Medium.
+
+## Stage 6c part 2: In-app updates (KS TV Dev for the riders and the debug note; release builds for the update itself)
+
+### In KS TV Dev (debug)
+- [x] Settings › About: version line, then "This is a test build. Updates are off…", then Android settings. No update switch or buttons. No network request to api.github.com (`adb logcat`, Wi-Fi traffic).
+- [x] No "Update available" pill on Home.
+- [x] Rider, focus: Settings › Look and motion › Transition speed: Left from "−" stays on "−". Same on the first chip of Glass, Clock, °C/°F, the first currency, the Wallpaper mode chips, "Move left" of a pinned app, and the Weather buttons. Up from the first row still reaches Home, and OK there closes Settings.
+- [x] Rider, reminders: with a TEST subscription due inside the lead time and a reminder posted, turning renewal reminders off withdraws the reminder. (An update notification cannot be posted from the dev app; the rule is covered by `cancelAllReminders` filtering the renewal channel.)
+
+Result 2026-11-17, KS TV Dev 0.6.1 (17) debug, owner's TV (KTC Lumio Vision, Android 14): About shows the test-build note and no update controls; no pill on Home. Left held on "−" of Transition speed (3 presses), "Follow TV", "Detect again", Netflix "Move left" and "INR"; Up from the Profile row reached Home. TEST Netflix (renews today) gave a reminder on the `renewals` channel; turning reminders off withdrew it (0 KS Dev notifications left). TEST item deleted, reminders left off as found. Not checked: network traffic to api.github.com (no capture tool on the TV).
+
+### On a release build (needs release N on the TV and N+1 published)
+- [ ] About shows "Check for updates automatically" (on) and "Check for updates". With no newer release: "KS TV is up to date."
+- [ ] With Wi-Fi off: "Could not check for updates…"; KS keeps working.
+- [ ] After N+1 is published: "Available: vN+1", the explanation line and the release notes; Home shows the "Update available" pill; OK on the pill opens Settings at About with focus on "Check for updates".
+- [ ] Daily check (or WorkManager forced run) posts "KS TV update available: vX.Y.Z" on the "App updates" channel, once per version; opening it shows Settings › About.
+- [ ] Turning renewal reminders off leaves the update notification in place; turning automatic checks off leaves reminders working.
+- [ ] Download and install: progress in %, Cancel stops it and deletes the file (`run-as` not possible on release: check "Downloading" disappears and nothing installs).
+- [ ] First time: Android's "Install unknown apps" page for KS opens; after allowing and pressing Back the install continues; Android asks to confirm; Cancel there says "Update cancelled. KS was not changed."
+- [ ] Confirm: KS updates in place. After reopening, About shows vN+1 and no pill. Names, active name, TV name, pins and order, subscriptions and totals, weather mode and city, wallpaper and settings are unchanged (record date and versions).
+
