@@ -203,3 +203,20 @@ Use sample data whose names start with `TEST ` and remove it afterwards ([verifi
 Record each run here: date, build version, pass or the fault found.
 - [ ] Memory card on/off, glass intensity (Low/Medium/High), Reduce motion, currency, pinned order, Screensaver, weather with Wi-Fi off.
 - [ ] Every earlier stage's checks above, run against `com.ks.tvlauncher`.
+
+#### 2026-11-17 · v0.5.0 (500), release, KTC Lumio Vision (Android 14, API 34)
+Run by Claude Code over adb. Every setting was noted first, changed alone and restored before the next.
+- Pass · cold start after force-stop: 616, 606, 593 ms (608 ms later in the run). Debug was about 6.3 s.
+- Pass · memory and CPU: 57.8 MB PSS on Home (debug 75 MB); 0 % CPU on idle Home.
+- Pass · Memory card (On): Off hides the card and the Subscriptions card widens; On brings it back. Focus returns to the gear.
+- Pass · glass intensity (Medium): over the app menu, Low is clear (tiles show through sharply), High is frosted. Restored to Medium. The pill over the flat wallpaper looks the same at every level, as expected. Note: entering the row focuses Medium even when Low is selected.
+- Pass · Reduce motion (Off): the same four pinned-row moves rendered 28 frames with it on and 111 with it off (`dumpsys gfxinfo`). Restored to Off.
+- Pass · currency (INR): CAD shows CA$0 on the Subscriptions screen. Restored to INR.
+- Pass · pinned order: moving Castle for TV left put it before YouTube on Home; moved back to the original order (Netflix, Prime Video, JioHotstar, YouTube, Castle for TV, Jellyfin).
+- **Fault** · Screensaver: "Start now" opened the main Android Settings. This TV has no `com.android.systemui/.Somnambulator`, no `android.settings.DREAM_SETTINGS` page and no screensaver set (`screensaver_components` is null), so both routes fail and the code falls back to the main settings page. The tile still says "Start now". Control Center keeps focus on the tile on return.
+- Pass · subscriptions save and reload: "TEST Netflix", ₹500 monthly, due today, still there after `am force-stop` and a cold start; then deleted.
+- Pass · reminders (Off): On, with no prompt (`POST_NOTIFICATIONS` granted); "TEST Netflix renews today · ₹500 · Monthly · 17 Nov 2026" was posted and one daily job registered (`JOB androidx.work.systemjobscheduler:u0a152/0`). Off removed the notification and the job. Restored to Off.
+- Pass · weather: the automatic city (Bengaluru, °C) loads on the release build, and the pill updated from 21° to 22° during the run.
+- Pass · weather with Wi-Fi off (run by the owner): the pill kept the last reading, dimmed, and the rest of the app worked normally. With Wi-Fi back on, the weather refreshed within about 5 minutes.
+- Not run · every earlier stage's full checklist on the release build: only the items above were run.
+- Owner data unchanged: names, subscriptions (empty) and pins left as they were. The `TEST ` item is removed.
