@@ -1,5 +1,6 @@
 # 2026-11-21
 
+* **Update**: [Dependencies](dependencies.md): `ks-utility` added as a git submodule and Gradle included build for shared generic utilities.
 * **Update**: Specs moved from `docs/spec/` to `specs/` in the repository root and converted to an Open Knowledge Format (OKF) v0.2 bundle: `type` changed to Specification, Policy, Plan, Playbook or Reference, `description` and `tags` added, and `index.md` and this log brought to OKF v0.2. The `docs/SPEC.md` and `docs/architecture.md` redirects were removed.
 * **Creation**: [Dependencies](dependencies.md) added: third-party dependencies are kept to the minimum.
 

@@ -17,7 +17,7 @@ The spec lives in [specs/](specs/index.md). The app is built in stages; see [spe
 Requirements: JDK 17 and the Android SDK (platform 37, build-tools 36). Android Studio installs both; so do the command-line tools.
 
 ```bash
-git clone <repo-url> ks-tv-launcher
+git clone --recurse-submodules <repo-url> ks-tv-launcher
 cd ks-tv-launcher
 ./gradlew assembleDebug
 ```

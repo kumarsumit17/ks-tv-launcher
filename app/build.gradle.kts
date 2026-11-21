@@ -141,6 +141,9 @@ dependencies {
     // With the serialization compiler plugin for @Serializable models (subscriptions).
     implementation(libs.kotlinx.serialization.json)
 
+    // Generic utilities shared across KS-Suite apps (git submodule ks-utility/).
+    implementation(libs.ks.utility)
+
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.ext.junit)

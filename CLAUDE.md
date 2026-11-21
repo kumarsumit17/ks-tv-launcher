@@ -26,6 +26,20 @@ Part of KS-Suite. Ad-free, Apple TV–style Android TV / Google TV launcher, run
 - From Stage 6: test only with the KS TV Dev app (`com.ks.tvlauncher.dev`). Never uninstall, clear or debug-install over the real app `com.ks.tvlauncher` (`specs/dev-workflow.md`).
 - AGP 9 has built-in Kotlin: don't apply `org.jetbrains.kotlin.android`.
 
+## Platform folders
+- Every KS-Suite app repo has the same top-level platform folders: `tv/google-tv/`, `desktop/mac/`, `desktop/windows/`, `mobile/android/` and `mobile/ios/`. All five exist in every app repo, whether or not the app supports that platform yet.
+- This app targets `tv/google-tv`. The other folders are empty on purpose (a `.gitkeep` only): they mark where that platform's code would go, not missing work. Do not add code for a platform that is not a target without the owner asking.
+- Three layers, narrowest first: a platform folder holds code for one platform of this app; `shared/` in the repository root holds code used by two or more platforms of this app, written once and never copied between platform folders; `ks-utility` holds generic code used by several apps. This app has one target, so it has no `shared/` folder.
+- The app's code is still in `app/` with the Gradle build in the repository root. Moving it into `tv/google-tv/` is a separate, planned change: it touches the Gradle settings, the release workflow paths and `scripts/kb.py`, so it is done as its own stage and tested on the TV.
+- Never rename, merge or remove these folders, and never add another top-level platform folder; the layout is a suite-wide rule.
+
+## Shared code (`ks-utility`)
+- Generic utility code shared across the KS-Suite apps lives in the `ks-utility` repository. It is a dependency of this app: a git submodule at `ks-utility/`, pinned to a commit, included with `includeBuild("ks-utility/kotlin")` and used as `libs.ks.utility` (`com.ks:utility`). After cloning, run `git submodule update --init`.
+- Before writing a generic helper (one that knows nothing about this app), look in `ks-utility/kotlin` and use it from there. If it is missing and another app would need it too, add it in the `ks-utility` repository, not here. Application-specific logic stays in this repo.
+- Never edit files under `ks-utility/` from this repo. Change them in the `ks-utility` repository, then move the pin: `git -C ks-utility fetch && git -C ks-utility checkout <commit>`, and commit the changed `ks-utility` entry.
+- Keep the Kotlin version in `ks-utility/kotlin/gradle/libs.versions.toml` in step with `kotlin` in this repo's catalog.
+- CI checks out with `submodules: true` (`.github/workflows/release.yml`).
+
 ## Commands
 ```bash
 ./gradlew assembleDebug            # build
