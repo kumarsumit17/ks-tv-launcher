@@ -2,7 +2,7 @@
 type: Module
 title: data.reminders
 package: com.ks.tvlauncher.data.reminders
-spec: [../../spec/reminders.md, ../../spec/performance.md]
+spec: [../../../specs/reminders.md, ../../../specs/performance.md]
 ---
 
 # data.reminders
@@ -38,6 +38,6 @@ Renewal reminders: `ReminderScheduler` (unique daily WorkManager job + a one-off
 - [ui.settings](ui-settings.md) via `ReminderNotifier`, `ReminderScheduler`
 
 ## Spec
-- [reminders](../../spec/reminders.md), [performance](../../spec/performance.md)
+- [reminders](../../../specs/reminders.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

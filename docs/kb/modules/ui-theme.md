@@ -2,7 +2,7 @@
 type: Module
 title: ui.theme
 package: com.ks.tvlauncher.ui.theme
-spec: [../../spec/design-system.md, ../../spec/performance.md]
+spec: [../../../specs/design-system.md, ../../../specs/performance.md]
 ---
 
 # ui.theme
@@ -40,6 +40,6 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 - [ui.widgets](ui-widgets.md) via `KsColors`, `KsShapes`, `KsType`
 
 ## Spec
-- [design-system](../../spec/design-system.md), [performance](../../spec/performance.md)
+- [design-system](../../../specs/design-system.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

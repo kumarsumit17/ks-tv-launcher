@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- perf build only (docs/spec/smoothness.md): lets Perfetto/atrace trace the app from adb.
+<!-- perf build only (specs/smoothness.md): lets Perfetto/atrace trace the app from adb.
      Not debuggable; never in release builds. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>

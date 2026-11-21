@@ -2,7 +2,7 @@
 type: Module
 title: util
 package: com.ks.tvlauncher.util
-spec: [../../spec/home-screen.md, ../../spec/performance.md]
+spec: [../../../specs/home-screen.md, ../../../specs/performance.md]
 ---
 
 # util
@@ -28,6 +28,6 @@ Small helpers: `minuteTicker` (flow on `ACTION_TIME_TICK`) and `DateTimeFormats`
 - [ui.subscriptions](ui-subscriptions.md) via `DateTimeFormats`, `minuteTicker`
 
 ## Spec
-- [home-screen](../../spec/home-screen.md), [performance](../../spec/performance.md)
+- [home-screen](../../../specs/home-screen.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

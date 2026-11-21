@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * App mode (docs/spec/app-mode.md): KS is listed among TV apps and must never be offered as
+ * App mode (specs/app-mode.md): KS is listed among TV apps and must never be offered as
  * the Home app. Fails if LEANBACK_LAUNCHER is removed or HOME is added to the manifest.
  */
 @RunWith(AndroidJUnit4::class)

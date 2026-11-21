@@ -41,7 +41,7 @@ One entry per stage: what changed and why.
 
 ## Stage 6: release checklist
 - Debug builds are the separate app KS TV Dev: `applicationIdSuffix = ".dev"` in `app/build.gradle.kts`, label "KS TV Dev" and an amber banner and icon from `src/debug/res`. The namespace and code are unchanged; nothing in the code hardcodes the package (the app list hides `context.packageName`, WorkManager's startup provider uses `${applicationId}`).
-- Noted for 6c: `ReminderNotifier.cancelAll()` uses `NotificationManager.cancelAll()`, which would also clear an update notification; [app-updates](../spec/app-updates.md) now requires reminders off to cancel only reminder notifications.
+- Noted for 6c: `ReminderNotifier.cancelAll()` uses `NotificationManager.cancelAll()`, which would also clear an update notification; [app-updates](../../specs/app-updates.md) now requires reminders off to cancel only reminder notifications.
 
 ## Stage 6a: Inputs
 - `domain.TvInputs` (pure filter, label and order rules, `TvInputsTest`) and `data.system.TvInputRepository` (`TvInputManager` list + `TvInputCallback` while collected, passthrough switch intent). `ControlCenterViewModel` exposes `inputs`.

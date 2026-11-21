@@ -2,7 +2,7 @@
 type: Module
 title: ui.home
 package: com.ks.tvlauncher.ui.home
-spec: [../../spec/home-screen.md, ../../spec/focus-navigation.md, ../../spec/dynamic-wallpaper.md, ../../spec/custom-wallpaper.md, ../../spec/app-mode.md]
+spec: [../../../specs/home-screen.md, ../../../specs/focus-navigation.md, ../../../specs/dynamic-wallpaper.md, ../../../specs/custom-wallpaper.md, ../../../specs/app-mode.md]
 ---
 
 # ui.home
@@ -67,6 +67,6 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - [root](root.md) via `HomeActions`, `HomeScreen`, `HomeViewModel`
 
 ## Spec
-- [home-screen](../../spec/home-screen.md), [focus-navigation](../../spec/focus-navigation.md), [dynamic-wallpaper](../../spec/dynamic-wallpaper.md), [custom-wallpaper](../../spec/custom-wallpaper.md), [app-mode](../../spec/app-mode.md)
+- [home-screen](../../../specs/home-screen.md), [focus-navigation](../../../specs/focus-navigation.md), [dynamic-wallpaper](../../../specs/dynamic-wallpaper.md), [custom-wallpaper](../../../specs/custom-wallpaper.md), [app-mode](../../../specs/app-mode.md)
 
 <!-- kb:generated:end -->

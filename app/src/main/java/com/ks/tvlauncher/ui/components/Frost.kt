@@ -22,7 +22,7 @@ private val LocalFrostState = staticCompositionLocalOf<HazeState?> { null }
 /**
  * Hosts a screen whose [background] can be blurred by frosted surfaces in [content].
  *
- * Blur budget (docs/spec/design-system.md): only still surfaces are frosted — the weather
+ * Blur budget (specs/design-system.md): only still surfaces are frosted — the weather
  * pill, dialogs and side panels. Tiles and cards in rows and grids never are. When the glass
  * style has blur off (below API 31, or Low intensity) the background is not even registered
  * as a source, so Haze does no work at all.

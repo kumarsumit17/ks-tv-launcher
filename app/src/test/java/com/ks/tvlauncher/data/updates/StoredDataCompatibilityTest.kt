@@ -47,7 +47,7 @@ import java.io.IOException
 
 /**
  * In-app updates keep data only if the new release reads what the previous one wrote
- * (docs/spec/app-updates.md). Loads `stored/ks_launcher-v0.6.1.json` into a DataStore and
+ * (specs/app-updates.md). Loads `stored/ks_launcher-v0.6.1.json` into a DataStore and
  * reads it back through every repository of this build.
  */
 class StoredDataCompatibilityTest {

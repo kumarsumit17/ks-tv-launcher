@@ -16,7 +16,7 @@ data class ReleaseInfo(
 /** Why a downloaded file is (not) safe to install. */
 enum class UpdateVerdict { OK, WRONG_SIZE, NOT_AN_APK, WRONG_PACKAGE, WRONG_SIGNER, NOT_NEWER }
 
-/** Pure rules for in-app updates (docs/spec/app-updates.md). */
+/** Pure rules for in-app updates (specs/app-updates.md). */
 object AppUpdates {
     private val TAG = Regex("""^v?(\d{1,5})\.(\d{1,2})\.(\d{1,2})(-[0-9A-Za-z.-]+)?$""")
 

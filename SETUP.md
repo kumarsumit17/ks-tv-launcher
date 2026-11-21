@@ -1,6 +1,6 @@
 # Setting up KS on your TV
 
-KS - TV Launcher is a normal app. It never becomes, and never offers to become, your TV's Home launcher, so **keep your TV's current launcher as Home** and open KS from it. Details: [docs/spec/app-mode.md](docs/spec/app-mode.md).
+KS - TV Launcher is a normal app. It never becomes, and never offers to become, your TV's Home launcher, so **keep your TV's current launcher as Home** and open KS from it. Details: [specs/app-mode.md](specs/app-mode.md).
 
 ## 1. Turn on ADB on the TV
 1. Android settings › System › About › tap **Android TV OS build** seven times to unlock Developer options.

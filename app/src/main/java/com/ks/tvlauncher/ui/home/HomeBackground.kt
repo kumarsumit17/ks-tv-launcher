@@ -38,7 +38,7 @@ import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.LocalGlassStyle
 import com.ks.tvlauncher.ui.theme.LocalMotion
 
-/** What Home draws behind everything, from the wallpaper mode (docs/spec/custom-wallpaper.md). */
+/** What Home draws behind everything, from the wallpaper mode (specs/custom-wallpaper.md). */
 sealed interface HomeWallpaper {
     /** The navy gradient with its soft accent glow. */
     data object Plain : HomeWallpaper
@@ -62,7 +62,7 @@ sealed interface HomeWallpaper {
  *    - custom: a built-in wallpaper or the user's picture, darkened by [dim];
  * 3. the dark left and bottom overlays that keep text readable.
  *
- * Cost (measured on a 32-bit TV, docs/spec/smoothness.md): these full-screen layers were
+ * Cost (measured on a 32-bit TV, specs/smoothness.md): these full-screen layers were
  * redrawn on every frame, even while only a tile's focus animated, and that GPU fill was most
  * of each frame. So the whole stack is drawn into one cached offscreen layer that is only
  * redrawn while the wallpaper itself changes. Everything except the user's picture is smooth

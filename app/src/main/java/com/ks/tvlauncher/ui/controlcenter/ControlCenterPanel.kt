@@ -194,7 +194,7 @@ fun ControlCenterPanel(
                         onClick = { SystemIntents.openSettings(context, Settings.ACTION_DISPLAY_SETTINGS) },
                     ),
                 )
-                // Hidden when the TV has no passthrough inputs (docs/spec/inputs.md).
+                // Hidden when the TV has no passthrough inputs (specs/inputs.md).
                 if (!inputs.isNullOrEmpty()) {
                     add(
                         TileSpec(

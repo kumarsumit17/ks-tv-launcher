@@ -2,7 +2,7 @@
 type: Module
 title: domain
 package: com.ks.tvlauncher.domain
-spec: [../../spec/subscriptions.md, ../../spec/greeting-widget.md, ../../spec/apps.md, ../../spec/inputs.md, ../../spec/custom-wallpaper.md]
+spec: [../../../specs/subscriptions.md, ../../../specs/greeting-widget.md, ../../../specs/apps.md, ../../../specs/inputs.md, ../../../specs/custom-wallpaper.md]
 ---
 
 # domain
@@ -72,6 +72,6 @@ Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpd
 - [ui.widgets](ui-widgets.md) via `ByteFormatter`, `GreetingPeriod`, `UsageLevel`
 
 ## Spec
-- [subscriptions](../../spec/subscriptions.md), [greeting-widget](../../spec/greeting-widget.md), [apps](../../spec/apps.md), [inputs](../../spec/inputs.md), [custom-wallpaper](../../spec/custom-wallpaper.md)
+- [subscriptions](../../../specs/subscriptions.md), [greeting-widget](../../../specs/greeting-widget.md), [apps](../../../specs/apps.md), [inputs](../../../specs/inputs.md), [custom-wallpaper](../../../specs/custom-wallpaper.md)
 
 <!-- kb:generated:end -->

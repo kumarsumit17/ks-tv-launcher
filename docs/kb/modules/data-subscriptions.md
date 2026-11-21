@@ -2,7 +2,7 @@
 type: Module
 title: data.subscriptions
 package: com.ks.tvlauncher.data.subscriptions
-spec: [../../spec/subscriptions.md]
+spec: [../../../specs/subscriptions.md]
 ---
 
 # data.subscriptions
@@ -33,6 +33,6 @@ Tests: `data/subscriptions/SubscriptionRepositoryTest.kt`
 - [ui.subscriptions](ui-subscriptions.md) via `SubscriptionRepository`
 
 ## Spec
-- [subscriptions](../../spec/subscriptions.md)
+- [subscriptions](../../../specs/subscriptions.md)
 
 <!-- kb:generated:end -->

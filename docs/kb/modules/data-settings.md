@@ -2,7 +2,7 @@
 type: Module
 title: data.settings
 package: com.ks.tvlauncher.data.settings
-spec: [../../spec/settings.md, ../../spec/performance.md]
+spec: [../../../specs/settings.md, ../../../specs/performance.md]
 ---
 
 # data.settings
@@ -39,6 +39,6 @@ Tests: `data/settings/SettingsRepositoryTest.kt`
 - [ui.theme](ui-theme.md) via `GlassIntensity`
 
 ## Spec
-- [settings](../../spec/settings.md), [performance](../../spec/performance.md)
+- [settings](../../../specs/settings.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

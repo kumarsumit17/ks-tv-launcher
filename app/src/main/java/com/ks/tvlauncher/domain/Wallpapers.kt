@@ -1,6 +1,6 @@
 package com.ks.tvlauncher.domain
 
-/** What Home draws behind everything (docs/spec/custom-wallpaper.md). */
+/** What Home draws behind everything (specs/custom-wallpaper.md). */
 enum class WallpaperMode { DYNAMIC, CUSTOM, PLAIN }
 
 /** Extra darkening over a custom wallpaper, on top of the usual readability overlays. */

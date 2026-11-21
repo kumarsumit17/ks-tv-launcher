@@ -2,7 +2,7 @@
 type: Module
 title: data.profile
 package: com.ks.tvlauncher.data.profile
-spec: [../../spec/greeting-widget.md]
+spec: [../../../specs/greeting-widget.md]
 ---
 
 # data.profile
@@ -32,6 +32,6 @@ Tests: `data/profile/ProfileRepositoryTest.kt`
 - [ui.settings](ui-settings.md) via `Profile`, `ProfileRepository`
 
 ## Spec
-- [greeting-widget](../../spec/greeting-widget.md)
+- [greeting-widget](../../../specs/greeting-widget.md)
 
 <!-- kb:generated:end -->

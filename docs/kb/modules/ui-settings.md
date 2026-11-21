@@ -2,7 +2,7 @@
 type: Module
 title: ui.settings
 package: com.ks.tvlauncher.ui.settings
-spec: [../../spec/settings.md, ../../spec/greeting-widget.md, ../../spec/weather.md, ../../spec/custom-wallpaper.md]
+spec: [../../../specs/settings.md, ../../../specs/greeting-widget.md, ../../../specs/weather.md, ../../../specs/custom-wallpaper.md]
 ---
 
 # ui.settings
@@ -52,6 +52,6 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - [ui.home](ui-home.md) via `ProfileDialog`, `SettingsScreen`, `SettingsSection`, `SettingsViewModel`
 
 ## Spec
-- [settings](../../spec/settings.md), [greeting-widget](../../spec/greeting-widget.md), [weather](../../spec/weather.md), [custom-wallpaper](../../spec/custom-wallpaper.md)
+- [settings](../../../specs/settings.md), [greeting-widget](../../../specs/greeting-widget.md), [weather](../../../specs/weather.md), [custom-wallpaper](../../../specs/custom-wallpaper.md)
 
 <!-- kb:generated:end -->

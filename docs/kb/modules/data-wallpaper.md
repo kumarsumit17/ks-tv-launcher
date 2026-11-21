@@ -2,7 +2,7 @@
 type: Module
 title: data.wallpaper
 package: com.ks.tvlauncher.data.wallpaper
-spec: [../../spec/custom-wallpaper.md]
+spec: [../../../specs/custom-wallpaper.md]
 ---
 
 # data.wallpaper
@@ -32,6 +32,6 @@ The user's wallpaper picture: `WallpaperPictureStore` copies a picked image to `
 - [ui.settings](ui-settings.md) via `WallpaperPictureStore`
 
 ## Spec
-- [custom-wallpaper](../../spec/custom-wallpaper.md)
+- [custom-wallpaper](../../../specs/custom-wallpaper.md)
 
 <!-- kb:generated:end -->

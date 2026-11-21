@@ -2,7 +2,7 @@
 type: Module
 title: data.apps
 package: com.ks.tvlauncher.data.apps
-spec: [../../spec/apps.md, ../../spec/dynamic-wallpaper.md, ../../spec/performance.md]
+spec: [../../../specs/apps.md, ../../../specs/dynamic-wallpaper.md, ../../../specs/performance.md]
 ---
 
 # data.apps
@@ -38,6 +38,6 @@ Tests: `data/apps/AppArtworkKeyerTest.kt`, `data/apps/PinnedAppsRepositoryTest.k
 - [ui.settings](ui-settings.md) via `AppsRepository`, `PinnedAppsRepository`
 
 ## Spec
-- [apps](../../spec/apps.md), [dynamic-wallpaper](../../spec/dynamic-wallpaper.md), [performance](../../spec/performance.md)
+- [apps](../../../specs/apps.md), [dynamic-wallpaper](../../../specs/dynamic-wallpaper.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

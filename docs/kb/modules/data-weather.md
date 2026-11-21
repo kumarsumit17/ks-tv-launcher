@@ -2,7 +2,7 @@
 type: Module
 title: data.weather
 package: com.ks.tvlauncher.data.weather
-spec: [../../spec/weather.md]
+spec: [../../../specs/weather.md]
 ---
 
 # data.weather
@@ -41,6 +41,6 @@ Tests: `data/weather/CityResolverTest.kt`, `data/weather/IpWhoIsLocatorTest.kt`,
 - [ui.settings](ui-settings.md) via `CityResolver`, `ResolvedCity`, `WeatherRepository`
 
 ## Spec
-- [weather](../../spec/weather.md)
+- [weather](../../../specs/weather.md)
 
 <!-- kb:generated:end -->

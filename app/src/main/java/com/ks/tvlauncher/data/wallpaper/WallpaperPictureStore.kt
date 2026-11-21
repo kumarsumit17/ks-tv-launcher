@@ -22,7 +22,7 @@ import java.io.File
 import java.io.IOException
 
 /**
- * The user's wallpaper picture (docs/spec/custom-wallpaper.md). A picked image is decoded once,
+ * The user's wallpaper picture (specs/custom-wallpaper.md). A picked image is decoded once,
  * downscaled to fit 1920×1080 and copied to `filesDir/wallpaper.jpg`; KS keeps no permission on
  * the original and never reads it again. The copy lives in app storage, so it survives updates
  * and is removed on uninstall.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Smoothness scenarios (docs/spec/smoothness.md). Read-only: it opens KS, presses keys and reads
+# Smoothness scenarios (specs/smoothness.md). Read-only: it opens KS, presses keys and reads
 # `dumpsys gfxinfo`. It never installs, uninstalls or clears anything.
 #
 #   scripts/perf.sh [-p package] [-n runs] [scenario...]

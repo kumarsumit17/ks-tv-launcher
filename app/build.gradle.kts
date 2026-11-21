@@ -56,7 +56,7 @@ android {
         versionCode = appVersionCode
         versionName = appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        // In-app updates (docs/spec/app-updates.md): only the signed release can be updated by
+        // In-app updates (specs/app-updates.md): only the signed release can be updated by
         // a release, so debug (KS TV Dev) and perf never check.
         buildConfigField("boolean", "IN_APP_UPDATES", "false")
     }
@@ -73,7 +73,7 @@ android {
     }
 
     buildTypes {
-        // KS TV Dev (docs/spec/dev-workflow.md): debug builds are a separate app, so testing
+        // KS TV Dev (specs/dev-workflow.md): debug builds are a separate app, so testing
         // never touches the real com.ks.tvlauncher or its data. Label and banner tint come from
         // src/debug/res. The namespace stays com.ks.tvlauncher.
         debug {
@@ -92,7 +92,7 @@ android {
                 signingConfig = it
             }
         }
-        // Smoothness measurements only (docs/spec/smoothness.md): release code (minified, not
+        // Smoothness measurements only (specs/smoothness.md): release code (minified, not
         // debuggable) installed as KS TV Dev with the debug key. Never released.
         create("perf") {
             initWith(getByName("release"))
@@ -147,7 +147,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.runner)
 }
 
-// Compose compiler reports for the smoothness pass (docs/spec/smoothness.md):
+// Compose compiler reports for the smoothness pass (specs/smoothness.md):
 // ./gradlew assemblePerf -PcomposeReports  → app/build/compose-reports
 if (providers.gradleProperty("composeReports").isPresent) {
     composeCompiler {

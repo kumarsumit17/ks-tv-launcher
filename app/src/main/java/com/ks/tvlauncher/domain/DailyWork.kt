@@ -14,7 +14,7 @@ object DailyWorkPlan {
     fun toRegister(remindersEnabled: Boolean, autoUpdateCheck: Boolean, inAppUpdates: Boolean): Set<DailyWork> =
         buildSet {
             if (remindersEnabled) add(DailyWork.RENEWAL_REMINDERS)
-            // Debug and perf builds never check for updates (docs/spec/dev-workflow.md).
+            // Debug and perf builds never check for updates (specs/dev-workflow.md).
             if (inAppUpdates && autoUpdateCheck) add(DailyWork.UPDATE_CHECK)
         }
 }

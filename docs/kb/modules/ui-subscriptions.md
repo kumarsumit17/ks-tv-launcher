@@ -2,7 +2,7 @@
 type: Module
 title: ui.subscriptions
 package: com.ks.tvlauncher.ui.subscriptions
-spec: [../../spec/subscriptions.md, ../../spec/focus-navigation.md]
+spec: [../../../specs/subscriptions.md, ../../../specs/focus-navigation.md]
 ---
 
 # ui.subscriptions
@@ -40,6 +40,6 @@ The Subscriptions screen (stat cards, list, Export CSV), the add/edit `Subscript
 - [ui.home](ui-home.md) via `SubscriptionsScreen`, `SubscriptionsUiState`, `SubscriptionsViewModel`, `nextRenewalLine`, `subscriptionsState`
 
 ## Spec
-- [subscriptions](../../spec/subscriptions.md), [focus-navigation](../../spec/focus-navigation.md)
+- [subscriptions](../../../specs/subscriptions.md), [focus-navigation](../../../specs/focus-navigation.md)
 
 <!-- kb:generated:end -->

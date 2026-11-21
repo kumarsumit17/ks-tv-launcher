@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * The single activity. KS runs in app mode (docs/spec/app-mode.md): it is opened from the
+ * The single activity. KS runs in app mode (specs/app-mode.md): it is opened from the
  * TV's own launcher and never acts as the Home app.
  */
 class MainActivity : ComponentActivity() {
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         if (savedInstanceState == null && intent.getBooleanExtra(EXTRA_OPEN_UPDATES, false)) viewModel.onOpenUpdates()
         // About 5 s after Home is first shown, off the main thread: re-register the daily
         // reminder and update-check work (both dropped by a force-stop), then tidy up after an
-        // update. Never at app start (docs/spec/performance.md).
+        // update. Never at app start (specs/performance.md).
         lifecycleScope.launch {
             withResumed { }
             delay(DAILY_WORK_DELAY_MS)

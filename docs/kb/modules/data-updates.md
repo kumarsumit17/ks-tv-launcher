@@ -2,7 +2,7 @@
 type: Module
 title: data.updates
 package: com.ks.tvlauncher.data.updates
-spec: [../../spec/app-updates.md, ../../spec/reminders.md, ../../spec/performance.md]
+spec: [../../../specs/app-updates.md, ../../../specs/reminders.md, ../../../specs/performance.md]
 ---
 
 # data.updates
@@ -41,6 +41,6 @@ Tests: `data/updates/GitHubReleaseParsingTest.kt`, `data/updates/StoredDataCompa
 - [ui.settings](ui-settings.md) via `UpdateFailure`, `UpdateManager`, `UpdateScheduler`, `UpdateState`
 
 ## Spec
-- [app-updates](../../spec/app-updates.md), [reminders](../../spec/reminders.md), [performance](../../spec/performance.md)
+- [app-updates](../../../specs/app-updates.md), [reminders](../../../specs/reminders.md), [performance](../../../specs/performance.md)
 
 <!-- kb:generated:end -->

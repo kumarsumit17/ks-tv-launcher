@@ -2,7 +2,7 @@
 type: Module
 title: ui.apps
 package: com.ks.tvlauncher.ui.apps
-spec: [../../spec/apps.md, ../../spec/focus-navigation.md]
+spec: [../../../specs/apps.md, ../../../specs/focus-navigation.md]
 ---
 
 # ui.apps
@@ -45,6 +45,6 @@ Tests: `ui/apps/AppMenuFocusTest.kt`
 - [ui.subscriptions](ui-subscriptions.md) via `AppIntents`
 
 ## Spec
-- [apps](../../spec/apps.md), [focus-navigation](../../spec/focus-navigation.md)
+- [apps](../../../specs/apps.md), [focus-navigation](../../../specs/focus-navigation.md)
 
 <!-- kb:generated:end -->

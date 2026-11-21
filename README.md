@@ -10,7 +10,7 @@ An ad-free, Apple TV-style launcher for Android TV / Google TV that you open lik
 | **Tech stack** | Kotlin, Jetpack Compose for TV (`androidx.tv:tv-material`), Preferences DataStore, kotlinx-serialization, Coil 3, Palette, Haze, WorkManager (renewal reminders) |
 | **Toolchain** | JDK 17 · Gradle 9.9.1 · AGP 9.5.1 · Kotlin 2.4.21 |
 
-The spec lives in [docs/spec/](docs/spec/index.md). The app is built in stages; see [docs/spec/stages.md](docs/spec/stages.md).
+The spec lives in [specs/](specs/index.md). The app is built in stages; see [specs/stages.md](specs/stages.md).
 
 ## Getting started
 
@@ -34,7 +34,7 @@ No API keys are needed. Weather uses Open-Meteo, which has none; only the city y
 
 ### Opening it on the TV
 
-KS runs as a normal app. It never becomes, or offers to become, the TV's Home launcher ([docs/spec/app-mode.md](docs/spec/app-mode.md)), so keep your current launcher as Home. Step-by-step TV setup (ADB, install, pinning to favourites, permissions) is in [SETUP.md](SETUP.md).
+KS runs as a normal app. It never becomes, or offers to become, the TV's Home launcher ([specs/app-mode.md](specs/app-mode.md)), so keep your current launcher as Home. Step-by-step TV setup (ADB, install, pinning to favourites, permissions) is in [SETUP.md](SETUP.md).
 
 - Install: `adb install -r app/build/outputs/apk/debug/app-debug.apk`. Debug and release builds are signed differently, so switching between them needs `adb uninstall com.ks.tvlauncher` first.
 - Open "KS TV" from the TV's app list, pin it to your launcher's favourites row, or run `adb shell am start -n com.ks.tvlauncher/.MainActivity`.
@@ -44,7 +44,7 @@ On-device checks for each stage are in [docs/MANUAL_TEST.md](docs/MANUAL_TEST.md
 
 ### Measuring smoothness
 
-Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` builds release code that installs as KS TV Dev (`app/build/outputs/apk/perf/app-perf.apk`). `scripts/perf.sh` runs the fixed scenarios over adb and prints janky frames and frame-time percentiles ([docs/spec/smoothness.md](docs/spec/smoothness.md)).
+Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` builds release code that installs as KS TV Dev (`app/build/outputs/apk/perf/app-perf.apk`). `scripts/perf.sh` runs the fixed scenarios over adb and prints janky frames and frame-time percentiles ([specs/smoothness.md](specs/smoothness.md)).
 
 ## Versioning and release
 

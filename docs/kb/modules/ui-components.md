@@ -2,7 +2,7 @@
 type: Module
 title: ui.components
 package: com.ks.tvlauncher.ui.components
-spec: [../../spec/design-system.md, ../../spec/focus-navigation.md]
+spec: [../../../specs/design-system.md, ../../../specs/focus-navigation.md]
 ---
 
 # ui.components
@@ -54,6 +54,6 @@ Reusable glass building blocks and the single focus treatment (`animateDpadFocus
 - [ui.widgets](ui-widgets.md) via `GlassButton`, `GlassCard`, `GlassDialog`, `GlassPill`, `PillTone`, `requestFocusSafely`
 
 ## Spec
-- [design-system](../../spec/design-system.md), [focus-navigation](../../spec/focus-navigation.md)
+- [design-system](../../../specs/design-system.md), [focus-navigation](../../../specs/focus-navigation.md)
 
 <!-- kb:generated:end -->

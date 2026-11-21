@@ -88,7 +88,7 @@
             android:resizeableActivity="false"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|density">
 
-            <!-- App mode (docs/spec/app-mode.md): KS is opened from the TV's own launcher.
+            <!-- App mode (specs/app-mode.md): KS is opened from the TV's own launcher.
                  MAIN + LEANBACK_LAUNCHER only. Never add HOME or DEFAULT here. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

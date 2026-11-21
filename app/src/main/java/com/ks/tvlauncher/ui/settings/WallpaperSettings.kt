@@ -45,7 +45,7 @@ private val SwatchWidth = 72.dp
 private val SwatchHeight = 41.dp
 
 /**
- * Settings › Wallpaper (docs/spec/custom-wallpaper.md): mode, the six built-in wallpapers, the
+ * Settings › Wallpaper (specs/custom-wallpaper.md): mode, the six built-in wallpapers, the
  * saved picture, "Choose a picture" (only where the TV has a document picker), "Remove image"
  * and the dim level (only in Custom). Every choice is written at once.
  */

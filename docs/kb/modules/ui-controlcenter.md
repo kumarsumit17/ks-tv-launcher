@@ -2,7 +2,7 @@
 type: Module
 title: ui.controlcenter
 package: com.ks.tvlauncher.ui.controlcenter
-spec: [../../spec/control-center.md, ../../spec/focus-navigation.md, ../../spec/inputs.md]
+spec: [../../../specs/control-center.md, ../../../specs/focus-navigation.md, ../../../specs/inputs.md]
 ---
 
 # ui.controlcenter
@@ -41,6 +41,6 @@ Control Center: the glass side panel (status tiles, Launcher rows), its compact 
 - [ui.settings](ui-settings.md) via `SystemIntents`
 
 ## Spec
-- [control-center](../../spec/control-center.md), [focus-navigation](../../spec/focus-navigation.md), [inputs](../../spec/inputs.md)
+- [control-center](../../../specs/control-center.md), [focus-navigation](../../../specs/focus-navigation.md), [inputs](../../../specs/inputs.md)
 
 <!-- kb:generated:end -->

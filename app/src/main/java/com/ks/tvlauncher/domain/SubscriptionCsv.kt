@@ -3,7 +3,7 @@ package com.ks.tvlauncher.domain
 import java.time.LocalDate
 
 /**
- * CSV export. This format is a contract with ks-expense-manager (docs/spec/subscriptions.md):
+ * CSV export. This format is a contract with ks-expense-manager (specs/subscriptions.md):
  * do not change it without agreement. `SubscriptionCsvTest` locks it.
  */
 object SubscriptionCsv {

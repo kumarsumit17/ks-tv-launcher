@@ -2,7 +2,7 @@
 type: Module
 title: data.system
 package: com.ks.tvlauncher.data.system
-spec: [../../spec/greeting-widget.md, ../../spec/memory-storage-widget.md, ../../spec/inputs.md]
+spec: [../../../specs/greeting-widget.md, ../../../specs/memory-storage-widget.md, ../../../specs/inputs.md]
 ---
 
 # data.system
@@ -36,6 +36,6 @@ What the TV says about itself: TV name (live, via a content observer), tidied mo
 - [ui.widgets](ui-widgets.md) via `DeviceStats`
 
 ## Spec
-- [greeting-widget](../../spec/greeting-widget.md), [memory-storage-widget](../../spec/memory-storage-widget.md), [inputs](../../spec/inputs.md)
+- [greeting-widget](../../../specs/greeting-widget.md), [memory-storage-widget](../../../specs/memory-storage-widget.md), [inputs](../../../specs/inputs.md)
 
 <!-- kb:generated:end -->

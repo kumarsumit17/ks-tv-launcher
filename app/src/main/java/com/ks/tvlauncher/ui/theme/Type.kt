@@ -31,7 +31,7 @@ val InterFamily = FontFamily(
 )
 
 /**
- * Type scale for the 960x540 dp canvas (1080p at xhdpi), from docs/spec/design-system.md.
+ * Type scale for the 960x540 dp canvas (1080p at xhdpi), from specs/design-system.md.
  * Nothing is smaller than 9sp, the minimum readable size from 3 m.
  */
 object KsType {

@@ -2,7 +2,7 @@
 type: Module
 title: root
 package: com.ks.tvlauncher
-spec: [../../spec/app-config.md, ../../spec/architecture.md, ../../spec/focus-navigation.md, ../../spec/app-mode.md]
+spec: [../../../specs/app-config.md, ../../../specs/architecture.md, ../../../specs/focus-navigation.md, ../../../specs/app-mode.md]
 ---
 
 # root
@@ -12,7 +12,7 @@ App entry: `KsApplication` (holds the lazy `AppContainer`), `AppContainer` (manu
 
 ## Rules
 - No work in `Application.onCreate`; everything in `AppContainer` is lazy.
-- `MAIN` + `LEANBACK_LAUNCHER` only; never `HOME`/`DEFAULT` ([app-mode](../../spec/app-mode.md)).
+- `MAIN` + `LEANBACK_LAUNCHER` only; never `HOME`/`DEFAULT` ([app-mode](../../../specs/app-mode.md)).
 - Back with nothing open calls `moveTaskToBack(true)`; overlays close first through their own back handlers.
 - No Hilt.
 - `KsApplication` is WorkManager's `Configuration.Provider` (on-demand start); `AppContainer` holds `reminderStore` and `reminderScheduler`.
@@ -52,6 +52,6 @@ Tests: `HomeIntentTest.kt`
 - [ui.subscriptions](ui-subscriptions.md) via `KsApplication`
 
 ## Spec
-- [app-config](../../spec/app-config.md), [architecture](../../spec/architecture.md), [focus-navigation](../../spec/focus-navigation.md), [app-mode](../../spec/app-mode.md)
+- [app-config](../../../specs/app-config.md), [architecture](../../../specs/architecture.md), [focus-navigation](../../../specs/focus-navigation.md), [app-mode](../../../specs/app-mode.md)
 
 <!-- kb:generated:end -->

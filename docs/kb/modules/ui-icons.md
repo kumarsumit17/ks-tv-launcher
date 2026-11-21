@@ -2,7 +2,7 @@
 type: Module
 title: ui.icons
 package: com.ks.tvlauncher.ui.icons
-spec: [../../spec/tech-stack.md]
+spec: [../../../specs/tech-stack.md]
 ---
 
 # ui.icons
@@ -32,6 +32,6 @@ Hand-written stroke `ImageVector`s (`KsIcons`).
 - [ui.widgets](ui-widgets.md) via `KsIcons`
 
 ## Spec
-- [tech-stack](../../spec/tech-stack.md)
+- [tech-stack](../../../specs/tech-stack.md)
 
 <!-- kb:generated:end -->

@@ -2,7 +2,7 @@ package com.ks.tvlauncher.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/** Colour tokens from docs/spec/design-system.md. */
+/** Colour tokens from specs/design-system.md. */
 object KsColors {
     val BackgroundTop = Color(0xFF0C1426)
     val BackgroundBottom = Color(0xFF05070D)
@@ -32,7 +32,7 @@ object KsColors {
     val NameGradientStart = Color(0xFFFFE1B0)
     val NameGradientEnd = Color(0xFFFFB9C8)
 
-    // Memory & storage levels (docs/spec/memory-storage-widget.md).
+    // Memory & storage levels (specs/memory-storage-widget.md).
     val UsageNormalStart = Color(0xFF7FB2FF)
     val UsageNormalEnd = Color(0xFFB9D3FF)
     val UsageFullStart = Color(0xFFFFB45A)

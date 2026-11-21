@@ -2,7 +2,7 @@
 type: Module
 title: ui.widgets
 package: com.ks.tvlauncher.ui.widgets
-spec: [../../spec/greeting-widget.md, ../../spec/memory-storage-widget.md]
+spec: [../../../specs/greeting-widget.md, ../../../specs/memory-storage-widget.md]
 ---
 
 # ui.widgets
@@ -34,6 +34,6 @@ Home widgets: `GreetingWidget` (greeting, date, TV name and Android version, swi
 - [ui.home](ui-home.md) via `GreetingWidget`, `MemoryStorageCard`, `MemoryStoragePanel`
 
 ## Spec
-- [greeting-widget](../../spec/greeting-widget.md), [memory-storage-widget](../../spec/memory-storage-widget.md)
+- [greeting-widget](../../../specs/greeting-widget.md), [memory-storage-widget](../../../specs/memory-storage-widget.md)
 
 <!-- kb:generated:end -->
