@@ -1,21 +1,23 @@
 name: Release
 
-# Two ways in, one build job:
+# The release workflow is shared by every KS-Suite Kotlin app and lives in ks-utility
+# (https://github.com/kumarsumit17/ks-utility/blob/main/specs/release-workflow.md).
+# This file only names KS - TV Launcher's platforms.
 #
-#   Tag push (v*.*.*)   Must be signed. Fails in the first step if any signing secret is
-#                       missing. The GitHub Release is published by a separate job, and only
-#                       after the APK and AAB signatures have been verified.
-#
-#   Manual run          Never publishes a release. With all four secrets it builds, verifies
-#                       and uploads a signed build; without them it uploads an unsigned build
-#                       under a name that says so.
+#   Tag push vMAJOR.MINOR.PATCH   Builds and verifies the signed APK and AAB, then publishes the
+#                                 GitHub Release (full release, latest).
+#   Manual run (rehearsal)        Builds and checks everything for the version given; never publishes.
 
 on:
   push:
     tags: ["v*.*.*"]
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to rehearse, X.Y.Z. Builds everything, releases nothing."
+        required: true
+        type: string
 
-# Read-only by default. Only the publish job gets write access.
 permissions:
   contents: read
 
@@ -23,274 +25,18 @@ concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: false
 
-defaults:
-  run:
-    # Named explicitly so every script runs with `-eo pipefail`.
-    shell: bash
-
-env:
-  APK_SIGNED: app/build/outputs/apk/release/app-release.apk
-  APK_UNSIGNED: app/build/outputs/apk/release/app-release-unsigned.apk
-  AAB: app/build/outputs/bundle/release/app-release.aab
-
 jobs:
-  build:
-    name: Build and verify
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    outputs:
-      signed: ${{ steps.signing.outputs.signed }}
-      verified: ${{ steps.verify.outputs.verified }}
-      artifact: ${{ steps.signing.outputs.artifact }}
-    steps:
-      # First step, before checkout and before anything is compiled: a tag release with a
-      # missing secret stops here, within seconds. Only names are reported, never values.
-      - name: Check signing secrets
-        id: signing
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          missing=()
-          [ -n "$KEYSTORE_BASE64" ] || missing+=("KEYSTORE_BASE64")
-          [ -n "$KEYSTORE_PASSWORD" ] || missing+=("KEYSTORE_PASSWORD")
-          [ -n "$KEY_ALIAS" ] || missing+=("KEY_ALIAS")
-          [ -n "$KEY_PASSWORD" ] || missing+=("KEY_PASSWORD")
-
-          short_sha="${GITHUB_SHA::7}"
-          # Anything that is not a manual run is a release and must be signed.
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then kind="manual"; else kind="release"; fi
-
-          if [ "${#missing[@]}" -eq 0 ]; then
-            signed="true"
-            artifact="ks-tv-launcher-$kind-signed-$short_sha"
-          elif [ "$kind" = "release" ]; then
-            echo "::error::Missing signing secrets: ${missing[*]}. A tag release must be signed, so nothing was built or published."
-            {
-              echo "## Release stopped: signing secrets missing"
-              echo "Missing: \`${missing[*]}\`. Add them under Settings › Secrets and variables › Actions, then push a new tag."
-            } >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          else
-            signed="false"
-            artifact="ks-tv-launcher-manual-unsigned-$short_sha"
-            echo "::warning::Missing signing secrets: ${missing[*]}. This manual build will be UNSIGNED."
-          fi
-
-          {
-            echo "signed=$signed"
-            echo "kind=$kind"
-            echo "artifact=$artifact"
-          } >> "$GITHUB_OUTPUT"
-          {
-            echo "## KS - TV Launcher build"
-            echo "- Run type: $kind"
-            echo "- Commit: \`$GITHUB_SHA\`"
-            echo "- Ref: \`$GITHUB_REF_NAME\`"
-            echo "- Signed: $signed"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      # fetch-depth 0: Gradle reads the version from git history and tags on manual runs.
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-          submodules: true
-          persist-credentials: false
-
-      - uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: "17"
-
-      # v5 is the current MIT-licensed line. v6 moves caching to a separately licensed component.
-      - uses: gradle/actions/setup-gradle@v5
-
-      # Only a tag ref carries a version. On a branch, Gradle falls back to git.
-      - name: Derive semantic version from tag
-        id: ver
-        if: github.ref_type == 'tag'
-        run: |
-          tag="${GITHUB_REF_NAME#v}"
-          if ! [[ "$tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
-            echo "::error::Tag '$GITHUB_REF_NAME' is not vMAJOR.MINOR.PATCH."
-            exit 1
-          fi
-          IFS='.' read -r major minor patch <<< "${tag%%-*}"
-          # 10# keeps a part such as "08" from being read as octal.
-          echo "name=$tag" >> "$GITHUB_OUTPUT"
-          echo "code=$((10#$major * 10000 + 10#$minor * 100 + 10#$patch))" >> "$GITHUB_OUTPUT"
-
-      # The keystore goes into the runner's temp directory, outside the checkout, readable by
-      # this user only. It is opened once here so that a wrong password or alias fails now,
-      # not after a full build.
-      - name: Decode and check keystore
-        id: keystore
-        if: steps.signing.outputs.signed == 'true'
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        run: |
-          umask 077
-          mkdir -p "$RUNNER_TEMP/ks-signing"
-          keystore="$RUNNER_TEMP/ks-signing/release.jks"
-          if ! printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$keystore" 2> /dev/null; then
-            echo "::error::KEYSTORE_BASE64 is not valid base64."
-            exit 1
-          fi
-          if [ ! -s "$keystore" ]; then
-            echo "::error::KEYSTORE_BASE64 decoded to an empty file."
-            exit 1
-          fi
-          if ! keytool -list -keystore "$keystore" -storepass:env KEYSTORE_PASSWORD -alias "$KEY_ALIAS" > /dev/null 2>&1; then
-            echo "::error::The keystore could not be opened with KEYSTORE_PASSWORD, or it has no entry named KEY_ALIAS."
-            exit 1
-          fi
-          # The certificate fingerprint is public. The artifacts are checked against it later.
-          cert_sha256="$(keytool -exportcert -keystore "$keystore" -storepass:env KEYSTORE_PASSWORD -alias "$KEY_ALIAS" 2> /dev/null | openssl dgst -sha256 -r | cut -d ' ' -f 1)"
-          echo "path=$keystore" >> "$GITHUB_OUTPUT"
-          echo "cert_sha256=$cert_sha256" >> "$GITHUB_OUTPUT"
-          echo "Keystore opened. Certificate SHA-256: $cert_sha256"
-
-      - name: Unit tests
-        run: ./gradlew testDebugUnitTest
-
-      # Signing values reach Gradle only on a signed run. With none, Gradle leaves the build unsigned.
-      - name: Build release APK and AAB
-        env:
-          SIGNING_STORE_FILE: ${{ steps.keystore.outputs.path }}
-          SIGNING_STORE_PASSWORD: ${{ steps.signing.outputs.signed == 'true' && secrets.KEYSTORE_PASSWORD || '' }}
-          SIGNING_KEY_ALIAS: ${{ steps.signing.outputs.signed == 'true' && secrets.KEY_ALIAS || '' }}
-          SIGNING_KEY_PASSWORD: ${{ steps.signing.outputs.signed == 'true' && secrets.KEY_PASSWORD || '' }}
-          TAG_VERSION_NAME: ${{ steps.ver.outputs.name }}
-          TAG_VERSION_CODE: ${{ steps.ver.outputs.code }}
-        run: |
-          args=()
-          if [ -n "$TAG_VERSION_NAME" ]; then
-            args+=("-PversionName=$TAG_VERSION_NAME" "-PversionCode=$TAG_VERSION_CODE")
-          fi
-          ./gradlew assembleRelease bundleRelease "${args[@]}"
-
-      # A finished Gradle build is not proof of signing. apksigner checks the APK, jarsigner
-      # the AAB, and both certificates must match the keystore's. Any failure stops the job.
-      - name: Verify APK and AAB signatures
-        id: verify
-        if: steps.signing.outputs.signed == 'true'
-        env:
-          EXPECTED_CERT_SHA256: ${{ steps.keystore.outputs.cert_sha256 }}
-        run: bash .github/scripts/verify-release-signing.sh signed "$APK_SIGNED" "$AAB" "$EXPECTED_CERT_SHA256"
-
-      - name: Confirm build is unsigned
-        id: unsigned
-        if: steps.signing.outputs.signed == 'false'
-        run: bash .github/scripts/verify-release-signing.sh unsigned "$APK_UNSIGNED" "$AAB"
-
-      - name: Collect signed artifacts
-        if: steps.signing.outputs.signed == 'true' && steps.verify.outputs.verified == 'true'
-        env:
-          KIND: ${{ steps.signing.outputs.kind }}
-          CERT_SHA256: ${{ steps.verify.outputs.cert_sha256 }}
-        run: |
-          mkdir -p dist
-          cp "$APK_SIGNED" dist/app-release.apk
-          cp "$AAB" dist/app-release.aab
-          {
-            echo "KS - TV Launcher: SIGNED build"
-            echo "run type: $KIND"
-            echo "commit: $GITHUB_SHA"
-            echo "ref: $GITHUB_REF_NAME"
-            echo "signing certificate SHA-256: $CERT_SHA256"
-            echo "workflow run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          } > dist/BUILD-INFO.txt
-
-      - name: Collect unsigned artifacts
-        if: steps.signing.outputs.signed == 'false' && steps.unsigned.outputs.confirmed_unsigned == 'true'
-        run: |
-          mkdir -p dist
-          cp "$APK_UNSIGNED" dist/app-release-UNSIGNED.apk
-          cp "$AAB" dist/app-release-UNSIGNED.aab
-          {
-            echo "KS - TV Launcher: UNSIGNED manual build"
-            echo "Not installable. Not a production release. Do not distribute."
-            echo "commit: $GITHUB_SHA"
-            echo "ref: $GITHUB_REF_NAME"
-            echo "workflow run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          } > dist/BUILD-INFO.txt
-          {
-            echo ""
-            echo "> [!WARNING]"
-            echo "> **These artifacts are UNSIGNED.** Android will not install the APK, and they must not be"
-            echo "> distributed as a production release. Add the four signing secrets for a signed build."
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      # The "signed" name is only reachable after the verify step has succeeded.
-      - name: Upload signed build
-        if: steps.signing.outputs.signed == 'true' && steps.verify.outputs.verified == 'true'
-        uses: actions/upload-artifact@v7
-        with:
-          name: ${{ steps.signing.outputs.artifact }}
-          path: dist/
-          if-no-files-found: error
-          retention-days: 30
-
-      # The "unsigned" name is only reachable after the build was confirmed to carry no signature.
-      - name: Upload unsigned build
-        if: steps.signing.outputs.signed == 'false' && steps.unsigned.outputs.confirmed_unsigned == 'true'
-        uses: actions/upload-artifact@v7
-        with:
-          name: ${{ steps.signing.outputs.artifact }}
-          path: dist/
-          if-no-files-found: error
-          retention-days: 30
-
-      - name: Remove keystore
-        if: always()
-        run: rm -rf "$RUNNER_TEMP/ks-signing"
-
-  # Publishing is its own job, so the write token never reaches the build. It runs only for a
-  # tag push whose build job finished and reported a signed, verified build. A manual run can
-  # never get here, and neither can an unsigned build.
-  publish:
-    name: Publish GitHub Release
-    needs: build
-    if: >-
-      github.event_name == 'push' &&
-      github.ref_type == 'tag' &&
-      needs.build.result == 'success' &&
-      needs.build.outputs.signed == 'true' &&
-      needs.build.outputs.verified == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+  release:
+    uses: kumarsumit17/ks-utility/.github/workflows/kotlin-app-release.yml@v0.4.0
     permissions:
       contents: write
-    steps:
-      - name: Download verified build
-        uses: actions/download-artifact@v8
-        with:
-          name: ${{ needs.build.outputs.artifact }}
-          path: dist
-
-      - name: Check release files
-        run: |
-          for file in dist/app-release.apk dist/app-release.aab; do
-            if [ ! -s "$file" ]; then
-              echo "::error::Expected release file is missing or empty: $file"
-              exit 1
-            fi
-          done
-          if ls dist | grep -qi 'unsigned'; then
-            echo "::error::An unsigned file reached the publish job."
-            exit 1
-          fi
-
-      # Third-party action holding a write token: pinned to the exact commit of v3.0.4.
-      - name: Publish GitHub Release
-        uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
-        with:
-          generate_release_notes: true
-          fail_on_unmatched_files: true
-          files: |
-            dist/app-release.apk
-            dist/app-release.aab
+      id-token: write
+      attestations: write
+    with:
+      version: ${{ inputs.version }}
+      app-name: ks-tv-launcher
+      display-name: KS - TV Launcher
+      android-module: ":app"
+      # Installed copies look for this name when they check for updates (specs/app-updates.md).
+      android-file-name: app-release
+    secrets: inherit

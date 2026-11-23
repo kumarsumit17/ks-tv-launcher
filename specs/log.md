@@ -1,5 +1,6 @@
 # 2026-11-23
 
+* **Update**: Release: `.github/workflows/release.yml` now calls ks-utility's shared release workflow (`kotlin-app-release.yml@v0.4.0`, [spec](https://github.com/kumarsumit17/ks-utility/blob/main/specs/release-workflow.md)): one workflow for every Kotlin app, with a rehearsal input, pinned actions, signature checks, build-provenance attestations and `gh` publishing. The release files keep the names `app-release.apk` and `app-release.aab`, which installed copies look for; the signing check script moved to ks-utility.
 * **Update**: [App updates](app-updates.md): `ks-utility` moved to `v0.3.0`; the release file must come from this repository's GitHub releases with GitHub's `sha256:` digest, and the downloaded APK's SHA-256 must match it before any install prompt (shared app-update rules); the request sends only the shared headers.
 
 # 2026-11-21
