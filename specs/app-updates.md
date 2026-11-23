@@ -17,7 +17,7 @@ An update is an in-place install of the same package signed with the same key, s
 - **Never downgrade**: only install a higher `versionCode`.
 
 ## Where updates come from
-- `GET https://api.github.com/repos/kumarsumit17/ks-tv-launcher/releases/latest` (public, no token; send a `User-Agent`). Use `tag_name`, `body` and the asset named `app-release.apk` (`browser_download_url`, `size`). Behind an `UpdateSource` interface.
+- `GET https://api.github.com/repos/kumarsumit17/ks-tv-launcher/releases/latest` (public, no token; only the shared request headers from ks-utility's `GitHubRepo.requestHeaders`). Use `tag_name`, `body` and the asset named `app-release.apk` (`browser_download_url`, `size`, `digest`). The asset is used only when the suite's [app-update rules](https://github.com/kumarsumit17/ks-utility/blob/main/specs/app-update.md) accept it (`AppUpdate.parseRelease`, ks-utility `v0.3.0`): its URL starts with `https://github.com/kumarsumit17/ks-tv-launcher/releases/download/`, it has a size, and GitHub lists a `sha256:` digest for it. Behind an `UpdateSource` interface.
 - The tag `vMAJOR.MINOR.PATCH` maps to `versionCode = MAJOR*10000 + MINOR*100 + PATCH`, the same rule as `.github/workflows/release.yml`. An update exists when that is greater than `BuildConfig.VERSION_CODE`. Pure function with unit tests, including malformed tags.
 
 ## When KS checks
@@ -33,7 +33,7 @@ An update is an in-place install of the same package signed with the same key, s
 
 ## Download and verify (before any install prompt)
 - Download to `cacheDir/updates/` over HTTPS with progress; resume is not required; delete the file on failure and after a successful update.
-- Check, in order: size matches the asset; `PackageManager.getPackageArchiveInfo` reports package `com.ks.tvlauncher`; its signing certificate SHA-256 equals the installed app's own; its `versionCode` is higher. Any failure: delete the file, show "Update could not be verified", install nothing.
+- Check, in order: size matches the asset; its SHA-256 (ks-utility `Sha256`) equals GitHub's digest; `PackageManager.getPackageArchiveInfo` reports package `com.ks.tvlauncher`; its signing certificate SHA-256 equals the installed app's own; its `versionCode` is higher. Any failure: delete the file, show "Update could not be verified", install nothing.
 
 ## Install
 - `PackageInstaller` session with a status receiver; permission `REQUEST_INSTALL_PACKAGES`.
@@ -42,5 +42,5 @@ An update is an in-place install of the same package signed with the same key, s
 - Flow, all D-pad reachable: Update available → Download (progress, Cancel) → Verify → Install → system confirm.
 
 ## Tests
-- Unit: tag-to-code mapping, comparison, release JSON parsing, verification decisions (wrong package, wrong signer, lower or equal version), stored-data compatibility fixtures.
+- Unit: tag-to-code mapping, comparison, release JSON parsing, verification decisions (wrong checksum, wrong package, wrong signer, lower or equal version), stored-data compatibility fixtures.
 - TV ([verification](verification.md)): needs two real signed releases, so this feature is verified by installing release N on the TV, publishing N+1, and updating from inside KS, then checking names, TV name, pins, subscriptions and wallpaper are unchanged.

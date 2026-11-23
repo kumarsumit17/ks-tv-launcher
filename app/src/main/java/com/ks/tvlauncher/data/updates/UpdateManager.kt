@@ -1,5 +1,6 @@
 package com.ks.tvlauncher.data.updates
 
+import com.ks.utility.appupdate.Sha256
 import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -194,7 +195,7 @@ class UpdateManager(
         try {
             connection.connectTimeout = TIMEOUT_MS
             connection.readTimeout = TIMEOUT_MS
-            connection.setRequestProperty("User-Agent", GitHubUpdateSource.USER_AGENT)
+            connection.setRequestProperty("User-Agent", GitHubUpdateSource.REPO.requestHeaders.getValue("User-Agent"))
             val code = connection.responseCode
             if (code !in 200..299) throw IOException("HTTP $code")
             // Redirects (to GitHub's file host) must stay on HTTPS.
@@ -231,6 +232,8 @@ class UpdateManager(
         return AppUpdates.verify(
             expectedSize = release.apkSize,
             actualSize = apk.length(),
+            expectedSha256 = release.apkSha256,
+            actualSha256 = if (apk.length() == release.apkSize) Sha256.hex(apk) else "",
             archivePackage = archive?.packageName,
             ownPackage = context.packageName,
             archiveSigners = archive?.let(::signers).orEmpty(),

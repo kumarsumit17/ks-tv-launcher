@@ -625,19 +625,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 42,
+     "line": 43,
      "name": "UpdateState",
      "private": false
     },
     {
      "kind": "class",
-     "line": 57,
+     "line": 58,
      "name": "UpdateFailure",
      "private": false
     },
     {
      "kind": "class",
-     "line": 64,
+     "line": 65,
      "name": "UpdateManager",
      "private": false
     }
@@ -705,19 +705,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 16,
+     "line": 18,
      "name": "UpdateSource",
      "private": false
     },
     {
      "kind": "class",
-     "line": 23,
+     "line": 25,
      "name": "RateLimitedException",
      "private": false
     },
     {
      "kind": "class",
-     "line": 29,
+     "line": 32,
      "name": "GitHubUpdateSource",
      "private": false
     }
@@ -949,19 +949,19 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 7,
+     "line": 8,
      "name": "ReleaseInfo",
      "private": false
     },
     {
      "kind": "class",
-     "line": 17,
+     "line": 20,
      "name": "UpdateVerdict",
      "private": false
     },
     {
      "kind": "object",
-     "line": 20,
+     "line": 23,
      "name": "AppUpdates",
      "private": false
     }
@@ -4204,7 +4204,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 8,
+     "line": 9,
      "name": "GitHubReleaseParsingTest",
      "private": false
     }
@@ -4749,6 +4749,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "a45518e78f36c8e3b5ce29680b966a47fb501fd9",
+ "source_hash": "9ac93ffffca331e38f08b09236a0fb7ef4698d38",
  "version": 1
 }

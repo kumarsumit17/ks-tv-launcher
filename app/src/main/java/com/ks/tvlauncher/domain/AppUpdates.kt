@@ -1,5 +1,6 @@
 package com.ks.tvlauncher.domain
 
+import com.ks.utility.appupdate.Sha256
 import kotlinx.serialization.Serializable
 
 /** A published release, as KS needs it. Stored while an update is pending. */
@@ -11,10 +12,12 @@ data class ReleaseInfo(
     val notes: String = "",
     val apkUrl: String,
     val apkSize: Long,
+    /** GitHub's SHA-256 of the APK (64 lowercase hex digits); empty for a release saved before it was required. */
+    val apkSha256: String = "",
 )
 
 /** Why a downloaded file is (not) safe to install. */
-enum class UpdateVerdict { OK, WRONG_SIZE, NOT_AN_APK, WRONG_PACKAGE, WRONG_SIGNER, NOT_NEWER }
+enum class UpdateVerdict { OK, WRONG_SIZE, WRONG_CHECKSUM, NOT_AN_APK, WRONG_PACKAGE, WRONG_SIGNER, NOT_NEWER }
 
 /** Pure rules for in-app updates (specs/app-updates.md). */
 object AppUpdates {
@@ -41,6 +44,9 @@ object AppUpdates {
     fun verify(
         expectedSize: Long,
         actualSize: Long,
+        /** GitHub's SHA-256 for the release file, and the downloaded file's (ks-utility `Sha256`). */
+        expectedSha256: String,
+        actualSha256: String,
         archivePackage: String?,
         ownPackage: String,
         archiveSigners: Set<String>,
@@ -49,6 +55,7 @@ object AppUpdates {
         installedVersionCode: Long,
     ): UpdateVerdict = when {
         expectedSize <= 0 || actualSize != expectedSize -> UpdateVerdict.WRONG_SIZE
+        !Sha256.matches(actualSha256, expectedSha256) -> UpdateVerdict.WRONG_CHECKSUM
         archivePackage == null -> UpdateVerdict.NOT_AN_APK
         archivePackage != ownPackage -> UpdateVerdict.WRONG_PACKAGE
         archiveSigners.isEmpty() || archiveSigners != ownSigners -> UpdateVerdict.WRONG_SIGNER

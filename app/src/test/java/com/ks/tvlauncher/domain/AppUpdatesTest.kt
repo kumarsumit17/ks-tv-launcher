@@ -41,9 +41,12 @@ class AppUpdatesTest {
         pkg: String? = "com.ks.tvlauncher",
         signers: Set<String> = setOf("2aa25f08"),
         code: Long = 602,
+        sha: String = "A".repeat(64),
     ) = AppUpdates.verify(
         expectedSize = 100,
         actualSize = size,
+        expectedSha256 = "a".repeat(64),
+        actualSha256 = sha,
         archivePackage = pkg,
         ownPackage = "com.ks.tvlauncher",
         archiveSigners = signers,
@@ -56,6 +59,8 @@ class AppUpdatesTest {
     fun verificationDecisions() {
         assertEquals(UpdateVerdict.OK, verify())
         assertEquals(UpdateVerdict.WRONG_SIZE, verify(size = 99))
+        assertEquals(UpdateVerdict.WRONG_CHECKSUM, verify(sha = "b".repeat(64)))
+        assertEquals(UpdateVerdict.WRONG_CHECKSUM, verify(sha = ""))
         assertEquals(UpdateVerdict.NOT_AN_APK, verify(pkg = null))
         assertEquals(UpdateVerdict.WRONG_PACKAGE, verify(pkg = "com.ks.tvlauncher.dev"))
         assertEquals(UpdateVerdict.WRONG_SIGNER, verify(signers = setOf("deadbeef")))
@@ -69,13 +74,14 @@ class AppUpdatesTest {
     fun checksRunInSpecOrder() {
         // Size first, even when everything else is also wrong.
         assertEquals(UpdateVerdict.WRONG_SIZE, verify(size = 1, pkg = "x", signers = emptySet(), code = 1))
+        assertEquals(UpdateVerdict.WRONG_CHECKSUM, verify(sha = "", pkg = "x", signers = emptySet(), code = 1))
         assertEquals(UpdateVerdict.WRONG_PACKAGE, verify(pkg = "x", signers = emptySet(), code = 1))
         assertEquals(UpdateVerdict.WRONG_SIGNER, verify(signers = emptySet(), code = 1))
     }
 
     @Test
     fun zeroExpectedSizeNeverVerifies() {
-        val verdict = AppUpdates.verify(0, 0, "com.ks.tvlauncher", "com.ks.tvlauncher", setOf("a"), setOf("a"), 2, 1)
+        val verdict = AppUpdates.verify(0, 0, "", "", "com.ks.tvlauncher", "com.ks.tvlauncher", setOf("a"), setOf("a"), 2, 1)
         assertEquals(UpdateVerdict.WRONG_SIZE, verdict)
     }
 }

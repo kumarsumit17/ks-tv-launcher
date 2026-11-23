@@ -1,3 +1,7 @@
+# 2026-11-23
+
+* **Update**: [App updates](app-updates.md): `ks-utility` moved to `v0.3.0`; the release file must come from this repository's GitHub releases with GitHub's `sha256:` digest, and the downloaded APK's SHA-256 must match it before any install prompt (shared app-update rules); the request sends only the shared headers.
+
 # 2026-11-21
 
 * **Update**: [Dependencies](dependencies.md): `ks-utility` added as a git submodule and Gradle included build for shared generic utilities.
