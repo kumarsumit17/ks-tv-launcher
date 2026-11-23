@@ -53,6 +53,13 @@ adb shell am start -n com.ks.tvlauncher/.MainActivity   # open KS on the TV
 ```
 Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
 
+Emulator from the KS-Suite workspace (suite spec `specs/testing.md`): `../scripts/emulators.sh create` once, then `../scripts/emulators.sh start tv` boots `ks-tv-36` (Android TV, 1080p, API 36; the Mac's arrow keys, Enter and Esc are the D-pad, OK and Back). Then:
+```bash
+export ANDROID_SERIAL=$(../scripts/emulators.sh serial tv)
+./gradlew installDebug connectedDebugAndroidTest       # installs KS TV Dev only
+adb shell am start -n com.ks.tvlauncher.dev/com.ks.tvlauncher.MainActivity
+```
+
 ## After completion (2026-11-17)
 - The staged build is finished. For any new work, read `specs/future-development.md` first and follow its cycle.
 
