@@ -22,8 +22,10 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 - `ui/theme/Color.kt` — `KsColors`
 - `ui/theme/Motion.kt` — `KsMotion`, `LocalMotion`, `MotionPolicy`, `systemAnimationsEnabled`
 - `ui/theme/Shape.kt` — `KsDimens`, `KsShapes`
-- `ui/theme/Theme.kt` — `GlassStyle`, `KsTheme`, `LocalGlassStyle`, `VisualSettings`
+- `ui/theme/Theme.kt` — `GlassStyle`, `KsCanvas`, `KsTheme`, `LocalGlassStyle`, `VisualSettings`
 - `ui/theme/Type.kt` — `InterFamily`, `KsType`, `KsTypography`
+
+Tests: `ui/theme/KsCanvasTest.kt`
 
 ## Depends on (generated)
 - [data.settings](data-settings.md) via `GlassIntensity`

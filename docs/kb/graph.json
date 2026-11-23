@@ -3786,37 +3786,43 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 19,
+     "line": 22,
      "name": "VisualSettings",
      "private": false
     },
     {
      "kind": "class",
-     "line": 32,
+     "line": 35,
      "name": "GlassStyle",
      "private": false
     },
     {
      "kind": "val",
-     "line": 36,
+     "line": 39,
      "name": "LocalGlassStyle",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 38,
+     "line": 41,
      "name": "glassStyleFor",
      "private": true
     },
     {
+     "kind": "object",
+     "line": 58,
+     "name": "KsCanvas",
+     "private": false
+    },
+    {
      "kind": "val",
-     "line": 48,
+     "line": 91,
      "name": "KsColorScheme",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 59,
+     "line": 102,
      "name": "KsTheme",
      "private": false
     }
@@ -3935,14 +3941,20 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 31,
+     "line": 32,
      "name": "MemoryStorageCard",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 55,
+     "line": 56,
      "name": "UsageLine",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 80,
+     "name": "LABEL_EMS",
      "private": true
     }
    ]
@@ -4746,9 +4758,27 @@
      "private": false
     }
    ]
+  },
+  "app/src/test/java/com/ks/tvlauncher/ui/theme/KsCanvasTest.kt": {
+   "deps": {
+    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+     "KsCanvas"
+    ]
+   },
+   "module": "ui.theme",
+   "package": "com.ks.tvlauncher.ui.theme",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "KsCanvasTest",
+     "private": false
+    }
+   ]
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "9ac93ffffca331e38f08b09236a0fb7ef4698d38",
+ "source_hash": "dd03b38a03cbfa0316443e62ee5394d16644e13b",
  "version": 1
 }

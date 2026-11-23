@@ -1,5 +1,6 @@
 # 2026-11-23
 
+* **Update**: [Design system](design-system.md): Screen sizes: the 960×540 dp canvas is scaled to fill the window whatever the TV's density or Display size setting (`KsCanvas`), text scale is capped at 1.3× with 7.5 % more room at that size (Home fits at Largest), and the canvas is tuned for 55 and 65 inch TVs (physical sizes per TV size recorded).
 * **Update**: Release: `.github/workflows/release.yml` now calls ks-utility's shared release workflow (`kotlin-app-release.yml@v0.4.0`, [spec](https://github.com/kumarsumit17/ks-utility/blob/main/specs/release-workflow.md)): one workflow for every Kotlin app, with a rehearsal input, pinned actions, signature checks, build-provenance attestations and `gh` publishing. The release files keep the names `app-release.apk` and `app-release.aab`, which installed copies look for; the signing check script moved to ks-utility.
 * **Update**: [App updates](app-updates.md): `ks-utility` moved to `v0.3.0`; the release file must come from this repository's GitHub releases with GitHub's `sha256:` digest, and the downloaded APK's SHA-256 must match it before any install prompt (shared app-update rules); the request sends only the shared headers.
 

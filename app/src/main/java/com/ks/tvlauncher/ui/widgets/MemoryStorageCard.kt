@@ -15,6 +15,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
 import androidx.tv.material3.Text
 import com.ks.tvlauncher.R
 import com.ks.tvlauncher.data.system.DeviceStats
@@ -56,7 +57,10 @@ private fun UsageLine(label: String, used: Long, total: Long) {
     val percent = ByteFormatter.percentUsed(used, total)
     val level = ByteFormatter.level(percent)
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(label, style = KsType.Caption, color = KsColors.TextPrimary, modifier = Modifier.width(44.dp), maxLines = 1)
+        // From the caption's own size, so the column grows exactly as the text does at any TV
+        // text size (Android scales small sp by more than large sp) and both bars stay aligned.
+        val labelWidth = with(LocalDensity.current) { KsType.Caption.fontSize.toDp() } * LABEL_EMS
+        Text(label, style = KsType.Caption, color = KsColors.TextPrimary, modifier = Modifier.width(labelWidth), maxLines = 1)
         UsageBar((percent / 100.0).toFloat(), level, Modifier.weight(1f).height(5.dp))
         Text(
             text = buildAnnotatedString {
@@ -71,3 +75,6 @@ private fun UsageLine(label: String, used: Long, total: Long) {
         )
     }
 }
+
+/** Room for "Storage" (and its Hindi), in caption ems. */
+private const val LABEL_EMS = 4.6f
