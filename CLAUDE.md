@@ -53,6 +53,8 @@ adb shell am start -n com.ks.tvlauncher/.MainActivity   # open KS on the TV
 ```
 Test on the Android TV emulator (1080p, API 34) or a real TV; phone emulators hide focus bugs.
 
+**Every change is tested on all TV screen sizes** (owner's rule; their TV is 55 inch): `../scripts/emulators.sh create-sizes` once, then for each of `../scripts/emulators.sh sizes` (43, 50, 55, 65, 75, 85 and 100 inch, plus 32): start it, `connectedDebugAndroidTest`, install, and check the changed screens with the D-pad. Details: the suite's `specs/testing.md`, "TV screen sizes".
+
 Emulator from the KS-Suite workspace (suite spec `specs/testing.md`): `../scripts/emulators.sh create` once, then `../scripts/emulators.sh start tv` boots `ks-tv-36` (Android TV, 1080p, API 36; the Mac's arrow keys, Enter and Esc are the D-pad, OK and Back). Then:
 ```bash
 export ANDROID_SERIAL=$(../scripts/emulators.sh serial tv)
