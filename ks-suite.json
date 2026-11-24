@@ -1,0 +1,11 @@
+{
+  "name": "KS TV Launcher",
+  "group": "media",
+  "icon": "tv",
+  "platforms": ["google-tv"],
+  "stack": "Kotlin · Compose for TV",
+  "tagline": {
+    "en": "Ad-free TV launcher with a glass look, live weather, and a tracker for your streaming subscriptions with renewal reminders.",
+    "hi": "बिना विज्ञापन वाला TV लॉन्चर: ग्लास जैसा लुक, लाइव मौसम और रिन्यूअल रिमाइंडर के साथ स्ट्रीमिंग सब्सक्रिप्शन ट्रैकर।"
+  }
+}
