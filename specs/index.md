@@ -60,6 +60,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 # Plan
 
 * [Stages](stages.md) - the five stages
+* [Per-platform optimization plan](plan-per-platform.md) - Approved plan for making the Google TV build the best launcher app on its platform: D-pad and 10-foot UI, startup, size, Google TV rules, accessibility and languages.
 
 # Playbooks
 

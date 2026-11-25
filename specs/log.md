@@ -1,5 +1,6 @@
 # 2026-11-25
 
+* **Creation**: [Per-platform optimization plan](plan-per-platform.md) added and approved by the owner as written: audit of v0.8.0, plan for layout, D-pad, startup (baseline profile), size, Google TV rules, TalkBack, English and Hindi; owner decisions; build order with tests on every TV size.
 * **Update**: `ks-utility` moved from `v0.3.0` to `v0.9.0` (more languages, the translation tools; [ks-utility translation tools](https://github.com/kumarsumit17/ks-utility/blob/main/specs/translating.md)).
 
 # 2026-11-23
