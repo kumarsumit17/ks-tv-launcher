@@ -1,5 +1,7 @@
 # 2026-11-25
 
+* **Update**: [Per-platform plan](plan-per-platform.md): plain `vX.Y.Z` tags per the suite rule (no platform tags or bridge releases for now); the plan covers only the TV optimizations.
+* **Update**: [Per-platform plan](plan-per-platform.md) step 1: the app's code moved from `app/` to `tv/google-tv/` (Gradle project `:tv:google-tv`); the release workflow builds `:tv:google-tv` and keeps the file names `app-release.apk` and `.aab`; `scripts/kb.py`, [app-config](app-config.md), [app-updates](app-updates.md), [dependencies](dependencies.md) and [TV setup](google-tv-setup.md) follow the new path. No behaviour change.
 * **Creation**: [Per-platform optimization plan](plan-per-platform.md) added and approved by the owner as written: audit of v0.8.0, plan for layout, D-pad, startup (baseline profile), size, Google TV rules, TalkBack, English and Hindi; owner decisions; build order with tests on every TV size.
 * **Update**: `ks-utility` moved from `v0.3.0` to `v0.9.0` (more languages, the translation tools; [ks-utility translation tools](https://github.com/kumarsumit17/ks-utility/blob/main/specs/translating.md)).
 

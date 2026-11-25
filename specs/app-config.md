@@ -11,7 +11,7 @@ stage: 1
 ## Identity
 App name `KS - TV Launcher`. `namespace` = `applicationId` = `com.ks.tvlauncher`.
 
-## Versioning (`app/build.gradle.kts`, never hardcoded)
+## Versioning (`tv/google-tv/build.gradle.kts`, never hardcoded)
 - `versionCode` = `git rev-list --count HEAD`; `versionName` = `git describe --tags --abbrev=0`.
 - Run git via `providers.exec { … }` (configuration-cache safe), wrapped in `runCatching`.
 - Fallbacks: `versionCode = 1`, `versionName = "0.1.0-dev"`.

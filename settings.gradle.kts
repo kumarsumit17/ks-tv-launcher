@@ -21,7 +21,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ks-tv-launcher"
-include(":app")
+// The Google TV app (suite platform folders): tv/google-tv/.
+include(":tv:google-tv")
 
 // Shared generic utilities (git submodule). Gradle builds it from source and substitutes it
 // for the "com.ks:utility" dependency, so that dependency has no version.

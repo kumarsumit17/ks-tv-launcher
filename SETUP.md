@@ -17,7 +17,7 @@ adb install -r <apk>
 
 Allow the debugging prompt on the TV the first time.
 
-- **Debug build:** `app/build/outputs/apk/debug/app-debug.apk` (built with `./gradlew assembleDebug`).
+- **Debug build:** `tv/google-tv/build/outputs/apk/debug/google-tv-debug.apk` (built with `./gradlew assembleDebug`).
 - **Release build:** `app-release.apk` from the GitHub Releases page of this repository.
 
 Debug and release builds are signed with different keys. To switch from one to the other, uninstall first (this deletes KS's data on the TV, including subscriptions, so export the CSV first if you need it):

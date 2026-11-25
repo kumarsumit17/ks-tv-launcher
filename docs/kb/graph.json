@@ -1,8 +1,8 @@
 {
  "files": {
-  "app/src/androidTest/java/com/ks/tvlauncher/HomeIntentTest.kt": {
+  "tv/google-tv/src/androidTest/java/com/ks/tvlauncher/HomeIntentTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
      "MainActivity"
     ]
    },
@@ -18,85 +18,85 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/AppContainer.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/AppContainer.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
      "AppArtworkFetcher",
      "AppArtworkKeyer"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
      "AppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
      "WallpaperSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "ProfileRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
      "ReminderScheduler"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
      "ReminderStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
      "SubscriptionDataStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
      "SubscriptionRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
      "DeviceInfoRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStatsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
      "SystemStatusRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
      "TvInputRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
      "UpdateChecker"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
      "UpdateManager"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
      "UpdateNotifier"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
      "UpdateScheduler"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
      "GitHubUpdateSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "IpWhoIsLocator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
      "OpenMeteoProvider"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
      "DailyWork",
      "DailyWorkPlan"
     ]
@@ -113,9 +113,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/AppContainer.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/AppContainer.kt": [
      "AppContainer"
     ]
    },
@@ -131,22 +131,22 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/MainActivity.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
      "LocalAppImageLoader"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": [
      "HomeActions",
      "HomeScreen"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
      "HomeViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "KsTheme"
     ]
    },
@@ -162,9 +162,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ]
    },
@@ -198,9 +198,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ]
@@ -217,9 +217,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
      "PinnedApps"
     ]
    },
@@ -235,12 +235,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
      "artwork"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ]
    },
@@ -262,9 +262,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ]
    },
@@ -286,22 +286,22 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
      "MainActivity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "DueReminder",
      "RenewalReminders"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
      "DateTimeFormats"
     ]
    },
@@ -317,12 +317,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": [
      "RenewalReminderWorker"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "SettingsRepository"
     ]
    },
@@ -338,7 +338,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": {
    "deps": {},
    "module": "data.reminders",
    "package": "com.ks.tvlauncher.data.reminders",
@@ -352,15 +352,15 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/RenewalReminderWorker.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
      "ReminderNotifier"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ]
    },
@@ -376,24 +376,24 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
      "AnimationSpeed"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode",
      "Wallpapers"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
      "WeatherCityMode"
@@ -423,9 +423,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "Subscription"
     ]
    },
@@ -441,12 +441,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
      "SubscriptionDataStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "Subscription"
     ]
    },
@@ -462,9 +462,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
      "DeviceNames"
     ]
    },
@@ -486,7 +486,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": {
    "deps": {},
    "module": "data.system",
    "package": "com.ks.tvlauncher.data.system",
@@ -512,7 +512,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": {
    "deps": {},
    "module": "data.system",
    "package": "com.ks.tvlauncher.data.system",
@@ -544,9 +544,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "InputConnection",
      "InputKind",
      "TvInput",
@@ -566,16 +566,16 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
      "RateLimitedException",
      "UpdateSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates",
      "ReleaseInfo"
     ]
@@ -598,22 +598,22 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
      "CheckResult",
      "UpdateChecker"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": [
      "UpdateNotifier"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
      "GitHubUpdateSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates",
      "ReleaseInfo",
      "UpdateVerdict"
@@ -643,15 +643,15 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateNotifier.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/MainActivity.kt": [
      "MainActivity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
      "ReminderNotifier"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates",
      "ReleaseInfo"
     ]
@@ -668,9 +668,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ]
    },
@@ -692,9 +692,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates",
      "ReleaseInfo"
     ]
@@ -723,9 +723,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "ReleaseInfo"
     ]
    },
@@ -741,9 +741,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "Wallpapers"
     ]
    },
@@ -759,9 +759,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -783,15 +783,15 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "LauncherSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "CityLocator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity",
      "WeatherCityMode"
     ]
@@ -814,13 +814,13 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
      "CurrentWeather",
      "WeatherProvider"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -836,9 +836,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -860,13 +860,13 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
      "CurrentWeather",
      "WeatherProvider"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -888,7 +888,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -902,9 +902,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ]
@@ -921,7 +921,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -941,7 +941,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -967,7 +967,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -987,7 +987,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1007,7 +1007,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1021,7 +1021,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1041,7 +1041,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1055,7 +1055,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1069,7 +1069,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1083,12 +1083,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "SubscriptionCalculator"
     ]
    },
@@ -1116,7 +1116,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1136,9 +1136,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ]
@@ -1167,13 +1167,13 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "SubscriptionCalculator"
     ]
    },
@@ -1189,7 +1189,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1227,7 +1227,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1259,7 +1259,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": {
    "deps": {},
    "module": "domain",
    "package": "com.ks.tvlauncher.domain",
@@ -1297,12 +1297,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
      "artwork"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ]
    },
@@ -1324,7 +1324,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": {
    "deps": {},
    "module": "ui.apps",
    "package": "com.ks.tvlauncher.ui.apps",
@@ -1338,22 +1338,22 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
      "AppMenuButton",
      "AppMenuFocus"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
      "GlassDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ]
    },
@@ -1375,7 +1375,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": {
    "deps": {},
    "module": "ui.apps",
    "package": "com.ks.tvlauncher.ui.apps",
@@ -1395,45 +1395,45 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
      "AppArtworkImage"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
      "AppsDrawerUiState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
      "AppTile"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "FocusMemory",
      "modalFocus",
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
      "GlassSearchField"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1461,21 +1461,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
      "AppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
      "AppFilter"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ]
@@ -1504,22 +1504,22 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens",
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1535,12 +1535,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "Wallpapers"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ]
    },
@@ -1586,12 +1586,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ]
    },
@@ -1631,7 +1631,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": {
    "deps": {},
    "module": "ui.components",
    "package": "com.ks.tvlauncher.ui.components",
@@ -1657,9 +1657,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "LocalGlassStyle"
     ]
    },
@@ -1687,18 +1687,18 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": [
      "frost"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "LocalGlassStyle"
     ]
    },
@@ -1714,21 +1714,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1750,15 +1750,15 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ]
    },
@@ -1774,21 +1774,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1804,21 +1804,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1834,21 +1834,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1870,27 +1870,27 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1906,12 +1906,12 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1927,18 +1927,18 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1954,24 +1954,24 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -1993,24 +1993,24 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "animateDpadFocus"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2026,18 +2026,18 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2053,65 +2053,65 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
      "BluetoothStatus",
      "NetworkKind",
      "NetworkStatus"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
      "TvInputRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "TvInput"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperMode",
      "Wallpapers"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "modalFocus",
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
      "GlassSnackbar"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
      "ControlCenterViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": [
      "InputsDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
      "SystemIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens",
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2187,20 +2187,20 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/SystemStatusRepository.kt": [
      "BluetoothStatus",
      "NetworkStatus",
      "SystemStatusRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/TvInputRepository.kt": [
      "TvInputRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "TvInput"
     ]
    },
@@ -2216,28 +2216,28 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/InputsDialog.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "InputConnection",
      "TvInput"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
      "GlassDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2259,9 +2259,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
     ]
    },
@@ -2277,18 +2277,18 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2304,25 +2304,25 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
      "Wallpaper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "Wallpapers"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
      "BuiltInWallpaper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "LocalGlassStyle"
     ]
    },
@@ -2386,21 +2386,21 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2416,111 +2416,111 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeScreen.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppMenu.kt": [
      "AppMenu",
      "AppMenuState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawer.kt": [
      "AppsDrawer"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppsDrawerViewModel.kt": [
      "AppsDrawerViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "FocusMemory",
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Frost.kt": [
      "FrostSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSnackbar.kt": [
      "GlassSnackbar"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterCard.kt": [
      "ControlCenterCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterPanel.kt": [
      "ControlCenter",
      "ControlCenterActions",
      "ControlCenterValues"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/ControlCenterViewModel.kt": [
      "ControlCenterViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
      "SystemIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/AllAppsCard.kt": [
      "AllAppsCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
      "HomeBackground",
      "HomeWallpaper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeHero.kt": [
      "HomeHero"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeTopBar.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeTopBar.kt": [
      "HomeTopBar"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": [
      "HomeMessage",
      "HomeUiState",
      "HomeViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": [
      "PinnedRow"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/SubscriptionsCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/SubscriptionsCard.kt": [
      "SubscriptionsCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
      "ProfileDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
      "SettingsScreen",
      "SettingsSection"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
      "SettingsViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": [
      "SubscriptionsScreen"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionsUiState",
      "SubscriptionsViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/widgets/GreetingWidget.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/GreetingWidget.kt": [
      "GreetingWidget"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": [
      "MemoryStorageCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": [
      "MemoryStoragePanel"
     ]
    },
@@ -2632,37 +2632,37 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeTopBar.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeTopBar.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/Glass.kt": [
      "glass"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassIconButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill",
      "PillTone"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": [
      "WeatherPill"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2678,94 +2678,94 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeViewModel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
      "AppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/WallpaperSource.kt": [
      "WallpaperSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "Profile",
      "ProfileRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "LauncherSettings",
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
      "SubscriptionRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats",
      "DeviceStatsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver",
      "ResolvedCity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherRepository",
      "WeatherState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
      "DeviceNames"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
      "Greeting",
      "GreetingPeriod"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
      "PinnedApps"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/HomeBackground.kt": [
      "HomeWallpaper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionsUiState",
      "subscriptionsState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "VisualSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
      "DateTimeFormats"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": [
      "minuteTicker"
     ]
    },
@@ -2793,30 +2793,30 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/PinnedRow.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
      "AppArtworkImage"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/AppTile.kt": [
      "AppTile"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "FocusMemory"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2832,28 +2832,28 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/SubscriptionsCard.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/SubscriptionsCard.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill",
      "PillTone"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": [
      "nextRenewalLine"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionsUiState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -2869,23 +2869,23 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/home/WeatherPill.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCodes",
      "WeatherGroup"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion"
     ]
    },
@@ -2913,7 +2913,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": {
    "deps": {},
    "module": "ui.icons",
    "package": "com.ks.tvlauncher.ui.icons",
@@ -2945,48 +2945,48 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "Profile"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
      "DeviceInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
      "GlassDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
      "GlassSearchField"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
      "GlassToggle"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -3014,78 +3014,78 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
      "ReminderNotifier"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
      "AnimationSpeed"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCityMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "modalFocus",
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
      "GlassSearchField"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSection.kt": [
      "GlassSection"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": [
      "GlassStepper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
      "GlassToggle"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/controlcenter/SystemIntents.kt": [
      "SystemIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/ProfileDialog.kt": [
      "ProfileDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
      "CitySearch",
      "DetectState",
      "SettingsUiState",
      "SettingsViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": [
      "UpdatePreview",
      "UpdateSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": [
      "WallpaperSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -3161,62 +3161,62 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
      "AppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "Profile",
      "ProfileRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderScheduler.kt": [
      "ReminderScheduler"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity",
      "LauncherSettings",
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceInfoRepository.kt": [
      "DeviceInfo",
      "DeviceInfoRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
      "UpdateManager",
      "UpdateState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateScheduler.kt": [
      "UpdateScheduler"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/wallpaper/WallpaperPictureStore.kt": [
      "WallpaperPictureStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver",
      "ResolvedCity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "ReleaseInfo"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
      "WeatherCityMode"
@@ -3258,25 +3258,25 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/UpdateSettings.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateManager.kt": [
      "UpdateFailure",
      "UpdateState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
      "GlassToggle"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
      "SettingsViewModel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -3310,48 +3310,48 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/WallpaperSettings.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "LauncherSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode",
      "Wallpapers"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/BuiltInWallpaper.kt": [
      "BuiltInWallpaper",
      "builtInWallpaperName"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/DpadFocus.kt": [
      "DpadFocusable"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": [
      "ChoiceRow",
      "ValueRow"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsViewModel.kt": [
      "SettingsViewModel",
      "WallpaperFiles"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -3385,46 +3385,46 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionDialog.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionDialog.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "SubscriptionCalculator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassChip.kt": [
      "GlassChip"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
      "GlassDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassSearchField.kt": [
      "GlassSearchField"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassStepper.kt": [
      "GlassStepper"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassToggle.kt": [
      "GlassToggle"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
      "DateTimeFormats"
     ]
    },
@@ -3470,60 +3470,60 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsScreen.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "NextRenewal",
      "SubscriptionCalculator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
      "SubscriptionCsv"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppIntents.kt": [
      "AppIntents"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "FocusMemory",
      "modalFocus",
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill",
      "PillTone"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionDialog.kt": [
      "SubscriptionDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": [
      "SubscriptionRow",
      "SubscriptionsUiState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsDimens"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
      "DateTimeFormats"
     ]
    },
@@ -3635,31 +3635,31 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/subscriptions/SubscriptionsViewModel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
      "SubscriptionRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "SubscriptionCalculator",
      "SubscriptionSummary"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
      "SubscriptionCsv"
     ],
-    "app/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": [
      "minuteTicker"
     ]
    },
@@ -3693,7 +3693,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": {
    "deps": {},
    "module": "ui.theme",
    "package": "com.ks.tvlauncher.ui.theme",
@@ -3707,9 +3707,9 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
      "AnimationSpeed"
     ]
    },
@@ -3743,7 +3743,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": {
    "deps": {},
    "module": "ui.theme",
    "package": "com.ks.tvlauncher.ui.theme",
@@ -3763,20 +3763,20 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion",
      "MotionPolicy",
      "systemAnimationsEnabled"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsTypography"
     ]
    },
@@ -3828,7 +3828,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": {
    "deps": {},
    "module": "ui.theme",
    "package": "com.ks.tvlauncher.ui.theme",
@@ -3866,27 +3866,27 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/widgets/GreetingWidget.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/GreetingWidget.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
      "GreetingPeriod"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Shape.kt": [
      "KsShapes"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ]
    },
@@ -3914,24 +3914,24 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStorageCard.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
      "ByteFormatter"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassCard.kt": [
      "GlassCard"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
      "UsageBar"
     ]
    },
@@ -3959,36 +3959,36 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/MemoryStoragePanel.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/system/DeviceStatsRepository.kt": [
      "DeviceStats"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
      "ByteFormatter"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/FocusUtil.kt": [
      "requestFocusSafely"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassButton.kt": [
      "GlassButton"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassDialog.kt": [
      "GlassDialog"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "GlassPill"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/icons/KsIcons.kt": [
      "KsIcons"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsType"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": [
      "UsageRing",
      "usageTag",
      "usageTone"
@@ -4012,15 +4012,15 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/widgets/UsageVisuals.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
      "UsageLevel"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/components/GlassPill.kt": [
      "PillTone"
     ],
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Color.kt": [
      "KsColors"
     ]
    },
@@ -4060,7 +4060,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": {
    "deps": {},
    "module": "util",
    "package": "com.ks.tvlauncher.util",
@@ -4074,7 +4074,7 @@
     }
    ]
   },
-  "app/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": {
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/util/MinuteTicker.kt": {
    "deps": {},
    "module": "util",
    "package": "com.ks.tvlauncher.util",
@@ -4088,16 +4088,16 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/apps/AppArtworkKeyerTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/apps/AppArtworkKeyerTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppArtwork.kt": [
      "AppArtwork",
      "artwork"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": [
      "AppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ]
@@ -4114,9 +4114,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/apps/PinnedAppsRepositoryTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/apps/PinnedAppsRepositoryTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ]
    },
@@ -4132,9 +4132,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/profile/ProfileRepositoryTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/profile/ProfileRepositoryTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "ProfileRepository"
     ]
    },
@@ -4150,18 +4150,18 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/settings/SettingsRepositoryTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/settings/SettingsRepositoryTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity",
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
      "WeatherCityMode"
@@ -4179,15 +4179,15 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepositoryTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepositoryTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
      "SubscriptionDataStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionRepository.kt": [
      "SubscriptionRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ]
@@ -4204,9 +4204,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/updates/GitHubReleaseParsingTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/updates/GitHubReleaseParsingTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
      "GitHubUpdateSource"
     ]
    },
@@ -4222,43 +4222,43 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/updates/StoredDataCompatibilityTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/updates/StoredDataCompatibilityTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/PinnedAppsRepository.kt": [
      "PinnedAppsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/profile/ProfileRepository.kt": [
      "ProfileRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderStore.kt": [
      "ReminderStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "GlassIntensity",
      "SettingsRepository"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/subscriptions/SubscriptionDataStore.kt": [
      "SubscriptionDataStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "CityLocator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
      "WeatherCityMode"
@@ -4276,20 +4276,20 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/updates/UpdateCheckerTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/updates/UpdateCheckerTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateChecker.kt": [
      "CheckResult",
      "UpdateChecker"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateSource.kt": [
      "RateLimitedException",
      "UpdateSource"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/updates/UpdateStore.kt": [
      "UpdateStore"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "ReleaseInfo"
     ]
    },
@@ -4305,19 +4305,19 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/weather/CityResolverTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/weather/CityResolverTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
      "LauncherSettings"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "CityLocator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityResolver.kt": [
      "CityResolver",
      "ResolvedCity"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity",
      "WeatherCityMode"
     ]
@@ -4334,12 +4334,12 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/weather/IpWhoIsLocatorTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/weather/IpWhoIsLocatorTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/CityLocator.kt": [
      "IpWhoIsLocator"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -4355,15 +4355,15 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/weather/OpenMeteoParsingTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/weather/OpenMeteoParsingTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/OpenMeteoProvider.kt": [
      "OpenMeteoProvider"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
      "CurrentWeather"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -4379,17 +4379,17 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/data/weather/WeatherRepositoryTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/weather/WeatherRepositoryTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherProvider.kt": [
      "CurrentWeather",
      "WeatherProvider"
     ],
-    "app/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/weather/WeatherRepository.kt": [
      "WeatherRepository",
      "WeatherState"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "WeatherCity"
     ]
    },
@@ -4405,9 +4405,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/AnimationSpeedTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/AnimationSpeedTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AnimationSpeed.kt": [
      "AnimationSpeed"
     ]
    },
@@ -4423,12 +4423,12 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/AppFilterTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/AppFilterTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppFilter.kt": [
      "AppFilter"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
     ]
@@ -4445,9 +4445,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/AppUpdatesTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/AppUpdatesTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
      "AppUpdates",
      "UpdateVerdict"
     ]
@@ -4464,9 +4464,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/ByteFormatterTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/ByteFormatterTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ByteFormatter.kt": [
      "ByteFormatter",
      "UsageLevel"
     ]
@@ -4483,9 +4483,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/DailyWorkPlanTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/DailyWorkPlanTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DailyWork.kt": [
      "DailyWork",
      "DailyWorkPlan"
     ]
@@ -4502,9 +4502,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/DeviceNamesTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/DeviceNamesTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/DeviceNames.kt": [
      "DeviceNames"
     ]
    },
@@ -4520,9 +4520,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/GreetingTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/GreetingTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Greeting.kt": [
      "Greeting",
      "GreetingPeriod"
     ]
@@ -4539,9 +4539,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/MoneyTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/MoneyTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Money.kt": [
      "Money"
     ]
    },
@@ -4557,9 +4557,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/PinnedAppsTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/PinnedAppsTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/PinnedApps.kt": [
      "PinnedApps"
     ]
    },
@@ -4575,9 +4575,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/ProfileNamesEditTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/ProfileNamesEditTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ]
    },
@@ -4593,9 +4593,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/ProfileNamesTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/ProfileNamesTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/ProfileNames.kt": [
      "ProfileNames"
     ]
    },
@@ -4611,12 +4611,12 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/RenewalRemindersTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/RenewalRemindersTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/RenewalReminders.kt": [
      "RenewalReminders"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ]
@@ -4633,13 +4633,13 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/SubscriptionCalculatorTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/SubscriptionCalculatorTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCalculator.kt": [
      "SubscriptionCalculator"
     ]
    },
@@ -4655,13 +4655,13 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/SubscriptionCsvTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/SubscriptionCsvTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Subscription.kt": [
      "BillingCycle",
      "Subscription"
     ],
-    "app/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/SubscriptionCsv.kt": [
      "SubscriptionCsv"
     ]
    },
@@ -4677,9 +4677,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/TvInputsTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/TvInputsTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/TvInputs.kt": [
      "InputConnection",
      "InputKind",
      "TvInputSource",
@@ -4698,9 +4698,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/WallpapersTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/WallpapersTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Wallpapers.kt": [
      "WallpaperDim",
      "WallpaperImage",
      "WallpaperMode",
@@ -4719,9 +4719,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/domain/WeatherCodesTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/WeatherCodesTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/Weather.kt": [
      "TemperatureUnit",
      "WeatherCity",
      "WeatherCodes",
@@ -4740,9 +4740,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/ui/apps/AppMenuFocusTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/ui/apps/AppMenuFocusTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppMenuFocus.kt": [
      "AppMenuButton",
      "AppMenuFocus"
     ]
@@ -4759,9 +4759,9 @@
     }
    ]
   },
-  "app/src/test/java/com/ks/tvlauncher/ui/theme/KsCanvasTest.kt": {
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/ui/theme/KsCanvasTest.kt": {
    "deps": {
-    "app/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": [
      "KsCanvas"
     ]
    },
@@ -4779,6 +4779,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "dd03b38a03cbfa0316443e62ee5394d16644e13b",
+ "source_hash": "523e1e5e4b55e8fcdec92aa3f89f476dfb865f78",
  "version": 1
 }

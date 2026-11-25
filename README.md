@@ -22,7 +22,7 @@ cd ks-tv-launcher
 ./gradlew assembleDebug
 ```
 
-The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
+The debug APK is written to `tv/google-tv/build/outputs/apk/debug/google-tv-debug.apk`.
 
 Point Gradle at the SDK with an untracked `local.properties` (Android Studio creates it for you):
 
@@ -36,7 +36,7 @@ No API keys are needed. Weather uses Open-Meteo, which has none; only the city y
 
 KS runs as a normal app. It never becomes, or offers to become, the TV's Home launcher ([specs/app-mode.md](specs/app-mode.md)), so keep your current launcher as Home. Step-by-step TV setup (ADB, install, pinning to favourites, permissions) is in [SETUP.md](SETUP.md).
 
-- Install: `adb install -r app/build/outputs/apk/debug/app-debug.apk`. Debug and release builds are signed differently, so switching between them needs `adb uninstall com.ks.tvlauncher` first.
+- Install: `adb install -r tv/google-tv/build/outputs/apk/debug/google-tv-debug.apk`. Debug and release builds are signed differently, so switching between them needs `adb uninstall com.ks.tvlauncher` first.
 - Open "KS TV" from the TV's app list, pin it to your launcher's favourites row, or run `adb shell am start -n com.ks.tvlauncher/.MainActivity`.
 - Back on the main screen returns to your launcher and keeps KS ready for a fast reopen.
 
@@ -44,7 +44,7 @@ On-device checks for each stage are in [docs/MANUAL_TEST.md](docs/MANUAL_TEST.md
 
 ### Measuring smoothness
 
-Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` builds release code that installs as KS TV Dev (`app/build/outputs/apk/perf/app-perf.apk`). `scripts/perf.sh` runs the fixed scenarios over adb and prints janky frames and frame-time percentiles ([specs/smoothness.md](specs/smoothness.md)).
+Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` builds release code that installs as KS TV Dev (`tv/google-tv/build/outputs/apk/perf/google-tv-perf.apk`). `scripts/perf.sh` runs the fixed scenarios over adb and prints janky frames and frame-time percentiles ([specs/smoothness.md](specs/smoothness.md)).
 
 ## Versioning and release
 

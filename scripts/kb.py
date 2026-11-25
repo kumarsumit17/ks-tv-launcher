@@ -18,7 +18,8 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "app", "src")
+APP_DIR = os.path.join("tv", "google-tv")
+SRC = os.path.join(ROOT, APP_DIR, "src")
 BASE_PKG = "com.ks.tvlauncher"
 KB = os.path.join(ROOT, "docs", "kb")
 MODULES = os.path.join(KB, "modules")
@@ -97,7 +98,8 @@ def parse(path):
                 "line": i,
                 "private": "private" in m.group("mods").split(),
             })
-    source_set = rel.split(os.sep)[2] if rel.startswith(os.path.join("app", "src")) else "main"
+    src_prefix = os.path.join(APP_DIR, "src") + os.sep
+    source_set = rel[len(src_prefix):].split(os.sep)[0] if rel.startswith(src_prefix) else "main"
     return {
         "path": rel,
         "package": pkg,

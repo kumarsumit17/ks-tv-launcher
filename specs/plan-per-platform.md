@@ -9,7 +9,7 @@ tags: [plan, platforms, google-tv, performance, accessibility, languages]
 
 **Status: approved by the owner on 2026-11-25, as written.** Decisions 2 to 5 are asked when their step starts. Follows the suite rule that each platform build is its own app tuned to its OS ([KS-Suite platform folders](https://github.com/kumarsumit17/KS-Suite/blob/main/specs/platform-folders.md)).
 
-KS TV Launcher has one platform, Google TV / Android TV. So there is no `shared/` folder, and plain `vX.Y.Z` tags stay (a `google-tv-` prefix adds nothing while there is one platform). The rules in [ground-rules](ground-rules.md), [app-mode](app-mode.md) and [future-development](future-development.md) still apply. Each step below goes through the cycle in future-development.
+KS TV Launcher has one platform, Google TV / Android TV. So there is no `shared/` folder, and releases keep plain `vX.Y.Z` tags: the suite uses one plain tag per app for all its builds, with no platform tags or bridge releases for now ([KS-Suite versioning](https://github.com/kumarsumit17/KS-Suite/blob/main/specs/versioning-signing.md)). This plan covers only the TV optimizations. The rules in [ground-rules](ground-rules.md), [app-mode](app-mode.md) and [future-development](future-development.md) still apply. Each step below goes through the cycle in future-development.
 
 ## 1. Audit: what the build does today (v0.8.0, 2026-11-25)
 
@@ -85,5 +85,8 @@ Each step is its own change on `dev`, tested, confirmed by the owner and reviewe
 | 4 | Accessibility (2.6) | TalkBack, "Remove animations" and high-contrast text on the 55 inch emulator, then every size |
 | 5 | D-pad polish and Google TV rules (2.2, 2.5) | Every TV size with screenshots; the banner on the emulator's launcher |
 | 6 | Smoothness re-run (2.3) | 85 and 100 inch emulators, owner's TV |
+
+**Built so far (2026-11-25):**
+- Step 1: the code is in `tv/google-tv/` (`:tv:google-tv`); the release workflow builds it with ks-utility's `kotlin-app-release.yml@v0.9.0` and keeps the file names `app-release.apk` and `.aab`. Build, 172 unit tests, lint and the release build pass (APK 1.94 MB, unchanged). On every TV-size emulator (32, 43, 50, 55, 65, 75, 85, 100 inch) the connected tests pass, KS TV Dev installs and opens with no crash, and Home lays out the same. Still to do: a release rehearsal run once `dev` is pushed. Seen in passing, not caused by the move: from All apps, Down then Right reached Control Center rather than Active Subscriptions on the emulators; checked in step 5.
 
 After step 6, one release (`vX.Y.0`) carries the work; the owner installs it from inside KS on the TV and the data check in [dev-workflow](dev-workflow.md) runs as usual. Paid signing and hand checks never block that release.

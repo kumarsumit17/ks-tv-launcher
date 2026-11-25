@@ -151,7 +151,7 @@ dependencies {
 }
 
 // Compose compiler reports for the smoothness pass (specs/smoothness.md):
-// ./gradlew assemblePerf -PcomposeReports  → app/build/compose-reports
+// ./gradlew assemblePerf -PcomposeReports  → tv/google-tv/build/compose-reports
 if (providers.gradleProperty("composeReports").isPresent) {
     composeCompiler {
         reportsDestination = layout.buildDirectory.dir("compose-reports")

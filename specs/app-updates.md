@@ -13,7 +13,7 @@ KS finds, downloads and installs its own new releases on the TV, keeping every s
 ## Why data survives
 An update is an in-place install of the same package signed with the same key, so Android keeps the app's data. Three things protect that:
 - **Same key forever.** Releases are signed only by the release workflow. Losing the keystore ends in-place updates.
-- **Stored data stays readable.** Never rename, remove or change the meaning of a DataStore key or a serialized field. New fields get defaults (`ignoreUnknownKeys` is already on). A change that cannot be compatible needs a migration plus a unit test that loads data written by the previous release. Keep one sample of each stored value under `app/src/test/resources/stored/` as the compatibility fixture.
+- **Stored data stays readable.** Never rename, remove or change the meaning of a DataStore key or a serialized field. New fields get defaults (`ignoreUnknownKeys` is already on). A change that cannot be compatible needs a migration plus a unit test that loads data written by the previous release. Keep one sample of each stored value under `tv/google-tv/src/test/resources/stored/` as the compatibility fixture.
 - **Never downgrade**: only install a higher `versionCode`.
 
 ## Where updates come from
