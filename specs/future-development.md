@@ -13,8 +13,8 @@ The project as specified was completed on **2026-11-17 at 16:00 IST (UTC+05:30)*
 ## The cycle for any change
 1. Write or update the spec first (one OKF concept per file, linked from [index](index.md), noted in [log](log.md)).
 2. Build on `dev` and test with **KS TV Dev** only (`com.ks.tvlauncher.dev`; the `perf` build for anything about speed or release-only behaviour). Use `TEST ` data and remove it ([verification](verification.md), [dev-workflow](dev-workflow.md)).
-3. The owner confirms; Claude Cowork reviews the uncommitted work; only then commit and push.
-4. Merge `dev` into `main`, tag a **new** version from `main` (never reuse or move a tag), and let the Release workflow publish it. Confirm the signer SHA-256 starts with `2aa25f08`.
+3. When the tests pass, commit and push; there is no review or confirmation step, and nobody is waited for.
+4. Fast-forward `main` to `dev`, tag a **new** version from `main` straight away (never reuse or move a tag), and let the Release workflow publish it. Confirm the signer SHA-256 starts with `2aa25f08`.
 5. The owner updates **from inside KS** (Settings › About › Check for updates). ADB install is a fallback only, always `adb install -r`, never an uninstall.
 6. After the update, confirm the owner's data is unchanged and record it in `docs/MANUAL_TEST.md`. Remove KS TV Dev.
 

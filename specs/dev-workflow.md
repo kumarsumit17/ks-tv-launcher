@@ -25,13 +25,13 @@ Applies from the [release-checklist](release-checklist.md) onward. Two apps can 
 - In-app updates stay off in the dev app ([app-updates](app-updates.md)). Settings › About still shows the update rows there, inert and laid out as in release, so their D-pad paths can be tested; any press says "Updates are off in KS TV Dev". The release APK carries no dev wording (the message is overridden in `src/debug/res`).
 
 ## Branches
-- Work happens on `dev`. `main` only receives reviewed work and is what gets tagged.
+- Work happens on `dev`. `main` only fast-forwards to `dev` at a release and is what gets tagged.
 - Tag pushes come from `main` only. Pushing a tag publishes the GitHub release.
 
-## Cycle for every stage or fix
-1. Build on `dev`; install **KS TV Dev** on the TV (`./gradlew installDebug`) and test with `TEST ` data ([verification](verification.md)). Open it with `adb shell am start -n com.ks.tvlauncher.dev/com.ks.tvlauncher.MainActivity`.
-2. Owner confirms, Claude Cowork reviews, commit and push to `dev`.
-3. Merge `dev` into `main`, push, tag `vX.Y.Z` (owner's decision), wait for the Release workflow, confirm the signing fingerprint.
+## Cycle for every feature or fix
+1. Build on `dev`; install **KS TV Dev** on every TV-size emulator, and on the TV when it is reachable (`./gradlew installDebug`), and test with `TEST ` data ([verification](verification.md)). Open it with `adb shell am start -n com.ks.tvlauncher.dev/com.ks.tvlauncher.MainActivity`.
+2. When the tests pass, commit and push to `dev`; no waiting for a review or confirmation.
+3. Fast-forward `main` to `dev`, push, tag the next `vX.Y.Z` (feature: MINOR, fix: PATCH), wait for the Release workflow, confirm the signing fingerprint.
 4. **Put the release on the TV**: through the in-app update once Stage 6c exists; otherwise `adb install -r app-release.apk` (same key, so data is kept). Never uninstall first.
 5. **Verify the owner's data survived**, on the TV, and record it in `docs/MANUAL_TEST.md` (date, version): profile names and active name, TV name, pinned apps and order, subscriptions and totals, weather mode and city, wallpaper, settings. If anything is missing, stop: do not start new work until the cause is found.
 6. **Remove the test copy**: `adb uninstall com.ks.tvlauncher.dev`. It is reinstalled at step 1 of the next cycle.

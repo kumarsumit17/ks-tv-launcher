@@ -20,4 +20,4 @@ stage: all
 3. Knowledge graph ([knowledge-graph](knowledge-graph.md)): run `python3 scripts/kb.py build`; write Purpose and Rules for any new module and update Rules that changed; add an entry to `docs/kb/log.md`; `python3 scripts/kb.py check` must print OK. Update `README.md` if the stack or setup changed (it must not mention Hilt, Retrofit or OpenWeatherMap).
 4. Add this stage's on-device checks to `docs/MANUAL_TEST.md` (D-pad paths, focus return, reboot persistence, uninstall while pinned).
 5. Short report: files created/changed, dependencies added (versions), real command results, APK path, anything not done and why.
-6. [verification](verification.md), in this order: test on the TV with sample data → owner confirms → Claude Cowork review → only then `git commit` (one per stage or fix) and `git push`. Do not commit before the review is approved.
+6. [verification](verification.md), in this order: test on every TV-size emulator with sample data → `git commit` (one per feature or fix) and `git push` → release. No review or confirmation step; never commit while a test fails.

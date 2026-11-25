@@ -68,4 +68,4 @@ adb shell am start -n com.ks.tvlauncher.dev/com.ks.tvlauncher.MainActivity
 ## Always
 - One stage per request; finish with `specs/definition-of-done.md` (includes `kb.py build` + `kb.py check`).
 - Never claim a build or test passed unless the command succeeded.
-- Never commit or push a stage or a fix until it has been tested on the TV with sample data, the owner has confirmed, and Claude Cowork has reviewed it (`specs/verification.md`). Stop and hand off for review; commit and push only after approval.
+- Every feature or fix: build it, test it (unit tests, `kb.py check`, every TV-size emulator with sample data), then commit, push and release it (`specs/verification.md`). Don't wait for anyone: no review or confirmation step, and releases (tags) need no separate OK. Never commit or release while a test fails.

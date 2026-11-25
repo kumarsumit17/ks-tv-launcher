@@ -75,7 +75,7 @@ Move `app/` to `tv/google-tv/` as Gradle project `:tv:google-tv`, keeping the pa
 
 ## 4. Build order and testing
 
-Each step is its own change on `dev`, tested, confirmed by the owner and reviewed by Claude Cowork before it is committed ([verification](verification.md)). Every step is tested on every TV-size emulator (32 to 100 inch) with KS TV Dev only, never the real app ([dev-workflow](dev-workflow.md)). Nothing is pushed or tagged without the owner's OK in words.
+Each step is its own change on `dev`: built, tested, then committed, pushed and released without waiting for anyone ([verification](verification.md)). Every step is tested on every TV-size emulator (32 to 100 inch) with KS TV Dev only, never the real app ([dev-workflow](dev-workflow.md)). Nothing is pushed or tagged without the owner's OK in words.
 
 | Step | What | Tested on |
 |---|---|---|
@@ -89,4 +89,4 @@ Each step is its own change on `dev`, tested, confirmed by the owner and reviewe
 **Built so far (2026-11-25):**
 - Step 1: the code is in `tv/google-tv/` (`:tv:google-tv`); the release workflow builds it with ks-utility's `kotlin-app-release.yml@v0.9.0` and keeps the file names `app-release.apk` and `.aab`. Build, 172 unit tests, lint and the release build pass (APK 1.94 MB, unchanged). On every TV-size emulator (32, 43, 50, 55, 65, 75, 85, 100 inch) the connected tests pass, KS TV Dev installs and opens with no crash, and Home lays out the same. Still to do: a release rehearsal run once `dev` is pushed. Seen in passing, not caused by the move: from All apps, Down then Right reached Control Center rather than Active Subscriptions on the emulators; checked in step 5.
 
-After step 6, one release (`vX.Y.0`) carries the work; the owner installs it from inside KS on the TV and the data check in [dev-workflow](dev-workflow.md) runs as usual. Paid signing and hand checks never block that release.
+Each step is released on its own as soon as its tests pass (a new MINOR version for a step that changes the app, PATCH for a fix); the owner installs it from inside KS on the TV when convenient, and the data check in [dev-workflow](dev-workflow.md) runs then. Paid signing and hand checks never block a release.

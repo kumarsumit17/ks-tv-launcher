@@ -70,7 +70,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 * [Smoothness pass](smoothness.md) - measured frame-time pass on a `perf` build, before the update work (Stage 6c part 1)
 * [Final release check](final-check.md) - Stage 1–3 checklists (read-only on the real app, data entry on the `perf` build) and reminders after a TV restart (Stage 6c part 3, last)
 * [Definition of done](definition-of-done.md) - build, tests, report
-* [Verify on the TV, then independent review, then commit](verification.md) - TV test with sample data, Claude Cowork review, then commit and push
+* [Build, test, release](verification.md) - Every feature or fix is built, tested on every TV-size emulator with sample data, then committed, pushed and released, without waiting for anyone.
 
 # Reference
 
