@@ -1,3 +1,7 @@
+# 2026-11-25
+
+* **Update**: `ks-utility` moved from `v0.3.0` to `v0.9.0` (more languages, the translation tools; [ks-utility translation tools](https://github.com/kumarsumit17/ks-utility/blob/main/specs/translating.md)).
+
 # 2026-11-23
 
 * **Update**: [Design system](design-system.md): Screen sizes: the 960×540 dp canvas is scaled to fill the window whatever the TV's density or Display size setting (`KsCanvas`), text scale is capped at 1.3× with 7.5 % more room at that size (Home fits at Largest), and the canvas is tuned for 55 and 65 inch TVs (physical sizes per TV size recorded).
