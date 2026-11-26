@@ -3835,32 +3835,26 @@
    "source_set": "main",
    "symbols": [
     {
-     "kind": "val",
-     "line": 12,
-     "name": "fontProvider",
-     "private": true
-    },
-    {
-     "kind": "val",
-     "line": 18,
+     "kind": "fun",
+     "line": 13,
      "name": "inter",
      "private": true
     },
     {
      "kind": "val",
-     "line": 25,
+     "line": 26,
      "name": "InterFamily",
      "private": false
     },
     {
      "kind": "object",
-     "line": 37,
+     "line": 38,
      "name": "KsType",
      "private": false
     },
     {
      "kind": "val",
-     "line": 69,
+     "line": 70,
      "name": "KsTypography",
      "private": false
     }
@@ -4779,6 +4773,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "649869502b2f48b3a43b310f5833a9cd7aa3c227",
+ "source_hash": "b43077fd538069fec024afa4c430987e51416651",
  "version": 1
 }

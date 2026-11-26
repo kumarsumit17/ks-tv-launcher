@@ -1,33 +1,34 @@
 package com.ks.tvlauncher.ui.theme
 
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.googlefonts.Font
-import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import androidx.tv.material3.Typography
 import com.ks.tvlauncher.R
 
-private val fontProvider = GoogleFont.Provider(
-    providerAuthority = "com.google.android.gms.fonts",
-    providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs,
+/** One weight of the bundled variable Inter (`res/font/inter.ttf`, weights 400 to 800). */
+private fun inter(weight: FontWeight) = Font(
+    resId = R.font.inter,
+    weight = weight,
+    variationSettings = FontVariation.Settings(FontVariation.weight(weight.weight)),
 )
 
-private val inter = GoogleFont("Inter")
-
 /**
- * Inter, downloaded on demand through Google Play services and cached by the system.
- * Loading is asynchronous and never blocks the first frame; until it arrives, or if the
- * provider is missing, text renders in the platform sans-serif.
+ * Inter v4.1 (SIL Open Font License, `assets/licenses/Inter-OFL.txt`), bundled in the APK as one
+ * variable font cut down to the characters KS shows (Latin, punctuation, currency including ₹,
+ * arrows and math signs; [specs/design-system.md]). Bundled rather than downloaded, so the first
+ * frame never waits for or falls back from a font provider. Other scripts (Devanagari for Hindi,
+ * names in other alphabets) fall back to the system fonts per character.
  */
 val InterFamily = FontFamily(
-    Font(googleFont = inter, fontProvider = fontProvider, weight = FontWeight.Normal),
-    Font(googleFont = inter, fontProvider = fontProvider, weight = FontWeight.Medium),
-    Font(googleFont = inter, fontProvider = fontProvider, weight = FontWeight.SemiBold),
-    Font(googleFont = inter, fontProvider = fontProvider, weight = FontWeight.Bold),
-    Font(googleFont = inter, fontProvider = fontProvider, weight = FontWeight.ExtraBold),
+    inter(FontWeight.Normal),
+    inter(FontWeight.Medium),
+    inter(FontWeight.SemiBold),
+    inter(FontWeight.Bold),
+    inter(FontWeight.ExtraBold),
 )
 
 /**

@@ -20,7 +20,7 @@ stage: 1
 | DI | Manual `AppContainer` created in `KsApplication`. **No Hilt.** |
 | Network | `HttpURLConnection` on `Dispatchers.IO` + kotlinx-serialization (no Retrofit/Ktor) |
 | Background work | WorkManager, Stage 5 only |
-| Fonts | Inter via `androidx.compose.ui:ui-text-google-fonts`, fallback `FontFamily.SansSerif` |
+| Fonts | Inter, bundled as a cut-down variable font in `res/font/` ([design-system](design-system.md)); no font provider |
 | Icons | Hand-written `ImageVector`s (stroke 1.8dp, round caps). No `material-icons-extended`. |
 
 SDK: `minSdk 26`; `compileSdk`/`targetSdk` = latest stable platform installed. JVM target 17.

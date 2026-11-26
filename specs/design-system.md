@@ -37,6 +37,7 @@ Target 1080p = 960×540 dp. Overscan-safe padding 48dp horizontal, 27dp vertical
 - Primary button: `#F4F6FB` fill, `#0A0F1C` text.
 
 ## Type (Inter)
+Inter v4.1 is bundled in the APK (`res/font/inter.ttf`): one variable font, weights 400–800, optical size 14, cut down with fonttools to Latin (U+0020–017F), punctuation, currency (₹), letterlike symbols, arrows, math signs and geometric shapes, about 130 KB. Its SIL Open Font License ships as `assets/licenses/Inter-OFL.txt`. Characters outside the cut (Devanagari for Hindi, other alphabets in names) fall back to the system fonts. When text gains a new symbol, check it is in the font or add its range and cut the font again.
 Hero title 44sp ExtraBold (−1sp tracking) · Screen title 24sp ExtraBold · Clock 20sp Bold · Section label 11sp SemiBold · Body 12sp · Caption 9–10sp (minimum).
 
 ## Shapes and motion
