@@ -1,16 +1,17 @@
 name: Release
 
 # The release workflow is shared by every KS-Suite Kotlin app and lives in ks-utility
-# (https://github.com/kumarsumit17/ks-utility/blob/main/specs/release-workflow.md).
+# (https://github.com/kumasumit/ks-utility/blob/main/specs/release-workflow.md).
 # This file only names KS - TV Launcher's platforms.
 #
-#   Tag push vMAJOR.MINOR.PATCH   Builds and verifies the signed APK and AAB, then publishes the
-#                                 GitHub Release (full release, latest).
+#   Tag push google-tv-vX.Y.Z     Builds and verifies the signed APK and AAB, then publishes the
+#                                 GitHub Release ("for Google TV", not marked latest). A plain
+#                                 vX.Y.Z also works and is marked latest.
 #   Manual run (rehearsal)        Builds and checks everything for the version given; never publishes.
 
 on:
   push:
-    tags: ["v*.*.*"]
+    tags: ["google-tv-v*.*.*", "v*.*.*"]
   workflow_dispatch:
     inputs:
       version:
@@ -27,7 +28,7 @@ concurrency:
 
 jobs:
   release:
-    uses: kumarsumit17/ks-utility/.github/workflows/kotlin-app-release.yml@v0.9.0
+    uses: kumasumit/ks-utility/.github/workflows/kotlin-app-release.yml@v0.10.0
     permissions:
       contents: write
       id-token: write
@@ -36,7 +37,9 @@ jobs:
       version: ${{ inputs.version }}
       app-name: ks-tv-launcher
       display-name: KS - TV Launcher
-      android-module: ":tv:google-tv"
-      # Installed copies look for this name when they check for updates (specs/app-updates.md).
+      # A TV-only app: the TV app is the workflow's tv-module, so a google-tv-vX.Y.Z tag (the suite's
+      # platform tags) builds and releases it. Files: app-release-google-tv.apk and .aab, the name
+      # the in-app update check looks for (specs/app-updates.md).
+      tv-module: ":tv:google-tv"
       android-file-name: app-release
     secrets: inherit

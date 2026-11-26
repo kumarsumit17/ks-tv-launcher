@@ -156,7 +156,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 29,
+     "line": 30,
      "name": "MainActivity",
      "private": false
     }
@@ -705,19 +705,19 @@
    "symbols": [
     {
      "kind": "interface",
-     "line": 18,
+     "line": 20,
      "name": "UpdateSource",
      "private": false
     },
     {
      "kind": "class",
-     "line": 25,
+     "line": 30,
      "name": "RateLimitedException",
      "private": false
     },
     {
      "kind": "class",
-     "line": 32,
+     "line": 37,
      "name": "GitHubUpdateSource",
      "private": false
     }
@@ -4779,6 +4779,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "523e1e5e4b55e8fcdec92aa3f89f476dfb865f78",
+ "source_hash": "649869502b2f48b3a43b310f5833a9cd7aa3c227",
  "version": 1
 }

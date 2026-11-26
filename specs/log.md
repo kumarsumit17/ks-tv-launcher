@@ -1,3 +1,9 @@
+# 2026-11-26
+
+* **Update**: [Per-platform plan](plan-per-platform.md) step 2: [performance](performance.md) gains Home-ready reporting (`ReportDrawnWhen`), the baseline profile (`:tv:google-tv-baselineprofile`, `profileinstaller`), start-up targets and the locale filter; [dev-workflow](dev-workflow.md): the profile plugin's build types install as KS TV Dev. New dependencies: `androidx.profileinstaller:profileinstaller` 1.4.1 (shipped; already in the tree through Compose, now direct) to install the profile; build and test only, never shipped: the `androidx.baselineprofile` Gradle plugin and `androidx.benchmark:benchmark-macro-junit4` 1.5.0, `androidx.test.uiautomator:uiautomator` 2.4.1 in the test module.
+* **Update**: [App updates](app-updates.md): the suite's platform tags are back (KS-Suite `versioning-signing.md`, 2026-11-25): the check reads the release list (`releasesApiUrl`, `AppUpdate.parseReleases` for `GOOGLE_TV`, ks-utility `v0.10.0`) and prefers `app-release-google-tv.apk`, else `app-release.apk`; `v0.9.0` is the plain bridge release, later releases are `google-tv-vX.Y.Z`. ks-utility and the release workflow move to `v0.10.0`.
+* **Update**: The GitHub account was renamed from `kumarsumit17` to `kumasumit`: the update check's repository, the shared release workflow (`kumasumit/ks-utility/...@v0.10.0`), `.gitmodules`, README and spec links use the new name. Copies up to v0.8.1 cannot update in-app any more, so there is no bridge release: the first release is `google-tv-v0.9.0`, built through the workflow's `tv-module` (`app-release-google-tv.apk`), and the owner installs it once by hand ([app-updates](app-updates.md)).
+
 # 2026-11-25
 
 * **Update**: [Per-platform plan](plan-per-platform.md) step 1 released as `v0.8.1` after a passing rehearsal run; signer `2aa25f08…`, release files `app-release.apk` and `app-release.aab` as before.

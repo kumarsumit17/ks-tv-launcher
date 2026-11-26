@@ -22,6 +22,7 @@ Applies from the [release-checklist](release-checklist.md) onward. Two apps can 
 - Nothing may hardcode the package name; use `context.packageName` / `BuildConfig.APPLICATION_ID` (own-app exclusion in the app list, intents, tests).
 - The release APK contains no dev code paths, label or suffix. Anyone given `app-release.apk` sees only "KS TV".
 - A `perf` build type ([smoothness](smoothness.md)) is release code installed as KS TV Dev with the debug key, for measuring only; it is never released.
+- The baseline-profile plugin's build types (`benchmarkRelease`, `nonMinifiedRelease`) also install as KS TV Dev with in-app updates off (`androidComponents` in `tv/google-tv/build.gradle.kts`), so generating the profile or running `StartupBenchmark` never touches the real app. Run them on emulators only.
 - In-app updates stay off in the dev app ([app-updates](app-updates.md)). Settings › About still shows the update rows there, inert and laid out as in release, so their D-pad paths can be tested; any press says "Updates are off in KS TV Dev". The release APK carries no dev wording (the message is overridden in `src/debug/res`).
 
 ## Branches

@@ -79,3 +79,11 @@ One entry per stage: what changed and why.
 
 ## Fixes from the final release check
 - Top bar ends hold focus (`HomeTopBar`). `AppMenu` + `AppMenuFocus` keep focus in the menu when a Move button disappears; `GlassDialog` pulls escaped focus back. `AppContainer.ensureDailyWork` + `DailyWorkPlan` re-register daily reminder and update work (KEEP) about 5 s after Home is first shown; `UpdateScheduler.ensureScheduled` and `UpdateStore.scheduledFor` removed. Tests: `DailyWorkPlanTest`, `AppMenuFocusTest`.
+
+## Per-platform step 1 (v0.8.1)
+- The app's code moved from `app/` to `tv/google-tv/` (Gradle `:tv:google-tv`); `scripts/kb.py` reads `tv/google-tv/src`. No code changed.
+
+## Per-platform step 2 (google-tv-v0.9.0)
+- `MainActivity` reports Home ready with `ReportDrawnWhen { state.appsLoaded }`.
+- Baseline profile: `tv/google-tv/src/release/generated/baselineProfiles/` from the test-only module `tv/google-tv/baselineprofile/` (`BaselineProfileGenerator`, `StartupBenchmark`, `KsJourney`; not in this graph, which covers the app only).
+- `data.updates`: `GitHubUpdateSource` reads the release list (`RELEASES_URL`) and picks the newest `google-tv-v…` or plain release with ks-utility `AppUpdate.parseReleases`; it prefers `app-release-google-tv.apk` (`TV_APK_NAME`) over `app-release.apk`.

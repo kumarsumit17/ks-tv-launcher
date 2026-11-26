@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.ReportDrawnWhen
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.CompositionLocalProvider
@@ -51,6 +52,9 @@ class MainActivity : ComponentActivity() {
             val wallpaper by viewModel.wallpaper.collectAsStateWithLifecycle()
             val subscriptions by viewModel.subscriptions.collectAsStateWithLifecycle()
             val updateVersion by viewModel.updateVersion.collectAsStateWithLifecycle()
+            // "Home ready" for am start -W, Macrobenchmark and the baseline profile: the app
+            // grid has its apps (specs/performance.md).
+            ReportDrawnWhen { state.appsLoaded }
             val actions = remember {
                 HomeActions(
                     onSwitchProfile = viewModel::switchProfile,
