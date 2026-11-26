@@ -22,6 +22,7 @@ Design tokens and theme: colours, Inter type scale, shapes and dimens, motion po
 - `ui/theme/Color.kt` — `KsColors`
 - `ui/theme/Motion.kt` — `KsMotion`, `LocalMotion`, `MotionPolicy`, `systemAnimationsEnabled`
 - `ui/theme/Shape.kt` — `KsDimens`, `KsShapes`
+- `ui/theme/SystemAccessibility.kt` — `SystemAccessibility`, `readSystemAccessibility`, `rememberSystemAccessibility`
 - `ui/theme/Theme.kt` — `GlassStyle`, `KsCanvas`, `KsTheme`, `LocalGlassStyle`, `VisualSettings`
 - `ui/theme/Type.kt` — `InterFamily`, `KsType`, `KsTypography`, `forText`
 

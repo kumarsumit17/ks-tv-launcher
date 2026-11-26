@@ -95,3 +95,8 @@ One entry per stage: what changed and why.
 - New module `data.language` (`AppLanguage`): the language choice; `MainActivity` and `KsApplication` wrap their context on Android 8–12.
 - Strings come from `src/main/lang` (generated resources); `cc_12_hour`/`cc_24_hour` became `cc_clock_12h`/`cc_clock_24h`.
 - `ui.theme`: `TextStyle.forText(text)` drops negative tracking for text in other scripts; used by the greeting, the hero title and the Settings and Subscriptions titles. Settings has a Language section.
+
+## Per-platform step 4 (accessibility)
+- `ui.theme`: `SystemAccessibility` / `rememberSystemAccessibility()` follow Remove animations and high contrast text live; `GlassStyle.backingAlpha` darkens glass with high contrast (`ui.components` `glass()` draws it).
+- `ui.home`: Home's column is `clearAndSetSemantics {}` while any overlay is open.
+- `scripts/a11y_audit.py`: label audit over a uiautomator dump.

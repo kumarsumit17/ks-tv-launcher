@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -367,7 +368,14 @@ fun HomeScreen(
             },
         background = { HomeBackground(wallpaper, state.wallpaperDim) },
     ) {
-        Column(Modifier.fillMaxSize().padding(vertical = KsDimens.OverscanVertical)) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                // While an overlay covers Home, TalkBack must not reach the hidden Home controls
+                // behind it (specs/accessibility.md). D-pad focus is unaffected.
+                .then(if (anyOverlay) Modifier.clearAndSetSemantics {} else Modifier)
+                .padding(vertical = KsDimens.OverscanVertical),
+        ) {
             HomeTopBar(
                 time = state.time,
                 shortDate = state.shortDate,

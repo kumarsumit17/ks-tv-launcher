@@ -29,7 +29,7 @@ The project as specified was completed on **2026-11-17 at 16:00 IST (UTC+05:30)*
 - If the key or the GitHub signing secrets ever change, stop: that is a new app as far as Android is concerned.
 
 ## Open items (optional, not scheduled)
-- **System-setting checks** not yet run on the TV: changing the TV's time, time zone and 12/24-hour setting, renaming the TV, and Animator duration scale set to "Animation off". The owner changes the setting with the remote; results go in `docs/MANUAL_TEST.md`.
+- **System-setting checks** not yet run on the TV: changing the TV's time, time zone and 12/24-hour setting, renaming the TV, and Animator duration scale set to "Animation off" (on the emulators KS follows it live since step 4 of the [per-platform plan](plan-per-platform.md); [accessibility](accessibility.md)). The owner changes the setting with the remote; results go in `docs/MANUAL_TEST.md`.
 - **Own photo as wallpaper on a TV with no file picker**: the owner's TV hides "Choose a picture". It needs another route (for example a picture read from a USB drive, or a file-manager app that provides a picker). The picker import path is also untested on any device ([custom-wallpaper](custom-wallpaper.md)).
 - **CSV import in `ks-expense-manager`**: KS exports the subscriptions CSV; reading it belongs to that app. The format is a contract ([subscriptions](subscriptions.md)).
 - **Release-only checks still unproven**: the update-check job returning after a force-stop on a release build, and the Home update pill's Left behaviour.

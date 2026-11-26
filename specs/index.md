@@ -47,6 +47,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 * [Custom wallpaper](custom-wallpaper.md) - built-in or user-picked background (Stage 6)
 * [In-app updates](app-updates.md) - check, download, verify and install new releases, keeping data (Stage 6)
 * [Languages (English and Hindi)](languages.md) - How KS speaks English and Hindi through ks-utility's language files, how the language is chosen and remembered, and how text in another script is laid out.
+* [Accessibility (TalkBack on TV, contrast, motion)](accessibility.md) - What KS does so TalkBack on TV can read every control, how it follows the system's high-contrast text and Remove animations settings, and how labels are checked.
 
 # Policies
 

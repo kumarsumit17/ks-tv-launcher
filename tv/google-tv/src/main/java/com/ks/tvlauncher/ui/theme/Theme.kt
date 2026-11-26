@@ -32,9 +32,17 @@ data class VisualSettings(
  * scroll, and switched off entirely at [GlassIntensity.LOW].
  */
 @Immutable
-data class GlassStyle(val blurRadius: Dp, val fillAlpha: Float) {
+data class GlassStyle(
+    val blurRadius: Dp,
+    val fillAlpha: Float,
+    /** A dark layer under the fill, for "High contrast text" (specs/accessibility.md); 0 = none. */
+    val backingAlpha: Float = 0f,
+) {
     val blurEnabled: Boolean get() = blurRadius > 0.dp
 }
+
+/** How dark the backing under glass is with "High contrast text" on. */
+private const val HIGH_CONTRAST_BACKING = 0.62f
 
 val LocalGlassStyle = staticCompositionLocalOf { GlassStyle(blurRadius = 0.dp, fillAlpha = 0.12f) }
 
@@ -104,11 +112,14 @@ fun KsTheme(
     content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
-    val systemAnimations = remember(context) { systemAnimationsEnabled(context) }
-    val motion = remember(visual.reduceMotion, visual.animationSpeed, systemAnimations) {
-        MotionPolicy(enabled = systemAnimations && !visual.reduceMotion, speedPercent = visual.animationSpeed)
+    // "Remove animations" and "High contrast text", followed live (specs/accessibility.md).
+    val a11y = rememberSystemAccessibility()
+    val motion = remember(visual.reduceMotion, visual.animationSpeed, a11y.animations) {
+        MotionPolicy(enabled = a11y.animations && !visual.reduceMotion, speedPercent = visual.animationSpeed)
     }
-    val glass = remember(visual.glassIntensity) { glassStyleFor(visual.glassIntensity) }
+    val glass = remember(visual.glassIntensity, a11y.highContrast) {
+        glassStyleFor(visual.glassIntensity).let { if (a11y.highContrast) it.copy(backingAlpha = HIGH_CONTRAST_BACKING) else it }
+    }
     val window = LocalWindowInfo.current.containerSize
     val system = LocalDensity.current
     val canvas = remember(window, system) {

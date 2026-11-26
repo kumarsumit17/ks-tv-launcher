@@ -30,6 +30,7 @@ fun Modifier.glass(
     return this
         .clip(shape)
         .frost(enabled = frosted)
+        .then(if (style.backingAlpha > 0f) Modifier.background(Color.Black.copy(alpha = style.backingAlpha)) else Modifier)
         .background(fillColor)
         .border(1.dp, KsColors.GlassBorder, shape)
 }

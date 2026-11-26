@@ -2551,103 +2551,103 @@
    "symbols": [
     {
      "kind": "val",
-     "line": 77,
+     "line": 78,
      "name": "SNACKBAR_MS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 78,
+     "line": 79,
      "name": "MENU_SETTLE_MS",
      "private": true
     },
     {
      "kind": "class",
-     "line": 81,
+     "line": 82,
      "name": "HomeActions",
      "private": false
     },
     {
      "kind": "class",
-     "line": 98,
+     "line": 99,
      "name": "MemoryOpener",
      "private": true
     },
     {
      "kind": "val",
-     "line": 101,
+     "line": 102,
      "name": "KEY_ROW",
      "private": true
     },
     {
      "kind": "val",
-     "line": 102,
+     "line": 103,
      "name": "KEY_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 103,
+     "line": 104,
      "name": "KEY_GEAR",
      "private": true
     },
     {
      "kind": "val",
-     "line": 104,
+     "line": 105,
      "name": "KEY_UPDATE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 105,
+     "line": 106,
      "name": "KEY_CHIP",
      "private": true
     },
     {
      "kind": "val",
-     "line": 106,
+     "line": 107,
      "name": "KEY_HERO_OPEN",
      "private": true
     },
     {
      "kind": "val",
-     "line": 107,
+     "line": 108,
      "name": "KEY_HERO_UNPIN",
      "private": true
     },
     {
      "kind": "val",
-     "line": 108,
+     "line": 109,
      "name": "KEY_ALL_APPS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 109,
+     "line": 110,
      "name": "KEY_SUBS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 110,
+     "line": 111,
      "name": "KEY_MEMORY",
      "private": true
     },
     {
      "kind": "val",
-     "line": 111,
+     "line": 112,
      "name": "KEY_CC",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 114,
+     "line": 115,
      "name": "trackFocus",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 125,
+     "line": 126,
      "name": "HomeScreen",
      "private": false
     }
@@ -3795,6 +3795,42 @@
     }
    ]
   },
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/SystemAccessibility.kt": {
+   "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
+     "systemAnimationsEnabled"
+    ]
+   },
+   "module": "ui.theme",
+   "package": "com.ks.tvlauncher.ui.theme",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 24,
+     "name": "SystemAccessibility",
+     "private": false
+    },
+    {
+     "kind": "val",
+     "line": 32,
+     "name": "HIGH_TEXT_CONTRAST",
+     "private": true
+    },
+    {
+     "kind": "fun",
+     "line": 35,
+     "name": "readSystemAccessibility",
+     "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 49,
+     "name": "rememberSystemAccessibility",
+     "private": false
+    }
+   ]
+  },
   "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Theme.kt": {
    "deps": {
     "tv/google-tv/src/main/java/com/ks/tvlauncher/data/settings/SettingsRepository.kt": [
@@ -3805,8 +3841,10 @@
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Motion.kt": [
      "LocalMotion",
-     "MotionPolicy",
-     "systemAnimationsEnabled"
+     "MotionPolicy"
+    ],
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/SystemAccessibility.kt": [
+     "rememberSystemAccessibility"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
      "KsTypography"
@@ -3830,31 +3868,37 @@
     },
     {
      "kind": "val",
-     "line": 39,
+     "line": 45,
+     "name": "HIGH_CONTRAST_BACKING",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 47,
      "name": "LocalGlassStyle",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 41,
+     "line": 49,
      "name": "glassStyleFor",
      "private": true
     },
     {
      "kind": "object",
-     "line": 58,
+     "line": 66,
      "name": "KsCanvas",
      "private": false
     },
     {
      "kind": "val",
-     "line": 91,
+     "line": 99,
      "name": "KsColorScheme",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 102,
+     "line": 110,
      "name": "KsTheme",
      "private": false
     }
@@ -4830,6 +4874,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "26c2dac3ca1e7506e290ef652ebfd1c3c15da7ea",
+ "source_hash": "2ea5d79f954955c4292ae2ed2e93789f4af6b14c",
  "version": 1
 }
