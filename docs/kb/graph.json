@@ -117,6 +117,9 @@
    "deps": {
     "tv/google-tv/src/main/java/com/ks/tvlauncher/AppContainer.kt": [
      "AppContainer"
+    ],
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/language/AppLanguage.kt": [
+     "AppLanguage"
     ]
    },
    "module": "root",
@@ -125,7 +128,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 10,
+     "line": 12,
      "name": "KsApplication",
      "private": false
     }
@@ -135,6 +138,9 @@
    "deps": {
     "tv/google-tv/src/main/java/com/ks/tvlauncher/KsApplication.kt": [
      "KsApplication"
+    ],
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/language/AppLanguage.kt": [
+     "AppLanguage"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/apps/AppArtworkImage.kt": [
      "LocalAppImageLoader"
@@ -156,7 +162,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 30,
+     "line": 32,
      "name": "MainActivity",
      "private": false
     }
@@ -258,6 +264,20 @@
      "kind": "class",
      "line": 26,
      "name": "WallpaperSource",
+     "private": false
+    }
+   ]
+  },
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/language/AppLanguage.kt": {
+   "deps": {},
+   "module": "data.language",
+   "package": "com.ks.tvlauncher.data.language",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 22,
+     "name": "AppLanguage",
      "private": false
     }
    ]
@@ -2401,7 +2421,8 @@
      "KsColors"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
-     "KsType"
+     "KsType",
+     "forText"
     ]
    },
    "module": "ui.home",
@@ -2410,7 +2431,7 @@
    "symbols": [
     {
      "kind": "fun",
-     "line": 36,
+     "line": 37,
      "name": "HomeHero",
      "private": false
     }
@@ -3016,6 +3037,9 @@
   },
   "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/settings/SettingsScreen.kt": {
    "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/language/AppLanguage.kt": [
+     "AppLanguage"
+    ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/data/reminders/ReminderNotifier.kt": [
      "ReminderNotifier"
     ],
@@ -3086,7 +3110,8 @@
      "KsDimens"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
-     "KsType"
+     "KsType",
+     "forText"
     ]
    },
    "module": "ui.settings",
@@ -3095,69 +3120,75 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 78,
+     "line": 81,
      "name": "SettingsSection",
      "private": false
     },
     {
      "kind": "val",
-     "line": 81,
+     "line": 84,
      "name": "CURRENCIES",
      "private": true
     },
     {
      "kind": "val",
-     "line": 84,
+     "line": 87,
      "name": "ITEM_PROFILE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 85,
+     "line": 88,
      "name": "ITEM_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 86,
+     "line": 89,
      "name": "ITEM_ABOUT",
      "private": true
     },
     {
      "kind": "val",
-     "line": 88,
+     "line": 91,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 95,
+     "line": 98,
      "name": "SettingsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 381,
+     "line": 388,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 501,
+     "line": 508,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 574,
+     "line": 581,
      "name": "ChoiceRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 583,
+     "line": 590,
      "name": "ValueRow",
      "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 614,
+     "name": "LanguageSection",
+     "private": true
     }
    ]
   },
@@ -3521,7 +3552,8 @@
      "KsDimens"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
-     "KsType"
+     "KsType",
+     "forText"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/util/DateTimeFormats.kt": [
      "DateTimeFormats"
@@ -3533,103 +3565,103 @@
    "symbols": [
     {
      "kind": "val",
-     "line": 62,
+     "line": 63,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "interface",
-     "line": 65,
+     "line": 66,
      "name": "Editing",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 75,
+     "line": 76,
      "name": "SubscriptionsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 201,
+     "line": 202,
      "name": "share",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 212,
+     "line": 213,
      "name": "Header",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 236,
+     "line": 238,
      "name": "StatCards",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 271,
+     "line": 273,
      "name": "nextRenewalLine",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 282,
+     "line": 284,
      "name": "StatCard",
      "private": true
     },
     {
      "kind": "val",
-     "line": 296,
+     "line": 298,
      "name": "W_NAME",
      "private": true
     },
     {
      "kind": "val",
-     "line": 297,
+     "line": 299,
      "name": "W_COST",
      "private": true
     },
     {
      "kind": "val",
-     "line": 298,
+     "line": 300,
      "name": "W_BILLING",
      "private": true
     },
     {
      "kind": "val",
-     "line": 299,
+     "line": 301,
      "name": "W_RENEWS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 302,
+     "line": 304,
      "name": "ColumnHeaders",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 317,
+     "line": 319,
      "name": "HeaderText",
      "private": true
     },
     {
      "kind": "val",
-     "line": 321,
+     "line": 323,
      "name": "STATUS_WIDTH",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 324,
+     "line": 326,
      "name": "SubscriptionRowItem",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 378,
+     "line": 380,
      "name": "equivalentText",
      "private": true
     }
@@ -3857,6 +3889,12 @@
      "line": 70,
      "name": "KsTypography",
      "private": false
+    },
+    {
+     "kind": "fun",
+     "line": 96,
+     "name": "forText",
+     "private": false
     }
    ]
   },
@@ -3881,7 +3919,8 @@
      "KsShapes"
     ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/ui/theme/Type.kt": [
-     "KsType"
+     "KsType",
+     "forText"
     ]
    },
    "module": "ui.widgets",
@@ -3890,19 +3929,19 @@
    "symbols": [
     {
      "kind": "val",
-     "line": 34,
+     "line": 35,
      "name": "NameBrush",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 42,
+     "line": 43,
      "name": "GreetingWidget",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 118,
+     "line": 119,
      "name": "deviceLine",
      "private": true
     }
@@ -4122,6 +4161,24 @@
      "kind": "class",
      "line": 22,
      "name": "PinnedAppsRepositoryTest",
+     "private": false
+    }
+   ]
+  },
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/data/language/AppLanguageTest.kt": {
+   "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/language/AppLanguage.kt": [
+     "AppLanguage"
+    ]
+   },
+   "module": "data.language",
+   "package": "com.ks.tvlauncher.data.language",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "AppLanguageTest",
      "private": false
     }
    ]
@@ -4773,6 +4830,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "b43077fd538069fec024afa4c430987e51416651",
+ "source_hash": "26c2dac3ca1e7506e290ef652ebfd1c3c15da7ea",
  "version": 1
 }

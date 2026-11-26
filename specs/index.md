@@ -46,6 +46,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 * [Inputs (HDMI sources)](inputs.md) - HDMI and other inputs from Control Center (Stage 6)
 * [Custom wallpaper](custom-wallpaper.md) - built-in or user-picked background (Stage 6)
 * [In-app updates](app-updates.md) - check, download, verify and install new releases, keeping data (Stage 6)
+* [Languages (English and Hindi)](languages.md) - How KS speaks English and Hindi through ks-utility's language files, how the language is chosen and remembered, and how text in another script is laid out.
 
 # Policies
 

@@ -86,3 +86,16 @@ internal val KsTypography: Typography = Typography().let { base ->
         labelSmall = KsType.CaptionSmall,
     )
 }
+
+/**
+ * This style for [text]: tight negative tracking is tuned for Inter's Latin letters, so when the
+ * text has letters of another script (Hindi, an app or person's name in Devanagari), which a
+ * fallback font shapes, the tracking goes back to 0; with it, the fallback font's text is cut off
+ * (specs/design-system.md).
+ */
+fun TextStyle.forText(text: String): TextStyle =
+    if (letterSpacing.isSp && letterSpacing.value < 0f && text.any { it.isLetter() && it.code >= 0x0250 }) {
+        copy(letterSpacing = 0.sp)
+    } else {
+        this
+    }

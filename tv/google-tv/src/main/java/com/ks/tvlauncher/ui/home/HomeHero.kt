@@ -24,6 +24,7 @@ import com.ks.tvlauncher.ui.components.GlassButton
 import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsType
+import com.ks.tvlauncher.ui.theme.forText
 
 /**
  * The large block above the pinned row. With a pinned app it shows that app's name and the
@@ -48,9 +49,10 @@ fun HomeHero(
     onButtonFocused: (open: Boolean) -> Unit = {},
 ) {
     Column(modifier = modifier) {
+        val title = app?.label ?: stringResource(if (loading) R.string.hero_loading_title else R.string.hero_empty_title)
         Text(
-            text = app?.label ?: stringResource(if (loading) R.string.hero_loading_title else R.string.hero_empty_title),
-            style = KsType.HeroTitle,
+            text = title,
+            style = KsType.HeroTitle.forText(title),
             color = KsColors.TextPrimary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

@@ -251,9 +251,9 @@ fun ControlCenterPanel(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(stringResource(R.string.cc_clock), style = KsType.Label, color = KsColors.TextPrimary, modifier = Modifier.weight(1f))
-                GlassChip(text = stringResource(R.string.cc_12_hour), selected = !values.clock24Hour, onClick = { actions.onSetClock24Hour(false) })
+                GlassChip(text = stringResource(R.string.cc_clock_12h), selected = !values.clock24Hour, onClick = { actions.onSetClock24Hour(false) })
                 Spacer(Modifier.width(6.dp))
-                GlassChip(text = stringResource(R.string.cc_24_hour), selected = values.clock24Hour, onClick = { actions.onSetClock24Hour(true) })
+                GlassChip(text = stringResource(R.string.cc_clock_24h), selected = values.clock24Hour, onClick = { actions.onSetClock24Hour(true) })
             }
             ValueRow(stringResource(R.string.cc_weather), values.weather, onClick = actions.onOpenWeather)
             ValueRow(stringResource(R.string.cc_subscriptions), values.subscriptions, onClick = actions.onOpenSubscriptions)

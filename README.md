@@ -14,7 +14,7 @@ The spec lives in [specs/](specs/index.md). The app is built in stages; see [spe
 
 ## Getting started
 
-Requirements: JDK 17 and the Android SDK (platform 37, build-tools 36). Android Studio installs both; so do the command-line tools.
+Requirements: JDK 17, the Android SDK (platform 37, build-tools 36) and Node 23.6 or later (the build turns the English and Hindi language files into string resources with ks-utility's tool; [specs/languages.md](specs/languages.md)). Android Studio installs the JDK and SDK; so do the command-line tools.
 
 ```bash
 git clone --recurse-submodules <repo-url> ks-tv-launcher

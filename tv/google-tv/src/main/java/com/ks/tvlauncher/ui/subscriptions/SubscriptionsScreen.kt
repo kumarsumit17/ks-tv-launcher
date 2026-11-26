@@ -56,6 +56,7 @@ import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsDimens
 import com.ks.tvlauncher.ui.theme.KsType
+import com.ks.tvlauncher.ui.theme.forText
 import com.ks.tvlauncher.util.DateTimeFormats
 import kotlinx.coroutines.delay
 
@@ -219,7 +220,8 @@ private fun Header(
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         GlassButton(text = stringResource(R.string.subs_home), icon = KsIcons.ChevronLeft, onClick = onClose)
         Spacer(Modifier.width(16.dp))
-        Text(stringResource(R.string.subs_title), style = KsType.HeroTitle, color = KsColors.TextPrimary, modifier = Modifier.weight(1f))
+        val title = stringResource(R.string.subs_title)
+        Text(title, style = KsType.HeroTitle.forText(title), color = KsColors.TextPrimary, modifier = Modifier.weight(1f))
         GlassButton(text = stringResource(R.string.subs_export), onClick = onExport, enabled = canExport)
         Spacer(Modifier.width(12.dp))
         GlassButton(

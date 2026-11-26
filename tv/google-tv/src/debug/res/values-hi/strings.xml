@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KS TV Dev only, in Hindi (specs/dev-workflow.md). -->
+<resources>
+    <string name="app_name">KS - TV Launcher Dev</string>
+    <string name="app_name_short">KS TV Dev</string>
+    <string name="settings_update_preview_off">KS TV Dev में अपडेट बंद हैं।</string>
+</resources>

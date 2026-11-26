@@ -1,5 +1,7 @@
 package com.ks.tvlauncher.ui.settings
 
+import com.ks.tvlauncher.data.language.AppLanguage
+import androidx.activity.compose.LocalActivity
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
@@ -72,6 +74,7 @@ import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsDimens
 import com.ks.tvlauncher.ui.theme.KsType
+import com.ks.tvlauncher.ui.theme.forText
 import kotlinx.coroutines.delay
 
 /** Where Settings opens. */
@@ -163,7 +166,8 @@ fun SettingsScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 GlassButton(text = stringResource(R.string.settings_back), icon = KsIcons.ChevronLeft, onClick = onClose)
                 Spacer(Modifier.width(16.dp))
-                Text(stringResource(R.string.settings_title), style = KsType.HeroTitle, color = KsColors.TextPrimary)
+                val title = stringResource(R.string.settings_title)
+                Text(title, style = KsType.HeroTitle.forText(title), color = KsColors.TextPrimary)
             }
             Spacer(Modifier.height(12.dp))
             LazyColumn(
@@ -244,13 +248,16 @@ fun SettingsScreen(
                         }
                     }
                 }
+                item(key = "language") {
+                    LanguageSection()
+                }
                 item(key = "clock") {
                     GlassSection(stringResource(R.string.settings_clock)) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             ChoiceRow(stringResource(R.string.cc_clock)) {
                                 GlassChip(stringResource(R.string.settings_clock_auto), settings.use24Hour == null, { viewModel.setUse24Hour(null) })
-                                GlassChip(stringResource(R.string.cc_12_hour), settings.use24Hour == false, { viewModel.setUse24Hour(false) })
-                                GlassChip(stringResource(R.string.cc_24_hour), settings.use24Hour == true, { viewModel.setUse24Hour(true) })
+                                GlassChip(stringResource(R.string.cc_clock_12h), settings.use24Hour == false, { viewModel.setUse24Hour(false) })
+                                GlassChip(stringResource(R.string.cc_clock_24h), settings.use24Hour == true, { viewModel.setUse24Hour(true) })
                             }
                             GlassToggle(stringResource(R.string.settings_show_date), settings.showDate, viewModel::setShowDate)
                         }
@@ -595,6 +602,23 @@ internal fun ValueRow(
                 Spacer(Modifier.width(4.dp))
             }
             Icon(trailing, contentDescription = null, modifier = Modifier.size(12.dp), tint = KsColors.TextSecondary)
+        }
+    }
+}
+
+/**
+ * Language (specs/languages.md): "Same as the system", English and हिंदी, each language by its own
+ * name. Choosing one recreates the screen in it.
+ */
+@Composable
+private fun LanguageSection() {
+    val activity = LocalActivity.current ?: return
+    val choice = remember { AppLanguage.choice(activity) }
+    GlassSection(stringResource(R.string.common_language)) {
+        ChoiceRow(stringResource(R.string.common_language)) {
+            GlassChip(stringResource(R.string.common_language_system), choice == AppLanguage.SYSTEM, { AppLanguage.set(activity, AppLanguage.SYSTEM) })
+            GlassChip(stringResource(R.string.common_language_english), choice == "en", { AppLanguage.set(activity, "en") })
+            GlassChip(stringResource(R.string.common_language_hindi), choice == "hi", { AppLanguage.set(activity, "hi") })
         }
     }
 }

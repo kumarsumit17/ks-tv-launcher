@@ -87,3 +87,11 @@ One entry per stage: what changed and why.
 - `MainActivity` reports Home ready with `ReportDrawnWhen { state.appsLoaded }`.
 - Baseline profile: `tv/google-tv/src/release/generated/baselineProfiles/` from the test-only module `tv/google-tv/baselineprofile/` (`BaselineProfileGenerator`, `StartupBenchmark`, `KsJourney`; not in this graph, which covers the app only).
 - `data.updates`: `GitHubUpdateSource` reads the release list (`RELEASES_URL`) and picks the newest `google-tv-v…` or plain release with ks-utility `AppUpdate.parseReleases`; it prefers `app-release-google-tv.apk` (`TV_APK_NAME`) over `app-release.apk`.
+
+## Per-platform step 2b (google-tv-v0.9.1)
+- `ui.theme`: Inter is bundled (`res/font/inter.ttf`, variable, weights 400–800); Google Fonts and its certificates are gone.
+
+## Per-platform step 3 (English and Hindi)
+- New module `data.language` (`AppLanguage`): the language choice; `MainActivity` and `KsApplication` wrap their context on Android 8–12.
+- Strings come from `src/main/lang` (generated resources); `cc_12_hour`/`cc_24_hour` became `cc_clock_12h`/`cc_clock_24h`.
+- `ui.theme`: `TextStyle.forText(text)` drops negative tracking for text in other scripts; used by the greeting, the hero title and the Settings and Subscriptions titles. Settings has a Language section.

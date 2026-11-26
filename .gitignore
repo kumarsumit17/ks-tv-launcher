@@ -46,3 +46,7 @@ desktop.ini
 
 # ---- Logs ----
 *.log
+
+# Generated from src/main/lang by the build (specs/languages.md).
+tv/google-tv/src/main/res/values/lang_strings.xml
+tv/google-tv/src/main/res/values-hi/lang_strings.xml

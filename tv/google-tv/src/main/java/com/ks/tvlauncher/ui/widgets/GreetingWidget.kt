@@ -30,6 +30,7 @@ import com.ks.tvlauncher.ui.icons.KsIcons
 import com.ks.tvlauncher.ui.theme.KsColors
 import com.ks.tvlauncher.ui.theme.KsShapes
 import com.ks.tvlauncher.ui.theme.KsType
+import com.ks.tvlauncher.ui.theme.forText
 
 private val NameBrush = Brush.horizontalGradient(listOf(KsColors.NameGradientStart, KsColors.NameGradientEnd))
 
@@ -76,7 +77,7 @@ fun GreetingWidget(
     ) {
         Text(
             text = headline,
-            style = KsType.Greeting,
+            style = KsType.Greeting.forText(headline.text),
             color = KsColors.TextPrimary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

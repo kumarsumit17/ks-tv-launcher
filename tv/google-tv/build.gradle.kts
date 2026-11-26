@@ -178,6 +178,31 @@ dependencies {
     androidTestImplementation(libs.androidx.test.runner)
 }
 
+// ---- Language files (ks-utility; specs/languages.md) -----------------------------------------------
+// The English and Hindi text lives in src/main/lang; ks-utility's tool turns it, with the shared
+// catalogue, into values/lang_strings.xml and values-hi/lang_strings.xml (git-ignored). Needs Node.
+val langTool = rootProject.file("ks-utility/typescript/tools/lang.mjs")
+val langDir = file("src/main/lang")
+val checkLanguageFiles by tasks.registering(Exec::class) {
+    group = "verification"
+    description = "Checks the English and Hindi language files."
+    inputs.dir(langDir)
+    inputs.dir(rootProject.file("ks-utility/lang"))
+    outputs.upToDateWhen { false }
+    commandLine("node", langTool, "check", langDir)
+}
+val languageResources by tasks.registering(Exec::class) {
+    description = "Turns the language files into Android string resources."
+    inputs.dir(langDir)
+    inputs.dir(rootProject.file("ks-utility/lang"))
+    outputs.files(file("src/main/res/values/lang_strings.xml"), file("src/main/res/values-hi/lang_strings.xml"))
+    commandLine("node", langTool, "android", langDir, "--out", file("src/main/res"))
+}
+tasks.named("preBuild") { dependsOn(languageResources) }
+// The language-file check runs with the unit tests (CI runs testDebugUnitTest) and with check.
+tasks.withType<Test>().configureEach { dependsOn(checkLanguageFiles) }
+tasks.named("check") { dependsOn(checkLanguageFiles) }
+
 // Compose compiler reports for the smoothness pass (specs/smoothness.md):
 // ./gradlew assemblePerf -PcomposeReports  → tv/google-tv/build/compose-reports
 if (providers.gradleProperty("composeReports").isPresent) {

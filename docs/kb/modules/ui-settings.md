@@ -34,6 +34,7 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppsRepository`, `PinnedAppsRepository`
+- [data.language](data-language.md) via `AppLanguage`
 - [data.profile](data-profile.md) via `Profile`, `ProfileRepository`
 - [data.reminders](data-reminders.md) via `ReminderNotifier`, `ReminderScheduler`
 - [data.settings](data-settings.md) via `GlassIntensity`, `LauncherSettings`, `SettingsRepository`
@@ -46,7 +47,7 @@ The KS Settings screen (every persisted setting, opened from the gear or at Weat
 - [ui.components](ui-components.md) via `BuiltInWallpaper`, `DpadFocusable`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog` +8
 - [ui.controlcenter](ui-controlcenter.md) via `SystemIntents`
 - [ui.icons](ui-icons.md) via `KsIcons`
-- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`
+- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `forText`
 
 ## Used by (generated)
 - [ui.home](ui-home.md) via `ProfileDialog`, `SettingsScreen`, `SettingsSection`, `SettingsViewModel`

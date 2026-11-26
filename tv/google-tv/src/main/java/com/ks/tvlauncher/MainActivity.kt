@@ -1,6 +1,7 @@
 package com.ks.tvlauncher
 
 import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -15,6 +16,7 @@ import androidx.lifecycle.withResumed
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ks.tvlauncher.ui.apps.LocalAppImageLoader
 import com.ks.tvlauncher.ui.home.HomeActions
+import com.ks.tvlauncher.data.language.AppLanguage
 import com.ks.tvlauncher.ui.home.HomeScreen
 import com.ks.tvlauncher.ui.home.HomeViewModel
 import com.ks.tvlauncher.ui.theme.KsTheme
@@ -30,6 +32,11 @@ import kotlinx.coroutines.withContext
 class MainActivity : ComponentActivity() {
 
     private val viewModel: HomeViewModel by viewModels { HomeViewModel.Factory }
+
+    /** The chosen language on Android 8 to 12 (Android 13+ applies it itself; specs/languages.md). */
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLanguage.wrap(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

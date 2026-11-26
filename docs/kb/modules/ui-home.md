@@ -59,7 +59,7 @@ The main screen: layout and overlays (`HomeScreen`, `HomeActions`), `HomeViewMod
 - [ui.icons](ui-icons.md) via `KsIcons`
 - [ui.settings](ui-settings.md) via `ProfileDialog`, `SettingsScreen`, `SettingsSection`, `SettingsViewModel`
 - [ui.subscriptions](ui-subscriptions.md) via `SubscriptionsScreen`, `SubscriptionsUiState`, `SubscriptionsViewModel`, `nextRenewalLine`, `subscriptionsState`
-- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion` +1
+- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsShapes`, `KsType`, `LocalGlassStyle`, `LocalMotion` +2
 - [ui.widgets](ui-widgets.md) via `GreetingWidget`, `MemoryStorageCard`, `MemoryStoragePanel`
 - [util](util.md) via `DateTimeFormats`, `minuteTicker`
 

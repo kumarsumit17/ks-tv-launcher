@@ -28,7 +28,7 @@ Home widgets: `GreetingWidget` (greeting, date, TV name and Android version, swi
 - [domain](domain.md) via `ByteFormatter`, `GreetingPeriod`, `UsageLevel`
 - [ui.components](ui-components.md) via `GlassButton`, `GlassCard`, `GlassDialog`, `GlassPill`, `PillTone`, `requestFocusSafely`
 - [ui.icons](ui-icons.md) via `KsIcons`
-- [ui.theme](ui-theme.md) via `KsColors`, `KsShapes`, `KsType`
+- [ui.theme](ui-theme.md) via `KsColors`, `KsShapes`, `KsType`, `forText`
 
 ## Used by (generated)
 - [ui.home](ui-home.md) via `GreetingWidget`, `MemoryStorageCard`, `MemoryStoragePanel`

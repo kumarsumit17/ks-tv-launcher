@@ -33,7 +33,7 @@ The Subscriptions screen (stat cards, list, Export CSV), the add/edit `Subscript
 - [ui.apps](ui-apps.md) via `AppIntents`
 - [ui.components](ui-components.md) via `FocusMemory`, `GlassButton`, `GlassCard`, `GlassChip`, `GlassDialog`, `GlassPill` +6
 - [ui.icons](ui-icons.md) via `KsIcons`
-- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsType`
+- [ui.theme](ui-theme.md) via `KsColors`, `KsDimens`, `KsType`, `forText`
 - [util](util.md) via `DateTimeFormats`, `minuteTicker`
 
 ## Used by (generated)

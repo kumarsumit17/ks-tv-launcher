@@ -29,6 +29,7 @@ Tests: `HomeIntentTest.kt`
 
 ## Depends on (generated)
 - [data.apps](data-apps.md) via `AppArtworkFetcher`, `AppArtworkKeyer`, `AppsRepository`, `PinnedAppsRepository`, `WallpaperSource`
+- [data.language](data-language.md) via `AppLanguage`
 - [data.profile](data-profile.md) via `ProfileRepository`
 - [data.reminders](data-reminders.md) via `ReminderScheduler`, `ReminderStore`
 - [data.settings](data-settings.md) via `SettingsRepository`
