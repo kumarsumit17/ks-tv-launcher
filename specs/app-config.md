@@ -25,3 +25,8 @@ App name `KS - TV Launcher`. `namespace` = `applicationId` = `com.ks.tvlauncher`
 - `android:banner`: 320×180 px xhdpi vector/layer-list, "KS" on a navy gradient. Adaptive app icon.
 - `<queries>`: one intent for `MAIN` + `LEANBACK_LAUNCHER`, one for `MAIN` + `LAUNCHER`. **No** `QUERY_ALL_PACKAGES`.
 - Permissions: `INTERNET`, `ACCESS_NETWORK_STATE`, `ACCESS_WIFI_STATE`, and `REQUEST_DELETE_PACKAGES` (lets the app menu's Uninstall open the system uninstall dialog; required since API 28). Stage 4: `BLUETOOTH` with `maxSdkVersion="30"` (install-time; Control Center on/off) plus `android.hardware.bluetooth` `required="false"`, and `PACKAGE_USAGE_STATS` (never requested at runtime; the user may grant Usage access for the optional Apps/Other storage split). No `BLUETOOTH_CONNECT` and no location permission. `POST_NOTIFICATIONS` only in Stage 5 ([reminders](reminders.md)). Stage 6c: `REQUEST_INSTALL_PACKAGES` for [app-updates](app-updates.md) (Android still asks the user to allow it and to confirm each install).
+
+## Icons (suite rule: no default framework icon)
+- Launcher icon: adaptive (`mipmap-anydpi/ic_launcher.xml`) with KS's own background, the "KS" foreground and the same "KS" as the monochrome layer for themed icons.
+- TV banner: `drawable/banner.xml`, 320×180 px at xhdpi (160×90 dp), opaque navy with "KS".
+- Notification small icon (renewal reminders, app updates): `drawable/ic_notification.xml`, the "KS" monogram in white on transparent.
