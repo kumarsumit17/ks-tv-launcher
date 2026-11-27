@@ -12,7 +12,7 @@ Applies to every feature **and every fix**, however small. Order is fixed: build
 
 ## 1. Build
 - Spec first ([future-development](future-development.md)), then the code on `dev`.
-- `./gradlew assembleDebug testDebugUnitTest lintDebug` pass; `python3 scripts/kb.py build`, then `kb.py check` prints OK ([definition-of-done](definition-of-done.md)).
+- `./gradlew assembleDebug testDebugUnitTest lintDebug` pass; `node ks-utility/typescript/tools/suite-check.mjs .` prints OK (the release runs it too); `python3 scripts/kb.py build`, then `kb.py check` prints OK ([definition-of-done](definition-of-done.md)).
 
 ## 2. Test with sample data
 - On **every TV-size emulator** (32, 43, 50, 55, 65, 75, 85 and 100 inch; `../scripts/emulators.sh sizes`): `connectedDebugAndroidTest`, install **KS TV Dev** (`com.ks.tvlauncher.dev`), open it, and check the changed screens with the D-pad. Never touch the real app `com.ks.tvlauncher` ([dev-workflow](dev-workflow.md)).

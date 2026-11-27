@@ -1,0 +1,22 @@
+# Moves ks-tv-launcher to ks-utility's newest tag (the suite's rule; ks-utility
+# specs/release-workflow.md). It checks out dev, moves the submodule pin, runs the unit tests
+# (which include the language-file check) and only then pushes "chore: move ks-utility to vX.Y.Z"
+# to dev. The shared-workflow refs in release.yml are not moved by it (no workflow token).
+name: Move to the newest ks-utility
+on:
+  repository_dispatch:
+    types: [ks-utility-released]
+  schedule:
+    - cron: "17 4 * * *"   # daily, in case a notice was missed
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  bump:
+    permissions: { contents: write, issues: write }
+    uses: kumasumit/ks-utility/.github/workflows/ks-utility-bump.yml@main
+    with:
+      kind: kotlin
+      java: true
+      test: ./gradlew testDebugUnitTest
