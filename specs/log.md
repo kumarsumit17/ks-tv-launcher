@@ -1,3 +1,6 @@
+# 2026-11-27
+
+* **Update**: `ks-utility` and the shared release workflow moved from `v0.13.2` to `v0.14.0` (adds the Tauri apps' release workflows; nothing KS uses changes).
 # 2026-11-26
 
 * **Update**: [Build, test, release](verification.md): `scripts/tv_sizes.sh` runs the every-size check (tests, install, screenshots in English and Hindi, label audit, crashes).
