@@ -106,3 +106,6 @@ One entry per stage: what changed and why.
 
 ## Round 2, step 1 (instant Home)
 - `domain.AppListCodec` (versioned JSON, unreadable = no cache) and `data.apps.AppListCache` (`files/app_list.json`, atomic write); `AppsRepository.apps` emits the cached list first, then each scan, and writes a changed list back.
+
+## Round 2, step 2 (covered screens not drawn)
+- `ui.home`: `homeCovered` (All apps, Subscriptions or Settings open) makes Home's background and column skip drawing via `drawWithContent`; they stay composed.

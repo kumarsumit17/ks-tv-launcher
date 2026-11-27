@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -159,6 +160,12 @@ fun HomeScreen(
     var menuApp by remember { mutableStateOf<AppInfo?>(null) }
     val anyOverlay = drawerOpen || subscriptionsOpen || settingsAt != null || controlCenterOpen ||
         memoryOpener != null || firstRunProfileOpen || menuApp != null
+    // All apps, Subscriptions and Settings are opaque and cover the whole screen, and they open
+    // and close without a fade: while one is open, Home is not drawn at all (it stays composed,
+    // so focus memory and state are kept). Drawing the wallpaper and glass under them cost most
+    // of their frame time (specs/plan-per-platform-2.md, step 2).
+    val homeCovered = drawerOpen || subscriptionsOpen || settingsAt != null
+    val skipWhenCovered = Modifier.drawWithContent { if (!homeCovered) drawContent() }
     var initialFocusDone by remember { mutableStateOf(false) }
     val hasPinned = state.pinned.isNotEmpty()
     // Read through updated state so long-running effects always see the current pins.
@@ -366,7 +373,7 @@ fun HomeScreen(
                     else -> false
                 }
             },
-        background = { HomeBackground(wallpaper, state.wallpaperDim) },
+        background = { Box(Modifier.fillMaxSize().then(skipWhenCovered)) { HomeBackground(wallpaper, state.wallpaperDim) } },
     ) {
         Column(
             Modifier
@@ -374,6 +381,7 @@ fun HomeScreen(
                 // While an overlay covers Home, TalkBack must not reach the hidden Home controls
                 // behind it (specs/accessibility.md). D-pad focus is unaffected.
                 .then(if (anyOverlay) Modifier.clearAndSetSemantics {} else Modifier)
+                .then(skipWhenCovered)
                 .padding(vertical = KsDimens.OverscanVertical),
         ) {
             HomeTopBar(

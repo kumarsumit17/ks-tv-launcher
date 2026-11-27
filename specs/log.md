@@ -1,5 +1,7 @@
 # 2026-11-27
 
+* **Update**: [App config](app-config.md) icons (suite rule: no default framework icon): the launcher icon gains a monochrome "KS" layer, and the notification icon is the "KS" monogram instead of a generic bell.
+* **Update**: [Per-platform plan, round 2](plan-per-platform-2.md) step 2: [performance](performance.md) Home is not drawn under the opaque All apps, Subscriptions and Settings screens (All apps 41 → 16 % janky, Settings 43 → about 17 %). Also: `google-tv-v0.12.0` (instant Home) released on the third attempt, after a stale CI Gradle cache from 2026-11-16 kept failing the Kotlin plugin lookup; the repository's Actions caches were cleared.
 * **Update**: [Per-platform plan, round 2](plan-per-platform-2.md) step 1 built: [performance](performance.md) instant Home (the last app list kept in `files/app_list.json` and shown at once; the scan replaces it). Baseline profile regenerated.
 * **Creation**: [Per-platform plan, round 2](plan-per-platform-2.md) added and started (owner's request): instant Home, smoother All apps and Settings, low-memory defaults and USB pictures (owner decisions), and the hand checks on the owner's TV.
 * **Update**: [Per-platform plan](plan-per-platform.md) step 6 (smoothness re-run) recorded; the plan is complete. [Smoothness](smoothness.md): 4K emulators cannot measure KS; 4K is a hand check on a real TV.

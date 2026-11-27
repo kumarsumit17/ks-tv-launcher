@@ -32,6 +32,7 @@ tags: [plan, platforms, google-tv, performance, startup, memory]
 ### 2.2 Smoother All apps and Settings
 - Profile both screens on the `perf` build (Compose compiler reports, `scripts/perf.sh` scenarios 4 and 5) and fix what the measurements show: unstable parameters, items without keys or content types, work in composition.
 - Target at 1080p: both at most 30 % janky with a median of at most 25 ms, and no other scenario worse.
+- **Built (2026-11-27):** the Compose reports showed every restartable composable skippable, so stability was not the cause; `dumpsys gfxinfo` showed almost every janky frame as "slow issue draw commands" (drawing, not the UI thread). Home kept drawing its wallpaper and glass under the opaque All apps, Subscriptions and Settings screens; it now skips drawing while one of them is open (`homeCovered` in `HomeScreen`; it stays composed). 1080p emulator, `perf` build: All apps 41 % → 16 % janky, median 29 → 17 ms; Settings 43 % → 15–19 %, 36 → 17 ms; the pinned row (16 %, 17 ms) and Control Center (26–35 %, 23–25 ms) are unchanged.
 
 ### 2.3 Low-memory TVs (decision 2)
 - On a TV that reports `isLowRamDevice`, or has under 3 GB of RAM: glass intensity defaults to Low (no blur) until the user picks one, the image memory cache is 8 % of the heap instead of 15 %, and the dynamic wallpaper's colours come from a smaller bitmap.

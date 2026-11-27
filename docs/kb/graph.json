@@ -2594,103 +2594,103 @@
    "symbols": [
     {
      "kind": "val",
-     "line": 78,
+     "line": 79,
      "name": "SNACKBAR_MS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 79,
+     "line": 80,
      "name": "MENU_SETTLE_MS",
      "private": true
     },
     {
      "kind": "class",
-     "line": 82,
+     "line": 83,
      "name": "HomeActions",
      "private": false
     },
     {
      "kind": "class",
-     "line": 99,
+     "line": 100,
      "name": "MemoryOpener",
      "private": true
     },
     {
      "kind": "val",
-     "line": 102,
+     "line": 103,
      "name": "KEY_ROW",
      "private": true
     },
     {
      "kind": "val",
-     "line": 103,
+     "line": 104,
      "name": "KEY_WEATHER",
      "private": true
     },
     {
      "kind": "val",
-     "line": 104,
+     "line": 105,
      "name": "KEY_GEAR",
      "private": true
     },
     {
      "kind": "val",
-     "line": 105,
+     "line": 106,
      "name": "KEY_UPDATE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 106,
+     "line": 107,
      "name": "KEY_CHIP",
      "private": true
     },
     {
      "kind": "val",
-     "line": 107,
+     "line": 108,
      "name": "KEY_HERO_OPEN",
      "private": true
     },
     {
      "kind": "val",
-     "line": 108,
+     "line": 109,
      "name": "KEY_HERO_UNPIN",
      "private": true
     },
     {
      "kind": "val",
-     "line": 109,
+     "line": 110,
      "name": "KEY_ALL_APPS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 110,
+     "line": 111,
      "name": "KEY_SUBS",
      "private": true
     },
     {
      "kind": "val",
-     "line": 111,
+     "line": 112,
      "name": "KEY_MEMORY",
      "private": true
     },
     {
      "kind": "val",
-     "line": 112,
+     "line": 113,
      "name": "KEY_CC",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 115,
+     "line": 116,
      "name": "trackFocus",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 126,
+     "line": 127,
      "name": "HomeScreen",
      "private": false
     }
@@ -4945,6 +4945,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "b5eca595196eb5e39d0d2e59f663974fb2cbba74",
+ "source_hash": "4ddb640c5d69067169d363e0ee3d4c1ec68fd4ff",
  "version": 1
 }
