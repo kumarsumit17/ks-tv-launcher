@@ -30,6 +30,7 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/AnimationSpeed.kt` — `AnimationSpeed`
 - `domain/AppFilter.kt` — `AppFilter`
 - `domain/AppInfo.kt` — `AppCategory`, `AppInfo`
+- `domain/AppListCodec.kt` — `AppListCodec`
 - `domain/AppUpdates.kt` — `AppUpdates`, `ReleaseInfo`, `UpdateVerdict`
 - `domain/ByteFormatter.kt` — `ByteFormatter`, `UsageLevel`
 - `domain/DailyWork.kt` — `DailyWork`, `DailyWorkPlan`
@@ -46,13 +47,13 @@ Pure Kotlin rules with unit tests: greeting period, profile-name rules, model-na
 - `domain/Wallpapers.kt` — `WallpaperDim`, `WallpaperImage`, `WallpaperMode`, `Wallpapers`
 - `domain/Weather.kt` — `TemperatureUnit`, `WeatherCity`, `WeatherCityMode`, `WeatherCodes`, `WeatherGroup`
 
-Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppUpdatesTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DailyWorkPlanTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
+Tests: `domain/AnimationSpeedTest.kt`, `domain/AppFilterTest.kt`, `domain/AppListCodecTest.kt`, `domain/AppUpdatesTest.kt`, `domain/ByteFormatterTest.kt`, `domain/DailyWorkPlanTest.kt`, `domain/DeviceNamesTest.kt`, `domain/GreetingTest.kt`, `domain/MoneyTest.kt`, `domain/PinnedAppsTest.kt`, `domain/ProfileNamesEditTest.kt`, `domain/ProfileNamesTest.kt`, `domain/RenewalRemindersTest.kt`, `domain/SubscriptionCalculatorTest.kt`, `domain/SubscriptionCsvTest.kt`, `domain/TvInputsTest.kt`, `domain/WallpapersTest.kt`, `domain/WeatherCodesTest.kt`
 
 ## Depends on (generated)
 - nothing inside the app
 
 ## Used by (generated)
-- [data.apps](data-apps.md) via `AppCategory`, `AppInfo`, `PinnedApps`
+- [data.apps](data-apps.md) via `AppCategory`, `AppInfo`, `AppListCodec`, `PinnedApps`
 - [data.profile](data-profile.md) via `ProfileNames`
 - [data.reminders](data-reminders.md) via `BillingCycle`, `DueReminder`, `Money`, `RenewalReminders`
 - [data.settings](data-settings.md) via `AnimationSpeed`, `Money`, `RenewalReminders`, `TemperatureUnit`, `WallpaperDim`, `WallpaperImage` +4

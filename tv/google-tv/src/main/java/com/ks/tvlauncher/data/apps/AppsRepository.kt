@@ -13,6 +13,7 @@ import android.os.UserHandle
 import androidx.core.content.pm.PackageInfoCompat
 import com.ks.tvlauncher.domain.AppCategory
 import com.ks.tvlauncher.domain.AppInfo
+import java.text.Collator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -22,11 +23,13 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import java.text.Collator
 
 /**
  * Installed, launchable apps. No polling: the list is re-read when `LauncherApps` reports an
@@ -39,13 +42,24 @@ class AppsRepository(context: Context, scope: CoroutineScope) {
     private val launcherApps: LauncherApps? = appContext.getSystemService(LauncherApps::class.java)
     private val manualRefresh = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
+    private val cache = AppListCache(appContext)
+
     /**
-     * Null until the first scan finishes, so callers can tell "not loaded yet" from "no apps".
-     * Stops listening 5 s after the last collector leaves, and keeps the last list.
+     * Null until a list is known, so callers can tell "not loaded yet" from "no apps". On a cold
+     * start the list kept from the last scan comes first (instant Home,
+     * specs/plan-per-platform-2.md), then the fresh scan replaces it; every scan that changes the
+     * list is kept for next time. Stops listening 5 s after the last collector leaves.
      */
-    val apps: StateFlow<List<AppInfo>?> = merge(packageChanges(), manualRefresh)
-        .conflate()
-        .map { queryApps() }
+    val apps: StateFlow<List<AppInfo>?> = flow {
+        var last = cache.read()
+        last?.let { emit(it) }
+        emitAll(
+            merge(packageChanges(), manualRefresh)
+                .conflate()
+                .map { queryApps() }
+                .onEach { fresh -> if (fresh != last) cache.write(fresh).also { last = fresh } },
+        )
+    }
         .flowOn(Dispatchers.IO)
         .stateIn(scope, SharingStarted.WhileSubscribed(5_000), null)
 

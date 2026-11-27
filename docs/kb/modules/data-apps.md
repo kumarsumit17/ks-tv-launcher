@@ -22,6 +22,7 @@ Installed apps and everything read from them: `AppsRepository` (discovery, launc
 
 ## Files (generated)
 - `data/apps/AppArtwork.kt` — `AppArtwork`, `AppArtworkFetcher`, `AppArtworkKeyer`, `artwork`
+- `data/apps/AppListCache.kt` — `AppListCache`
 - `data/apps/AppsRepository.kt` — `AppsRepository`
 - `data/apps/PinnedAppsRepository.kt` — `PinnedAppsRepository`
 - `data/apps/WallpaperSource.kt` — `Wallpaper`, `WallpaperSource`
@@ -29,7 +30,7 @@ Installed apps and everything read from them: `AppsRepository` (discovery, launc
 Tests: `data/apps/AppArtworkKeyerTest.kt`, `data/apps/PinnedAppsRepositoryTest.kt`
 
 ## Depends on (generated)
-- [domain](domain.md) via `AppCategory`, `AppInfo`, `PinnedApps`
+- [domain](domain.md) via `AppCategory`, `AppInfo`, `AppListCodec`, `PinnedApps`
 
 ## Used by (generated)
 - [root](root.md) via `AppArtworkFetcher`, `AppArtworkKeyer`, `AppsRepository`, `PinnedAppsRepository`, `WallpaperSource`

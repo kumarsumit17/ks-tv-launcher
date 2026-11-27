@@ -27,6 +27,7 @@ tags: [plan, platforms, google-tv, performance, startup, memory]
 - A cached app that has since been uninstalled disappears when the scan arrives; opening it before then uses the existing "no longer installed" path.
 - The cache holds nothing personal beyond what KS already stores (names of installed apps), stays on the device and is never backed up ([app-config](app-config.md)).
 - Target: Home ready within 50 ms of the first frame on the emulator, measured with `StartupBenchmark`; the baseline profile is regenerated.
+- **Built (2026-11-27):** measured with timing logs on the 1080p emulator, the cached list arrives about 200 ms before the scan, and all of Home's sources arrive within about 200 ms of the first frame. Home ready then follows by the time Compose needs to compose and draw Home (about 150 ms on the release build in round 1), so the 50 ms target is not reached by the cache alone; composition is step 2's subject. The benchmark numbers on 2026-11-27 were too noisy to compare (five other emulators running on the Mac).
 
 ### 2.2 Smoother All apps and Settings
 - Profile both screens on the `perf` build (Compose compiler reports, `scripts/perf.sh` scenarios 4 and 5) and fix what the measurements show: unstable parameters, items without keys or content types, work in composition.

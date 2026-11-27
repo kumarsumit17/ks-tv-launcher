@@ -204,8 +204,32 @@
     }
    ]
   },
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppListCache.kt": {
+   "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppInfo"
+    ],
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppListCodec.kt": [
+     "AppListCodec"
+    ]
+   },
+   "module": "data.apps",
+   "package": "com.ks.tvlauncher.data.apps",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 14,
+     "name": "AppListCache",
+     "private": false
+    }
+   ]
+  },
   "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppsRepository.kt": {
    "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/data/apps/AppListCache.kt": [
+     "AppListCache"
+    ],
     "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
      "AppCategory",
      "AppInfo"
@@ -217,7 +241,7 @@
    "symbols": [
     {
      "kind": "class",
-     "line": 35,
+     "line": 38,
      "name": "AppsRepository",
      "private": false
     }
@@ -957,6 +981,25 @@
      "kind": "class",
      "line": 7,
      "name": "AppInfo",
+     "private": false
+    }
+   ]
+  },
+  "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppListCodec.kt": {
+   "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "main",
+   "symbols": [
+    {
+     "kind": "object",
+     "line": 12,
+     "name": "AppListCodec",
      "private": false
     }
    ]
@@ -4546,6 +4589,28 @@
     }
    ]
   },
+  "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/AppListCodecTest.kt": {
+   "deps": {
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppInfo.kt": [
+     "AppCategory",
+     "AppInfo"
+    ],
+    "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppListCodec.kt": [
+     "AppListCodec"
+    ]
+   },
+   "module": "domain",
+   "package": "com.ks.tvlauncher.domain",
+   "source_set": "test",
+   "symbols": [
+    {
+     "kind": "class",
+     "line": 7,
+     "name": "AppListCodecTest",
+     "private": false
+    }
+   ]
+  },
   "tv/google-tv/src/test/java/com/ks/tvlauncher/domain/AppUpdatesTest.kt": {
    "deps": {
     "tv/google-tv/src/main/java/com/ks/tvlauncher/domain/AppUpdates.kt": [
@@ -4880,6 +4945,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "e066a9adcc86ffdf86c30b69679977a03e21412a",
+ "source_hash": "b5eca595196eb5e39d0d2e59f663974fb2cbba74",
  "version": 1
 }

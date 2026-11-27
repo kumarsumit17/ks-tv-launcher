@@ -103,3 +103,6 @@ One entry per stage: what changed and why.
 
 ## Per-platform step 5 (D-pad polish)
 - `ui.settings`: `SettingsSection.LANGUAGE`, `ITEM_LANGUAGE`; item indexes follow the new Language item (Weather 6, About 10); `onReopenAt` lets Settings reopen on the Language row after Android recreates the screen in the new language.
+
+## Round 2, step 1 (instant Home)
+- `domain.AppListCodec` (versioned JSON, unreadable = no cache) and `data.apps.AppListCache` (`files/app_list.json`, atomic write); `AppsRepository.apps` emits the cached list first, then each scan, and writes a changed list back.
