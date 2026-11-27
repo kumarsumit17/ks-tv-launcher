@@ -3132,61 +3132,67 @@
     },
     {
      "kind": "val",
-     "line": 87,
+     "line": 89,
      "name": "ITEM_PROFILE",
      "private": true
     },
     {
      "kind": "val",
-     "line": 88,
-     "name": "ITEM_WEATHER",
-     "private": true
-    },
-    {
-     "kind": "val",
-     "line": 89,
-     "name": "ITEM_ABOUT",
+     "line": 90,
+     "name": "ITEM_LANGUAGE",
      "private": true
     },
     {
      "kind": "val",
      "line": 91,
+     "name": "ITEM_WEATHER",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 92,
+     "name": "ITEM_ABOUT",
+     "private": true
+    },
+    {
+     "kind": "val",
+     "line": 94,
      "name": "DIALOG_SETTLE_MS",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 98,
+     "line": 101,
      "name": "SettingsScreen",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 388,
+     "line": 403,
      "name": "WeatherSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 508,
+     "line": 523,
      "name": "ReminderSettings",
      "private": true
     },
     {
      "kind": "fun",
-     "line": 581,
+     "line": 596,
      "name": "ChoiceRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 590,
+     "line": 605,
      "name": "ValueRow",
      "private": false
     },
     {
      "kind": "fun",
-     "line": 614,
+     "line": 629,
      "name": "LanguageSection",
      "private": true
     }
@@ -4874,6 +4880,6 @@
   }
  },
  "generated_by": "scripts/kb.py build",
- "source_hash": "2ea5d79f954955c4292ae2ed2e93789f4af6b14c",
+ "source_hash": "e066a9adcc86ffdf86c30b69679977a03e21412a",
  "version": 1
 }

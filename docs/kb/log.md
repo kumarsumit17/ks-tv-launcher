@@ -100,3 +100,6 @@ One entry per stage: what changed and why.
 - `ui.theme`: `SystemAccessibility` / `rememberSystemAccessibility()` follow Remove animations and high contrast text live; `GlassStyle.backingAlpha` darkens glass with high contrast (`ui.components` `glass()` draws it).
 - `ui.home`: Home's column is `clearAndSetSemantics {}` while any overlay is open.
 - `scripts/a11y_audit.py`: label audit over a uiautomator dump.
+
+## Per-platform step 5 (D-pad polish)
+- `ui.settings`: `SettingsSection.LANGUAGE`, `ITEM_LANGUAGE`; item indexes follow the new Language item (Weather 6, About 10); `onReopenAt` lets Settings reopen on the Language row after Android recreates the screen in the new language.

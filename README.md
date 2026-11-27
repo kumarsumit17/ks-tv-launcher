@@ -1,6 +1,6 @@
 # KS - TV Launcher
 
-> Part of the [KS-Suite](https://github.com/kumasumit/KS-Suite).
+> Part of the [KS-Suite](https://github.com/kumasumit/ks-suite).
 
 An ad-free, Apple TV-style launcher for Android TV / Google TV that you open like any other app, fully controlled by the remote: glass UI, a greeting widget, pinned apps, an All apps drawer, a wallpaper that follows the focused app, a weather pill and a streaming-subscription tracker with optional renewal reminders.
 
@@ -51,7 +51,7 @@ Judge frame times on the `perf` build, never on debug: `./gradlew assemblePerf` 
 `versionCode` and `versionName` are never hardcoded. In order of priority they come from `-PversionCode` / `-PversionName`, the `VERSION_CODE` / `VERSION_NAME` environment variables, then git (`rev-list --count HEAD` and the latest tag), then the fallbacks `1` and `0.1.0-dev`.
 
 Releases are cut by pushing a semantic version tag (`git tag v1.2.3 && git push --tags`); the workflow passes the tag's version with `-P`.
-See the suite-level [CI/CD guide](https://github.com/kumasumit/KS-Suite#-cicd-semantic-versioning--automated-signing).
+See the suite-level [CI/CD guide](https://github.com/kumasumit/ks-suite#-cicd-semantic-versioning--automated-signing).
 
 For local release builds, put signing values in an untracked `keystore.properties` using the keys `storeFile`, `storePassword`, `keyAlias` and `keyPassword`. Without signing values a release build is left unsigned.
 

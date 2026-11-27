@@ -78,15 +78,18 @@ import com.ks.tvlauncher.ui.theme.forText
 import kotlinx.coroutines.delay
 
 /** Where Settings opens. */
-enum class SettingsSection { PROFILE, WEATHER, ABOUT }
+enum class SettingsSection { PROFILE, LANGUAGE, WEATHER, ABOUT }
 
 /** Currencies offered in the picker (ISO 4217). Subscriptions and the CSV use the chosen one. */
 private val CURRENCIES = listOf("INR", "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "SGD", "AED")
 
-// LazyColumn item indexes, so Settings can open scrolled to a section.
+// LazyColumn item indexes, so Settings can open scrolled to a section. Keep them in step with
+// the item order below (profile, home, wallpaper, look, language, clock, weather, pinned,
+// currency, reminders, about).
 private const val ITEM_PROFILE = 0
-private const val ITEM_WEATHER = 5
-private const val ITEM_ABOUT = 9
+private const val ITEM_LANGUAGE = 4
+private const val ITEM_WEATHER = 6
+private const val ITEM_ABOUT = 10
 
 private const val DIALOG_SETTLE_MS = 120L
 
@@ -101,6 +104,8 @@ fun SettingsScreen(
     startAt: SettingsSection,
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
+    /** Where Settings should reopen when the screen is recreated (a language change). */
+    onReopenAt: (SettingsSection) -> Unit = {},
 ) {
     val context = LocalContext.current
     val listState = rememberLazyListState()
@@ -108,6 +113,7 @@ fun SettingsScreen(
     val cityFocus = remember { FocusRequester() }
     val weatherFocus = remember { FocusRequester() }
     val aboutFocus = remember { FocusRequester() }
+    val languageFocus = remember { FocusRequester() }
     var profileOpen by rememberSaveable { mutableStateOf(false) }
     var cityQuery by rememberSaveable { mutableStateOf("") }
     // The focused control (a result row, a mode button) is about to disappear: move focus to
@@ -128,6 +134,11 @@ fun SettingsScreen(
             SettingsSection.PROFILE -> {
                 withFrameNanos { }
                 profileFocus.requestFocusSafely()
+            }
+            SettingsSection.LANGUAGE -> {
+                listState.scrollToItem(ITEM_LANGUAGE)
+                withFrameNanos { }
+                languageFocus.requestFocusSafely()
             }
             SettingsSection.WEATHER -> {
                 listState.scrollToItem(ITEM_WEATHER)
@@ -249,7 +260,11 @@ fun SettingsScreen(
                     }
                 }
                 item(key = "language") {
-                    LanguageSection()
+                    LanguageSection(
+                        focus = languageFocus,
+                        // Android recreates the screen in the new language: reopen on this row.
+                        beforeChange = { onReopenAt(SettingsSection.LANGUAGE) },
+                    )
                 }
                 item(key = "clock") {
                     GlassSection(stringResource(R.string.settings_clock)) {
@@ -611,14 +626,34 @@ internal fun ValueRow(
  * name. Choosing one recreates the screen in it.
  */
 @Composable
-private fun LanguageSection() {
+private fun LanguageSection(focus: FocusRequester, beforeChange: () -> Unit) {
     val activity = LocalActivity.current ?: return
     val choice = remember { AppLanguage.choice(activity) }
+    fun choose(value: String) {
+        if (value == choice) return
+        beforeChange()
+        AppLanguage.set(activity, value)
+    }
     GlassSection(stringResource(R.string.common_language)) {
         ChoiceRow(stringResource(R.string.common_language)) {
-            GlassChip(stringResource(R.string.common_language_system), choice == AppLanguage.SYSTEM, { AppLanguage.set(activity, AppLanguage.SYSTEM) })
-            GlassChip(stringResource(R.string.common_language_english), choice == "en", { AppLanguage.set(activity, "en") })
-            GlassChip(stringResource(R.string.common_language_hindi), choice == "hi", { AppLanguage.set(activity, "hi") })
+            GlassChip(
+                stringResource(R.string.common_language_system),
+                choice == AppLanguage.SYSTEM,
+                { choose(AppLanguage.SYSTEM) },
+                modifier = if (choice == AppLanguage.SYSTEM) Modifier.focusRequester(focus) else Modifier,
+            )
+            GlassChip(
+                stringResource(R.string.common_language_english),
+                choice == "en",
+                { choose("en") },
+                modifier = if (choice == "en") Modifier.focusRequester(focus) else Modifier,
+            )
+            GlassChip(
+                stringResource(R.string.common_language_hindi),
+                choice == "hi",
+                { choose("hi") },
+                modifier = if (choice == "hi") Modifier.focusRequester(focus) else Modifier,
+            )
         }
     }
 }

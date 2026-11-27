@@ -16,6 +16,7 @@ Applies to every feature **and every fix**, however small. Order is fixed: build
 
 ## 2. Test with sample data
 - On **every TV-size emulator** (32, 43, 50, 55, 65, 75, 85 and 100 inch; `../scripts/emulators.sh sizes`): `connectedDebugAndroidTest`, install **KS TV Dev** (`com.ks.tvlauncher.dev`), open it, and check the changed screens with the D-pad. Never touch the real app `com.ks.tvlauncher` ([dev-workflow](dev-workflow.md)).
+  - `scripts/tv_sizes.sh OUT_DIR` does this for every size in one run: connected tests, install, screenshots of Home, All apps, Subscriptions, Control Center and Settings (with `LANGS="en hi"` also Home and Settings in Hindi), the label audit ([accessibility](accessibility.md)) and a crash count. Look at the screenshots of the changed screens, at least on 32 and 100 inch.
 - Exercise the changed feature with **sample test data** entered through the app itself, with names starting `TEST ` (for example a subscription "TEST Netflix", ₹499 monthly; "TEST Prime", ₹1,499 yearly; a profile name "TEST Goldi"). Cover the normal path, an edge case and the empty state.
 - Drive it with `adb shell input keyevent` (DPAD, ENTER, BACK) and check results with `adb exec-out screencap -p`; look at the screenshot only as far as the check needs ([token-budget](token-budget.md)).
 - The owner's TV (`adb connect 192.168.1.5:5555`) is used as well when it is reachable, with KS TV Dev only. If it is not reachable, the emulators are enough; it never blocks.

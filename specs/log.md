@@ -1,5 +1,8 @@
 # 2026-11-26
 
+* **Update**: [Build, test, release](verification.md): `scripts/tv_sizes.sh` runs the every-size check (tests, install, screenshots in English and Hindi, label audit, crashes).
+* **Update**: Links to the suite repository use its new name, `kumasumit/ks-suite` (README, [per-platform plan](plan-per-platform.md), [app-updates](app-updates.md)).
+* **Update**: [Per-platform plan](plan-per-platform.md) step 5: [focus-navigation](focus-navigation.md) (Language change refocus, key repeat, section indexes) and [settings](settings.md) (Language row). Fixed: Settings' Weather and About shortcuts scrolled to the wrong item after the Language item was added.
 * **Update**: [Per-platform plan](plan-per-platform.md) step 4 released as `google-tv-v0.11.0` (accessibility; ks-utility `v0.13.2`; signer `2aa25f08…`).
 * **Update**: `ks-utility` and the shared release workflow moved from `v0.10.0` to `v0.13.2` (the suite's rule: the newest tag before each release; the Chrome update platform, the approved Hindi terms; the workflow itself is unchanged). The language files pass the new term list.
 * **Creation**: [Accessibility](accessibility.md) added ([per-platform plan](plan-per-platform.md) step 4): labels on every focusable element checked by `scripts/a11y_audit.py`, Home cleared from the accessibility tree under overlays, TalkBack pass on the TV emulator, high contrast text and Remove animations followed live (`rememberSystemAccessibility`, `GlassStyle.backingAlpha`). [Future development](future-development.md): the animator-scale check is covered on the emulators. Also recorded: `google-tv-v0.10.0` released (English and Hindi, signer `2aa25f08…`).

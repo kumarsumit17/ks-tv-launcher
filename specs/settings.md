@@ -11,6 +11,7 @@ stage: 4
 - Profile: names, active name, "Use my own TV name" ([greeting-widget](greeting-widget.md))
 - Show Memory & storage card on/off
 - Wallpaper mode (Dynamic / Custom / Plain), built-in or picked image, dim ([custom-wallpaper](custom-wallpaper.md)); glass intensity (3 levels); reduce motion; transition speed (stepper, 0.25×–1.5×, default 0.5×, [design-system](design-system.md))
+- Language: Same as the system / English / हिंदी ([languages](languages.md)); not in DataStore but in the system's per-app language (Android 13+) or KS's own preference (8–12). After a change the screen is shown again in the new language with focus on the chosen chip.
 - Clock 12/24h; show/hide date
 - Weather city: automatic by default (detected from the network), with "Change city" for a manual city and "Use my current city (automatic)" to go back; "Detect again"; °C/°F ([weather](weather.md))
 - Pinned apps order

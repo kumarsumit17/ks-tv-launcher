@@ -572,6 +572,7 @@ fun HomeScreen(
                 viewModel = settingsViewModel,
                 startAt = section,
                 onClose = { settingsAt = null },
+                onReopenAt = { settingsAt = it },
             )
         }
 
