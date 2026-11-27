@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   release:
-    uses: kumasumit/ks-utility/.github/workflows/kotlin-app-release.yml@dev
+    uses: kumasumit/ks-utility/.github/workflows/kotlin-app-release.yml@main
     permissions:
       contents: write
       id-token: write
