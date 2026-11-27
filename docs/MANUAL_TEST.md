@@ -533,3 +533,23 @@ The owner updated 0.7.2 → 0.7.3 from inside KS. Read-only check by Claude Code
 - Changed by the owner · Reduce motion **on** and Transition speed **0.25×** (baseline: off, 0.5×; still off and 0.5× at 14:46). The owner confirmed changing them after the final check; not caused by the update. Settings now shows "Reduce motion is on, so nothing animates. Turn it off to use this." under Transition speed.
 - Not run · the update-check job returning after a force-stop on a release build: the real app is never force-stopped ([final-check](spec/final-check.md)). The re-registration path is covered by the perf test and `DailyWorkPlanTest`.
 - KS TV Dev is not installed (`pm list packages` shows only `com.ks.tvlauncher`).
+
+## Per-platform step 6: smoothness re-run (2026-11-27, google-tv-v0.11.1, `perf` build, emulators)
+
+`scripts/perf.sh -n 3 1 3 4 5` (1 pinned row, 3 Control Center, 4 All apps, 5 Settings), median of three runs.
+
+| Emulator | Scenario | Frames | Janky % | p50 ms | p90 ms | p95 ms |
+|---|---|---|---|---|---|---|
+| 43 inch (1080p) | 1 | 49 | 22.45 | 17 | 29 | 31 |
+| 43 inch (1080p) | 3 | 83 | 28.92 | 21 | 48 | 57 |
+| 43 inch (1080p) | 4 | 92 | 41.30 | 29 | 42 | 48 |
+| 43 inch (1080p) | 5 | 429 | 43.12 | 36 | 57 | 65 |
+| 85 inch (4K) | 1 | 35 | 100 | 105 | 150 | 150 |
+| 85 inch (4K) | 5 | 205 | 100 | 200 | 400 | 500 |
+| 100 inch (4K) | 1 | 36 | 97.37 | 93 | 150 | 150 |
+| 100 inch (4K) | 5 | 209 | 100 | 200 | 300 | 450 |
+| 85 inch, UI set to 1920×1080 | 1 | 30 | 100 | 125 | 250 | 250 |
+
+- Pass · 1080p: scenario 1 is within the targets of [smoothness](../specs/smoothness.md) (at most 25 % janky, median at most 33 ms).
+- Not measurable on the Mac · 4K: the 4K emulators are slow even with their UI set to 1920×1080, so the time goes to the emulator's 4K display path, not to KS. 4K smoothness is a hand check on a real 4K TV (the owner's 55 inch), with `scripts/perf.sh -p com.ks.tvlauncher.dev` on a `perf` build; it never blocks a release.
+- The owner's TV was not reachable on 2026-11-27 (`adb connect 192.168.1.5:5555` gave no device).

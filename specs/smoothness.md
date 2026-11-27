@@ -37,3 +37,6 @@ The owner's TV (KTC Lumio Vision, Android 14, 32-bit ARM, about 2.3 GB RAM) drop
 
 ## Done when
 - Before and after tables are in `docs/MANUAL_TEST.md`, the findings and each kept change are in `docs/kb/log.md`, unit tests and `kb.py check` pass, and the owner has looked at the result on the TV.
+
+## 4K emulators
+The 4K TV-size emulators on the Mac are too slow to measure KS (about 100–200 ms frames even with the UI set to 1920×1080, while the 1080p emulator meets the targets). Measure 4K smoothness on a real 4K TV with a `perf` build; it is a hand check and never blocks a release (`docs/MANUAL_TEST.md`, per-platform step 6).

@@ -63,6 +63,7 @@ Full stage list: [stages](stages.md). Mockups are in `docs/mockups/`. Where a mo
 
 * [Stages](stages.md) - the five stages
 * [Per-platform optimization plan](plan-per-platform.md) - Approved plan for making the Google TV build the best launcher app on its platform: D-pad and 10-foot UI, startup, size, Google TV rules, accessibility and languages.
+* [Per-platform optimization plan, round 2](plan-per-platform-2.md) - The second round of Google TV optimizations for KS TV Launcher after round 1: an instant Home, smoother Settings and All apps, low-memory TVs, pictures from USB drives, and the hand checks on the owner's TV.
 
 # Playbooks
 

@@ -1,5 +1,7 @@
 # 2026-11-27
 
+* **Creation**: [Per-platform plan, round 2](plan-per-platform-2.md) added and started (owner's request): instant Home, smoother All apps and Settings, low-memory defaults and USB pictures (owner decisions), and the hand checks on the owner's TV.
+* **Update**: [Per-platform plan](plan-per-platform.md) step 6 (smoothness re-run) recorded; the plan is complete. [Smoothness](smoothness.md): 4K emulators cannot measure KS; 4K is a hand check on a real TV.
 * **Update**: `ks-utility` and the shared release workflow moved from `v0.13.2` to `v0.14.0` (adds the Tauri apps' release workflows; nothing KS uses changes).
 # 2026-11-26
 

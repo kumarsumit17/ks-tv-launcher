@@ -99,4 +99,9 @@ Each step is its own change on `dev`: built, tested, then committed, pushed and 
 
 - Step 5: D-pad polish and Google TV rules. Settings reopens on the Language row after a language change; the section indexes, shifted by the new Language item, are fixed (Weather and About shortcuts). Decision 5: no hold-to-scroll acceleration, since the system's key repeat already reaches the end of the longest row quickly. The banner (320×180 px at xhdpi, opaque, "KS") and the manifest rules check out; the landscape lock and `resizeableActivity=false` stay honoured on Android 16+ because a TV is a 960×540 dp screen, below the 600 dp large-screen cut-off. The All apps Down/Right jump seen in step 1 did not reproduce in deliberate tests (it came right after the first-run dialog closed). Every screen checked on every TV-size emulator.
 
+- Step 5 released as `google-tv-v0.11.1` with ks-utility `v0.14.0`.
+- Step 6: smoothness re-run on the `perf` build (`docs/MANUAL_TEST.md`). 1080p emulator: scenario 1 median 17 ms, 22 % janky, within [smoothness](smoothness.md)'s targets; no regression. The 4K emulators stay at about 100–200 ms even with their UI set to 1920×1080, so that cost is the emulator's 4K display path, not KS; 4K smoothness (and the 20 ms median target) is measured on the owner's TV as a hand check that never blocks a release. No code change, so no release.
+
+**This plan is complete (2026-11-27).** The next round is [plan-per-platform-2](plan-per-platform-2.md).
+
 Each step is released on its own as soon as its tests pass (a new MINOR version for a step that changes the app, PATCH for a fix); the owner installs it from inside KS on the TV when convenient, and the data check in [dev-workflow](dev-workflow.md) runs then. Paid signing and hand checks never block a release.
